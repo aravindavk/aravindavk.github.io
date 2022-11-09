@@ -1,0 +1,23 @@
+---
+title: List of Blog Posts
+---
+
+++++
+<div class="columns">
+  <% sort_blog_posts(@items.find_all('/blog/*')).each do |post| %>
+  <% slug, created_at = slug_and_created_at(post) %>
+  <div class="column is-6">
+    <div class="card">
+      <div class="card-content">
+        <div class="content has-text-centered">
+          <p class="has-text-weight-semibold is-size-4 my-1"><%= post[:title] %></p>
+          <p class="is-size-7 has-text-grey"><%= get_pretty_date(created_at) %> <span class="tag"><%= reading_time(post.compiled_content) %> read</span></p>
+          <p class="has-text-left py-4"><%= post[:summary] %>...</p>
+          <a class="button is-small" href="/blog/<%= slug %>">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+++++
