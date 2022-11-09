@@ -9,28 +9,34 @@ title:
   Creator of <a href="https://aravindavk.in/chitra">Chitra</a>,
   <a href="https://gluster.org">GlusterFS</a> core team member,
   Maintainer of <a href="https://github.com/kadalu">Kadalu Storage</a>
-</div>
-++++
-
-++++
-<div class="columns is-multiline">
-  <% HOME_PAGE_DETAILS.each do |post| %>
-  <div class="column is-6">
-    <div class="card">
-      <div class="card-content">
-        <div class="content has-text-centered">
-          <p class="has-text-weight-semibold is-size-4 my-1"><%= post[:title] %></p>
-          <img src="<%= post[:image] %>" class="image mb-2" style="margin:auto; height: 50px"/>
-          <p class="has-text-left py-4"><%= post[:summary] %></p>
-        </div>
-      </div>
-    </div>
+  <div class="mt-6">
+      Contact:
+      <a href="http://in.linkedin.com/in/aravindavk">Linkedin</a> |
+      <a href="https://twitter.com/aravindavk">Twitter</a> |
+      <a href="http://facebook.com/aravindavk">Facebook</a> |
+      <a href="https://github.com/aravindavk">Github</a> |
+      mail&#64;&#97;&#114;&#97;&#118;&#105;&#110;&#100;&#97;&#118;&#107;&#46;&#105;&#110;
   </div>
-  <% end %>
 </div>
-++++
 
-++++
+<div class="p-4 has-background-info-light">
+    <div class="columns is-multiline">
+        <% HOME_PAGE_DETAILS.each do |post| %>
+        <div class="column is-6">
+            <div class="card">
+                <div class="card-content">
+                    <div class="content has-text-centered">
+                        <p class="has-text-weight-semibold is-size-4 my-1"><%= post[:title] %></p>
+                        <img src="<%= post[:image] %>" class="image mb-2" style="margin:auto; height: 50px"/>
+                        <p class="has-text-left py-4"><%= post[:summary] %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>
+
 <h2 class="has-text-centered py-4">List of Blog Posts</h2>
 <div x-data="{}" class="columns is-multiline">
     <% sort_blog_posts(@items.find_all('/blog/*')).each do |post| %>
