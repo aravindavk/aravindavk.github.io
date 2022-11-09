@@ -8,5 +8,33 @@
     <link rel="stylesheet" href="/stylesheet.css">
     <script defer src="/alpinejs-3.10.5.min.js"></script>
 
+    <% slug, created_at = slug_and_created_at(@item) %>
+    <link href="/static/css/fav.png" rel="icon" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/static/css/fav.png" />
+    <meta name="generator" content="Nanoc <%= Nanoc::VERSION %>">
+    <meta property="og:title" content="<%= @item[:title] %>"/>
+    <meta name="author" content="<%= @item[:author] %>"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="<%= @item[:summary] %>"/>
+    <meta property="og:description" content="<%= @item[:summary] %>"/>
+    <link rel="canonical" href="<%= @item.path %>"/>
+    <meta property="og:url" content="<%= @item.path %>"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content="<%= @item[:image] %>"/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="<%= created_at %>"/>
+    <% if @item[:image] && @item[:image] != "" %>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="<%= @item[:image] %>"/>
+    <% else %>
+    <meta name="twitter:card" content="summary"/>
+    <% end %>
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="<%= @item[:title] %>"/>
+    <meta name="twitter:description" content="<%= @item[:summary] %>"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    
     <meta name="generator" content="Nanoc <%= Nanoc::VERSION %>">
 </head>
