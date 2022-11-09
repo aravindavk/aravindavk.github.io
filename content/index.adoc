@@ -26,8 +26,8 @@ title:
             <div class="card">
                 <div class="card-content">
                     <div class="content has-text-centered">
-                        <p class="has-text-weight-semibold is-size-4 my-1"><%= post[:title] %></p>
-                        <img src="<%= post[:image] %>" class="image mb-2" style="margin:auto; height: 50px"/>
+                        <p class="has-text-weight-semibold is-size-4 my-1"><a style="text-decoration: none; color: #555555" href="<%= post[:url] %>"><%= post[:title] %></a></p>
+                        <a href="<%= post[:url] %>"><img src="<%= post[:image] %>" class="image mb-2" style="margin:auto; height: 50px"/></a>
                         <p class="has-text-left py-4"><%= post[:summary] %></p>
                     </div>
                 </div>

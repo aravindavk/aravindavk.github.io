@@ -42,27 +42,32 @@ end
 HOME_PAGE_DETAILS = [
   {
     :title => "Co-Founder & CTO at Kadalu Technologies",
+    :url => "https://kadalu.tech",
     :image => "https://kadalu-tech.github.io/images/logo.svg",
-    :summary => "Kadalu Technologies provides Enterprise support for Kadalu Storage, Consultancy and Gluster feature development services. Visit https://kadalu.tech[kadalu.tech] for more details."
+    :summary => %{100% Open Source, distributed storage solution based on GlusterFS. Kadalu Storage provides a modern storage manager with ReST APIs. Kadalu Technologies provides Enterprise support for Kadalu Storage, Consultancy and Gluster feature development services. Visit <a href="https://kadalu.tech">kadalu.tech</a> for more details.}
+  },
+  {
+    :title => "Maintainer of Kadalu Storage",
+    :url => "https://github.com/kadalu",
+    :image => "https://avatars.githubusercontent.com/u/48346407?s=50&v=4",
+    :summary => %{100% Open Source, distributed storage solution based on GlusterFS. Kadalu Storage provides a modern storage manager with ReST APIs. Cloud hosted <a href="https://console.kadalu.tech">Console(UI)</a> lets you get started with Kadalu Storage within minutes.}
   },
   {
     :title => "Gluster Core Team member",
+    :url => "https://gluster.org",
     :image => "https://www.gluster.org/wp-content/uploads/2016/03/gluster-ant.png",
-    :summary => "Gluster is a distributed storage solution."
+    :summary => "Gluster is a free and open source software scalable network filesystem."
   },
   {
     :title => "Creator of Sanka",
-    :image => "",
+    :url => "https://aravindavk.in/sanka",
+    :image => "/images/sanka-v2.png",
     :summary => "Free and Open Source web application to convert from ASCII to Unicode and Unicode to ASCII."
   },
   {
     :title => "Creator of Chitra",
+    :url => "https://aravindavk.in/chitra",
     :image => "https://aravindavk.in/chitra/static/logo.png",
-    :summary => ""
-  },
-  {
-    :title => "Maintainer of Kadalu Storage",
-    :image => "https://avatars.githubusercontent.com/u/48346407?s=50&v=4",
-    :summary => "Kadalu Storage is a opinionated Storage solution based on GlusterFS."
+    :summary => "Chitra is a 2D graphics library for Crystal programming language."
   }
 ]
