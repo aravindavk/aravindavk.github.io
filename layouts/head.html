@@ -1,6 +1,10 @@
 <head>
     <meta charset="utf-8">
-    <title>Aravinda Vishwanathapura - <%= @item[:title] %></title>
+    <% if @item[:title] %>
+    <title><%= @item[:title] %> - Aravinda Vishwanathapura</title>
+    <% else %>
+    <title>Aravinda Vishwanathapura</title>
+    <% end %>
     <meta name="generator" content="Nanoc <%= Nanoc::VERSION %>">
     <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
     <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">

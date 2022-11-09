@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 compile '/**/*.html' do
-  layout '/default.*'
+  #layout '/default.*'
 
   if item.identifier =~ '**/index.*'
     write item.identifier.to_s
