@@ -70,19 +70,12 @@
                 <div class="paragraph">
 <p>To install a package in Slackware we can use installpkg, and for upgrade we can use upgradepkg. While installing a package it will not check for dependencies.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>installpkg &lt;packagename&gt;
+<pre class="rouge highlight"><code data-lang="bash">installpkg &lt;packagename&gt;
 upgradepkg &lt;packagename&gt;
-removepkg &lt;packagename&gt;</pre>
+removepkg &lt;packagename&gt;</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>But if a Slackware package is not available in official and third party repositories then we have following options to install a package.</p>
@@ -90,7 +83,7 @@ removepkg &lt;packagename&gt;</pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>:code:`./configure; make; make install`</p>
+<p><code>./configure; make; make install</code></p>
 </li>
 <li>
 <p>Create and install Slackware package using SlackBuild script</p>
@@ -107,13 +100,13 @@ removepkg &lt;packagename&gt;</pre>
 <p>Upgrade/Removal will be difficult if the first option is used.</p>
 </div>
 <div class="paragraph">
-<p>My Slackware system didn&#8217;t had the latest(CVS) version of Emacs(Not available in repository also). I used the Emacs CVS Slackbuild script from `Joel J. Adamson&#8217;s &lt;<a href="http://www.unc.edu/~adamsonj/software/emacs-cvs/&gt;`__" class="bare">http://www.unc.edu/~adamsonj/software/emacs-cvs/&gt;`__</a> website, this script will download the source from Emacs CVS repository and creates Slackware package after compilation.</p>
+<p>My Slackware system didn&#8217;t had the latest(CVS) version of Emacs(Not available in repository also). I used the Emacs CVS Slackbuild script from <a href="http://www.unc.edu/~adamsonj/software/emacs-cvs/">Joel J. Adamson's</a> website, this script will download the source from Emacs CVS repository and creates Slackware package after compilation.</p>
 </div>
 <div class="paragraph">
 <p>Script took 35 minutes in my system to create Slackware package for Emacs-cvs  :)</p>
 </div>
 <div class="paragraph">
-<p>More details about Slackbuild script is `here &lt;<a href="http://www.slackwiki.org/Writing_A_SlackBuild_Script&gt;`__" class="bare">http://www.slackwiki.org/Writing_A_SlackBuild_Script&gt;`__</a>.</p>
+<p>More details about Slackbuild script is <a href="http://www.slackwiki.org/Writing_A_SlackBuild_Script">here</a>.</p>
 </div>
             </div>
         </div>

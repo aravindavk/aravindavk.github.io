@@ -68,22 +68,15 @@
             </div>
             <div class="content py-6">
                 <div class="paragraph">
-<p>`fortune &lt;<a href="http://en.wikipedia.org/wiki/Fortune_%28program%29&gt;`__" class="bare">http://en.wikipedia.org/wiki/Fortune_%28program%29&gt;`__</a> is an awesome application in Gnu/Linux, which picks random quote from the dictionary and displays it.</p>
+<p><a href="http://en.wikipedia.org/wiki/Fortune_%28program%29">fortune</a> is an awesome application in Gnu/Linux, which picks random quote from the dictionary and displays it.</p>
 </div>
 <div class="paragraph">
 <p>Install fortune package in your system, just type :code:`fortune` in command prompt to see how it will work. Refer manual page to see the options available in fortune.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>man fortune</pre>
+<pre class="rouge highlight"><code data-lang="bash">man fortune</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>It will be nice if we create the database for Kannada quotes in the format as required by the fortune.</p>
@@ -91,13 +84,9 @@
 <div class="paragraph">
 <p>Let us discuss the format of the file with an example. (File is named as kan)</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>ಹುಲ್ಲಾಗು ಬೆಟ್ಟದಡಿ, ಮನೆಗೆ ಮಲ್ಲಿಗೆಯಾಗು
+<pre class="rouge highlight"><code data-lang="text">ಹುಲ್ಲಾಗು ಬೆಟ್ಟದಡಿ, ಮನೆಗೆ ಮಲ್ಲಿಗೆಯಾಗು
 ಕಲ್ಲಾಗು ಕಷ್ಟಗಳ ಮಳೆಯ ವಿಧಿ ಸುರಿಯೇ
 ಬೆಲ್ಲ ಸಕ್ಕರೆಯಾಗು ದೀನ ದುರ್ಬಲರಿಂಗೆ
 ಎಲ್ಲರೊಳಗೊಂದಾಗು ಮಂಕುತಿಮ್ಮ
@@ -110,56 +99,32 @@
 ಕುಸುಮಸಖನೇಂ ನೀನು? ಹಿಸುಕದೆಯೆ ಮೂಸದನು
 ಹಿಸುಕೆ ಕಟುಕಂಪು; ನರಲೋಕವದರವೊಲೇ
 ಗಸಿಯ ಕಲಕದೆ ಕೊಳದ ಮೇಲ್ತಿಳಿಯ ಕುಡಿದು ನಡೆ
-ಹಸನು ಹಗುರದ ಬಾಳು</pre>
+ಹಸನು ಹಗುರದ ಬಾಳು</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>Use % as delimiter to seperate one quote to another. Once the above file is ready with all the required quotes, then use following command to compile this file into fortune dictionary.</p>
+<p>Use <code>%</code> as delimiter to seperate one quote to another. Once the above file is ready with all the required quotes, then use following command to compile this file into fortune dictionary.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>strfile kan kan.dat</pre>
+<pre class="rouge highlight"><code data-lang="bash">strfile kan kan.dat</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Now a dat file is created in that directory. Copy both the files into fortunes directory. (Below mentioned folder format is with respect to Debian)</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>cp kan* /usr/share/games/fortunes/</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">cp </span>kan<span class="k">*</span> /usr/share/games/fortunes/</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Now everything is ready. Run fortune by passing new dict name as parameter.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>fortune kan</pre>
+<pre class="rouge highlight"><code data-lang="bash">fortune kan</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>When we find more quotes, we can add to the same dict and use it.</p>

@@ -55,7 +55,7 @@
             <div class="has-text-centered">
                 <h1 class="title">How to validate kannada words?</h1>
                 <div class="">Jan 12, 2009</div>
-                <div class=""><strong>2 minutes</strong> read</div>
+                <div class=""><strong>1 minute</strong> read</div>
                 <div>
                     
                     <span class="tag is-info is-light">python</span>
@@ -85,70 +85,50 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Kannada Unicode range as per the standard is  u0C80 to u0CFF, refer `Unicode.org website &lt;<a href="http://unicode.org/charts/PDF/Unicode-4.0/U40-0C80.pdf&gt;`__" class="bare">http://unicode.org/charts/PDF/Unicode-4.0/U40-0C80.pdf&gt;`__</a></p>
+<p>Kannada Unicode range as per the standard is  u0C80 to u0CFF, refer <a href="http://unicode.org/charts/PDF/Unicode-4.0/U40-0C80.pdf">Unicode.org website</a></p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_using_python">Using Python</h2>
 <div class="sectionbody">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: python</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre># file: validateKannadaWords.py
+<pre class="rouge highlight"><code data-lang="python"><span class="c1"># file: validateKannadaWords.py
 # -*- coding: utf-8 -*-
-import re</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># function checks the input word is Kannada word or not
+</span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c1"># function checks the input word is Kannada word or not
 # @params word - Input word to validate
 # @returns True - If success, False - If failure
 # @author Aravinda VK
-# @date - 09-Nov-2008</pre>
+# @date - 09-Nov-2008
+</span>
+<span class="k">def</span> <span class="nf">isKannadaWord</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+    <span class="n">rangeStart</span> <span class="o">=</span> <span class="sa">ur</span><span class="s">"\u0C80"</span>
+    <span class="n">rangeEnd</span> <span class="o">=</span> <span class="sa">ur</span><span class="s">"\u0CFF"</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="n">rangeStart</span> <span class="o">+</span> <span class="s">'-'</span> <span class="o">+</span> <span class="n">rangeEnd</span>
+    <span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">'^['</span> <span class="o">+</span> <span class="n">pattern</span> <span class="o">+</span> <span class="s">']+$'</span><span class="p">,</span><span class="n">word</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span></code></pre>
 </div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>def isKannadaWord(word):
-    rangeStart = ur"\u0C80"
-    rangeEnd = ur"\u0CFF"
-    pattern = rangeStart + '-' + rangeEnd
-    if re.match('^[' + pattern + ']+$',word) != None:
-        return True
-    else:
-        return False</pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>"ur" in above code refers to raw unicode.</p>
 </div>
-<div class="sect3">
-<h4 id="_how_to_use">How to use</h4>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: python</p>
-<div class="literalblock">
+<div class="sect2">
+<h3 id="_how_to_use">How to use</h3>
+<div class="listingblock">
 <div class="content">
-<pre>myString = u'ಅರವಿಂದ ಒಲವು ಅವಳು ಮತ್ತು ನಾಳೆ abcd ಹೆಹೆ '
-wordsList = myString.split()
-for eachWord in wordsList:
-    if isKannadaWord(eachWord) :
-        print eachWord + ' is a Kannada word'
-    else:
-        print eachWord + ' is not a Kannada word'</pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="n">myString</span> <span class="o">=</span> <span class="sa">u</span><span class="s">'ಅರವಿಂದ ಒಲವು ಅವಳು ಮತ್ತು ನಾಳೆ abcd ಹೆಹೆ '</span>
+<span class="n">wordsList</span> <span class="o">=</span> <span class="n">myString</span><span class="p">.</span><span class="n">split</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">eachWord</span> <span class="ow">in</span> <span class="n">wordsList</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">isKannadaWord</span><span class="p">(</span><span class="n">eachWord</span><span class="p">)</span> <span class="p">:</span>
+        <span class="k">print</span> <span class="n">eachWord</span> <span class="o">+</span> <span class="s">' is a Kannada word'</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">eachWord</span> <span class="o">+</span> <span class="s">' is not a Kannada word'</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
@@ -156,55 +136,38 @@ for eachWord in wordsList:
 <div class="sect1">
 <h2 id="_using_javascript">Using Javascript</h2>
 <div class="sectionbody">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: javascript</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>// function checks the input word is Kannada word or not
-// @params word - Input word to validate
-// @returns True - If success, False - If failure
-// @author Aravinda VK
-// @date - 09-Nov-2008</pre>
+<pre class="rouge highlight"><code data-lang="js"><span class="c1">// function checks the input word is Kannada word or not</span>
+<span class="c1">// @params word - Input word to validate</span>
+<span class="c1">// @returns True - If success, False - If failure</span>
+<span class="c1">// @author Aravinda VK</span>
+<span class="c1">// @date - 09-Nov-2008</span>
+
+<span class="kd">function</span> <span class="nx">isKannadaWord</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">re</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="sr">/^</span><span class="se">[\u</span><span class="sr">0C80-</span><span class="se">\u</span><span class="sr">0CFF</span><span class="se">]</span><span class="sr">+$/</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">word</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">re</span><span class="p">))</span>  <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="sect2">
+<h3 id="_how_to_use_2">How to use</h3>
+<div class="listingblock">
 <div class="content">
-<pre>function isKannadaWord(word) {
-    var re = new RegExp(/^[\u0C80-\u0CFF]+$/);
-    if (word.match(re))  {
-        return true;
-    }
-    else {
-        return false;
-    }
-}</pre>
+<pre class="rouge highlight"><code data-lang="js"><span class="kd">var</span> <span class="nx">inputwords</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="dl">"</span><span class="s2">ಅರವಿಂದ</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">ಒಲವು</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">ಅವಳು</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">ಮತ್ತು</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">ನಾಳೆ</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">abcd</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">ಹೆಹೆ</span><span class="dl">"</span><span class="p">);</span>
+<span class="k">for</span><span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">isKannadaWord</span><span class="p">(</span><span class="nx">inputwords</span><span class="p">[</span><span class="nx">i</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">"</span><span class="s2">&lt;b&gt;</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">inputwords</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">&lt;/b&gt; is a valid Kannada Word&lt;br/&gt;</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">"</span><span class="s2">&lt;b&gt;</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">inputwords</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">&lt;/b&gt; is Not a Kannada Word&lt;br/&gt;</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
-</div>
-<div class="sect3">
-<h4 id="_how_to_use_2">How to use</h4>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: javascript</p>
-<div class="literalblock">
-<div class="content">
-<pre>var inputwords = new Array("ಅರವಿಂದ", "ಒಲವು", "ಅವಳು", "ಮತ್ತು", "ನಾಳೆ", "abcd", "ಹೆಹೆ");
-for(i=0;i&lt;2;i++) {
-    if (isKannadaWord(inputwords[i])) {
-        document.write("&lt;b&gt;" + inputwords[i] + "&lt;/b&gt; is a valid Kannada Word&lt;br/&gt;");
-    }
-    else
-        document.write("&lt;b&gt;" + inputwords[i] + "&lt;/b&gt; is Not a Kannada Word&lt;br/&gt;");
-}</pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
