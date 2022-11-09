@@ -10,6 +10,50 @@ compile '/**/*.html' do
   end
 end
 
+# compile '/**/index.adoc' do
+#   filter :asciidoctor, :standalone => false, :attributes => [
+#            'last-update-label!=', # Do not show last updated label in every page
+#            'source-highlighter=rouge',
+#            'showtitle=yes',
+#            'stylesheet!='
+#          ]
+#   layout '/plain.*'
+
+#   write item.identifier.without_ext + ".html"
+# end
+
+route '/blog/*' do
+  y, m, d, slug = /([0-9]+)\-([0-9]+)\-([0-9]+)\-([^\/]+)/.match(item.identifier.without_ext).captures
+
+  "/blog/#{slug}/index.html"
+end
+
+compile '/blog/*.adoc' do
+  filter :erb
+  filter :asciidoctor, :standalone => false, :attributes => [
+           'last-update-label!=', # Do not show last updated label in every page
+           'source-highlighter=rouge',
+           'showtitle=yes',
+           'stylesheet!='
+         ]
+  layout '/blog.*'
+
+  #write item.identifier.without_ext + '/index.html'
+end
+
+compile '/**/*.adoc' do
+  filter :erb
+  filter :asciidoctor, :standalone => false, :attributes => [
+           'last-update-label!=', # Do not show last updated label in every page
+           'source-highlighter=rouge',
+           'showtitle=yes',
+           'stylesheet!='
+         ]
+  layout '/page.*'
+
+  write item.identifier.without_ext + '/index.html'
+end
+
 compile '/**/*' do
   write item.identifier.to_s
 end
