@@ -1,13 +1,36 @@
 ---
 title: Projects
+summary: My projects and contributions
 ---
 
-== Chitra
+== https://aravindavk.in/chitra[Chitra]
 
-Chitra is a Cairo based 2D graphics library for Crystal programming language. Syntax is inspired by Processing and Drawbot.
+Chitra is a Cairo based 2D graphics library for Crystal programming language.
 
-== Sanka
+image::/images/chitra.jpeg[Chitra,link="https://aravindavk.in/chitra"]
+
+== https://aravindavk.in/sanka[Sanka]
 
 A online tool to convert Kannada text from ASCII format to Unicode and vice-versa.
 
+image::/images/sanka-v2.png[Sanka,link="https://aravindavk.in/sanka"]
 
+== https://aravindavk.in/ascii2unicode[ASCII to Unicode Converter]
+A tool to convert Kannada text written using ASCII format like Nudi/Baraha to Unicode. Project is available in https://github.com/aravindavk/ascii2unicode[github]. Online version is available http://aravindavk.in/ascii2unicode/[here]. Source code is released under GPL license.
+
+image::/images/ascii2unicode.png[ASCII2Unicode,link="http://aravindavk.in/ascii2unicode/"]
+
+== https://aravindavk.in/diesel-vs-petrol-car/[Diesel vs Petrol Car]
+Simple tool to analyse and decide which Car to buy based on usage, fuel efficiency and price. Project is available in https://github.com/aravindavk/aravindavk.github.com/tree/master/diesel-vs-petrol-car[github]. Online version is available https://aravindavk.in/diesel-vs-petrol-car/[here]. Source code is released under GPL license.
+
+image::/images/diesel-vs-petrol-car.png[Diesel vs Petrol Car,link="http://aravindavk.in/diesel-vs-petrol-car/"]
+
+== https://github.com/aravinda/Gubbi[Kannada Unicode font - Gubbi]
+Kannada Unicode font - Gubbi, project forked from Kedage to fix the issues. Source code is available in https://github.com/aravindavk/Gubbi[Github].
+
+image::/images/gubbi-showcase/m.png[Gubbi Showcase,link="https://github.com/aravinda/Gubbi"]
+
+== https://github.com/aravinda/Navilu[Kannada Unicode Handwriting font - Navilu]
+Kannada Unicode font - Navilu, project forked from Mallige to fix the issues. Source code is available in https://github.com/aravindavk/Navilu[Github].
+
+image::/images/navilu-showcase/m.png[Navilu Showcase,link="https://github.com/aravinda/Navilu"]
