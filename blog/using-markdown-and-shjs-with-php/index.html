@@ -1,0 +1,360 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Using Markdown and SHJS with PHP - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Using Markdown and SHJS with PHP"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="Markdown is a wiki like syntax standard, to have highly readable content."/>
+    <meta property="og:description" content="Markdown is a wiki like syntax standard, to have highly readable content."/>
+    <link rel="canonical" href="/blog/using-markdown-and-shjs-with-php/"/>
+    <meta property="og:url" content="/blog/using-markdown-and-shjs-with-php/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2009-09-28"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Using Markdown and SHJS with PHP"/>
+    <meta name="twitter:description" content="Markdown is a wiki like syntax standard, to have highly readable content."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Using Markdown and SHJS with PHP</h1>
+                <div class="">Sep 28, 2009</div>
+                <div class=""><strong>4 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">php</span>
+                    
+                    <span class="tag is-info is-light">markdown</span>
+                    
+                    <span class="tag is-info is-light">javascript</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>In this article we will discuss</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Markdown</p>
+</li>
+<li>
+<p>Markdown PHP</p>
+</li>
+<li>
+<p>SHJS - Syntax highlighter using JS</p>
+</li>
+<li>
+<p>How To Use?</p>
+</li>
+</ol>
+</div>
+<h1 id="_markdown" class="sect0">Markdown</h1>
+<div class="paragraph">
+<p>Markdown is a wiki like syntax standard, to have highly readable content.</p>
+</div>
+<div class="paragraph">
+<p>From Markdown website</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For example</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre># Heading 1
+## Heading 2</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Bold **</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Italic *</p>
+<div class="literalblock">
+<div class="content">
+<pre>&gt; blockquote</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>`single line code`</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Adding inline image</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>![Alt Text](a.jpg)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[Link](http://localhost)</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>will be converted to</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: html</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;p&gt;&lt;strong&gt; Bold &lt;/strong&gt;
+&lt;em&gt; Italic &lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;blockquote&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;single line code&lt;/code&gt;&lt;/p&gt;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;p&gt;Adding inline image&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="a.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://localhost"&gt;Link&lt;/a&gt;&lt;/p&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Click `here &lt;<a href="http://daringfireball.net/projects/markdown/&gt;`__" class="bare">http://daringfireball.net/projects/markdown/&gt;`__</a> for more details about markdown.</p>
+</div>
+<h1 id="_markdown_php" class="sect0">Markdown PHP</h1>
+<div class="paragraph">
+<p>PHP implementation of markdown is available `here &lt;<a href="http://michelf.com/projects/php-markdown/&gt;`__" class="bare">http://michelf.com/projects/php-markdown/&gt;`__</a>. We can store the content in database in the markdown format itself, While displaying to user we can convert to HTML using the Markdown PHP library.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: php</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;?php
+require_once 'markdown.php';
+$text = '
+# Heading 1</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Sample Paragraph
+';</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>echo Markdown($text);</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Custom style sheets can be applied to required elements like h1, h2, p, blockquote, pre, code etc. This will separate content from html elements and styles, hence content will be highly readable.</p>
+</div>
+<div class="paragraph">
+<p>User can use any editors which highlights the markdown syntax(I use Emacs) or any plain text editor.</p>
+</div>
+<h1 id="_shjs_syntax_highlighter_using_js" class="sect0">SHJS - Syntax highlighter using JS</h1>
+<div class="paragraph">
+<p>It will be good if we able to highlight the code inside pre element, I found a Javascript utility SHJS(Syntax Highlighter with JavaScript), which has very good features and multiple themes support. Read the documentation about SHJS `here &lt;<a href="http://shjs.sourceforge.net/&gt;`__" class="bare">http://shjs.sourceforge.net/&gt;`__</a>.</p>
+</div>
+<div class="paragraph">
+<p>SHJS library requires class to be defined in pre tag like :code:`&lt;pre class="sh_php"&gt;` for PHP code, but it is not possible to add class in markdown syntax, so we will write an PHP function to add the class to each pre element. We need to add :code:`#!sh_php` (php is used as example, that will change depending on the language) in the markdown text whereever highlighting is required.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: php</p>
+<div class="literalblock">
+<div class="content">
+<pre>#!sh_php
+&lt;?php
+# This is an example text file to show how to add language
+# header for syntax highlight
+echo 'Hello World';</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>PHP function to replace :code:`#!sh_php` to :code:`&lt;pre class="sh_php"&gt;` is</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: php</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;?php
+function addClassToPre($text){
+    // Add respective class to pre tag
+    $op = preg_replace('/&lt;pre&gt;&lt;code&gt;#!([^\\n]+)/',
+                       '&lt;pre class=\'$1\'&gt;&lt;code&gt;',
+                       $text);
+    return $op;
+}</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If we load all the syntax highlight JavaScript files then it affects loading time, so we will add only required JavaScript files for syntax highlight based on the languages used in the content.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: php</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;?php
+function addRespectiveJsFiles($text){
+    preg_match_all('/&lt;pre&gt;&lt;code&gt;#!([^\\n]+)/',Markdown($text), $result);
+    $jsFiles = array_unique($result[0]);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    foreach($jsFiles as $jsFile){
+        $fileName = str_replace('&lt;pre&gt;&lt;code&gt;#!','',$jsFile). '.js';
+        if(file_exists('lang/'.$fileName)){
+            echo '&lt;script type="text/javascript" src="lang/'.$fileName .'"&gt;&lt;/script&gt;';
+        }
+    }
+}</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<h1 id="_how_to_use" class="sect0">How To Use?</h1>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: php</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;script type="text/javascript" src="sh_main.js"&gt;&lt;/script&gt;
+&lt;link type="text/css" rel="stylesheet" href="style.css"&gt;
+&lt;link type="text/css" rel="stylesheet" href="css/sh_emacs.css"&gt;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;?php
+require_once 'markdown.php';</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Get File content which has text in markdown format
+$rawContent = file_get_contents("sample.txt");</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Add the respective language files
+addRespectiveJsFiles($rawContent);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>echo codeHighlight(markdown($rawContent));
+?&gt;
+&lt;script&gt;
+window.onload = function(){
+sh_highlightDocument();
+};
+&lt;/script&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Btw, I use SHJS emacs theme for syntax highlight in my website :)</p>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

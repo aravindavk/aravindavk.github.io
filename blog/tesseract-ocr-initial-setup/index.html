@@ -1,0 +1,377 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Tesseract OCR initial setup - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Tesseract OCR initial setup"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="Tesseract OCR needs to be trained for Kannada and other Indic languages."/>
+    <meta property="og:description" content="Tesseract OCR needs to be trained for Kannada and other Indic languages."/>
+    <link rel="canonical" href="/blog/tesseract-ocr-initial-setup/"/>
+    <meta property="og:url" content="/blog/tesseract-ocr-initial-setup/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2011-04-28"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Tesseract OCR initial setup"/>
+    <meta name="twitter:description" content="Tesseract OCR needs to be trained for Kannada and other Indic languages."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Tesseract OCR initial setup</h1>
+                <div class="">Apr 28, 2011</div>
+                <div class=""><strong>5 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">tesseract</span>
+                    
+                    <span class="tag is-info is-light">OCR</span>
+                    
+                    <span class="tag is-info is-light">Kannada OCR</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <h1>Tesseract OCR is</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre>The `Tesseract OCR &lt;http://code.google.com/p/tesseract-ocr/&gt;`__ engine was one of the top 3 engines in the 1995 UNLV Accuracy test. Between 1995 and 2006 it had little work done on it, but it is probably one of the most accurate open source OCR engines available. The source code will read a binary, grey or color image and output text. A tiff reader is built in that will read uncompressed TIFF images, or libtiff can be added to read compressed images.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Tesseract OCR needs to be trained for Kannada and other Indic languages.</p>
+</div>
+<div class="paragraph">
+<p>Downloaded latest version of Tesseract OCR from svn repository and installed in my system.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>svn checkout http://tesseract-ocr.googlecode.com/svn/trunk/ tesseract-ocr
+./configure
+make
+make install</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Tesseract OCR looks for training data in :code:<code>/usr/local/share/tessdata</code> directory. If we train anything new then we have to copy .traineddata file to this directory.</p>
+</div>
+<div class="paragraph">
+<p>I divided training process into four steps.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Image generation</p>
+</li>
+<li>
+<p>Generate box</p>
+</li>
+<li>
+<p>Edit Box file</p>
+</li>
+<li>
+<p>Generate trained data</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>I use Gimp to create tif images required for training. If you have jpg or png image convert to tif using</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>convert -depth 4 sample.jpg sample.tif</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>I have :code:<code>apps</code> directory in my home directory, which is added to PATH using</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>PATH=/home/aravinda/apps:PATH; export PATH</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>I use this directory to save all my personal scripts and applications.</p>
+</div>
+<div class="paragraph">
+<p>Created a script called tessGenBox in apps directory, which accepts lang name as parameter.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>#!/bin/sh
+tesseract $1.tif $1 batch.nochop makebox</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Since only one font is used for exploring Tesseract traning options, not worried much on naming conventions. (Actual file name format is [lang].[fontname].[exp][num])</p>
+</div>
+<div class="paragraph">
+<p>I downloaded <code>QT based box editor &lt;https://github.com/zdenop/qt-box-editor/&gt;`__ as mentioned in the Tesseract wiki. After the installation copied :code:`qt-box-editor-1.04dev</code> file to apps directory and created shell script called tessBoxEdit in apps directory.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>#!/bin/sh
+/home/aravinda/apps/qt-box-editor-1.04dev $1</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Tif filename as parameter.</p>
+</div>
+<div class="paragraph">
+<p>I created one more script tessGenData, which I will use to generate trained data based on previously generated box file.(Accepts language name as parameter)</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>#!/bin/sh
+tesseract $1.tif $1 nobatch box.train
+unicharset_extractor $1.box
+echo $1 0 0 0 0 0 &gt; font_properties
+mftraining -F font_properties -U unicharset $1.tr
+mftraining -F font_properties -U unicharset -O $1.unicharset $1.tr
+cntraining $1.tr
+mv Microfeat $1.Microfeat
+mv normproto $1.normproto
+mv pffmtable $1.pffmtable
+mv mfunicharset $1.mfunicharset
+mv inttemp $1.inttemp
+combine_tessdata $1.
+# Used su since I use Debian, use sudo if you are using Ubuntu
+su -c "cp $1.traineddata /usr/local/share/tessdata/"</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>It will ask password at the end to copy trained data file to :code:<code>/usr/local/share/tessdata</code></p>
+</div>
+<div class="paragraph">
+<p>I created two additional scripts to clean the space in between if required.</p>
+</div>
+<div class="paragraph">
+<p>tessCleanAfterBox - cleans the directory by removing all generated files except .box file</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>#!/bin/sh
+rm font_properties*
+rm $1.txt
+rm $1.normproto
+rm $1.traineddata
+rm $1.unicharset
+rm $1.mfunicharset
+rm $1.Microfeat
+rm $1.pffmtable
+rm $1.tr
+rm $1.inttemp
+rm unicharset
+rm *.bak</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>tessCleanAll - Cleans all data including box file except images.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>#!/bin/sh
+rm font_properties*
+rm $1.txt
+rm $1.box
+rm $1.normproto
+rm $1.traineddata
+rm $1.unicharset
+rm $1.mfunicharset
+rm $1.Microfeat
+rm $1.pffmtable
+rm $1.tr
+rm $1.inttemp
+rm unicharset
+rm *.bak</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Once these scripts are created, we need to make these files as executable.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>chmod +x /home/aravinda/apps/tess*</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<h1 id="_usage" class="sect0">Usage</h1>
+<div class="paragraph">
+<p>Let us imagine a name for lang(In the final deployment it should be kan for Kannada. For experimentation we can give any name)</p>
+</div>
+<div class="paragraph">
+<p>For this example, let lang as kan1</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a image with sample text and save as kan1.tif</p>
+</li>
+<li>
+<p>Create a box file :code:<code>tessGenBox kan1</code></p>
+</li>
+<li>
+<p>Edit box file :code:<code>tessBoxEdit kan1</code></p>
+</li>
+<li>
+<p>Generate trained data :code:<code>tessGenData kan1</code> and provide password.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If you want to edit box file and train again</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Edit box file :code:<code>tessBoxEdit kan1</code></p>
+</li>
+<li>
+<p>Clean the directory :code:<code>tessCleanAfterBox kan1</code></p>
+</li>
+<li>
+<p>Generate trained data :code:<code>tessGenData kan1</code> and provide password.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If image is changed, clean all and regenerate trained data.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Clean the directory :code:<code>tessCleanAll kan1</code></p>
+</li>
+<li>
+<p>Create a box file :code:<code>tessGenBox kan1</code></p>
+</li>
+<li>
+<p>Edit box file :code:<code>tessBoxEdit kan1</code></p>
+</li>
+<li>
+<p>Generate trained data :code:<code>tessGenData kan1</code> and provide password.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If I forget above commands, I will just type tess and press tab twice to get list of all these commands.</p>
+</div>
+<div class="paragraph">
+<p>Now I can concentrate more on the pattern matching and other issues instead of memorizing each steps involved in the training.</p>
+</div>
+<div class="paragraph">
+<p>C &amp; S Welcome.</p>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

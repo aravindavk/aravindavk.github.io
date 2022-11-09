@@ -1,0 +1,269 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Introducing gdash - GlusterFS Dashboard - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Introducing gdash - GlusterFS Dashboard"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="gdash is a super-young project, which shows GlusterFS volume information about local, remote clusters."/>
+    <meta property="og:description" content="gdash is a super-young project, which shows GlusterFS volume information about local, remote clusters."/>
+    <link rel="canonical" href="/blog/introducing-gdash/"/>
+    <meta property="og:url" content="/blog/introducing-gdash/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2014-12-04"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Introducing gdash - GlusterFS Dashboard"/>
+    <meta name="twitter:description" content="gdash is a super-young project, which shows GlusterFS volume information about local, remote clusters."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Introducing gdash - GlusterFS Dashboard</h1>
+                <div class="">Dec 4, 2014</div>
+                <div class=""><strong>3 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">glusterfs</span>
+                    
+                    <span class="tag is-info is-light">tools</span>
+                    
+                    <span class="tag is-info is-light">glusterfsblog</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p><strong>UPDATE:</strong> Added <code>--gluster</code> option to specify the path to gluster. By default it looks for <code>/usr/sbin/gluster</code>, If you installed GlusterFS using source install then use :code:`sudo gdash --gluster /usr/local/sbin/gluster`. (Those who already installed gdash, can run :code:`sudo pip install -U gdash` to upgrade.)</p>
+</div>
+<div class="paragraph">
+<p>gdash is a super-young project, which shows GlusterFS volume information about local, remote clusters. This app is based on GlusterFS&#8217;s capability of executing :code:`gluster volume info` and :code:`gluster volume status` commands for a remote server using <code>--remote-host</code> option.</p>
+</div>
+<div class="paragraph">
+<p>If you can run :code:`gluster volume info --remote-host=&lt;HOST_NAME&gt;`, then you can monitor that cluster using gdash. Make sure you allow to access glusterd port(24007) for the machine where you will run gdash.</p>
+</div>
+<div class="paragraph">
+<p>To install,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>sudo pip install gdash</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>sudo easy_install gdash</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>gdash is created using Python `Flask &lt;<a href="http://flask.pocoo.org/&gt;`" class="bare">http://flask.pocoo.org/&gt;`</a><em> and `ember &lt;<a href="http://emberjs.com/&gt;`" class="bare">http://emberjs.com/&gt;`</a></em> (I used `ember-cli &lt;<a href="http://ember-cli.com&gt;`__" class="bare">http://ember-cli.com&gt;`__</a>).</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>figure:: /images/gdash-home.png
+:alt: gdash home screen</p>
+<div class="literalblock">
+<div class="content">
+<pre>gdash home screen</pre>
+</div>
+</div>
+</li>
+<li>
+<p>figure:: /images/gdash-detail.png
+:alt: gdash detail screen</p>
+<div class="literalblock">
+<div class="content">
+<pre>gdash Volume details page</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<h1 id="_usage" class="sect0">Usage</h1>
+<div class="sect1">
+<h2 id="_use_case_1_local_volumes">Use case 1 - Local Volumes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Just run :code:`sudo gdash`, gdash starts running in port 8080. visit <a href="http://localhost:8080" class="bare">http://localhost:8080</a> to view GlusterFS volumes of local machine.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_use_case_2_remote_volumes">Use case 2 - Remote Volumes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Run :code:`sudo gdash --host 192.168.1.6`, visit <a href="http://localhost:8080" class="bare">http://localhost:8080</a> to view GlusterFS volume information of remote host. Dashboard shows all the volumes which are part of that remote host.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_use_case_3_multiple_clusters">Use case 3 - Multiple clusters</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create a clusters.conf file as example shown below, specify at least one host from each cluster.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: cfg</p>
+<div class="literalblock">
+<div class="content">
+<pre>[clusters]
+cluster1 = host1, host2, host3
+cluster2 = host4, host5, host6</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Run :code:`gdash` using,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>sudo gdash --clusters ~/clusters.conf</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_use_case_4_multiple_teams">Use case 4 - Multiple teams</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If two teams monitoring two clusters and if you don&#8217;t want to share the other cluster details then, just run below commands in two terminals and give respective URL to each team. Other solution is create two seperate config files and run it separately for different ports.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre># Team 1, who monitors cluster1 http://localhost:8001
+sudo gdash -p 8001 --clusters ~/clusters.conf --limit-cluster cluster1</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Team 2, who monitors cluster2 http://localhost:8002
+sudo gdash -p 8002 --clusters ~/clusters.conf --limit-cluster cluster2</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<h1 id="_available_options" class="sect0">Available Options</h1>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>usage: gdash [-h] [--port PORT] [--cache CACHE] [--debug] [--host HOST]
+             [--clusters CLUSTERS] [--limit-cluster LIMIT_CLUSTER]</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GlusterFS dashboard
+-------------------</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>This tool is based on remote execution support provided by
+GlusterFS cli for `volume info` and `volume status` commands</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>optional arguments:
+  -h, --help            show this help message and exit
+  --port PORT, -p PORT  Port
+  --cache CACHE, -c CACHE
+                        Cache output in seconds
+  --debug               DEBUG
+  --host HOST           Remote host which is part of cluster
+  --clusters CLUSTERS   Clusters CONF file
+  --limit-cluster LIMIT_CLUSTER
+                        Limit dashboard only for specified cluster</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Code is hosted in `github/aravindavk &lt;<a href="https://github.com/aravindavk/gdash&gt;`" class="bare">https://github.com/aravindavk/gdash&gt;`</a><em>, licensed under `MIT &lt;<a href="https://github.com/aravindavk/gdash/blob/master/LICENSE.txt&gt;`" class="bare">https://github.com/aravindavk/gdash/blob/master/LICENSE.txt&gt;`</a></em>.</p>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

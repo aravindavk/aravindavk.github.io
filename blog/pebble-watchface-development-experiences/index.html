@@ -1,0 +1,132 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Pebble Watchface development experiences - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Pebble Watchface development experiences"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="After seeing lots of videos and awesome watch faces, I wanted a watchface in my language."/>
+    <meta property="og:description" content="After seeing lots of videos and awesome watch faces, I wanted a watchface in my language."/>
+    <link rel="canonical" href="/blog/pebble-watchface-development-experiences/"/>
+    <meta property="og:url" content="/blog/pebble-watchface-development-experiences/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2015-04-22"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Pebble Watchface development experiences"/>
+    <meta name="twitter:description" content="After seeing lots of videos and awesome watch faces, I wanted a watchface in my language."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Pebble Watchface development experiences</h1>
+                <div class="">Apr 22, 2015</div>
+                <div class=""><strong>3 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">pebble</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>I fell in love with the `Pebble &lt;<a href="https://getpebble.com/&gt;`" class="bare">https://getpebble.com/&gt;`</a><em> Smart watch after reading `Thejesh&#8217;s blog &lt;<a href="http://thejeshgn.com/2015/01/08/liking-pebble-watch/&gt;`" class="bare">http://thejeshgn.com/2015/01/08/liking-pebble-watch/&gt;`</a></em> about Pebble. I was about to get Pebble Steel, but that time they announced Pebble Time Steel with color epaper display and many more features. Now I am eagerly waiting for Pebble Time Steel :)</p>
+</div>
+<div class="paragraph">
+<p>After seeing lots of videos and awesome watch faces, I wanted a watchface in my language. I created a sample app by embedding the Kannada Unicode font and ASCII font to test the Unicode support in Pebble. It has basic support for Unicode, but no support for complex rendering :(</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>figure:: /images/pebble_unicode_ascii.png
+:alt: Pebble Unicode Kannada</p>
+<div class="literalblock">
+<div class="content">
+<pre>First one is Unicode and second one using ASCII font</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>So I started developing digital watchface using Kannada ASCII font and it worked! Developing digital watchface is very simple, Pebble has very good documentation. I created a native app using C language. I published Kannada watchface in Pebble appstore named `kannadatime &lt;<a href="https://apps.getpebble.com/applications/55047e53174458ce500000a5&gt;`__" class="bare">https://apps.getpebble.com/applications/55047e53174458ce500000a5&gt;`__</a>. I tested only on emulator. But I was curious to see how it looks in real Pebble watch(I don&#8217;t have a watch yet)</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>raw:: html</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;blockquote class="twitter-tweet" lang="en"&gt;&lt;p&gt;I don&amp;#39;t own Pebble yet, but published my first &lt;a href="https://twitter.com/Pebble"&gt;@Pebble&lt;/a&gt; app. Displays Time in Kannada language &lt;a href="https://t.co/xhnPhHonpZ"&gt;https://t.co/xhnPhHonpZ&lt;/a&gt; C&amp;amp;S Welcome. &lt;a href="https://twitter.com/thej"&gt;@thej&lt;/a&gt;&lt;/p&gt;&amp;mdash; Aravinda (@aravindavk) &lt;a href="https://twitter.com/aravindavk/status/576816685786624000"&gt;March 14, 2015&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Thejesh installed app on his Pebble and shared screenshot, looking awesome in real Pebble. Fonts looking smaller than I see on emulator. Thanks Thejesh :)</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>raw:: html</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;blockquote class="twitter-tweet" data-conversation="none" lang="en"&gt;&lt;p&gt;. &lt;a href="https://twitter.com/aravindavk"&gt;@aravindavk&lt;/a&gt; Good news the hack works. Kannada is tendered quite well. Blog about it. &lt;a href="https://twitter.com/Pebble"&gt;@Pebble&lt;/a&gt; &lt;a href="http://t.co/giPmQzzo5e"&gt;pic.twitter.com/giPmQzzo5e&lt;/a&gt;&lt;/p&gt;&amp;mdash; Thejesh GN (@thej) &lt;a href="https://twitter.com/thej/status/576902191077724161"&gt;March 15, 2015&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If anybody interested in this `watchface &lt;<a href="https://apps.getpebble.com/applications/55047e53174458ce500000a5&gt;`__" class="bare">https://apps.getpebble.com/applications/55047e53174458ce500000a5&gt;`__</a>, do try and let me know if useful. I have some plans to improve this watchface by adding animation on minute change and adding color for Pebble Time.</p>
+</div>
+<div class="paragraph">
+<p>If you don&#8217;t know about Pebble, visit <a href="https://getpebble.com/" class="bare">https://getpebble.com/</a> to know more.</p>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

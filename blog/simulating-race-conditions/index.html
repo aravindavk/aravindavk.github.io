@@ -1,0 +1,305 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Simulating Race Conditions - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Simulating Race Conditions"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="To uncover the bugs we need to setup workload and run multiple times since issues may not happen always. But it is tedious to run multiple times with actual data. How about simulating/mocking it?"/>
+    <meta property="og:description" content="To uncover the bugs we need to setup workload and run multiple times since issues may not happen always. But it is tedious to run multiple times with actual data. How about simulating/mocking it?"/>
+    <link rel="canonical" href="/blog/simulating-race-conditions/"/>
+    <meta property="og:url" content="/blog/simulating-race-conditions/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content="/images/rebalance.png"/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2015-09-11"/>
+    
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="/images/rebalance.png"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Simulating Race Conditions"/>
+    <meta name="twitter:description" content="To uncover the bugs we need to setup workload and run multiple times since issues may not happen always. But it is tedious to run multiple times with actual data. How about simulating/mocking it?"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Simulating Race Conditions</h1>
+                <div class="">Sep 11, 2015</div>
+                <div class=""><strong>5 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">gluster</span>
+                    
+                    <span class="tag is-info is-light"> glusterfsblog</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>`Tiering &lt;<a href="http://gluster.readthedocs.org/en/release-3.7.0/Features/tier/&gt;`" class="bare">http://gluster.readthedocs.org/en/release-3.7.0/Features/tier/&gt;`</a><em> feature is introduced in `Gluster 3.7 &lt;<a href="http://www.gluster.org/&gt;`" class="bare">http://www.gluster.org/&gt;`</a></em> release. Geo-replication may not perform well with Tiering feature yet. Races can happen since Rebalance moves files from one brick to another brick(hot to cold and cold to hot), but the Changelog/Journal remails in old brick itself. We know there will be problems since each Geo-replication worker(per brick) processes Changelogs belonging to respective brick and sync the data independently. Sync happens as two step operation, Create entry in Slave with the GFID recorded in Changelog, then use Rsync to sync data(using GFID access)</p>
+</div>
+<div class="paragraph">
+<p>To uncover the bugs we need to setup workload and run multiple times since issues may not happen always. But it is tedious to run multiple times with actual data. How about simulating/mocking it?</p>
+</div>
+<div class="paragraph">
+<p>Let us consider simple case of Rebalance, A file "f1" is created in Brick1 and after some time it becomes hot and Rebalance moved it to Brick2.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>image:: /images/rebalance.png
+:alt: Rebalance explained</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In Changelog we don&#8217;t capture the Rebalance Traffic, so in respective brick changelogs will contain,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre># Brick1 Changelog
+CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Brick2 Changelog
+DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If Brick1 worker processes fast, then Entry is created in Slave and Data Operation succeeds. Since Both the workers can independently, sequence of execution may be like</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre># Possible Sequence 1
+[Brick1] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+[Brick1] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+[Brick2] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Possible Sequence 2
+[Brick2] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+[Brick1] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+[Brick1] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Possible Sequence 3
+[Brick1] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+[Brick2] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+[Brick1] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>We don&#8217;t have any problems with first and last sequence, But in second sequence Rsync will try to sync data before Entry Creation and Fails.</p>
+</div>
+<div class="paragraph">
+<p>To solve this issue, we thought if we record CREATE from Rebalance traffic then it will solve this problem. So now brick Changelogs looks like,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre># Brick1 Changelog
+CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Brick2 Changelog
+CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>and possible sequences,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre># Possible Sequence 1
+[Brick1] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+[Brick1] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+[Brick2] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+[Brick2] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Possible Sequence 2
+[Brick2] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+[Brick1] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+[Brick1] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+[Brick2] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># and many more...</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>We do not have that problem, second CREATE will fail with EEXIST, we ignore it since it is safe error. But will this approach solves all the problems with Rebalance? When more FOPs added, it is very difficult to visualize or guess the problem.</p>
+</div>
+<div class="paragraph">
+<p>To mock the concurrent workload, Collect sequence from each bricks Changelog and mix both the sequences. We should make sure that order in each brick remains same after the mix.</p>
+</div>
+<div class="paragraph">
+<p>For example,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>b1 = ["A", "B", "C", "D", "E"]
+b2 = ["F", "G"]</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>While mixing b2 in b1, for first element in b2 we can randomly choose a position in b1. Let us say random position we got is 2(Index is 2), and insert "F" in index 2 of b1</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre># before
+["A", "B", "C", "D", "E"]
+# after
+["A", "B", "F", "C", "D", "E"]</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Now, to insert "G", we should randomly choose anywhere after "F". Once we get the sequence, mock the FOPs and compare with expected values.</p>
+</div>
+<div class="paragraph">
+<p>I added a `gist &lt;<a href="https://gist.github.com/aravindavk/193eda60b6049ad025f4&gt;`__" class="bare">https://gist.github.com/aravindavk/193eda60b6049ad025f4&gt;`__</a> for testing following workload, it generates multiple sequences for testing.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre># f1 created in Brick1, Rebalanced to Brick2 and then Unlinked
+# Brick1 Changelog
+CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Brick2 Changelog
+CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+UNLINK 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Found two bugs.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Trying to sync data after UNLINK(Which can be handled in Geo-rep by Rsync retry)</p>
+</li>
+<li>
+<p>Empty file gets created.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>I just started simulating with Tiering + Geo-replication workload, I may encounter more problems with Renames(Simple, multiple and cyclic). Will update the results soon.</p>
+</div>
+<div class="paragraph">
+<p>I am sharing the script since it can be easily modified to work with different workloads and to test other projects/components.</p>
+</div>
+<div class="paragraph">
+<p>Let me know if this is useful. Comments and Suggestions Welcome.</p>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

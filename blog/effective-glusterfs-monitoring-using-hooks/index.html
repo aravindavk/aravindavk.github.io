@@ -1,0 +1,292 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Effective GlusterFs monitoring using hooks - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Effective GlusterFs monitoring using hooks"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="Let us imagine we have a GlusterFs monitoring system which displays list of volumes and its state, to show the realtime status, monitoring app need to query the GlusterFs in regular interval to check volume status, new volumes etc. Assume if the polling interval is 5 seconds then monitoring app has to run "gluster volume info command" ~17000 times a day!"/>
+    <meta property="og:description" content="Let us imagine we have a GlusterFs monitoring system which displays list of volumes and its state, to show the realtime status, monitoring app need to query the GlusterFs in regular interval to check volume status, new volumes etc. Assume if the polling interval is 5 seconds then monitoring app has to run "gluster volume info command" ~17000 times a day!"/>
+    <link rel="canonical" href="/blog/effective-glusterfs-monitoring-using-hooks/"/>
+    <meta property="og:url" content="/blog/effective-glusterfs-monitoring-using-hooks/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2013-11-28"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Effective GlusterFs monitoring using hooks"/>
+    <meta name="twitter:description" content="Let us imagine we have a GlusterFs monitoring system which displays list of volumes and its state, to show the realtime status, monitoring app need to query the GlusterFs in regular interval to check volume status, new volumes etc. Assume if the polling interval is 5 seconds then monitoring app has to run "gluster volume info command" ~17000 times a day!"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Effective GlusterFs monitoring using hooks</h1>
+                <div class="">Nov 28, 2013</div>
+                <div class=""><strong>4 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">glusterfs</span>
+                    
+                    <span class="tag is-info is-light">glusterfsblog</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>Let us imagine we have a GlusterFs monitoring system which displays list of volumes and its state, to show the realtime status, monitoring app need to query the GlusterFs in regular interval to check volume status, new volumes etc. Assume if the polling interval is 5 seconds then monitoring app has to run :code:`gluster volume info` command ~17000 times a day!</p>
+</div>
+<div class="paragraph">
+<p>How about maintaining a state file in each node? which gets updated after every new GlusterFs event(create, delete, start, stop etc).</p>
+</div>
+<div class="paragraph">
+<p>In this blog post I am trying to explain the possibility of creating state file and using it.</p>
+</div>
+<div class="paragraph">
+<p>As of today GlusterFs provides following hooks, which we can use to update our state file.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>create
+delete
+start
+stop
+add-brick
+remove-brick
+set</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<h1 id="_how_to_use_hooks" class="sect0">How to use hooks</h1>
+<div class="paragraph">
+<p>GlusterFs hooks present in :code:`/var/lib/glusterd/hooks/1` directory. Following example shows sending message to all users using :code:`wall` command when any new GlusterFs volume is created.</p>
+</div>
+<div class="paragraph">
+<p>Create a shell script :code:`/var/lib/glusterd/hooks/1/create/post/SNotify.bash` and make it executable. Whenever a volume is created GlusterFs executes all the executable scripts present in respective hook directory(Glusterfs executes only the scripts which filename starting with 'S')</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>#!/bin/bash
+VOL=
+ARGS=$(getopt -l "volname:"  -name "" $@)
+eval set -- "$ARGS"
+while true; do
+    case $1 in
+        --volname)
+            shift
+            VOL=$1
+            ;;
+        *)
+            shift
+            break
+            ;;
+    esac
+    shift
+done</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>wall "Gluster Volume Created: $VOL";</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<h1 id="_experimental_project_glusterweb" class="sect0">Experimental project - GlusterWeb</h1>
+<div class="paragraph">
+<p>This experimental project maintains a sqlite database :code:`/var/lib/glusterd/nodestate/glusternodestate.db` which gets updated after any GlusterFs event. For example if a GlusterFs volume is created then it updates volumes table and also bricks table.</p>
+</div>
+<div class="paragraph">
+<p>This project depends on `glusterfs-tools &lt;<a href="https://github.com/aravindavk/glusterfs-tools&gt;`__" class="bare">https://github.com/aravindavk/glusterfs-tools&gt;`__</a> so install both projects.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>git clone https://github.com/aravindavk/glusterfs-tools.git
+cd glusterfs-tools
+sudo python setup.py install</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>git clone https://github.com/aravindavk/glusterfs-web.git
+cd glusterfs-web
+sudo python setup.py install</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>By running <code>setup</code>, this tool will install all the hooks which are required for monitoring. (<code>cleanup</code> is for removing all the hooks)</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>sudo glusternodestate setup</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>All set! now run :code:`glusterweb` to start webapp.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>sudo glusterweb</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Web application starts running in :code:`http://localhost:8080` you can change the port using :code:`--port` or :code:`-p` option.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>sudo glusterweb -p 9000</pre>
+</div>
+</div>
+</li>
+<li>
+<p>figure:: /images/glusterweb-v0.1.png
+:alt: GlusterWeb</p>
+<div class="literalblock">
+<div class="content">
+<pre>Initial version of web interface.</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<h1 id="_future_plans" class="sect0">Future plans</h1>
+<div class="paragraph">
+<p><strong>Authentication</strong>: Option to provide username and password or access key while running glusterweb, For example</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>sudo glusterweb --username aravindavk --password somesecret
+# or
+sudo glusterweb --key secretonlyiknow</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>More gluster hooks support:</strong> we need more GlusterFs hooks for better monitoring(refer Problems below)</p>
+</div>
+<div class="paragraph">
+<p><strong>More GlusterFs features support:</strong> As a experiment UI only lists volumes, we need improved UI and support for different gluster features.</p>
+</div>
+<div class="paragraph">
+<p><strong>Actions support:</strong> Support for volume creation, adding/removing bricks etc.</p>
+</div>
+<div class="paragraph">
+<p><strong>REST api and SDK:</strong> Providing REST api for gluster operations.</p>
+</div>
+<div class="paragraph">
+<p><strong>Many more:</strong> Not yet planned :)</p>
+</div>
+<h1 id="_problems" class="sect0">Problems</h1>
+<div class="paragraph">
+<p><strong>State file consistency:</strong> If glusterd goes down in the node then the database will have wrong details about node&#8217;s state. One workaround is to reset the database if glusterd is down using a cron job, when glusterd comes up, database will not gets updated and the database will have previous updated details. To prevent this we need a glusterfs hook for <code>glusterd-start</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>More hooks:</strong> As of today we don&#8217;t have hooks for volume down/up, brick down/up and other events. We need following hooks for effective monitoring glusterfs.(Add more if anything missing in the list)</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>glusterd-start
+peer probe
+peer detach
+volume-down
+volume-up
+brick-up
+brick-down</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Let me know your thoughts! Thanks.</p>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

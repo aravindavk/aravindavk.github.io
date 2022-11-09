@@ -1,0 +1,204 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Area Charts using R base Graphics - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Area Charts using R base Graphics"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="Today I learnt to create Area graph using R Base graphics. polygon function (help(polygon)) can be used to fill the area under the line."/>
+    <meta property="og:description" content="Today I learnt to create Area graph using R Base graphics. polygon function (help(polygon)) can be used to fill the area under the line."/>
+    <link rel="canonical" href="/blog/area-charts-using-r-base-graphics/"/>
+    <meta property="og:url" content="/blog/area-charts-using-r-base-graphics/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2019-02-17"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Area Charts using R base Graphics"/>
+    <meta name="twitter:description" content="Today I learnt to create Area graph using R Base graphics. polygon function (help(polygon)) can be used to fill the area under the line."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Area Charts using R base Graphics</h1>
+                <div class="">Feb 17, 2019</div>
+                <div class=""><strong>1 minute</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">R</span>
+                    
+                    <span class="tag is-info is-light"> area-graph</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>Today I learnt to create `Area chart
+&lt;<a href="https://en.wikipedia.org/wiki/Area_chart&gt;`__" class="bare">https://en.wikipedia.org/wiki/Area_chart&gt;`__</a> using R Base
+graphics. <code>polygon</code> function (<code>help(polygon)</code>) can be used to fill
+the area under the line.</p>
+</div>
+<div class="paragraph">
+<p>Lets pick a simple data set from my website - Number of blog posts
+per year.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>Year,Blog
+2008,12
+2009,20
+2010,11
+2011,19
+2012,16
+2013, 6
+2014, 7
+2015, 9
+2016,12
+2017, 3
+2018, 2
+2019, 1</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Now lets draw the line graph as below.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: R</p>
+<div class="literalblock">
+<div class="content">
+<pre>dat &lt;- read.csv("blogs_data.csv")
+numYears &lt;- length(dat$Blog)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>plot(
+    c(1:numYears),     # x axis
+    dat$Blog,          # y axis
+    type="l",          # Line graph
+    col="#409ddf",     # Line Color
+    lwd=3,             # Line Width
+    xlab="Years",      # X axis label
+    ylab="Blog posts", # Y axis label
+    xaxt="n",          # Show X axis
+    yaxt="n",          # Show Y axis
+    main="Blog posts", # Graph main title
+    )</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>axis(1, at=1:numYears, labels=sprintf("%s", dat$Year))
+axis(2, tck=1, col="#dddddd")</pre>
+</div>
+</div>
+</li>
+<li>
+<p>image:: /images/area-chart-only-line.jpg
+:alt: Line Chart</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Identify the points required to draw a polygon as below,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>image:: /images/area-chart-polygon.jpg
+:alt: Polygon</p>
+</li>
+<li>
+<p>code-block:: R</p>
+<div class="literalblock">
+<div class="content">
+<pre>yy &lt;- c(0, dat$Blog, 0, 0)          # P14, P1:P12, P13, P14
+xx &lt;- c(1, 1:numYears, numYears, 1) # P14, P1:P12, P13, P14</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>And draw polygon using,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: R</p>
+<div class="literalblock">
+<div class="content">
+<pre>polygon(xx, yy, col="#c3e1f57d", border=NA)</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>And the final Area chart,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>image:: /images/area-chart-final.jpg
+:alt: Final Area Chart</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Comments and suggestions welcome.</p>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

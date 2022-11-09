@@ -1,0 +1,259 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Improving Kannada Fonts - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Improving Kannada Fonts"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="Today I completed first stage, created two python scripts to change the glyph names and to adjust left and right space."/>
+    <meta property="og:description" content="Today I completed first stage, created two python scripts to change the glyph names and to adjust left and right space."/>
+    <link rel="canonical" href="/blog/improving-kannada-fonts/"/>
+    <meta property="og:url" content="/blog/improving-kannada-fonts/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2013-11-09"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Improving Kannada Fonts"/>
+    <meta name="twitter:description" content="Today I completed first stage, created two python scripts to change the glyph names and to adjust left and right space."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Improving Kannada Fonts</h1>
+                <div class="">Nov 9, 2013</div>
+                <div class=""><strong>3 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">ಕನ್ನಡ</span>
+                    
+                    <span class="tag is-info is-light">kannada</span>
+                    
+                    <span class="tag is-info is-light">fonts</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>`Pravin &lt;<a href="http://pravin-s.blogspot.in/&gt;`" class="bare">http://pravin-s.blogspot.in/&gt;`</a><em>, maintainer of Lohit fonts started `lohit2 &lt;<a href="https://github.com/pravins/lohit2&gt;`" class="bare">https://github.com/pravins/lohit2&gt;`</a></em> project to update all lohit fonts according to Open Type specifications. Read more `here &lt;<a href="http://pravin-s.blogspot.in/2013/08/project-creating-standard-and-reusable.html&gt;`" class="bare">http://pravin-s.blogspot.in/2013/08/project-creating-standard-and-reusable.html&gt;`</a><em> and `here &lt;<a href="http://pravin-s.blogspot.in/2013/10/lohit2-surely-helping-identifying.html&gt;`" class="bare">http://pravin-s.blogspot.in/2013/10/lohit2-surely-helping-identifying.html&gt;`</a></em></p>
+</div>
+<div class="paragraph">
+<p>I am planning to improve Lohit Kannada(also Gubbi and Navilu) and identified following stages.</p>
+</div>
+<h1 id="_stage_one" class="sect0">Stage one</h1>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Clone lohit2, Gubbi and Navilu</p>
+</li>
+<li>
+<p>Rename all base glyphs according to the standard(uniXXXX format)</p>
+</li>
+<li>
+<p>Adjust left/right spacing for all base glyphs</p>
+</li>
+<li>
+<p>Testing</p>
+</li>
+</ol>
+</div>
+<h1 id="_stage_two" class="sect0">Stage two</h1>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create half forms of base glyphs which are required for creating ligatures.</p>
+</li>
+<li>
+<p>Delete the unused ligatures(Can be achieved using rules)</p>
+</li>
+<li>
+<p>Add `GSUB &lt;<a href="http://partners.adobe.com/public/developer/opentype/index_table_formats1.html&gt;`__" class="bare">http://partners.adobe.com/public/developer/opentype/index_table_formats1.html&gt;`__</a> rules for consonants.</p>
+</li>
+<li>
+<p>Mark to Base GPOS rules.</p>
+</li>
+<li>
+<p>Identify special consonant for which separate ligature is required.(ki, gi etc)</p>
+</li>
+<li>
+<p>Testing</p>
+</li>
+</ol>
+</div>
+<h1 id="_stage_three" class="sect0">Stage three</h1>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create ligatures which are identified in previous stage.(Most of the ligatures already exists in fonts)</p>
+</li>
+<li>
+<p>Add `GSUB &lt;<a href="http://partners.adobe.com/public/developer/opentype/index_table_formats1.html&gt;`__" class="bare">http://partners.adobe.com/public/developer/opentype/index_table_formats1.html&gt;`__</a> rules for those ligatures</p>
+</li>
+<li>
+<p>Testing</p>
+</li>
+</ol>
+</div>
+<h1 id="_stage_four" class="sect0">Stage four</h1>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Rename all vattakshara glyphs.</p>
+</li>
+<li>
+<p>Add `GSUB &lt;<a href="http://partners.adobe.com/public/developer/opentype/index_table_formats1.html&gt;`__" class="bare">http://partners.adobe.com/public/developer/opentype/index_table_formats1.html&gt;`__</a> rules.</p>
+</li>
+<li>
+<p>Mark to Base `GPOS &lt;<a href="http://partners.adobe.com/public/developer/opentype/index_table_formats2.html&gt;`__" class="bare">http://partners.adobe.com/public/developer/opentype/index_table_formats2.html&gt;`__</a> rules for vattakshara</p>
+</li>
+<li>
+<p>Testing</p>
+</li>
+</ol>
+</div>
+<h1 id="_stage_five" class="sect0">Stage five</h1>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Mark to Mark `GPOS &lt;<a href="http://partners.adobe.com/public/developer/opentype/index_table_formats2.html&gt;`__" class="bare">http://partners.adobe.com/public/developer/opentype/index_table_formats2.html&gt;`__</a> rules for double vattakshara.</p>
+</li>
+<li>
+<p>Create additional ligatures if required for any double vattakshara combination.</p>
+</li>
+<li>
+<p>Testing</p>
+</li>
+</ol>
+</div>
+<h1 id="_stage_six" class="sect0">Stage six</h1>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Verify and add additional glyphs/symbols required.</p>
+</li>
+<li>
+<p>Adjust left and right spacing for additional glyphs.</p>
+</li>
+<li>
+<p>Testing</p>
+</li>
+</ol>
+</div>
+<h1 id="_stage_seven" class="sect0">Stage seven</h1>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Typography related improvements: Reduce the font thickness, space and kerning improvements.</p>
+</li>
+<li>
+<p>Update License, Authors, version and other information.</p>
+</li>
+<li>
+<p>Testing</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Today I completed first stage, created two `python scripts &lt;<a href="https://github.com/aravindavk/fontscripts&gt;`__" class="bare">https://github.com/aravindavk/fontscripts&gt;`__</a> to change the glyph names and to adjust left and right space.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>cd $WORK
+git clone https://github.com/aravindavk/fontscripts.git
+git clone https://github.com/aravindavk/lohit2.git
+git clone https://github.com/aravindavk/Gubbi.git
+git clone https://github.com/aravindavk/Navilu.git
+cd fontscripts</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Lohit Kannada
+python rename_base_glyphs.py ../lohit2/kannada/Lohit-Kannada.sfd
+python adjust_spacing.py ../lohit2/kannada/Lohit-Kannada.sfd</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Gubbi
+python rename_base_glyphs.py ../Gubbi/Gubbi.sfd
+python adjust_spacing.py ../Gubbi/Gubbi.sfd</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Navilu
+python rename_base_glyphs.py ../Navilu/Navilu.sfd
+python adjust_spacing.py ../Navilu/Navilu.sfd</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Now generate the fonts to test the changes. Harfbuzz can be used for testing.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>hb-view ../lohit2/kannada/Lohit-Kannada.ttf "$(cat stage1_tests.txt )" --output-file preview_lohit.png</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Let me know if anybody interested to join and contribute to improve Kannada fonts.</p>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

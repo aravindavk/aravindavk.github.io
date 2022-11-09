@@ -1,0 +1,147 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Sorted Bar charts using AngularJS - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Sorted Bar charts using AngularJS"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="Creating bar charts/progress bars using HTML and CSS is very easy, we can create it using two DIV tags. Following image shows outer div in gray color and inner div in green color. Width of inner div can be set dynamically based on the required value."/>
+    <meta property="og:description" content="Creating bar charts/progress bars using HTML and CSS is very easy, we can create it using two DIV tags. Following image shows outer div in gray color and inner div in green color. Width of inner div can be set dynamically based on the required value."/>
+    <link rel="canonical" href="/blog/sorted-bar-charts-angularjs/"/>
+    <meta property="og:url" content="/blog/sorted-bar-charts-angularjs/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2013-03-05"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Sorted Bar charts using AngularJS"/>
+    <meta name="twitter:description" content="Creating bar charts/progress bars using HTML and CSS is very easy, we can create it using two DIV tags. Following image shows outer div in gray color and inner div in green color. Width of inner div can be set dynamically based on the required value."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Sorted Bar charts using AngularJS</h1>
+                <div class="">Mar 5, 2013</div>
+                <div class=""><strong>2 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">javascript</span>
+                    
+                    <span class="tag is-info is-light">angularjs</span>
+                    
+                    <span class="tag is-info is-light">angular</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>Creating bar charts/progress bars using HTML and CSS is very easy, we can create it using two DIV tags. Following image shows outer div in gray color and inner div in green color. Width of inner div can be set dynamically based on the required value.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>raw:: html</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;span style="color:#555;font-size:14px;"&gt;42%&lt;/span&gt;
+&lt;div style="width:100%;background-color:#ddd;height:5px;"&gt;
+  &lt;div style="height:5px;background-color:green;width:42%"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+</div>
+</div>
+</li>
+<li>
+<p>code-block:: html</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;style&gt;
+.outer{width:100%; background-color:#ddd; height:5px;}
+.inner{width:42%; background-color:green; height:5px;}
+.chart-label{color:#555; font-size:12px;}
+&lt;/style&gt;
+&lt;span class="chart-label"&gt;42%&lt;/span&gt;
+&lt;div class="outer"&gt;
+    &lt;div class="inner"&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Today I tried to create sorted bar charts using Angular JS. Following chart shows number of blog posts I wrote each year. We can change the sort order by clicking the yellow buttons. The `demo &lt;/demo/sorted-bar-charts-using-angularjs/&gt;`<em> code is available `here &lt;<a href="https://github.com/aravindavk/demo/tree/master/sorted-bar-charts-using-angularjs&gt;`" class="bare">https://github.com/aravindavk/demo/tree/master/sorted-bar-charts-using-angularjs&gt;`</a></em>.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>raw:: html</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;iframe src="/demo/sorted-bar-charts-using-angularjs/" width="660" height="400"&gt;&lt;/iframe&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The idea is to write a blog post every Tuesday and celebrate as #blogTuesday. The chart shows how far I succeeded. :)</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>raw:: html</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;blockquote class="twitter-tweet"&gt;&lt;p&gt;52 weeks per year, 52 Tuesdays, 52 blog posts? &lt;a href="https://twitter.com/search/%23blogTuesday"&gt;#blogTuesday&lt;/a&gt;&lt;/p&gt;&amp;mdash; Aravinda (@aravindavk) &lt;a href="https://twitter.com/aravindavk/status/308613618793070593"&gt;March 4, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

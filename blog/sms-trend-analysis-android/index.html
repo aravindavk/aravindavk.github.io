@@ -1,0 +1,329 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>SMS trend analysis - Android - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="SMS trend analysis - Android"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="Now a days my incoming and outgoing SMS trend looks like this for some reason :)"/>
+    <meta property="og:description" content="Now a days my incoming and outgoing SMS trend looks like this for some reason :)"/>
+    <link rel="canonical" href="/blog/sms-trend-analysis-android/"/>
+    <meta property="og:url" content="/blog/sms-trend-analysis-android/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2013-04-09"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="SMS trend analysis - Android"/>
+    <meta name="twitter:description" content="Now a days my incoming and outgoing SMS trend looks like this for some reason :)"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">SMS trend analysis - Android</h1>
+                <div class="">Apr 9, 2013</div>
+                <div class=""><strong>4 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">english</span>
+                    
+                    <span class="tag is-info is-light">sms</span>
+                    
+                    <span class="tag is-info is-light">android</span>
+                    
+                    <span class="tag is-info is-light">sql</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>Now a days my incoming and outgoing SMS trend looks like this for some(known) reason :)</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>figure:: /images/incoming_sms_trend.png
+:alt: Incoming sms trend</p>
+<div class="literalblock">
+<div class="content">
+<pre>Incoming SMS trend(Nov 2012 - Apr 2013)</pre>
+</div>
+</div>
+</li>
+<li>
+<p>figure:: /images/outgoing_sms_trend.png
+:alt: Outgoing sms trend</p>
+<div class="literalblock">
+<div class="content">
+<pre>Outgoing SMS trend(Nov 2012 - Apr 2013)</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>PS</strong>: Sometimes I delete telemarketing SMS as and when I receive, so incoming trend may not show actual :) Also while playing with Android OS I lost all the SMS prior to Nov 2012.</p>
+</div>
+<div class="paragraph">
+<p>***</p>
+</div>
+<div class="paragraph">
+<p>Continue reading if you are wondering how I extracted the SMS data from the phone.</p>
+</div>
+<h1 id="_prerequisites" class="sect0">prerequisites:</h1>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Android phone</p>
+</li>
+<li>
+<p>Your Android phone should be rooted one.</p>
+</li>
+<li>
+<p>Android SDK should be installed.</p>
+</li>
+<li>
+<p>Debugging should be enabled in your android phone.</p>
+</li>
+</ol>
+</div>
+<h1 id="_idea" class="sect0">Idea:</h1>
+<div class="paragraph">
+<p>In Android, SMS data is stored in sqlite database, and it is located in the following directory(in phone).</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>/data/data/com.android.providers.telephony/databases/mmssms.db</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>So we can run sql queries to get the details from sms table as per our need. To access the data from db, Android phone should be rooted.</p>
+</div>
+<div class="paragraph">
+<p>Add :code:`adb` path(in my machine adb path is :code:`/home/aravinda/android-sdk/platform-tools/<code>) to environment variable PATH, and run :code:`adb</code> as root.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>adb root</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In sqlite we can see the list of tables present in a database using :code:`.tables` (:code:`sqlite3 &lt;db path&gt; ".tables"`) query.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>adb shell 'sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db ".tables"'</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>and we can get schema of the required sqlite table using :code:`.schema &lt;table name&gt;` query.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>adb shell 'sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db ".schema sms"'</pre>
+</div>
+</div>
+</li>
+<li>
+<p>code-block:: sql</p>
+<div class="literalblock">
+<div class="content">
+<pre>CREATE TABLE sms
+(
+    _id                INTEGER PRIMARY KEY,
+    thread_id          INTEGER,
+    address            TEXT,
+    person             INTEGER,
+    date               INTEGER,
+    date_sent          INTEGER DEFAULT 0,
+    protocol           INTEGER,
+    read               INTEGER DEFAULT 0,
+    status             INTEGER DEFAULT -1,
+    type               INTEGER,
+    reply_path_present INTEGER,
+    subject            TEXT,
+    body               TEXT,
+    service_center     TEXT,
+    locked             INTEGER DEFAULT 0,
+    error_code         INTEGER DEFAULT 0,
+    seen               INTEGER DEFAULT 0
+);</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Now we know how to run queries inside phone using <code>adb</code>, let us list down some of the ideas which we can implement using available sms data.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Number of SMS sent/received per day, to see the trend or if you have number of SMS limit per day/month.</p>
+</li>
+<li>
+<p>SMS sent/received trend per hour, to see what time of the day I spend more in sending/receiving SMS.</p>
+</li>
+<li>
+<p>Number of SMS per day per number, to see the trend per number.</p>
+</li>
+<li>
+<p>Identify the messages/number to which I never interacted.</p>
+</li>
+<li>
+<p>Identify the trend of teledirect numbers(Regex for non number phone number).</p>
+</li>
+<li>
+<p>Backup all SMS database.</p>
+</li>
+<li>
+<p>SMS book/conversations book.</p>
+</li>
+<li>
+<p>Check how many sent messages are just less than 10 chars.</p>
+</li>
+<li>
+<p>Live SMS notification in Laptop/Computer.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>The only limitation is your imagination :D</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Example</strong>: Number of sms sent per day.</p>
+</div>
+<div class="paragraph">
+<p>Query is</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: sql</p>
+<div class="literalblock">
+<div class="content">
+<pre>SELECT STRFTIME("%Y%m%d", DATETIME(date/1000, "unixepoch", "localtime")) dte,
+       COUNT(_id)
+FROM sms
+WHERE type = 2
+GROUP BY dte
+ORDER BY dte</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>where type 2 is sent and 1 is received.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>adb shell 'sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db \
+"SELECT STRFTIME(\"%Y%m%d\", DATETIME(date/1000, \"unixepoch\", \"localtime\")) dte,  \
+COUNT(_id) FROM sms WHERE type = 2 GROUP BY dte ORDER BY dte"'</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If you want to find number of sms sent per day for a particular phone number then add the condition in WHERE clause as follows</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: sql</p>
+<div class="literalblock">
+<div class="content">
+<pre>SELECT STRFTIME("%Y%m%d", DATETIME(date/1000, "unixepoch", "localtime")) dte,
+       COUNT(_id)
+FROM sms
+WHERE type = 2
+GROUP BY dte
+ORDER BY dte
+AND REPLACE(REPLACE(address, "+91",""), " ", "") = "XXXXX"</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>I created `Python script &lt;<a href="https://gist.github.com/aravindavk/5339192&gt;`__" class="bare">https://gist.github.com/aravindavk/5339192&gt;`__</a> to extract data as described above. Additionally script generates csv output which can be used to plot as required. Use any familiar library(Matplotlib, PhantomJS and d3, flot etc..) or just use Spreadsheet to plot the graph as required. I used Libreoffice Calc to create these charts.</p>
+</div>
+<div class="paragraph">
+<p>Let me know if you find this blog useful and need any help in writing SQL queries :)</p>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

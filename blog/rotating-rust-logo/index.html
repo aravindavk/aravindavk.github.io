@@ -1,0 +1,134 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Rotating Rust programming logo - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Rotating Rust programming logo"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="SVG animation, rotating rust logo"/>
+    <meta property="og:description" content="SVG animation, rotating rust logo"/>
+    <link rel="canonical" href="/blog/rotating-rust-logo/"/>
+    <meta property="og:url" content="/blog/rotating-rust-logo/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2014-10-08"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Rotating Rust programming logo"/>
+    <meta name="twitter:description" content="SVG animation, rotating rust logo"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Rotating Rust programming logo</h1>
+                <div class="">Oct 8, 2014</div>
+                <div class=""><strong>1 minute</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">rust</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>Today I learned to animate any shape in `SVG &lt;<a href="http://en.wikipedia.org/wiki/Scalable_Vector_Graphics&gt;`" class="bare">http://en.wikipedia.org/wiki/Scalable_Vector_Graphics&gt;`</a><em> using `animateTransform &lt;<a href="http://www.w3.org/TR/SVG/animate.html#AnimateTransformElement&gt;`" class="bare">http://www.w3.org/TR/SVG/animate.html#AnimateTransformElement&gt;`</a></em> element, and tried it with `Rust programming &lt;<a href="http://www.rust-lang.org/&gt;`__" class="bare">http://www.rust-lang.org/&gt;`__</a> logo, here yo go :)</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>raw:: html</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;embed src="/images/rust_rotating.svg" type="image/svg+xml" /&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>I downloaded SVG from <code>here &lt;<a href="http://en.wikipedia.org/wiki/File:Rust_programming_language_black_logo.svg&gt;`__" class="bare">http://en.wikipedia.org/wiki/File:Rust_programming_language_black_logo.svg&gt;`__</a>, and added :code:`animateTransform</code> as child of :code:`path`</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: xml</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;?xml version="1.0" encoding="windows-1252"?&gt;
+&lt;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"&gt;
+&lt;svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     x="0px" y="0px" width="144px" height="144px"
+     viewBox="19 19 106 106" style="enable-background:new 0 0 144 144;"
+     xml:space="preserve"&gt;
+&lt;path d="M122.631,69.716l-4.394-2.72....z"&gt;
+    &lt;animateTransform attributeType="xml"
+                      attributeName="transform"
+                      type="rotate"
+                      from="0 71 71"
+                      to="360 71 71"
+                      dur="10s"
+                      repeatCount="indefinite"/&gt;
+&lt;/path&gt;
+&lt;/svg&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Above code is partial, illustrative purpose only. You can download modified SVG from `here &lt;/images/rust_rotating.svg&gt;`__</p>
+</div>
+<div class="paragraph">
+<p>BTW, If you never heard of programming language Rust, Go and checkout `rust-lang.org &lt;<a href="http://www.rust-lang.org/&gt;`" class="bare">http://www.rust-lang.org/&gt;`</a><em> and `Guide &lt;<a href="http://doc.rust-lang.org/guide.html&gt;`" class="bare">http://doc.rust-lang.org/guide.html&gt;`</a></em>. It is awesome.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>**Rust** is a systems programming language that runs blazingly fast, prevents almost all crashes*, and eliminates data races.</pre>
+</div>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

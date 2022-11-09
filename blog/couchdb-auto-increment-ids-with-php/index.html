@@ -1,0 +1,193 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>CouchDB: Auto increment IDs with PHP - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="CouchDB: Auto increment IDs with PHP"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="CouchDB: Auto increment IDs with PHP"/>
+    <meta property="og:description" content="CouchDB: Auto increment IDs with PHP"/>
+    <link rel="canonical" href="/blog/couchdb-auto-increment-ids-with-php/"/>
+    <meta property="og:url" content="/blog/couchdb-auto-increment-ids-with-php/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2010-09-24"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="CouchDB: Auto increment IDs with PHP"/>
+    <meta name="twitter:description" content="CouchDB: Auto increment IDs with PHP"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">CouchDB: Auto increment IDs with PHP</h1>
+                <div class="">Sep 24, 2010</div>
+                <div class=""><strong>1 minute</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">couchdb</span>
+                    
+                    <span class="tag is-info is-light">php</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>Create a seed, which will be a CouchDB view.</p>
+</div>
+<div class="paragraph">
+<p>Map function extracts numeric part of every doc of type "photo".</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: javascript</p>
+<div class="literalblock">
+<div class="content">
+<pre>// Map function
+function(doc){
+    if(doc.type == "photo"){
+        emit(null, parseInt(doc._id.replace(/\D/g,'')));
+    }
+}</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>reduce function finds the max value from those numeric values emitted from map function.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: javascript</p>
+<div class="literalblock">
+<div class="content">
+<pre>// Reduce function
+function(key, values){
+    var max = 0;
+    for(i in values){
+        if(max &lt; values[i]){
+            max = values[i];
+        }
+    }
+    return max;
+}</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This view is saved as _design/helpers/photoid</p>
+</div>
+<div class="paragraph">
+<p>Now write a function in PHP to increment the ID as required and to add the document.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: php</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;?php
+function addDoc($url, $data, $seed, $idprefix, $incrementBy=1){
+    // Get the current ID value
+    $ch = curl_init("$url/_design/$seed");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $result = json_decode(curl_exec($ch), true);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>// Increment and add prefix as per given parameters
+$id = $idprefix . ($result['rows'][0]['value'] + $incrementBy);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>// Add document to couchdb
+$ch = curl_init("$url/$id");
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+curl_setopt($ch, CURLOPT_HTTPHEADER, array ("Content-Type: application/json"));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    // Print result
+    echo curl_exec($ch);
+}</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Example usage of above PHP function</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: php</p>
+<div class="literalblock">
+<div class="content">
+<pre>addDoc("http://localhost:5984/photoblog",
+       Array("type"=&gt;"photo", "published"=&gt;0, "place"=&gt;"Karnataka, India"),
+       "helpers/_view/photoid",
+       "p");</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>As of now, PHP function involves two http calls for adding single document. Let me know if you find any ways to reduce it to one http call.</p>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

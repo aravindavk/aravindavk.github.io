@@ -1,0 +1,227 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Gluster Volume utilization - Multiple approaches - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Gluster Volume utilization - Multiple approaches"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="This blog discusses the multiple approaches available to get the Volume utilization and comparisons between them."/>
+    <meta property="og:description" content="This blog discusses the multiple approaches available to get the Volume utilization and comparisons between them."/>
+    <link rel="canonical" href="/blog/gluster-volume-utilization-multiple-approaches/"/>
+    <meta property="og:url" content="/blog/gluster-volume-utilization-multiple-approaches/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2019-09-24"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Gluster Volume utilization - Multiple approaches"/>
+    <meta name="twitter:description" content="This blog discusses the multiple approaches available to get the Volume utilization and comparisons between them."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Gluster Volume utilization - Multiple approaches</h1>
+                <div class="">Sep 24, 2019</div>
+                <div class=""><strong>3 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">gluster</span>
+                    
+                    <span class="tag is-info is-light"> glusterfsblog</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="notification is-warning">
+This blog was first published on <a href="https://gluster.github.io/devblog/gluster-volume-utilization-multiple-approaches">Gluster Devblog</a>
+</div>
+<div class="paragraph">
+<p>Gluster Volume utilization is one of the critical metrics which
+everybody interested to know. This blog discusses the multiple
+approaches available to get the Volume utilization and comparisons
+between them.</p>
+</div>
+<div class="sect1">
+<h2 id="_approach_1_fuse_mount">Approach 1 - Fuse mount</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use fuse mount to mount the Gluster Volume and get the <code>df</code> output(Or
+use <code>os.statvfs</code> in case of Python script).</p>
+</div>
+<div class="paragraph">
+<p>For example,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>$ mount -t glusterfs localhost:gvol_rep3 /mnt/gvol_rep3
+$ df -B1 /mnt/gvol_rep3
+$ umount /mnt/gvol_rep3</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_approach_2_libgfapi_mount">Approach 2 - libgfapi mount</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use libgfapi mount and run <code>os.statvfs</code> to get the Volume utilization.</p>
+</div>
+<div class="paragraph">
+<p>The following Python example uses
+[libgfapi-python](<a href="https://github.com/gluster/libgfapi-python" class="bare">https://github.com/gluster/libgfapi-python</a>) project.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">gluster</span> <span class="kn">import</span> <span class="n">gfapi</span>
+
+<span class="n">volume</span> <span class="o">=</span> <span class="n">gfapi</span><span class="p">.</span><span class="n">Volume</span><span class="p">(</span><span class="s">'localhost'</span><span class="p">,</span> <span class="s">'gvol_rep3'</span><span class="p">)</span>
+<span class="n">volume</span><span class="p">.</span><span class="n">mount</span><span class="p">()</span>
+<span class="n">st</span> <span class="o">=</span> <span class="n">volume</span><span class="p">.</span><span class="n">statvfs</span><span class="p">(</span><span class="s">"/"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Total Size: %s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">f_blocks</span> <span class="o">*</span> <span class="n">st</span><span class="p">.</span><span class="n">f_bsize</span><span class="p">))</span>
+<span class="n">volume</span><span class="p">.</span><span class="n">umount</span><span class="p">()</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_approach_3_gluster_cli">Approach 3 - Gluster CLI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Volume status detail command already provides brick-level
+utilization. Combine status detail with Volume info to group the
+bricks into subvolumes. Get the storage reserve by running <code>gluster
+volume get &lt;volname&gt; storage.reserve</code> and subtract the same from
+<code>size_free</code> or add to <code>size_used</code>.</p>
+</div>
+<div class="paragraph">
+<p>Refer Posix storage reserve feature
+[here](<a href="https://github.com/gluster/glusterfs/issues/236" class="bare">https://github.com/gluster/glusterfs/issues/236</a>)</p>
+</div>
+<div class="paragraph">
+<p>Once we get the sub volume grouping, get the sub volume utilization
+from the bricks utilization as follows.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>volume_capacity_total = 0
+volume_capacity_used = 0
+volume_inodes_total = 0
+volume_inodes_used = 0
+for subvol in subvols {
+    volume_capacity_total += subvol.capacity_total
+    volume_capacity_used += subvol.capacity_used
+    volume_inodes_total += subvol.inodes_total
+    volume_inodes_used += subvol.inodes_used
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Subvolume utilization is dependent on its type. If subvolume type is
+Replicate then take the maximum of <code>capacity_used</code> of all bricks in
+that subvolume and take a minimum of <code>capacity_total</code> of all
+bricks. This method is because all replica bricks will have the same
+data and total capacity of a subvolume is dependent on the brick
+having least capacity (In most cases capacity of all bricks in
+subvolume will be identical).</p>
+</div>
+<div class="paragraph">
+<p>In case of subvolume type is Disperse Volume then,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>subvol_capacity_total = any_one_brick_capacity_total * number_of_data_bricks
+subvol_capacity_used = any_one_brick_capacity_used * number_of_data_bricks
+subvol_inodes_total = any_one_brick_inode_total
+subvol_inodes_used = any_one_brick_inode_used</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion:</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Results of all approaches look similar, feel free to use the method
+comfortable to the use case.</p>
+</li>
+<li>
+<p>Mount cleanup required in case of first and second approaches. If
+the application crashes before unmounting the volume, then we may
+end up in stale mounts.</p>
+</li>
+<li>
+<p>If the application is collecting the utilization details in regular
+interval, either mount needs to be persisted or unmount is required
+after collecting each time. Mounting and unmounting steps will
+become too cumbersome to manage. Since mounting all volumes will
+consume extra memory and mount can&#8217;t persist if every time
+utilization collected from different nodes.</p>
+</li>
+<li>
+<p>Approach 3 is straightforward to implement since it is just running
+the CLI command and parsing its output to get the required
+results. The only downside of this approach is, the aggregation
+logic implemented in the application side. So the application can go
+out of sync if Gluster changes the way to calculate the utilization
+then application.</p>
+</li>
+<li>
+<p>Directory utilization is not possible with approach 3. If Gluster
+Quota feature used and utilization of a subdirectory required, then
+it is not possible using Gluster CLI commands.</p>
+</li>
+<li>
+<p>Gluster status detail command itself can subtract the storage
+reserve instead of returning the raw value(Bug: To be opened)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

@@ -1,0 +1,326 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Monitoring GlusterFS - Volume Utilization - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Monitoring GlusterFS - Volume Utilization"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="With this approach export the brick utilization directly from each node and aggregating at the Prometheus server."/>
+    <meta property="og:description" content="With this approach export the brick utilization directly from each node and aggregating at the Prometheus server."/>
+    <link rel="canonical" href="/blog/monitoring-glusterfs-volume-utilization/"/>
+    <meta property="og:url" content="/blog/monitoring-glusterfs-volume-utilization/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2018-08-03"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Monitoring GlusterFS - Volume Utilization"/>
+    <meta name="twitter:description" content="With this approach export the brick utilization directly from each node and aggregating at the Prometheus server."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Monitoring GlusterFS - Volume Utilization</h1>
+                <div class="">Aug 3, 2018</div>
+                <div class=""><strong>4 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">gluster</span>
+                    
+                    <span class="tag is-info is-light"> glusterfsblog</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>This blog explains the approaches to monitor `Gluster
+&lt;<a href="https://www.gluster.org/&gt;`" class="bare">https://www.gluster.org/&gt;`</a><em> Volume utilization using `Prometheus
+&lt;<a href="https://prometheus.io&gt;`" class="bare">https://prometheus.io&gt;`</a></em>.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>figure:: /images/gluster-volume-utilization.png
+:alt: Gluster Volume Utilization</p>
+<div class="literalblock">
+<div class="content">
+<pre>Gluster Volume Utilization visualized using `Grafana &lt;https://grafana.com/&gt;`__</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To get the Gluster Volume utilization, easy way is to use <code>mount</code> and
+<code>df</code>.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>mkdir /mnt/gv1
+mount -t glusterfs localhost:gv1 /mnt/gv1
+df /mnt/gv1</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Alternatively we can use “libgfapi”(For example `glusterdf
+&lt;<a href="http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/&gt;`__" class="bare">http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/&gt;`__</a> tool
+uses “libgfapi”)</p>
+</div>
+<div class="sect1">
+<h2 id="_exporter_from_all_nodes_exports_volume_utilization">Exporter from all nodes exports volume utilization</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If Volume utilization is collected from each node then all the
+volumes needs to be mounted in all nodes and exporters will export
+duplicate data from all nodes.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>gluster_volume_utilization{instance="node1.example.com:8080",volname="gv1"} 790425600</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If exported data is like above then add the following rule to
+Prometheus configuration so that duplicate data will be eliminated in
+the visualization.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>groups:
+- name: gluster_volume_utilization
+  rules:
+  - record: gluster:volume_utilization_total:sum
+    expr: max(gluster_volume_utilization) by (volname)</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exporter_from_one_node_exports_volume_utilization">Exporter from one node exports volume utilization</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If Volume utilization is collected from one leader node then that
+node will be overloaded by the mount processes if we have more
+number of volumes.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: d</p>
+<div class="literalblock">
+<div class="content">
+<pre>leader_node = online_peers().sorted().first()
+if (leader_node.id == local_node.id) {
+    export_volume_utilization()
+}</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In this approach, no aggregation rules required at Prometheus side but
+failover of a node needs to be handled to export the metrics if
+current leader goes down.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exporter_from_all_nodes_exports_brick_utilization">Exporter from all nodes exports Brick utilization</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Both the approaches mentioned above are inefficient unless we
+implement a common mount which provides all volumes utilization or
+glusterd aggregates the brick sizes and provides the Volume output.</p>
+</div>
+<div class="paragraph">
+<p>With this approach export the brick utilization directly from each
+node and aggregating at the Prometheus server.</p>
+</div>
+<div class="paragraph">
+<p>For example, let us consider a "2x3" Volume with bricks <code>b1</code> to
+<code>b6</code>. If each node exporters publishes local bricks utilization,
+total volume utilization can be found using,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>subvol1_utilizaton = max(b1_utilization, b2_utilization, b3_utilization)
+subvol2_utilizaton = max(b4_utilization, b5_utilization, b6_utilization)
+volume_utilization = sum(subvol1_utilization, subvol2_utilization)</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This formula works great for replicate volume, but in case of disperse
+Volume aggregated value will give wrong value, So multiply each
+brick&#8217;s utilization with number of data bricks.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>subvol_size = number_of_data_bricks * per_brick_utilization</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To accommodate this, exporter needs to be modified to export effective
+utilization along with raw utilization.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>subvol_utilization = df(brick_path).used
+if (disperse_volume)
+    effective_subvol_utilization = brick_utilization * number_of_data_bricks
+else
+    effective_subvol_utilization = brick_utilization</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>With the above two exported values, both Volume and brick utilization
+can be monitored without mounting the Gluster volume.</p>
+</div>
+<div class="paragraph">
+<p>Example: Exported values for Volume gv1(Replica 3 volume)</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>gluster_subvol_capacity_used_bytes{instance="node1.example.com:8080",job="gluster",path="/exports/bricks/gv1/s1/brick1/brick",subvolume="s1",volume="gv1"} 790425600
+gluster_subvol_capacity_used_bytes{instance="node2.example.com:8080",job="gluster",path="/exports/bricks/gv1/s1/brick2/brick",subvolume="s1",volume="gv1"} 788611072
+gluster_subvol_capacity_used_bytes{instance="node3.example.com:8080",job="gluster",path="/exports/bricks/gv1/s1/brick3/brick",subvolume="s1",volume="gv1"} 790175744</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Add the following rule in the Prometheus configuration file to record the
+Volume utilization.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: yml</p>
+<div class="literalblock">
+<div class="content">
+<pre>---
+- name: gluster_volume_utilization
+  rules:
+  - record: gluster:volume_capacity_used_bytes_total:sum
+    expr: &gt;
+      sum(max(gluster_subvol_capacity_used_bytes)
+      by (volume, subvolume)) by (volume)</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If one or more bricks of a sub volume goes down, it still exports
+correct Volume utilization if at least one brick is available.  If all
+bricks of a sub volume goes down, then total Volume utilization will
+not include that sub volume utilization data. This is known limitation
+with all the approaches since the Volume itself is not fully
+available.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Last approach provides same accuracy more efficiently(No Gluster
+mounts used) compared to other two alternatives.</p>
+</div>
+<div class="paragraph">
+<p>Let me know your thoughts</p>
+</div>
+</div>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

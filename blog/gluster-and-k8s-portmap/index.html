@@ -1,0 +1,116 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Gluster and Kubernetes - Portmap - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Gluster and Kubernetes - Portmap"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="If we remove Glusterd in k8s setup, who will do the role of Glusterd? How will the brick process get the port number?"/>
+    <meta property="og:description" content="If we remove Glusterd in k8s setup, who will do the role of Glusterd? How will the brick process get the port number?"/>
+    <link rel="canonical" href="/blog/gluster-and-k8s-portmap/"/>
+    <meta property="og:url" content="/blog/gluster-and-k8s-portmap/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2019-07-09"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Gluster and Kubernetes - Portmap"/>
+    <meta name="twitter:description" content="If we remove Glusterd in k8s setup, who will do the role of Glusterd? How will the brick process get the port number?"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Gluster and Kubernetes - Portmap</h1>
+                <div class="">Jul 9, 2019</div>
+                <div class=""><strong>1 minute</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">gluster</span>
+                    
+                    <span class="tag is-info is-light"> glusterfsblog</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>One of the primary roles of Glusterd is to allocate a port for brick
+processes and let the clients know about it when requested.</p>
+</div>
+<div class="paragraph">
+<p>Glusterd starts a brick process, and it allocates a free port number
+between 49152-49664. Gluster client(or mount) will connect to Glusterd
+(port:24007) and asks for the brick port, Glusterd provides brick port
+and client then connects to the brick process.</p>
+</div>
+<div class="paragraph">
+<p>![Get brick port from Glusterd](/images/gluster-glusterd-brick-port.png)</p>
+</div>
+<div class="paragraph">
+<p>If we remove Glusterd in k8s setup, who will do the role of Glusterd?
+How will the brick process get the port number?</p>
+</div>
+<div class="paragraph">
+<p>Now comes the Magic! All brick processes will run with the port number
+24007!</p>
+</div>
+<div class="paragraph">
+<p>Each brick is one container in k8s setup, so no need to search for a new
+port. Just use 24007. Gluster client is intelligent enough to know
+that the connecting process is Glusterd or Brick process. The client
+connects to 24007 to get brick port, and it finds the brick process
+itself.</p>
+</div>
+<div class="paragraph">
+<p>![Client directly connects to brick](/images/gluster-brick-connect-direct.png)</p>
+</div>
+<div class="paragraph">
+<p>Found interesting? Do join our talk about [Managing Gluster in
+Kubernetes without using
+Glusterd/Glusterd2](<a href="http://bit.ly/gluster-k8s-devconf" class="bare">http://bit.ly/gluster-k8s-devconf</a>) at the devconf
+India event.</p>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

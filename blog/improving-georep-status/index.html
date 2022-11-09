@@ -1,0 +1,155 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Improving Geo-replication Status - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Improving Geo-replication Status"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="Until the above issues are fixed in official Gluster CLI, we can use gluster-georep-status tool"/>
+    <meta property="og:description" content="Until the above issues are fixed in official Gluster CLI, we can use gluster-georep-status tool"/>
+    <link rel="canonical" href="/blog/improving-georep-status/"/>
+    <meta property="og:url" content="/blog/improving-georep-status/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2019-03-28"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Improving Geo-replication Status"/>
+    <meta name="twitter:description" content="Until the above issues are fixed in official Gluster CLI, we can use gluster-georep-status tool"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Improving Geo-replication Status</h1>
+                <div class="">Mar 28, 2019</div>
+                <div class=""><strong>2 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">gluster</span>
+                    
+                    <span class="tag is-info is-light"> glusterfsblog</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>&lt;div class="notice-update"&gt;
+This blog was first published on &lt;a href="https://gluster.github.io/devblog/improving-geo-replication-status"&gt;Gluster Devblog&lt;/a&gt;
+&lt;/div&gt;</p>
+</div>
+<div class="paragraph">
+<p>[Geo-replication](<a href="https://docs.gluster.org/en/latest/Administrator%20Guide/Geo%20Replication/" class="bare">https://docs.gluster.org/en/latest/Administrator%20Guide/Geo%20Replication/</a>)
+is a feature in Glusterfs to sync data from one Gluster Volume to
+another.</p>
+</div>
+<div class="paragraph">
+<p>Current Geo-replication status has the following limitations.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Order of bricks is not uniform. Glusterd collects the status details
+from all other nodes and displays in random order. This is very
+confusing to users. Order of bricks in status should be in the same
+order as in Volume info.</p>
+</li>
+<li>
+<p>If initiator Glusterd(where the command is run) couldn&#8217;t reach other
+node&#8217;s Glusterd then current CLI is skipping that in the status
+output. Status should be shown as "Unknown" without spoiling the
+order.</p>
+</li>
+<li>
+<p>Geo-rep status mixes the rows from multiple sessions depending on
+the response received from other node&#8217;s Glusterds.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Until the above issues are fixed in official Gluster CLI, we can use
+<code>gluster-georep-status</code> tool from
+[gluster-tools](<a href="https://github.com/aravindavk/gluster-georep-tools" class="bare">https://github.com/aravindavk/gluster-georep-tools</a>)
+project. This tool merges Volume info and Geo-rep status to identify
+the Offline status and bricks order.</p>
+</div>
+<div class="paragraph">
+<p>Installation instructions are available in project
+[README](<a href="https://github.com/aravindavk/gluster-georep-tools/blob/master/README.md" class="bare">https://github.com/aravindavk/gluster-georep-tools/blob/master/README.md</a>)</p>
+</div>
+<div class="paragraph">
+<p>This tool also supports filters like <code>--with-status=active</code>,
+<code>--with-crawl-status=changelog</code> etc.</p>
+</div>
+<div class="paragraph">
+<p>Example output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>$ gluster-georep-status
+SESSION: photos ==&gt; bkp1.example.com::backup_photos
++-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
+| MASTER                              | STATUS  | CRAWL STATUS    | SLAVE NODE          | LAST SYNCED         | CHKPT TIME | CHKPT COMPLETED | CHKPT COMPLETION TIME |
++-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
+| prod1.example.com:/bricks/photos/b1 | Active  | Changelog Crawl | remote1.example.com | 2019-03-27 08:34:40 |    N/A     |       N/A       |          N/A          |
+| prod2.example.com:/bricks/photos/b2 | Passive | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |
+| prod3.example.com:/bricks/photos/b3 | Passive | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |
++-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
+
+SESSION: data ==&gt; geoaccount@bkp2.example.com::backup_data
++-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
+| MASTER                            | STATUS  | CRAWL STATUS    | SLAVE NODE          | LAST SYNCED         | CHKPT TIME | CHKPT COMPLETED | CHKPT COMPLETION TIME |
++-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
+| prod1.example.com:/bricks/data/b1 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |
+| prod2.example.com:/bricks/data/b2 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |
+| prod3.example.com:/bricks/data/b3 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |
++-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Comments &amp; Suggestions Welcome.</p>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

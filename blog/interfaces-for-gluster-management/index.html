@@ -1,0 +1,201 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Interfaces for Gluster Management - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Interfaces for Gluster Management"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="But Gluster CLIs are not enough for managing from remote place or to integrate with third party Management/Monitoring tools"/>
+    <meta property="og:description" content="But Gluster CLIs are not enough for managing from remote place or to integrate with third party Management/Monitoring tools"/>
+    <link rel="canonical" href="/blog/interfaces-for-gluster-management/"/>
+    <meta property="og:url" content="/blog/interfaces-for-gluster-management/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2016-02-09"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Interfaces for Gluster Management"/>
+    <meta name="twitter:description" content="But Gluster CLIs are not enough for managing from remote place or to integrate with third party Management/Monitoring tools"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Interfaces for Gluster Management</h1>
+                <div class="">Feb 9, 2016</div>
+                <div class=""><strong>2 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">gluster</span>
+                    
+                    <span class="tag is-info is-light"> glusterfsblog</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>Gluster provides CLIs to manage the Cluster, which can be
+programmatly consumed by passing <code>--xml</code> option. For example,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>gluster volume info --xml</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>But Gluster CLIs are not enough for managing from remote place or to
+integrate with third party Management/Monitoring applications like `Cockpit &lt;<a href="http://cockpit-project.org/&gt;`" class="bare">http://cockpit-project.org/&gt;`</a><em>,
+`Skyring &lt;<a href="https://github.com/skyrings/skyring&gt;`" class="bare">https://github.com/skyrings/skyring&gt;`</a></em>, `Nagios &lt;<a href="http://nagios.org/&gt;`__" class="bare">http://nagios.org/&gt;`__</a> etc. We need more interfaces to enable integration
+with these tools.</p>
+</div>
+<div class="sect1">
+<h2 id="_language_bindings_for_gluster_cli_commands">Language bindings for Gluster CLI commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>How about importing the <code>glustercli</code> in your favorite programming
+language and start using it?</p>
+</div>
+<div class="paragraph">
+<p>For example in Python,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: python</p>
+<div class="literalblock">
+<div class="content">
+<pre>from glustercli import volumes</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>gv1 = volumes.Volume("gv1")
+gv1.start()</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Status:</strong> `Python &lt;<a href="https://github.com/aravindavk/glustertool/tree/master/glustertool/utils/glustercli&gt;`" class="bare">https://github.com/aravindavk/glustertool/tree/master/glustertool/utils/glustercli&gt;`</a><em> and `Go &lt;<a href="https://github.com/aravindavk/glustercli&gt;`" class="bare">https://github.com/aravindavk/glustercli&gt;`</a></em> bindings are in progress</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ansible_apis_for_gluster">Ansible APIs for Gluster</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>`Ansible &lt;<a href="http://www.ansible.com/&gt;`__" class="bare">http://www.ansible.com/&gt;`__</a> is present favorite tool for Sysadmins.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>App deployment, configuration management and orchestration - all from one system. - www.ansible.com</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>`gdeploy &lt;<a href="https://github.com/gluster/gdeploy&gt;`__" class="bare">https://github.com/gluster/gdeploy&gt;`__</a> (name may change in future) is a Ansible based tool for easy management of Gluster.</p>
+</div>
+<div class="paragraph">
+<p><strong>Status:</strong> `gdeploy &lt;<a href="https://github.com/gluster/gdeploy/blob/2.0/doc/gdeploy-2&gt;`__" class="bare">https://github.com/gluster/gdeploy/blob/2.0/doc/gdeploy-2&gt;`__</a> team is working on version 2.0</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_storaged_gluster_apis">Storaged Gluster APIs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gluster module for `storaged &lt;<a href="http://storaged-project.github.io/&gt;`__" class="bare">http://storaged-project.github.io/&gt;`__</a> enables integration with Cockpit. Cockpit
+can communicate with Storaged to get Gluster tasks done.</p>
+</div>
+<div class="paragraph">
+<p><strong>Status:</strong> `Samikshan &lt;<a href="https://samxan.wordpress.com/&gt;`__" class="bare">https://samxan.wordpress.com/&gt;`__</a> is working on this feature.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rest_apis_for_gluster">REST APIs for Gluster</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Common API format to integrate with Web applications. Any
+web application can easily communicate with Gluster using HTTP calls.</p>
+</div>
+<div class="paragraph">
+<p>For example, Web application can send HTTP POST request to Start the
+Volume</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>curl -X POST \
+    -H "content-type: application/json" \
+    -H "Date: Tue, 09 Feb 2016 12:38:10 +0000" \
+    -H "Authorization: HMAC_SHA256 MyApp:g0b1IOmdRMOlPs2f5D4UJPgng9tNUuY0k+c+ee/k2Hk=" \
+    http://hostname/v1/volumes/gv1/start</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Status:</strong> In progress. Watch this space for more update about this feature :)</p>
+</div>
+<div class="paragraph">
+<p>Are you using any interface for managing Gluster? Please share your
+experiences.</p>
+</div>
+</div>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

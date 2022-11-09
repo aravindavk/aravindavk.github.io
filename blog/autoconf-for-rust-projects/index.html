@@ -1,0 +1,483 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Autoconf for Rust Projects - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Autoconf for Rust Projects"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="In this blog we will discuss about using Autoconf for Rust projects along with Cargo."/>
+    <meta property="og:description" content="In this blog we will discuss about using Autoconf for Rust projects along with Cargo."/>
+    <link rel="canonical" href="/blog/autoconf-for-rust-projects/"/>
+    <meta property="og:url" content="/blog/autoconf-for-rust-projects/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2016-05-10"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Autoconf for Rust Projects"/>
+    <meta name="twitter:description" content="In this blog we will discuss about using Autoconf for Rust projects along with Cargo."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Autoconf for Rust Projects</h1>
+                <div class="">May 10, 2016</div>
+                <div class=""><strong>5 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">rust</span>
+                    
+                    <span class="tag is-info is-light"> autoconf</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>Cargo is an awesome tool for managing `Rust &lt;<a href="http://rust-lang.org&gt;`__" class="bare">http://rust-lang.org&gt;`__</a>
+projects, it takes care of all the Rust dependencies. But to package
+and distribute the generated files specific to target distribution is
+very difficult. For example, if the generated binary to be used by
+sudo user then we need to copy that to <code>/usr/sbin</code> directory instead
+of <code>/usr/bin</code> (sbin path may change for example <code>/usr/local/sbin</code> ).</p>
+</div>
+<div class="paragraph">
+<p>In this blog we will discuss about using Autoconf for Rust projects
+along with Cargo.</p>
+</div>
+<div class="sect1">
+<h2 id="_example_simple_web_server_and_a_systemd_service_file">Example: Simple Web server and a systemd service file</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create a new project called <code>myservice</code> using,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>cargo new myservice --bin</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Update <code>Cargo.toml</code> with required Rust dependencies and other details.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: ini</p>
+<div class="literalblock">
+<div class="content">
+<pre>[package]
+name = "myservice"
+version = "0.1.0"
+authors = ["NAME &lt;EMAIL&gt;"]</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[dependencies]
+iron = "*"</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>and add the following example code in <code>src/main.rs</code> (Copied from <a href="http://ironframework.io" class="bare">http://ironframework.io</a>)</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: rust</p>
+<div class="literalblock">
+<div class="content">
+<pre>extern crate iron;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>use iron::prelude::*;
+use iron::status;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>fn main() {
+    fn hello_world(_: &amp;mut Request) -&gt; IronResult&lt;Response&gt; {
+        Ok(Response::with((status::Ok, "Hello World!")))
+    }</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    Iron::new(hello_world).http("localhost:3000").unwrap();
+    println!("On 3000");
+}</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Create a systemd unit file with the following content, we need Path of
+bin to add it to service file. We will take help of Autoconf to
+dynamically generate systemd unit file. Create a systemd unit file as
+<code>myserviced.service.in</code> (Note the @SBINDIR@ autoconf variable)</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: ini</p>
+<div class="literalblock">
+<div class="content">
+<pre>[Unit]
+Description=MyService
+After=syslog.target network.target</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[Service]
+Type=simple
+ExecStart=@SBINDIR@/myserviced
+ExecReload=/bin/kill -SIGUSR2 $MAINPID</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[Install]
+WantedBy=multi-user.target</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If we use <code>@sbindir@</code> then it will not expand completely, introduce
+a new variable <code>SBINDIR</code> in <code>configure.ac</code> which will expand
+completely with default path.</p>
+</div>
+<div class="paragraph">
+<p>Now we will create <code>configure.ac</code> file</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>AC_INIT([myservice], m4_esyscmd([grep version Cargo.toml | awk '{print $3}' | tr -d '"' | tr -d "\n"]), [YOUR_EMAIL])</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>VERSION=$(grep version Cargo.toml | awk '{print $3}' | tr -d '"' | tr -d "\n")</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Default value for sbindir
+prefix_temp=$prefix
+exec_prefix_temp=$exec_prefix</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>test "${prefix}" = "NONE" &amp;&amp; prefix="${ac_default_prefix}"
+test "${exec_prefix}" = "NONE" &amp;&amp; exec_prefix='${prefix}'</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Initial Value is $exec_prefix/sbin
+sbintemp="${sbindir}"</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Expands to $prefix/sbin
+eval sbintemp=\"${sbintemp}\"
+# Expands to /usr/local/sbin or /usr/sbin if --prefix is passed
+eval sbintemp=\"${sbintemp}\"
+SBINDIR=${sbintemp}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>AC_SUBST(SBINDIR)
+AC_SUBST(VERSION)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>AC_CONFIG_FILES([Makefile
+                 myserviced.service
+                 myservice.spec])</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>AC_OUTPUT</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>and <code>Makefile.in</code> file</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>CWD := $(shell pwd)
+TARDIR := myservice-@VERSION@
+RPMBUILD := $(HOME)/rpmbuild</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>devbuild:
+    cargo build</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>build:
+    cargo build --release</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>dist:
+    @rm -fr ./dist
+    mkdir -p ./dist/$(TARDIR)
+    rsync -r --exclude .git/ --exclude dist/ --exclude target/ $(CWD)/ ./dist/$(TARDIR)
+    cd ./dist/; tar -zcf $(TARDIR).tar.gz $(TARDIR);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>install: build
+    install -d $(DESTDIR)@SBINDIR@
+    install -d ${DESTDIR}/usr/lib/systemd/system/
+    install -m 755 ./target/release/myservice ${DESTDIR}@SBINDIR@/myserviced
+    install -m 0644 ./myserviced.service ${DESTDIR}/usr/lib/systemd/system/myserviced.service</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>rpm: dist
+    rm -rf $(RPMBUILD)/SOURCES/myservice*
+    rm -rf $(RPMBUILD)/BUILD/myservice*
+    mkdir -p $(RPMBUILD)/SOURCES
+    cp ./dist/myservice-@VERSION@.tar.gz $(RPMBUILD)/SOURCES; \
+    rpmbuild -ba myservice.spec</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Now project will looks like,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>  $myservice/
+   - Cargo.toml
+- src/
+    - main.rs
+- Makefile.in
+- configure.ac
+      - myservice.service.in</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Run <code>autoconf</code> to generate <code>configure</code> file from <code>configure.ac</code>
+file. Then run <code>./configure</code>, it will generate following files</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>Makefile.in =&gt; Makefile
+myserviced.service.in =&gt; myserviced.service
+myservice.spec.in =&gt; myservice.spec</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Steps to install <code>myservice</code> (Source installation),</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>autoconf
+./configure
+sudo make install</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>make install will run cargo build --release, and copies generated
+binary to /usr/local/sbin and systemd service file to
+/usr/lib/systemd/system</p>
+</div>
+<div class="paragraph">
+<p>Binary can be installed to /usr/sbin by passing <code>--prefix=/usr</code> or
+<code>--sbindir=/usr/sbin</code> to configure(For example,
+<code>./configure --prefix=/usr</code> )</p>
+</div>
+<div class="paragraph">
+<p><code>myservice</code> can now be enabled using,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>sudo systemctl enable myserviced
+sudo systemctl start myserviced</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bonus_generate_rpm_for_your_package">Bonus: Generate RPM for your package</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sample RPM spec file is available in the `repo &lt;<a href="https://github.com/aravinda/rust_autoconf/myservice.spec.in&gt;`__" class="bare">https://github.com/aravinda/rust_autoconf/myservice.spec.in&gt;`__</a></p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>autoconf
+./configure
+make rpm</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Generated RPM will be available in <code>$HOME/rpmbuild/RPMS/x86_64/</code></p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>rpm -qlp $HOME/rpmbuild/RPMS/x86_64/myservice-0.1.0-1.fc23.x86_64.rpm</pre>
+</div>
+</div>
+</li>
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>/usr/lib/systemd/system/myserviced.service
+/usr/sbin/myserviced</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rust_cargo_and_autoconf_version">Rust, Cargo and Autoconf Version</h2>
+<div class="sectionbody">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>rustc 1.8.0 (db2939409 2016-04-11)
+cargo 0.9.0-nightly (8fc3fd8 2016-02-29)
+autoconf (GNU Autoconf) 2.69</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Reference project is available in github <a href="https://github.com/aravindavk/rust_autoconf" class="bare">https://github.com/aravindavk/rust_autoconf</a></p>
+</div>
+</div>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

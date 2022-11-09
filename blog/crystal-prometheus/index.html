@@ -1,0 +1,213 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Writing Prometheus exporter using Crystal language - Part 2 - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Writing Prometheus exporter using Crystal language - Part 2"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="In this blog, we will see how to monitor an external application or a log file."/>
+    <meta property="og:description" content="In this blog, we will see how to monitor an external application or a log file."/>
+    <link rel="canonical" href="/blog/crystal-prometheus/"/>
+    <meta property="og:url" content="/blog/crystal-prometheus/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2020-11-03"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Writing Prometheus exporter using Crystal language - Part 2"/>
+    <meta name="twitter:description" content="In this blog, we will see how to monitor an external application or a log file."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Writing Prometheus exporter using Crystal language - Part 2</h1>
+                <div class="">Nov 3, 2020</div>
+                <div class=""><strong>3 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">amber</span>
+                    
+                    <span class="tag is-info is-light"> crystal</span>
+                    
+                    <span class="tag is-info is-light"> prometheus</span>
+                    
+                    <span class="tag is-info is-light"> crometheus</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>In the <a href="https://aravindavk.in/blog/amber-prometheus/">last blog</a> post, we discussed instrumenting <a href="https://amberframework.org">Amber</a> apps using the <a href="https://github.com/Darwinnn/crometheus">Crometheus</a> library. In this blog, we will see how to monitor an external application or a log file.</p>
+</div>
+<div class="paragraph">
+<p>One main difference here is defining various metric types like Counter, Guage, etc.. are not required. But export the sample values when requested.</p>
+</div>
+<div class="paragraph">
+<p>I created a demo app using the HTTP server example available on the Crystal language home page. In this blog, we will instrument this web app by collecting a few metrics externally.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="c1"># file: myapp.cr</span>
+<span class="nb">require</span> <span class="s2">"http/server"</span>
+
+<span class="n">server</span> <span class="o">=</span> <span class="no">HTTP</span><span class="o">::</span><span class="no">Server</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">context</span><span class="o">|</span>
+  <span class="n">context</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">content_type</span> <span class="o">=</span> <span class="s2">"text/plain"</span>
+  <span class="n">context</span><span class="p">.</span><span class="nf">response</span><span class="p">.</span><span class="nf">print</span> <span class="s2">"Hello world, got </span><span class="si">#{</span><span class="n">context</span><span class="p">.</span><span class="nf">request</span><span class="p">.</span><span class="nf">path</span><span class="si">}</span><span class="s2">!"</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="s2">"Listening on http://127.0.0.1:8080"</span>
+<span class="n">server</span><span class="p">.</span><span class="nf">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Build and run the application,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>$ crystal build myapp.cr
+$ ./myapp</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s create an app that collects the CPU, Memory, and uptime details about the app we created initially(or any other app). Create and install the project dependencies using,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>$ mkdir myapp_exporter
+$ cd myapp_exporter
+$ shards init
+$ mkdir src
+$ touch src/myapp_exporter.cr
+$ shards install</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="c1"># file: shard.yml</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">myapp_exporter</span>
+<span class="na">version</span><span class="pi">:</span> <span class="s">0.1.0</span>
+
+<span class="na">dependencies</span><span class="pi">:</span>
+  <span class="na">crometheus</span><span class="pi">:</span>
+    <span class="na">github</span><span class="pi">:</span> <span class="s">darwinnn/crometheus</span>
+    <span class="na">branch</span><span class="pi">:</span> <span class="s">master</span>
+
+<span class="na">targets</span><span class="pi">:</span>
+  <span class="na">myapp_exporter</span><span class="pi">:</span>
+    <span class="na">main</span><span class="pi">:</span> <span class="s">src/myapp_exporter.cr</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The below command provides the CPU, memory, and uptime information about the application.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>$ ps --no-header -ww -o pcpu,pmem,rsz,vsz,etimes,comm -C myapp</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="c1"># file: src/myapp_exporter.cr</span>
+<span class="nb">require</span> <span class="s2">"crometheus"</span>
+
+<span class="k">class</span> <span class="nc">MyappMetrics</span> <span class="o">&lt;</span> <span class="no">Crometheus</span><span class="o">::</span><span class="no">Metric</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">type</span>
+    <span class="no">Type</span><span class="o">::</span><span class="no">Gauge</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">samples</span> <span class="p">:</span> <span class="no">Nil</span>
+    <span class="n">cmdout</span> <span class="o">=</span> <span class="sb">`ps --no-header -ww -o pcpu,pmem,rsz,vsz,etimes,comm -C myapp`</span>
+    <span class="k">return</span> <span class="k">if</span> <span class="n">cmdout</span> <span class="o">==</span> <span class="s2">""</span>
+
+    <span class="n">parts</span> <span class="o">=</span> <span class="n">cmdout</span><span class="p">.</span><span class="nf">split</span>
+    <span class="n">pcpu</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">strip</span><span class="p">.</span><span class="nf">to_f</span>
+    <span class="n">pmem</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nf">strip</span><span class="p">.</span><span class="nf">to_f</span>
+    <span class="n">rsz</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nf">strip</span><span class="p">.</span><span class="nf">to_f</span> <span class="o">*</span> <span class="mi">1024</span>
+    <span class="n">vsz</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="nf">strip</span><span class="p">.</span><span class="nf">to_f</span> <span class="o">*</span> <span class="mi">1024</span>
+    <span class="n">uptime</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">4</span><span class="p">].</span><span class="nf">strip</span><span class="p">.</span><span class="nf">to_f</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:server</span> <span class="o">=&gt;</span> <span class="s2">"server1.example.com"</span><span class="p">}</span>
+    <span class="k">yield</span> <span class="no">Crometheus</span><span class="o">::</span><span class="no">Sample</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">pcpu</span><span class="p">,</span> <span class="ss">labels: </span><span class="n">labels</span><span class="p">,</span> <span class="ss">suffix: </span><span class="s2">"cpu_percentage"</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="no">Crometheus</span><span class="o">::</span><span class="no">Sample</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">pmem</span><span class="p">,</span> <span class="ss">labels: </span><span class="n">labels</span><span class="p">,</span> <span class="ss">suffix: </span><span class="s2">"memory_percentage"</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="no">Crometheus</span><span class="o">::</span><span class="no">Sample</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">rsz</span><span class="p">,</span> <span class="ss">labels: </span><span class="n">labels</span><span class="p">,</span> <span class="ss">suffix: </span><span class="s2">"resident_memory_bytes"</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="no">Crometheus</span><span class="o">::</span><span class="no">Sample</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">vsz</span><span class="p">,</span> <span class="ss">labels: </span><span class="n">labels</span><span class="p">,</span> <span class="ss">suffix: </span><span class="s2">"virtual_memory_bytes"</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="no">Crometheus</span><span class="o">::</span><span class="no">Sample</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uptime</span><span class="p">,</span> <span class="ss">labels: </span><span class="n">labels</span><span class="p">,</span> <span class="ss">suffix: </span><span class="s2">"uptime_seconds"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">MyappMetrics</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:myapp</span><span class="p">,</span> <span class="s2">"CPU, Memory and Uptime metrics"</span><span class="p">)</span>
+
+<span class="no">Crometheus</span><span class="p">.</span><span class="nf">default_registry</span><span class="p">.</span><span class="nf">path</span> <span class="o">=</span> <span class="s2">"/metrics"</span>
+<span class="no">Crometheus</span><span class="p">.</span><span class="nf">default_registry</span><span class="p">.</span><span class="nf">run_server</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Build and run,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>$ shards build
+$ ./bin/myapp_exporter</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now browse <a href="http://localhost:5000/metrics" class="bare">http://localhost:5000/metrics</a> to see the metrics related to <code>myapp</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code># HELP myapp CPU, Memory and Uptime metrics
+# TYPE myapp gauge
+myapp_cpu_percentage{server="server1.example.com"} 0.0
+myapp_memory_percentage{server="server1.example.com"} 0.3
+myapp_resident_memory_bytes{server="server1.example.com"} 6664192.0
+myapp_virtual_memory_bytes{server="server1.example.com"} 48365568.0
+myapp_uptime_seconds{server="server1.example.com"} 1656.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Add multiple classes to collect more meaningful data. For example, connect to the database and query the table to see the number of users or any other entities.</p>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

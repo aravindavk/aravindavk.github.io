@@ -1,0 +1,279 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Template based Volgen - Glusterd2 - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Template based Volgen - Glusterd2"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="Glusterd2 also provides facility to set default Volume options when a Volume is created. Each Volume type can have its own default Volume options to be enabled by default."/>
+    <meta property="og:description" content="Glusterd2 also provides facility to set default Volume options when a Volume is created. Each Volume type can have its own default Volume options to be enabled by default."/>
+    <link rel="canonical" href="/blog/template-based-volgen-glusterd2/"/>
+    <meta property="og:url" content="/blog/template-based-volgen-glusterd2/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2019-01-06"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Template based Volgen - Glusterd2"/>
+    <meta name="twitter:description" content="Glusterd2 also provides facility to set default Volume options when a Volume is created. Each Volume type can have its own default Volume options to be enabled by default."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Template based Volgen - Glusterd2</h1>
+                <div class="">Jan 6, 2019</div>
+                <div class=""><strong>4 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">gluster</span>
+                    
+                    <span class="tag is-info is-light"> glusterfsblog</span>
+                    
+                    <span class="tag is-info is-light"> glusterd2</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>Volfiles are the configuration files used by `Gluster &lt;<a href="https://www.gluster.org/&gt;`__" class="bare">https://www.gluster.org/&gt;`__</a>
+processes. Volfile contains the details about the list of Xlators to
+be loaded in a glusterfs process and options for each of those
+xlators.</p>
+</div>
+<div class="paragraph">
+<p>`Glusterd2 &lt;<a href="https://github.com/gluster/glusterd2&gt;`__" class="bare">https://github.com/gluster/glusterd2&gt;`__</a> adds flexibility to
+the Volfiles generation process by adding template support.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>figure:: /images/gluster-template-based-volgen.jpg
+:alt: Template based Volfile generation</p>
+<div class="literalblock">
+<div class="content">
+<pre>Template based Volfile generation</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>With Template based Volgen,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Order of Xlators can be customized for each Volfile type (client,
+brick, glustershd etc.)</p>
+</li>
+<li>
+<p>Default enabled or disabled state of each Xlator can be
+customized. <strong>Note</strong>: To enable an Xlator using the Volume Set that
+needs to be included in the template with <code>disabled=true</code>.</p>
+</li>
+<li>
+<p>By default, if an Xlator is disabled, then that xlator will not be
+included in the Volfile. If some xlator are expected to always
+present in volfile but enabled state is decided based on an xlator
+option, then that can be specified using
+<code>enable-by-option=true</code>. For example, <code>features/changelog</code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>volume gv1-changelog
+    type features/changelog
+    option changelog off
+    option op-mode realtime
+    option fsync-interval 5
+    option changelog-barrier-timeout 120
+    option rollover-time 15
+    option capture-del-path on
+    option changelog-brick /exports/bricks/brick1/brick
+    option changelog-dir /exports/bricks/brick1/brick/.glusterfs/changelogs
+    option encoding ascii
+    subvolumes gv1-posix
+end-volume</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Glusterd2 generates the default template on its first start, generated
+template is saved in
+<code>/var/lib/glusterd2/templates/defaults.json</code>. Any new changes made
+to the template will be applied only on glusterd2 restart.</p>
+</div>
+<div class="paragraph">
+<p>Default template can be modified by changing the Go
+code(<code>$SRC/glusterd2/volgen/defaults.go</code>) if the change is
+applicable for most use cases or modifying the JSON
+template(<code>/var/lib/glusterd2/templates/defaults.json</code>) on disk and
+restarting the Glusterd2.</p>
+</div>
+<div class="paragraph">
+<p><strong>Note</strong>: All New Volumes will get the volfiles using the modified
+template, existing Volumes will only get latest volfile on Volume
+set/reset or Volume restart.</p>
+</div>
+<div class="paragraph">
+<p>Glusterd2 also provides facility to set default Volume options when a
+Volume is created. Each Volume type can have its own default Volume
+options to be enabled by default. For example, when a replicate (or
+distributed replicate) volume is created, then
+"profile.default.replicate" will be applied. These profiles can be
+customized similar to volfile templates customization.</p>
+</div>
+<div class="paragraph">
+<p>Default template can be modified by changing the Go
+code(<code>$SRC/glusterd2/commands/volumes/grouped-options.go</code>) or
+modifying JSON profile
+file(<code>/var/lib/glusterd2/templates/profiles.json</code>) and restarting
+Glusterd2.</p>
+</div>
+<div class="paragraph">
+<p>Volume options will be applied in the following order while generating
+the Volfile,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Xlator default options directly from Option table in Xlator <code>*.so</code>
+files.</p>
+</li>
+<li>
+<p>Xlator options from the template</p>
+</li>
+<li>
+<p>Options from Volume info(This includes default profile options set
+during Volume create and options set using Volume set)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Volume options can be set for a specific Volfile or for all volfiles
+which use that xlator. For example, <code>debug/io-stats</code> xlator is used
+in almost all volfiles. If we set log-level to debug as below, then it
+will be added to all Volfiles(Client, brick, glustershd etc).</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>glustercli volume set &lt;volname&gt; debug/io-stats.log-level DEBUG</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>But if we want to set log-level only to the client then,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>glustercli volume set &lt;volname&gt; client.debug/io-stats.log-level DEBUG</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Note</strong>: Providing xlator category during Volume set is optional. For
+example, below commands are valid too.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: text</p>
+<div class="literalblock">
+<div class="content">
+<pre>glustercli volume set &lt;volname&gt; io-stats.log-level DEBUG
+glustercli volume set &lt;volname&gt; client.io-stats.log-level DEBUG</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Known issues/Limitations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Changing Xlator order for each Volume type is not possible. The
+Changed xlator order will be applied to all Volume types.</p>
+</li>
+<li>
+<p>Multiple template support not available.</p>
+</li>
+<li>
+<p>Adding a new template with a new name is not yet possible</p>
+</li>
+<li>
+<p>Since option names are directly read from xlator so files, 1:1
+mapping with option names used in glusterd1 is not yet
+available(<a href="https://github.com/gluster/glusterd2/issues/739" class="bare">https://github.com/gluster/glusterd2/issues/739</a>)</p>
+</li>
+<li>
+<p>Volfile post processing via Filter support is not yet
+available(<a href="https://docs.gluster.org/en/v3/Administrator%20Guide/GlusterFS%20Filter/" class="bare">https://docs.gluster.org/en/v3/Administrator%20Guide/GlusterFS%20Filter/</a>)</p>
+</li>
+</ul>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

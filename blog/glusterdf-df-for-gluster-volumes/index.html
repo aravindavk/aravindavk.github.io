@@ -1,0 +1,254 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>glusterdf - df for gluster volumes - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="glusterdf - df for gluster volumes"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="A CLI utility to check the disk usage of glusterfs volumes"/>
+    <meta property="og:description" content="A CLI utility to check the disk usage of glusterfs volumes"/>
+    <link rel="canonical" href="/blog/glusterdf-df-for-gluster-volumes/"/>
+    <meta property="og:url" content="/blog/glusterdf-df-for-gluster-volumes/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2013-09-24"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="glusterdf - df for gluster volumes"/>
+    <meta name="twitter:description" content="A CLI utility to check the disk usage of glusterfs volumes"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">glusterdf - df for gluster volumes</h1>
+                <div class="">Sep 24, 2013</div>
+                <div class=""><strong>3 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">glusterfs</span>
+                    
+                    <span class="tag is-info is-light">tools</span>
+                    
+                    <span class="tag is-info is-light">glusterfsblog</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>A CLI utility to check the disk usage of <code>glusterfs &lt;<a href="http://gluster.org/&gt;`" class="bare">http://gluster.org/&gt;`</a><em> volumes. Using :code:`df</code> command we can view the disk usage of only mounted glusterfs volumes. This utility takes care of mounting gluster volumes available in the machine where this command is executed. glusterdf uses `libgfapi &lt;<a href="https://github.com/gluster/glusterfs/tree/master/api&gt;`" class="bare">https://github.com/gluster/glusterfs/tree/master/api&gt;`</a></em> provided by glusterfs to fetch the statvfs information.</p>
+</div>
+<div class="paragraph">
+<p>Installation is very simple,</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: bash</p>
+<div class="literalblock">
+<div class="content">
+<pre>git clone https://github.com/aravindavk/glusterfs-tools.git
+cd glusterfs-tools
+sudo python setup.py install</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>You can also clone this project from `forge.gluster.org/glusterfs-tools &lt;<a href="https://forge.gluster.org/glusterfs-tools&gt;`__" class="bare">https://forge.gluster.org/glusterfs-tools&gt;`__</a></p>
+</div>
+<div class="paragraph">
+<p>Once installed, two tools will be available :code:`glustervolumes` and <code>glusterdf</code>.</p>
+</div>
+<div class="paragraph">
+<p>:code:`sudo glusterdf --help` to know more about options available. (same for glustervolumes <code>sudo glustervolumes --help</code>)</p>
+</div>
+<div class="paragraph">
+<p>Usage examples:</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>figure:: /images/glusterfs/glusterdf_h.png
+:alt: glusterdf -h</p>
+<div class="literalblock">
+<div class="content">
+<pre>sudo glusterdf -h (Disk usage in human readable format)</pre>
+</div>
+</div>
+</li>
+<li>
+<p>figure:: /images/glusterfs/glusterdf_i.png
+:alt: glusterdf -i</p>
+<div class="literalblock">
+<div class="content">
+<pre>sudo glusterdf -i (View inodes usage information)</pre>
+</div>
+</div>
+</li>
+<li>
+<p>figure:: /images/glusterfs/glusterdf_status_type_h.png
+:alt: sudo glusterdf --status up --type repl -h</p>
+<div class="literalblock">
+<div class="content">
+<pre>sudo glusterdf --status up --type repl -h (View all running replicated volumes)</pre>
+</div>
+</div>
+</li>
+<li>
+<p>figure:: /images/glusterfs/glusterdf_volumewithbrick.png
+:alt: sudo glusterdf -h --volumewithbrick "/b[12]"</p>
+<div class="literalblock">
+<div class="content">
+<pre>sudo glusterdf -h --volumewithbrick "/b[12]"</pre>
+</div>
+</div>
+</li>
+<li>
+<p>figure:: /images/glusterfs/glusterdf_json.png
+:alt: sudo glusterdf --status up --type repli -h --json | python -m json.tool</p>
+<div class="literalblock">
+<div class="content">
+<pre>sudo glusterdf --status up --type repli -h --json | python -m json.tool</pre>
+</div>
+</div>
+</li>
+<li>
+<p>figure:: /images/glusterfs/glusterdf-help.png
+:alt: glusterdf --help</p>
+<div class="literalblock">
+<div class="content">
+<pre>sudo glusterdf --help</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In my previous blog(<code>this &lt;<a href="http://aravindavk.in/blog/glusterfs-tools/&gt;`__" class="bare">http://aravindavk.in/blog/glusterfs-tools/&gt;`__</a>) I wrote about gfvolumes(now it is `glustervolumes</code>). glusterfs-tools is rewritten as python library which can be used with your Python programs.</p>
+</div>
+<div class="paragraph">
+<p>For example</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: python</p>
+<div class="literalblock">
+<div class="content">
+<pre>from glusterfstools import volumes, gfapi
+# Get all volumes
+vols = volumes.get()
+# Get a specific volume information
+vol = volumes.get(name="gv1")
+# Search volumes by status
+down_volumes = volumes.search({"status": "down"})
+# Search volumes by type
+distribute_volumes = volumes.search({"type": "distribute"})
+# Statvfs information
+vol_statvfs = gfapi.statvfs("gv1")
+# To view information about gluster volumes which are down
+# and having bricks like "/gfs"
+vols = volumes.search({"status": "down", "volumewithbricks": "/gfs"})
+# To view filters available
+print (volumes.filters())</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>volumes.search accepts filters as parameter, extending volume filters is very simple. For example name filter looks like this(`src/glusterfstools/volumefilters.py &lt;<a href="https://github.com/aravindavk/glusterfs-tools/blob/master/src/glusterfstools/volumefilters.py&gt;`__" class="bare">https://github.com/aravindavk/glusterfs-tools/blob/master/src/glusterfstools/volumefilters.py&gt;`__</a>)</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: python</p>
+<div class="literalblock">
+<div class="content">
+<pre>@filter("name")
+def name_filter(vols, value):
+    def is_match(vol, value):
+        if value in ['', 'all'] or \
+            vol["name"].lower() == value.lower().strip() or \
+            re.search(value, vol["name"]):
+            return True
+        else:
+            return False</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>return [v for v in vols if is_match(v, value)]</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The filter can be used as below</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>code-block:: python</p>
+<div class="literalblock">
+<div class="content">
+<pre>from glusterfstools import volumes</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Filters the volumes with name either gv1 or gv2
+filters = {"name": "gv[12]"}
+print volumes.search(filters)</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

@@ -1,0 +1,236 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Monitoring GlusterFS - Yet another try - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Monitoring GlusterFS - Yet another try"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="Introduce Metrics SDK - Collection of libraries that helps to collect metrics without knowing about Gluster internals"/>
+    <meta property="og:description" content="Introduce Metrics SDK - Collection of libraries that helps to collect metrics without knowing about Gluster internals"/>
+    <link rel="canonical" href="/blog/monitoring-glusterfs-yet-another-try/"/>
+    <meta property="og:url" content="/blog/monitoring-glusterfs-yet-another-try/"/>
+    <meta property="og:site_name" content="Kadalu"/>
+    <meta property="og:image" content="/images/gluster-volume-utilization.png"/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2019-12-03"/>
+    
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="/images/gluster-volume-utilization.png"/>
+    
+    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:title" content="Monitoring GlusterFS - Yet another try"/>
+    <meta name="twitter:description" content="Introduce Metrics SDK - Collection of libraries that helps to collect metrics without knowing about Gluster internals"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Monitoring GlusterFS - Yet another try</h1>
+                <div class="">Dec 3, 2019</div>
+                <div class=""><strong>4 minutes</strong> read</div>
+                <div>
+                    
+                    <span class="tag is-info is-light">glusterfs</span>
+                    
+                    <span class="tag is-info is-light"> glusterfsblog</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>Monitoring is one of my favorite topics, and previously I tried
+multiple ways to monitor GlusterFS effectively. Initially, I decided
+to avoid running Gluster CLI commands with too frequent intervals by
+using Gluster hooks(Blog about using Gluster hooks is
+<a href="https://aravindavk.in/blog/effective-glusterfs-monitoring-using-hooks/">here</a>). But
+this approach was not practical since hooks are not available for all
+events.</p>
+</div>
+<div class="paragraph">
+<p>Then I started a project called
+"<a href="https://aravindavk.in/blog/introducing-gdash/">gdash</a>" to visualize
+the health of the cluster using gluster command-line tools. But this
+was having only limited access to the cluster status and depended
+solely on what gluster CLI provides.</p>
+</div>
+<div class="paragraph">
+<p>Events APIs are introduced in Gluster to fill the gaps of limited
+hooks support. The events listener needs to be started in each node of
+the cluster, and it exports the local events via registered
+webhooks.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/">10 minutes introduction to Gluster Eventing Feature</a></p>
+</li>
+<li>
+<p><a href="https://aravindavk.in/blog/effective-gluster-monitoring-eventsapis/">Effective Gluster Monitoring using Events APIs</a></p>
+</li>
+<li>
+<p><a href="https://aravindavk.in/blog/gluster-georep-dashboard-experiment/">Gluster Geo-replication Dashboard Experiment</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Events APIs are great since it helps to reduce polling Gluster
+cluster. But Events APIs are not perfect because of the asynchronous
+nature it can miss events. If a Webhook listener is down, then there
+is no way to get the history of events.</p>
+</div>
+<div class="paragraph">
+<p>Events APIs are useful for creating health/status boards but not so
+helpful while designing monitoring systems that require historical
+data to make decisions and plot graphs. For example, adding an event
+for each file create/delete is not practical, so events APIs are not
+useful for getting Volume utilization details and similar metrics.</p>
+</div>
+<div class="paragraph">
+<p>Many approaches we tried didn&#8217;t succeed because all are dependent on
+gluster command-line tools. When we depend on Gluster CLIs, then
+collecting metrics from every node doesn&#8217;t make sense because Gluster
+CLIs returns the same data from all the nodes. So if we start
+collecting from a single node of the cluster, then we need a mechanism
+to choose another node when the previously active node goes down.</p>
+</div>
+<div class="paragraph">
+<p>When we started working on the Prometheus integration, our approach
+was to collect metrics at the lowest level possible and use the
+monitoring system&#8217;s capability to aggregate the metrics from multiple
+nodes. For example, instead of collecting Volume utilization via mount
+or Gluster volume status command, Prometheus exporter collected
+utilization metrics from the bricks. This approach avoided all the
+complexities related to leader election or duplicate metrics.</p>
+</div>
+<div class="paragraph">
+<p>The gluster-prometheus project solved problems related to some of the
+metrics, but not for all. We are still dependent on Gluster CLI
+commands for some of the metrics like Profile and others.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/gluster/gluster-prometheus">Gluster Prometheus project</a></p>
+</li>
+<li>
+<p><a href="https://aravindavk.in/blog/monitoring-glusterfs-volume-utilization/">Monitoring GlusterFS - Volume Utilization</a></p>
+</li>
+<li>
+<p><a href="https://aravindavk.in/blog/gluster-volume-utilization-multiple-approaches/">Gluster Volume utilization - Multiple approaches</a></p>
+</li>
+<li>
+<p><a href="https://aravindavk.in/blog/elixir-phoenix-liveview-gluster-dashboard/">Elixir Phoenix Liveview and Gluster dashboard</a> - Dashboard experiment for Gluster but not using Prometheus.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_whats_wrong_with_using_gluster_cli_commands_for_metrics_collection">What&#8217;s wrong with using Gluster CLI commands for metrics collection?</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Gluster CLI command fails some times due to locks(When gluster
+command-line tools used in parallel)</p>
+</li>
+<li>
+<p>Gluster CLIs will not help to collect only local metrics</p>
+</li>
+<li>
+<p>If Gluster CLIs are not available(If collecting client metrics or
+external projects like <a href="https://kadalu.tech">kadalu.tech</a>, which doesn&#8217;t use
+Glusterd!)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_so_what_next">So what next?</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Similar to the previous approach, collect metrics at as lowest level
+as possible.</p>
+</li>
+<li>
+<p>Do not depend on Gluster CLIs, but design an external tool to
+populate the peer, cluster, and volume info files. For example,
+while collecting a brick&#8217;s utilization, how to find to which node,
+volume, or cluster it belongs? Maintain info file for each entity
+and update whenever cluster state changes. (Events APIs comes handy
+here).</p>
+</li>
+<li>
+<p>For collecting volume profile related metrics, understand the RPC
+between brick process and glusterd, and communicate directly to
+brick process and collect only local metrics.</p>
+</li>
+<li>
+<p>Integrate with the metrics available from <a href="https://github.com/amarts/glustermetrics">Amar&#8217;s project</a></p>
+</li>
+<li>
+<p>Introduce Metrics SDK - Collection of libraries that helps to
+collect metrics without knowing about Gluster internals.  This SDK
+also helps us to integrate with any Monitoring tools(Prometheus,
+Netdata, Nagios, etc.)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Last week <a href="https://medium.com/@tumballi">Amar</a> invited Gluster
+developers to propose features for Gluster 8, 9, and
+X(<a href="https://www.gluster.org/blog-planning-ahead-for-gluster-releases/">here</a>
+and
+<a href="https://lists.gluster.org/pipermail/gluster-devel/2019-November/056709.html">here</a>). I
+am planning to spend some time on mentoring/designing/implementing the
+Monitoring solution for Gluster.</p>
+</div>
+<div class="paragraph">
+<p>I am hoping to get some success this time. Let me know if anyone
+interested to work on this.</p>
+</div>
+<div class="paragraph">
+<p>Thanks. Let me know your thoughts.</p>
+</div>
+</div>
+</div>
+            </div>
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>
