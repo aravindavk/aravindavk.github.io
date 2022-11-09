@@ -23,13 +23,13 @@ Finally website is released, but needs lot of improvements. The features in this
 
 **[Update Aug 3 2009]**
 
-My `website <http://aravindavk.in>`__ revamped, key features/changes compared to previous version are
+My http://aravindavk.in[website] revamped, key features/changes compared to previous version are
 
-1. Now it is powered by the PHP framework `Chelvi <http://chelvi.sf.net>`__. Chelvi is a Object oriented simple PHP framework.  
+1. Now it is powered by the PHP framework http://chelvi.sf.net[Chelvi]. Chelvi is a Object oriented simple PHP framework.  
 2. Complete clean URL
 3. Changing color theme will not reload the page.
-4. `Markdown <http://daringfireball.net/projects/markdown/>`__ is used to store the content in DB. Now I can edit/create content in Emacs (with markdown-mode) and add it in my website. Now it time to plan for Emacs plug-in to post directly to my website. [:)]
-5. Syntax highlights using `SHJS <http://shjs.sourceforge.net>`__
+4. http://daringfireball.net/projects/markdown/[Markdown] is used to store the content in DB. Now I can edit/create content in Emacs (with markdown-mode) and add it in my website. Now it time to plan for Emacs plug-in to post directly to my website. [:)]
+5. Syntax highlights using http://shjs.sourceforge.net[SHJS]
 6. Hide left navigation for better reading. Option will be saved in Session and cookies, so it will remain until you clear the cookies in your system. Same logic used for the color theme selection. 
 7. Improved look and feel (Still not complete)
 8. Better error handling and logging.
@@ -37,6 +37,6 @@ My `website <http://aravindavk.in>`__ revamped, key features/changes compared to
 
 Suggest me to improve my website.
 
-The difficult part in web development I feel is creating forms and validating. Complexity grows if we have more form elements. Please suggest if we have any good PHP library for creating and validating form elements (Similar to `FormEncode <http://formencode.org>`__ in Python)
+The difficult part in web development I feel is creating forms and validating. Complexity grows if we have more form elements. Please suggest if we have any good PHP library for creating and validating form elements (Similar to http://formencode.org[FormEncode] in Python)
 
 **[Update Feb 19th 2011]** Color themes and some links removed/changed. Sorry that a few comments lost relevance.

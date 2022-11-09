@@ -8,9 +8,8 @@ Chelvi is object oriented cute PHP5 micro framework for creating web application
 
 Chelvi is a Kannada word(South Indian Language) which means Beautiful girl.
 
-Read more about Chelvi `here <http://chelvi.sf.net>`__
+Read more about Chelvi http://chelvi.sf.net[here]
 
 This project is dedicated to Chelvi at home :)
 
-.. image:: /images/chelvi/m.jpg
-   :alt: Chelvi
+image::/images/chelvi/m.jpg[Chelvi]

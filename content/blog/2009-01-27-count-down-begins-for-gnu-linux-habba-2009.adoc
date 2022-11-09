@@ -10,8 +10,7 @@ Preview (Below image is preview only)
 -------------------------------------
 
 
-.. image:: /images/habba-countdown-preview.png
-   :alt: Habba preview
+image::/images/habba-countdown-preview.png[Habba preview]
 
 
 How to use?
