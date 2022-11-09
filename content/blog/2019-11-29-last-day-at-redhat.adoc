@@ -19,7 +19,7 @@ I think for me exciting things are happening during Nov/Dec :)
 - Nov 2012 - Joined Red Hat (7 years)
 - Dec 2019 - Again, starting the new journey. 
 
-![Last day at Red Hat](/images/last-day-at-redhat.jpg)
+image::/images/last-day-at-redhat.jpg[Last day at Red Hat]
 
 Curious to know what I will do next?  Please stay curious and watch
 this space for more updates :)

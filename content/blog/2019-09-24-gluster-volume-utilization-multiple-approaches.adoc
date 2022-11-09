@@ -4,36 +4,40 @@ tags: gluster, glusterfsblog
 summary: This blog discusses the multiple approaches available to get the Volume utilization and comparisons between them.
 ---
 
-<div class="notice-update">
+++++
+<div class="notification is-warning">
 This blog was first published on <a href="https://gluster.github.io/devblog/gluster-volume-utilization-multiple-approaches">Gluster Devblog</a>
 </div>
+++++
 
 Gluster Volume utilization is one of the critical metrics which
 everybody interested to know. This blog discusses the multiple
 approaches available to get the Volume utilization and comparisons
 between them.
 
-## Approach 1 - Fuse mount
+== Approach 1 - Fuse mount
 
 Use fuse mount to mount the Gluster Volume and get the `df` output(Or
 use `os.statvfs` in case of Python script).
 
 For example,
 
-```
+[source]
+----
 $ mount -t glusterfs localhost:gvol_rep3 /mnt/gvol_rep3
 $ df -B1 /mnt/gvol_rep3
 $ umount /mnt/gvol_rep3
-```
+----
 
-## Approach 2 - libgfapi mount
+== Approach 2 - libgfapi mount
 
 Use libgfapi mount and run `os.statvfs` to get the Volume utilization.
 
 The following Python example uses
 [libgfapi-python](https://github.com/gluster/libgfapi-python) project.
 
-```python
+[source,python]
+----
 from gluster import gfapi
 
 volume = gfapi.Volume('localhost', 'gvol_rep3')
@@ -41,9 +45,9 @@ volume.mount()
 st = volume.statvfs("/")
 print("Total Size: %s" % (st.f_blocks * st.f_bsize))
 volume.umount()
-```
+----
 
-## Approach 3 - Gluster CLI
+== Approach 3 - Gluster CLI
 
 Volume status detail command already provides brick-level
 utilization. Combine status detail with Volume info to group the
@@ -57,7 +61,8 @@ Refer Posix storage reserve feature
 Once we get the sub volume grouping, get the sub volume utilization
 from the bricks utilization as follows.
 
-```
+[source]
+----
 volume_capacity_total = 0
 volume_capacity_used = 0
 volume_inodes_total = 0
@@ -68,7 +73,7 @@ for subvol in subvols {
     volume_inodes_total += subvol.inodes_total
     volume_inodes_used += subvol.inodes_used
 }
-```
+----
 
 Subvolume utilization is dependent on its type. If subvolume type is
 Replicate then take the maximum of `capacity_used` of all bricks in
@@ -80,14 +85,15 @@ subvolume will be identical).
 
 In case of subvolume type is Disperse Volume then,
 
-```
+[source]
+----
 subvol_capacity_total = any_one_brick_capacity_total * number_of_data_bricks
 subvol_capacity_used = any_one_brick_capacity_used * number_of_data_bricks
 subvol_inodes_total = any_one_brick_inode_total
 subvol_inodes_used = any_one_brick_inode_used
-```
+----
 
-## Conclusion:
+== Conclusion:
 
 - Results of all approaches look similar, feel free to use the method
   comfortable to the use case.

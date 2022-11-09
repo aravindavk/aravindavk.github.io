@@ -4,10 +4,10 @@ tags: gluster, glusterfsblog
 summary: I started working on the Gluster dashboard using Phoenix Liveview feature.
 ---
 
-I was introduced to [Erlang](https://www.erlang.org/) language by
-[Shashi](http://manku.thimma.org/about/) in one of the Mysore Linux
+I was introduced to https://www.erlang.org/[Erlang] language by
+http://manku.thimma.org/about/[Shashi] in one of the Mysore Linux
 user group meeting at his office(Feb 2009). That was the time when
-NoSql was trending, and [CouchDb](http://couchdb.apache.org/) was one
+NoSql was trending, and http://couchdb.apache.org/[CouchDb] was one
 of the popular NoSQL databases. I was very much impressed by the
 Erlang programming language and bought the book "Programming Erlang -
 Joe Armstrong"
@@ -16,10 +16,10 @@ Unfortunately, I couldn't spend much time with the language to develop
 any real-time app other than a few Hello World programs.
 
 Finally, I got a chance to work on a
-[Elixir](https://elixir-lang.org/) project! The trigger is the Phoenix
+https://elixir-lang.org/[Elixir] project! The trigger is the Phoenix
 Live view feature.
 
-I watched [Phoenix Liveview announcement](https://www.youtube.com/watch?v=8xJzHq8ru0M)
+I watched https://www.youtube.com/watch?v=8xJzHq8ru0M[Phoenix Liveview announcement]
 15 days ago and immediately impressed by that.
 
 > Phoenix LiveView enables rich, real-time user experiences with
