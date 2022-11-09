@@ -1,11 +1,8 @@
-Developing Pebble Timeline Application - Webmon
-###############################################
-
-:slug: developing-pebble-timeline-app-webmon
-:author: Aravinda VK
-:date: 2015-06-02
-:tags: pebble
-:summary: I created a Pebble Timeline application to monitor the status of websites called Webmon
+---
+title: Developing Pebble Timeline Application - Webmon
+tags: pebble
+summary: I created a Pebble Timeline application to monitor the status of websites called Webmon
+---
 
 Pebble firmware 3.0 introduced a new feature called `Timeline <https://developer.getpebble.com/guides/timeline/>`__, the advantage of Timeline app is that processing happens in App server instead of in the Mobile / Watch, and can directly send notification to Watch (via the Timeline API website and phone, but no additional app required on the phone).
 

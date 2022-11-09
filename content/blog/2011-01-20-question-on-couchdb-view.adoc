@@ -1,11 +1,8 @@
-Question on CouchDB View
-########################
-
-:slug: question-on-couchdb-view
-:author: Aravinda VK
-:date: 2011-01-20
-:tags: couchdb,views
-:summary: In my CouchDB application, blog/photo is identified by the type field in the document.
+---
+title: Question on CouchDB View
+tags: couchdb,views
+summary: In my CouchDB application, blog/photo is identified by the type field in the document.
+---
 
 In my CouchDB application, blog/photo is identified by the type field in the document. 
 

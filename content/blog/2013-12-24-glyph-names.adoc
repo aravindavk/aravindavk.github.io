@@ -1,11 +1,8 @@
-Improving Kannada Fonts - Glyph Names
-#####################################
-
-:slug: glyph-names
-:author: Aravinda VK
-:date: 2013-12-24
-:tags: ಕನ್ನಡ,kannada,fonts
-:summary: For most use cases glyph names doesn't matter, it is font developers choice to give different names to the glyphs and write font rules according to their glyph names
+---
+title: Improving Kannada Fonts - Glyph Names
+tags: ಕನ್ನಡ,kannada,fonts
+summary: For most use cases glyph names doesn't matter, it is font developers choice to give different names to the glyphs and write font rules according to their glyph names
+---
 
 During `#languageSummitPune <http://www.mediawiki.org/wiki/Language_portal/Pune_LanguageSummit_November_2013>`__, `Pravin <http://pravin-s.blogspot.in/>`__ explained about glyph naming specification by adobe and its benifits. 
 

@@ -1,11 +1,8 @@
-Kannada in LaTeX
-################
-
-:slug: kannada-in-latex
-:author: Aravinda VK
-:date: 2011-04-14
-:tags: TeX,XeTeX,LaTeX,unicode,kannada
-:summary: We can use Kannada with XeTeX. But to use additional features of the language like hyphenation, kannada numerals etc. We need to have necessory definitions file in place. TeXLive 2010 has kannada hyphenation packages, only missing thing is gloss-kannada.ldf, Polyglossia file which will have all the details about hyphenation files, numbering systems etc.
+---
+title: Kannada in LaTeX
+tags: TeX,XeTeX,LaTeX,unicode,kannada
+summary: We can use Kannada with XeTeX. But to use additional features of the language like hyphenation, kannada numerals etc. We need to have necessory definitions file in place. TeXLive 2010 has kannada hyphenation packages, only missing thing is gloss-kannada.ldf, Polyglossia file which will have all the details about hyphenation files, numbering systems etc.
+---
 
 From `Wikipedia <http://en.wikipedia.org/wiki/XeTeX>`__
 

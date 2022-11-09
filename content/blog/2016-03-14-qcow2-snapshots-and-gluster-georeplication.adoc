@@ -1,11 +1,8 @@
-Qcow2 snapshots and Gluster Geo-replication
-###########################################
-
-:slug: qcow2-snapshots-and-gluster-georeplication
-:author: Aravinda VK
-:date: 2016-03-14
-:tags: gluster, glusterfsblog
-:summary: Geo-replication is aware of Gluster Sharding feature and taking the advantage of syncing small sharded files instead of big qcow2 image files
+---
+title: Qcow2 snapshots and Gluster Geo-replication
+tags: gluster, glusterfsblog
+summary: Geo-replication is aware of Gluster Sharding feature and taking the advantage of syncing small sharded files instead of big qcow2 image files
+---
 
 Gluster introduced sharding feature to store large files(which can
 grow beyond a single brick) or to support running Virtual machines in

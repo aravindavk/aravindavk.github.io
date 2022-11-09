@@ -1,12 +1,8 @@
-Effective Gluster Monitoring using Events APIs
-##############################################
-
-:slug: effective-gluster-monitoring-eventsapis
-:author: Aravinda VK
-:date: 2016-09-26
-:tags: gluster, glusterfsblog
-:summary: Without Events APIs, one way to get status of Cluster is by
-          calling Gluster status command/api in periodic intervals.
+---
+title: Effective Gluster Monitoring using Events APIs
+tags: gluster, glusterfsblog
+summary: Without Events APIs, one way to get status of Cluster is by calling Gluster status command/api in periodic intervals.
+---
 
 Last week I got opportunity to present about Gluster Events APIs in
 `Gluster meetup Bangalore <http://www.meetup.com/glusterfs-India/events/233515975>`__.

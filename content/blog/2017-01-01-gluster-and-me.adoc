@@ -1,11 +1,8 @@
-Gluster, Me and 2016
-####################
-
-:slug: gluster-and-me
-:author: Aravinda VK
-:date: 2017-01-01
-:tags: gluster, glusterfsblog
-:summary: Expecting more and more challenges in this new year. Happy new Year to all
+---
+title: Gluster, Me and 2016
+tags: gluster, glusterfsblog
+summary: Expecting more and more challenges in this new year. Happy new Year to all
+---
 
 I started working with the Gluster community since 2013.
 

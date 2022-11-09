@@ -1,9 +1,8 @@
-Title: Writing Prometheus exporter using Crystal language - Part 2
-Slug: crystal-prometheus
-Author: Aravinda VK
-Date: 2020-11-03
-Tags: amber, crystal, prometheus, crometheus
-Summary: In this blog, we will see how to monitor an external application or a log file.
+---
+title: Writing Prometheus exporter using Crystal language - Part 2
+tags: amber, crystal, prometheus, crometheus
+summary: In this blog, we will see how to monitor an external application or a log file.
+---
 
 In the [last blog](https://aravindavk.in/blog/amber-prometheus/) post, we discussed instrumenting [Amber](https://amberframework.org) apps using the [Crometheus](https://github.com/Darwinnn/crometheus) library. In this blog, we will see how to monitor an external application or a log file.
 

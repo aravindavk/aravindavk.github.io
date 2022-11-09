@@ -1,13 +1,8 @@
-Template based Volgen - Glusterd2
-######################################
-
-:slug: template-based-volgen-glusterd2
-:author: Aravinda VK
-:date: 2019-01-06
-:tags: gluster, glusterfsblog, glusterd2
-:summary: Glusterd2 also provides facility to set default Volume
-          options when a Volume is created. Each Volume type can have
-          its own default Volume options to be enabled by default.
+---
+title: Template based Volgen - Glusterd2
+tags: gluster, glusterfsblog, glusterd2
+summary: Glusterd2 also provides facility to set default Volume options when a Volume is created. Each Volume type can have its own default Volume options to be enabled by default.
+---
 
 Volfiles are the configuration files used by `Gluster <https://www.gluster.org/>`__
 processes. Volfile contains the details about the list of Xlators to

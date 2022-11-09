@@ -1,11 +1,8 @@
-Count down begins for Gnu Linux habba 2009
-##########################################
-
-:slug: count-down-begins-for-gnu-linux-habba-2009
-:author: Aravinda VK
-:date: 2009-01-27
-:tags: javascript
-:summary: I have created a JavaScript widget for days countdown. You can use this in your websites.
+---
+title: Count down begins for Gnu Linux habba 2009
+tags: javascript
+summary: I have created a JavaScript widget for days countdown. You can use this in your websites.
+---
 
 I have created a JavaScript widget for days countdown. You can use this in your websites. 
 

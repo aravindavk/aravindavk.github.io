@@ -1,11 +1,8 @@
-Slackware mania
-###############
-
-:slug: slackware-mania
-:author: Aravinda VK
-:date: 2009-06-13
-:tags: slackware,debian,gnu-linux
-:summary: Yes!...  I decided to install Slackware Gnu/Linux in my Laptop. Currently I have Debian Lenny installed in it. I don't know i will have dual boot with Lenny or complete install. If I have only Slack then I feel I will learn more, since their will be no chance left to switch the OS if any problems occur. :)
+---
+title: Slackware mania
+tags: slackware,debian,gnu-linux
+summary: Yes!...  I decided to install Slackware Gnu/Linux in my Laptop. Currently I have Debian Lenny installed in it. I don't know i will have dual boot with Lenny or complete install. If I have only Slack then I feel I will learn more, since their will be no chance left to switch the OS if any problems occur. :)
+---
 
 Yes!...  I decided to install Slackware Gnu/Linux in my Laptop. Currently I have Debian Lenny installed in it. I don't know i will have dual boot with Lenny or complete install. If I have only Slack then I feel I will learn more, since their will be no chance left to switch the OS if any problems occur. :)
 

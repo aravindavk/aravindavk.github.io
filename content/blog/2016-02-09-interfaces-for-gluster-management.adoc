@@ -1,11 +1,8 @@
-Interfaces for Gluster Management
-#################################
-
-:slug: interfaces-for-gluster-management
-:author: Aravinda VK
-:date: 2016-02-09
-:tags: gluster, glusterfsblog
-:summary: But Gluster CLIs are not enough for managing from remote place or to integrate with third party Management/Monitoring tools
+---
+title: Interfaces for Gluster Management
+tags: gluster, glusterfsblog
+summary: But Gluster CLIs are not enough for managing from remote place or to integrate with third party Management/Monitoring tools
+---
 
 Gluster provides CLIs to manage the Cluster, which can be
 programmatly consumed by passing ``--xml`` option. For example,

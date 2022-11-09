@@ -1,12 +1,8 @@
-Gluster Log Tools and Structured Logging
-########################################
-
-:slug: gluster-log-tools-and-structured-logging
-:author: Aravinda VK
-:date: 2017-10-15
-:tags: gluster, glusterfsblog
-:summary: Framework to add structured logging support is already available in
-          Gluster. We have to convert the existing log messages to this new format.
+---
+title: Gluster Log Tools and Structured Logging
+tags: gluster, glusterfsblog
+summary: Framework to add structured logging support is already available in Gluster. We have to convert the existing log messages to this new format.
+---
 
 All Gluster components follow the same format for logging, as shown below
 

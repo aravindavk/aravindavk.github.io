@@ -1,11 +1,8 @@
-ಕನ್ನಡ ಗಾದೆಗಳ fortune cookies
-############################
-
-:slug: kannada-gaadegala-fortune-cookies
-:author: Aravinda VK
-:date: 2012-10-03
-:tags: ಕನ್ನಡ,ಗಾದೆಗಳು,fortune,cookies,kannadablog
-:summary: ಈ ಹಿಂದೆ ಲಿನಕ್ಸ್ ನ fortune ತಂತ್ರಾಂಶದ ಬಗ್ಗೆ ಬರೆದಿದ್ದೆ. ಆ ಸಮಯದಲ್ಲಿ terminal ನಲ್ಲಿ ಕನ್ನಡ ಸರಿಯಾಗಿ ಬರುತ್ತಿರಲಿಲ್ಲವಾದ್ದರಿಂದ ಕನ್ನಡದ fortune cookies ನ ಮಾಡುವ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ಗಮನಹರಿಸಿರಲಿಲ್ಲ.
+---
+title: ಕನ್ನಡ ಗಾದೆಗಳ fortune cookies
+tags: ಕನ್ನಡ,ಗಾದೆಗಳು,fortune,cookies,kannadablog
+summary: ಈ ಹಿಂದೆ ಲಿನಕ್ಸ್ ನ fortune ತಂತ್ರಾಂಶದ ಬಗ್ಗೆ ಬರೆದಿದ್ದೆ. ಆ ಸಮಯದಲ್ಲಿ terminal ನಲ್ಲಿ ಕನ್ನಡ ಸರಿಯಾಗಿ ಬರುತ್ತಿರಲಿಲ್ಲವಾದ್ದರಿಂದ ಕನ್ನಡದ fortune cookies ನ ಮಾಡುವ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ಗಮನಹರಿಸಿರಲಿಲ್ಲ.
+---
 
 ಈ ಹಿಂದೆ ಲಿನಕ್ಸ್ ನ fortune ತಂತ್ರಾಂಶದ ಬಗ್ಗೆ ಬರೆದಿದ್ದೆ(`ಇಲ್ಲಿ ನೋಡಿ <http://aravindavk.in/blog/creating-kannada-fortune-database-for-gnu-linux/>`__). ಆ ಸಮಯದಲ್ಲಿ terminal ನಲ್ಲಿ ಕನ್ನಡ ಸರಿಯಾಗಿ ಬರುತ್ತಿರಲಿಲ್ಲವಾದ್ದರಿಂದ ಕನ್ನಡದ fortune cookies ನ ಮಾಡುವ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ಗಮನಹರಿಸಿರಲಿಲ್ಲ. ಇತ್ತೀಚೆಗೆ KDE Konsole ನಲ್ಲಿ ಕನ್ನಡ ಬರುತ್ತೆ ಅಂತ ತಿಳಿದಾಗ ಖುಷಿಯಾಗಿತ್ತು.
 

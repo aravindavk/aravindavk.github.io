@@ -1,9 +1,8 @@
-Title: ಇಂಪನ ಮತ್ತು Sloth
-Slug: impana-and-sloth
-Author: Aravinda Vishwanathapura
-Date: 2020-09-21
-Tags: kannada, impana
-Summary: Zootopia ಮೂವಿ ನೋಡಿ ಆದ್ಮೇಲೆ ಇಂಪನಂಗೆ ಈ ಡೌಟ್ ಬಂತು.
+---
+title: ಇಂಪನ ಮತ್ತು Sloth
+tags: kannada, impana
+summary: Zootopia ಮೂವಿ ನೋಡಿ ಆದ್ಮೇಲೆ ಇಂಪನಂಗೆ ಈ ಡೌಟ್ ಬಂತು.
+---
 
 "ಅಪ್ಪಾ.. Sloth ಏನಕ್ಕೆ ಇಷ್ಟು ಸ್ಲೋ?"
 

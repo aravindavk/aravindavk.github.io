@@ -1,11 +1,8 @@
-Sorted Bar charts using AngularJS
-#################################
-
-:slug: sorted-bar-charts-angularjs
-:author: Aravinda VK
-:date: 2013-03-05
-:tags: javascript,angularjs,angular
-:summary: Creating bar charts/progress bars using HTML and CSS is very easy, we can create it using two DIV tags. Following image shows outer div in gray color and inner div in green color. Width of inner div can be set dynamically based on the required value.
+---
+title: Sorted Bar charts using AngularJS
+tags: javascript,angularjs,angular
+summary: Creating bar charts/progress bars using HTML and CSS is very easy, we can create it using two DIV tags. Following image shows outer div in gray color and inner div in green color. Width of inner div can be set dynamically based on the required value.
+---
 
 Creating bar charts/progress bars using HTML and CSS is very easy, we can create it using two DIV tags. Following image shows outer div in gray color and inner div in green color. Width of inner div can be set dynamically based on the required value.
 

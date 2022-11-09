@@ -1,11 +1,8 @@
-isatty in Rust
-##############
-
-:slug: isatty-in-rust
-:author: Aravinda VK
-:date: 2014-12-16
-:tags: rust, cli
-:summary: How to find a command line program is piped from another program or that program was running directly with arguments?
+---
+title: isatty in Rust
+tags: rust, cli
+summary: How to find a command line program is piped from another program or that program was running directly with arguments?
+---
 
 How to find a command line program is `piped <http://en.wikipedia.org/wiki/Pipeline_%28Unix%29>`__ from another program or that program was running directly with arguments? For example, :code:`wc` command can be run as both ways.
 

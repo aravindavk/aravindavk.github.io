@@ -1,9 +1,8 @@
-Title: Elixir Phoenix Liveview and Gluster dashboard
-Slug: elixir-phoenix-liveview-gluster-dashboard
-Author: Aravinda VK
-Date: 2019-08-30
-Tags: gluster, glusterfsblog
-Summary: I started working on the Gluster dashboard using Phoenix Liveview feature.
+---
+title: Elixir Phoenix Liveview and Gluster dashboard
+tags: gluster, glusterfsblog
+summary: I started working on the Gluster dashboard using Phoenix Liveview feature.
+---
 
 I was introduced to [Erlang](https://www.erlang.org/) language by
 [Shashi](http://manku.thimma.org/about/) in one of the Mysore Linux

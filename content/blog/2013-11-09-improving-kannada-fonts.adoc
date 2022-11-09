@@ -1,11 +1,8 @@
-Improving Kannada Fonts
-#######################
-
-:slug: improving-kannada-fonts
-:author: Aravinda VK
-:date: 2013-11-09
-:tags: ಕನ್ನಡ,kannada,fonts
-:summary: Today I completed first stage, created two python scripts to change the glyph names and to adjust left and right space.
+---
+title: Improving Kannada Fonts
+tags: ಕನ್ನಡ,kannada,fonts
+summary: Today I completed first stage, created two python scripts to change the glyph names and to adjust left and right space.
+---
 
 `Pravin <http://pravin-s.blogspot.in/>`__, maintainer of Lohit fonts started `lohit2 <https://github.com/pravins/lohit2>`__ project to update all lohit fonts according to Open Type specifications. Read more `here <http://pravin-s.blogspot.in/2013/08/project-creating-standard-and-reusable.html>`__ and `here <http://pravin-s.blogspot.in/2013/10/lohit2-surely-helping-identifying.html>`__
 

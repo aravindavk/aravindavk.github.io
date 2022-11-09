@@ -1,11 +1,8 @@
-Kannada Reading and Writing support in Debian Lenny
-###################################################
-
-:slug: kannada-reading-and-writing-support-in-debian-lenny
-:author: Aravinda VK
-:date: 2009-03-04
-:tags: kannada,gnu-linux,debian
-:summary: Now it is very easy to enable and configure Kannada in Debian. Install the following packages using apt-get or synaptic package manager.
+---
+title: Kannada Reading and Writing support in Debian Lenny
+tags: kannada,gnu-linux,debian
+summary: Now it is very easy to enable and configure Kannada in Debian. Install the following packages using apt-get or synaptic package manager.
+---
 
 Now it is very easy to enable and configure Kannada in Debian. Install the following packages using apt-get or synaptic package manager. 
 

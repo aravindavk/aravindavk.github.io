@@ -1,11 +1,8 @@
-Gluster Geo-replication Tools
-#############################
-
-:slug: gluster-georep-tools
-:author: Aravinda VK
-:date: 2016-11-21
-:tags: gluster, glusterfsblog
-:summary: A must have tools collection for Gluster Geo-replication users!
+---
+title: Gluster Geo-replication Tools
+tags: gluster, glusterfsblog
+summary: A must have tools collection for Gluster Geo-replication users!
+---
 
 A must have tools collection for `Gluster Geo-replication <http://gluster.readthedocs.io/en/latest/Administrator Guide/Geo Replication>`__ users!
 

@@ -1,11 +1,8 @@
-SMS trend analysis - Android
-############################
-
-:slug: sms-trend-analysis-android
-:author: Aravinda VK
-:date: 2013-04-09
-:tags: english,sms,android,sql
-:summary: Now a days my incoming and outgoing SMS trend looks like this for some reason :)
+---
+title: SMS trend analysis - Android
+tags: english,sms,android,sql
+summary: Now a days my incoming and outgoing SMS trend looks like this for some reason :)
+---
 
 Now a days my incoming and outgoing SMS trend looks like this for some(known) reason :)
 

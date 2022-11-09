@@ -1,11 +1,8 @@
-CouchDB: Auto increment IDs with PHP
-####################################
-
-:slug: couchdb-auto-increment-ids-with-php
-:author: Aravinda VK
-:date: 2010-09-24
-:tags: couchdb,php
-:summary: CouchDB: Auto increment IDs with PHP
+---
+title: "CouchDB: Auto increment IDs with PHP"
+tags: couchdb,php
+summary: "CouchDB: Auto increment IDs with PHP"
+---
 
 Create a seed, which will be a CouchDB view. 
 

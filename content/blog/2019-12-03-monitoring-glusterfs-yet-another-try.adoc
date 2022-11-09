@@ -1,10 +1,9 @@
-Title: Monitoring GlusterFS - Yet another try
-Slug: monitoring-glusterfs-yet-another-try
-Author: Aravinda VK
-Date: 2019-12-03
-Tags: glusterfs, glusterfsblog
-Summary: Introduce Metrics SDK - Collection of libraries that helps to collect metrics without knowing about Gluster internals
-Image: /images/gluster-volume-utilization.png
+---
+title: Monitoring GlusterFS - Yet another try
+tags: glusterfs, glusterfsblog
+summary: Introduce Metrics SDK - Collection of libraries that helps to collect metrics without knowing about Gluster internals
+image: /images/gluster-volume-utilization.png
+---
 
 Monitoring is one of my favorite topics, and previously I tried
 multiple ways to monitor GlusterFS effectively. Initially, I decided

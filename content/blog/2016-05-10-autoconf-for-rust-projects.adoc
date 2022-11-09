@@ -1,12 +1,8 @@
-Autoconf for Rust Projects
-##########################
-
-:slug: autoconf-for-rust-projects
-:author: Aravinda VK
-:date: 2016-05-10
-:tags: rust, autoconf
-:summary: In this blog we will discuss about using Autoconf for Rust
-	  projects along with Cargo.
+---
+title: Autoconf for Rust Projects
+tags: rust, autoconf
+summary: In this blog we will discuss about using Autoconf for Rust projects along with Cargo.
+---
 
 Cargo is an awesome tool for managing `Rust <http://rust-lang.org>`__
 projects, it takes care of all the Rust dependencies. But to package

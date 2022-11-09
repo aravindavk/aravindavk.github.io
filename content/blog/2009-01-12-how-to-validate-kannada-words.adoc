@@ -1,11 +1,8 @@
-How to validate kannada words?
-##############################
-
-:slug: how-to-validate-kannada-words
-:author: Aravinda VK
-:date: 2009-01-12
-:tags: python,javascript
-:summary: In this article we will discuss the Unicode range validation using Python regular expressions and JavaScript regular expressions. For illustration i have used Kannada, same can be applied to other languages as well.
+---
+title: How to validate kannada words?
+tags: python,javascript
+summary: In this article we will discuss the Unicode range validation using Python regular expressions and JavaScript regular expressions. For illustration i have used Kannada, same can be applied to other languages as well.
+---
 
 In this article we will discuss the Unicode range validation using Python regular expressions and JavaScript regular expressions. For illustration i have used Kannada, same can be applied to other languages as well. 
 

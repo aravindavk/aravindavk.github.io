@@ -1,11 +1,8 @@
-ಗುಬ್ಬಿ ಮತ್ತು ನವಿಲು
-##################
-
-:slug: gubbi-mattu-navilu
-:author: Aravinda VK
-:date: 2011-12-14
-:tags: kannada,fonts,unicode,gubbi,navilu,kannadablog
-:summary: ಗುಬ್ಬಿ ಮತ್ತು ನವಿಲನ್ನು ಹುಡುಕಲು ಹೋಗಬೇಡಿ ನಾನೀಗ ಬರೆದಿರುವುದು ಕನ್ನಡದ ಎರಡು ಹೊಸ ಫಾಂಟ್&zwj;ಗಳ ಬಗ್ಗೆ
+---
+title: ಗುಬ್ಬಿ ಮತ್ತು ನವಿಲು
+tags: kannada,fonts,unicode,gubbi,navilu,kannadablog
+summary: ಗುಬ್ಬಿ ಮತ್ತು ನವಿಲನ್ನು ಹುಡುಕಲು ಹೋಗಬೇಡಿ ನಾನೀಗ ಬರೆದಿರುವುದು ಕನ್ನಡದ ಎರಡು ಹೊಸ ಫಾಂಟ್&zwj;ಗಳ ಬಗ್ಗೆ
+---
 
 ಗುಬ್ಬಿ ಮತ್ತು ನವಿಲನ್ನು ಹುಡುಕಲು ಹೋಗಬೇಡಿ ನಾನೀಗ ಬರೆದಿರುವುದು ಕನ್ನಡದ ಎರಡು ಹೊಸ ಫಾಂಟ್‍ಗಳ ಬಗ್ಗೆ :)
 

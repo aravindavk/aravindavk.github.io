@@ -1,13 +1,8 @@
-Area Charts using R base Graphics
-#################################
-
-:slug: area-charts-using-r-base-graphics
-:author: Aravinda VK
-:date: 2019-02-17
-:tags: R, area-graph
-:summary: Today I learnt to create Area graph using R Base
-          graphics. polygon function (help(polygon)) can be used to
-          fill the area under the line.
+---
+title: Area Charts using R base Graphics
+tags: R, area-graph
+summary: Today I learnt to create Area graph using R Base graphics. polygon function (help(polygon)) can be used to fill the area under the line.
+---
 
 Today I learnt to create `Area chart
 <https://en.wikipedia.org/wiki/Area_chart>`__ using R Base

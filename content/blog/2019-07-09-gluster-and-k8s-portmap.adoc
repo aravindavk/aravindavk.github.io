@@ -1,9 +1,8 @@
-Title: Gluster and Kubernetes - Portmap
-Slug: gluster-and-k8s-portmap
-Author: Aravinda VK
-Date: 2019-07-09
-Tags: gluster, glusterfsblog
-Summary: If we remove Glusterd in k8s setup, who will do the role of Glusterd? How will the brick process get the port number?
+---
+title: Gluster and Kubernetes - Portmap
+tags: gluster, glusterfsblog
+summary: If we remove Glusterd in k8s setup, who will do the role of Glusterd? How will the brick process get the port number?
+---
 
 One of the primary roles of Glusterd is to allocate a port for brick
 processes and let the clients know about it when requested.

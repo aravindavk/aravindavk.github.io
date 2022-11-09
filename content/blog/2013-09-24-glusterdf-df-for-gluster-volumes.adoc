@@ -1,11 +1,8 @@
-glusterdf - df for gluster volumes
-##################################
-
-:slug: glusterdf-df-for-gluster-volumes
-:author: Aravinda VK
-:date: 2013-09-24
-:tags: glusterfs,tools,glusterfsblog
-:summary: A CLI utility to check the disk usage of glusterfs volumes
+---
+title: glusterdf - df for gluster volumes
+tags: glusterfs,tools,glusterfsblog
+summary: A CLI utility to check the disk usage of glusterfs volumes
+---
 
 A CLI utility to check the disk usage of `glusterfs <http://gluster.org/>`__ volumes. Using :code:`df` command we can view the disk usage of only mounted glusterfs volumes. This utility takes care of mounting gluster volumes available in the machine where this command is executed. glusterdf uses `libgfapi <https://github.com/gluster/glusterfs/tree/master/api>`__ provided by glusterfs to fetch the statvfs information.
 

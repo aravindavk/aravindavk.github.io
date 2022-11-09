@@ -1,9 +1,8 @@
-Title: ಅರಹೋಮ್
-Slug: ara-home
-Author: Aravinda Vishwanathapura
-Date: 2020-10-10
-Tags: kannada, impana
-Summary: ಏನಕ್ಕೆ ಪುಟ್ಟಾ.. ಏನು ಅರ ಅಂದ್ರೆ?
+---
+title: ಅರಹೋಮ್
+tags: kannada, impana
+summary: ಏನಕ್ಕೆ ಪುಟ್ಟಾ.. ಏನು ಅರ ಅಂದ್ರೆ?
+---
 
 "ಅಪ್ಪಾ `ಅರ`ಕ್ಕೆ ಇಂಗ್ಲಿಷ್ ಅಲ್ಲಿ ಏನಂತಾರೆ?"
 

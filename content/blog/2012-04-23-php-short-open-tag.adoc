@@ -1,11 +1,8 @@
-PHP Short open tag and Alternate syntax
-#######################################
-
-:slug: php-short-open-tag
-:author: Aravinda VK
-:date: 2012-04-23
-:tags: php,shortcut
-:summary: short_open_tag is disabled by default in PHP 5.3
+---
+title: PHP Short open tag and Alternate syntax
+tags: php,shortcut
+summary: short_open_tag is disabled by default in PHP 5.3
+---
 
 Many PHP programmers use short open tag :code:`<?` instead of :code:`<?php`. It saves time(really?) in coding especially while using PHP code in between HTML. But the use of short open tag is discouraged because it conflicts with XML and other languages. In the following example PHP interpreter fail to decide which is PHP and which is not, it tries to execute/interpret XML as PHP script and gives error.
 

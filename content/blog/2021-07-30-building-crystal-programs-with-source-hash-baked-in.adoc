@@ -1,9 +1,8 @@
-Title: Building Crystal Programs with Source File Hash baked in
-Slug: building-crystal-programs-with-source-hash-baked-in
-Author: Aravinda Vishwanathapura
-Date: 2021-07-30
-Tags: crystal,go,hash,source
-Summary: "Similarly, if `shards` is used as the package manager for your Crystal Programs, then you can include the `VERSION` automatically while compiling the program."
+---
+title: Building Crystal Programs with Source File Hash baked in
+tags: crystal,go,hash,source
+summary: "Similarly, if `shards` is used as the package manager for your Crystal Programs, then you can include the `VERSION` automatically while compiling the program."
+---
 
 This post is inspired by the [blog post](https://www.btbytes.com/posts/2020-05-05-01-golang-hash-builds.html) written by [Pradeep Gowda](https://twitter.com/btbytes) about embedding Source file Hash while building Go programs.
 

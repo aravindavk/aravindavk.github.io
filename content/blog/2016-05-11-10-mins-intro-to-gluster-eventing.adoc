@@ -1,12 +1,8 @@
-10 minutes introduction to Gluster Eventing Feature
-#####################################################
-
-:slug: 10-mins-intro-to-gluster-eventing
-:author: Aravinda VK
-:date: 2016-05-11
-:tags: gluster, glusterfsblog
-:summary: It provides close to realtime notification and alerts for
-          the Gluster cluster state changes.
+---
+title: 10 minutes introduction to Gluster Eventing Feature
+tags: gluster, glusterfsblog
+summary: It provides close to realtime notification and alerts for the Gluster cluster state changes.
+---
 
 .. raw:: html
 

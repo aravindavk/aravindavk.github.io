@@ -1,11 +1,8 @@
-Installing Scribus svn in Debian Squeeze
-########################################
-
-:slug: installing-scribus-svn-in-debian-squeeze
-:author: Aravinda VK
-:date: 2011-04-11
-:tags: scribus,unicode,debian
-:summary: I heard that Unicode rending issues of complex scripts are fixed in svn version of Scribus(1.5). So I wanted to test it for Kannada.
+---
+title: Installing Scribus svn in Debian Squeeze
+tags: scribus,unicode,debian
+summary: I heard that Unicode rending issues of complex scripts are fixed in svn version of Scribus(1.5). So I wanted to test it for Kannada.
+---
 
 I heard that Unicode rending issues of complex scripts are fixed in svn version of Scribus(1.5). So I wanted to test it for Kannada.
 

@@ -1,11 +1,8 @@
-ಅನಿರೀಕ್ಷಿತ
-##########
-
-:slug: anirikshita
-:author: Aravinda VK
-:date: 2012-03-27
-:tags: ಸುಮ್ಮನೆ,ಮಾತುಕತೆ,kannadablog
-:summary: ಯಾವ ಕಡೆ ಹೊರಟಿದೀರಾ?
+---
+title: ಅನಿರೀಕ್ಷಿತ
+tags: ಸುಮ್ಮನೆ,ಮಾತುಕತೆ,kannadablog
+summary: ಯಾವ ಕಡೆ ಹೊರಟಿದೀರಾ?
+---
 
 "ಯಾವ ಕಡೆ ಹೊರಟಿದೀರಾ?"
 

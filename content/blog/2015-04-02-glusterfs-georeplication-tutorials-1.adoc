@@ -1,11 +1,8 @@
-GlusterFS Geo-replication Tutorials - Understanding Session Creation
-####################################################################
-
-:slug: glusterfs-georeplication-tutorials-1
-:author: Aravinda VK
-:date: 2015-04-02
-:tags: geo-replication, glusterfs, visualizations, glusterfsblog
-:summary: Geo-replication is one of the awesome feature of GlusterFS
+---
+title: GlusterFS Geo-replication Tutorials - Understanding Session Creation
+tags: geo-replication, glusterfs, visualizations, glusterfsblog
+summary: Geo-replication is one of the awesome feature of GlusterFS
+---
 
 Geo-replication is one of the awesome feature of `GlusterFS <http://gluster.org/>`__. With this feature we can replicate data from one Gluster Volume to another geographically located Gluster Volume.
 

@@ -1,11 +1,8 @@
-SlackBuild Emacs CVS
-####################
-
-:slug: slackbuild-emacs-cvs
-:author: Aravinda VK
-:date: 2009-06-16
-:tags: emacs,gnu-linux,slackware
-:summary: To install a package in Slackware we can use installpkg, and for upgrade we can use upgradepkg. While installing a package it will not check for dependencies.
+---
+title: SlackBuild Emacs CVS
+tags: emacs,gnu-linux,slackware
+summary: To install a package in Slackware we can use installpkg, and for upgrade we can use upgradepkg. While installing a package it will not check for dependencies.
+---
 
 To install a package in Slackware we can use installpkg, and for upgrade we can use upgradepkg. While installing a package it will not check for dependencies.
 

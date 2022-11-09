@@ -1,11 +1,8 @@
-ಫೋಟೋಗ್ರಾಫರ್ ಗಳಿಗೆ ಪ್ರಶ್ನೆ
-#########################
-
-:slug: photographersgalige-prashne
-:author: Aravinda VK
-:date: 2010-08-18
-:tags: ಫೋಟೋಗ್ರಫಿ,kannadablog
-:summary: ಫೋಟೋ ತೆಗೆದ ನಂತರ post processing ಮಾಡಬೇಕೇ ಬೇಡವೇ? ಮಾಡಬಹುದು ಅಂತಾದರೆ ಏನೇನು ಮಾಡಬಹುದು? ಫೋಟೋ ಎಡಿಟ್ ಮಾಡಿದರೆ originality ಹೋಗುತ್ತದಾ? ಫೋಟೋ ತೆಗೆಯುವಾಗಲೇ brightness/color levels ಎಲ್ಲಾ adjust ಮಾಡಿ ತೆಗೆದರೆ ಮಾತ್ರ original ಫೋಟೋ ಅನ್ನಬಹುದಾ?
+---
+title: ಫೋಟೋಗ್ರಾಫರ್ ಗಳಿಗೆ ಪ್ರಶ್ನೆ
+tags: ಫೋಟೋಗ್ರಫಿ,kannadablog
+summary: ಫೋಟೋ ತೆಗೆದ ನಂತರ post processing ಮಾಡಬೇಕೇ ಬೇಡವೇ? ಮಾಡಬಹುದು ಅಂತಾದರೆ ಏನೇನು ಮಾಡಬಹುದು? ಫೋಟೋ ಎಡಿಟ್ ಮಾಡಿದರೆ originality ಹೋಗುತ್ತದಾ? ಫೋಟೋ ತೆಗೆಯುವಾಗಲೇ brightness/color levels ಎಲ್ಲಾ adjust ಮಾಡಿ ತೆಗೆದರೆ ಮಾತ್ರ original ಫೋಟೋ ಅನ್ನಬಹುದಾ?
+---
 
 ಫೋಟೋ ತೆಗೆದ ನಂತರ post processing ಮಾಡಬೇಕೇ ಬೇಡವೇ? ಮಾಡಬಹುದು ಅಂತಾದರೆ ಏನೇನು ಮಾಡಬಹುದು? ಫೋಟೋ ಎಡಿಟ್ ಮಾಡಿದರೆ originality ಹೋಗುತ್ತದಾ? ಫೋಟೋ ತೆಗೆಯುವಾಗಲೇ brightness/color levels ಎಲ್ಲಾ adjust ಮಾಡಿ ತೆಗೆದರೆ ಮಾತ್ರ original ಫೋಟೋ ಅನ್ನಬಹುದಾ?
 

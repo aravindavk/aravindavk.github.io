@@ -1,11 +1,8 @@
-Improving Kannada Fonts - Adding Opentype substitution rules
-############################################################
-
-:slug: adding-font-rules
-:author: Aravinda VK
-:date: 2013-12-03
-:tags: ಕನ್ನಡ,kannada,fonts
-:summary: Below image shows all the consonant forms of Kannada letter "ka", we will split that into different group according to different rules required.
+---
+title: Improving Kannada Fonts - Adding Opentype substitution rules
+tags: ಕನ್ನಡ,kannada,fonts
+summary: Below image shows all the consonant forms of Kannada letter "ka", we will split that into different group according to different rules required.
+---
 
 In my `previous blog </blog/improving-kannada-fonts/>`__ we discussed about the approach to improve Kannada fonts, in this blog we will discuss about adding rules to a font using fontforge python.
 

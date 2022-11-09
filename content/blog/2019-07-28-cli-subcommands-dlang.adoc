@@ -1,9 +1,8 @@
-Title: Implementing CLI Subcommands with D programming language
-Slug: cli-subcommands-dlang
-Author: Aravinda VK
-Date: 2019-07-28
-Tags: dlang, d
-Summary: Once "getopt" parses the flags, args will contain only remaining arguments(positional arguments).
+---
+title: Implementing CLI Subcommands with D programming language
+tags: dlang, d
+summary: Once "getopt" parses the flags, args will contain only remaining arguments(positional arguments).
+---
 
 Never heard of D Programming?
 

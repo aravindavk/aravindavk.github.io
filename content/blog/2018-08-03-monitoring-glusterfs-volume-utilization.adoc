@@ -1,12 +1,8 @@
-Monitoring GlusterFS - Volume Utilization
-##########################################
-
-:slug: monitoring-glusterfs-volume-utilization
-:author: Aravinda VK
-:date: 2018-08-03
-:tags: gluster, glusterfsblog
-:summary: With this approach export the brick utilization directly
-          from each node and aggregating at the Prometheus server.
+---
+title: Monitoring GlusterFS - Volume Utilization
+tags: gluster, glusterfsblog
+summary: With this approach export the brick utilization directly from each node and aggregating at the Prometheus server.
+---
 
 This blog explains the approaches to monitor `Gluster
 <https://www.gluster.org/>`__ Volume utilization using `Prometheus

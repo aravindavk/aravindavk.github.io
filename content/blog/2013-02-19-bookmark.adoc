@@ -1,11 +1,8 @@
-ಬುಕ್‍ಮಾರ್ಕ್
-###########
-
-:slug: bookmark
-:author: Aravinda VK
-:date: 2013-02-19
-:tags: book,bookmark,kannada,kannadablog
-:summary: ಮೊನ್ನೆ ಒಬ್ಬ ಫ್ರೆಂಡ್ ಬಂದಿದ್ದ ಮನೆಗೆ, ನನ್ನ ಪುಸ್ತಕಗಳ ಸಂಗ್ರಹ ನೋಡಿ ಹೇಳಿದ..
+---
+title: ಬುಕ್‍ಮಾರ್ಕ್
+tags: book,bookmark,kannada,kannadablog
+summary: ಮೊನ್ನೆ ಒಬ್ಬ ಫ್ರೆಂಡ್ ಬಂದಿದ್ದ ಮನೆಗೆ, ನನ್ನ ಪುಸ್ತಕಗಳ ಸಂಗ್ರಹ ನೋಡಿ ಹೇಳಿದ..
+---
 
 ಮೊನ್ನೆ ಒಬ್ಬ ಫ್ರೆಂಡ್ ಬಂದಿದ್ದ ಮನೆಗೆ, ನನ್ನ ಪುಸ್ತಕಗಳ ಸಂಗ್ರಹ ನೋಡಿ ಹೇಳಿದ..
 

@@ -1,11 +1,8 @@
-ನುಡಿ ಕನ್ನಡ Fonts
-################
-
-:slug: nudi-kannada-fonts
-:author: Aravinda VK
-:date: 2013-02-26
-:tags: nudi,kannada,fonts,kannadablog
-:summary: ಫಾಂಟ್ಸ್ ಗಳು ಚೆನ್ನಾಗಿವೆ, ಯುನಿಕೋಡ್ ಮಾನ್ಯತೆಗೆ ಬೇಕಾದ ಬಹುತೇಕ ನಿಯಮಗಳನ್ನು ಫಾಂಟ್&zwj;ನಲ್ಲಿ ಅಳವಡಿಸಿದ್ದಾರೆ, ಅದೇ ಒಂದು ಸಂತೋಷ.
+---
+title: ನುಡಿ ಕನ್ನಡ Fonts
+tags: nudi,kannada,fonts,kannadablog
+summary: ಫಾಂಟ್ಸ್ ಗಳು ಚೆನ್ನಾಗಿವೆ, ಯುನಿಕೋಡ್ ಮಾನ್ಯತೆಗೆ ಬೇಕಾದ ಬಹುತೇಕ ನಿಯಮಗಳನ್ನು ಫಾಂಟ್&zwj;ನಲ್ಲಿ ಅಳವಡಿಸಿದ್ದಾರೆ, ಅದೇ ಒಂದು ಸಂತೋಷ.
+---
 
 .. role:: strike
     :class: strike

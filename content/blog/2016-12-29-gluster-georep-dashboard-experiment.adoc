@@ -1,11 +1,8 @@
-Gluster Geo-replication Dashboard Experiment
-############################################
-
-:slug: gluster-georep-dashboard-experiment
-:author: Aravinda VK
-:date: 2016-12-29
-:tags: gluster, glusterfsblog
-:summary: A demo app created to showcase Gluster Events APIs
+---
+title: Gluster Geo-replication Dashboard Experiment
+tags: gluster, glusterfsblog
+summary: A demo app created to showcase Gluster Events APIs
+---
 
 Gluster Events APIs are available with Gluster 3.9 release. This
 project is created as an experiment to showcase the capabilities of

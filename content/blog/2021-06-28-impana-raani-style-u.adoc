@@ -1,10 +1,9 @@
-Title: ಇಂಪನಳ ರಾಣಿ ಸ್ಟೈಲು
-Slug: impana-raani-style-u
-Author: Aravinda Vishwanathapura
-Date: 2021-06-28
-Tags: kannada, impana
-Summary: "ಸುಮ್ಮನೆ ಹೂ ಅಂತ ತಲೆ ಅಲ್ಲಾಡಿಸಿದ್ಳು.. ಇನ್ನೂ ಸರಿಯಾಗಿ ಅರ್ಥ ಆಗಿಲ್ಲ ಅನ್ನಿಸ್ತು. ಮತ್ತೆ ಹೇಳಿದೆ.."
-Image: /images/impana-duppatta.jpg
+---
+title: ಇಂಪನಳ ರಾಣಿ ಸ್ಟೈಲು
+tags: kannada, impana
+summary: "ಸುಮ್ಮನೆ ಹೂ ಅಂತ ತಲೆ ಅಲ್ಲಾಡಿಸಿದ್ಳು.. ಇನ್ನೂ ಸರಿಯಾಗಿ ಅರ್ಥ ಆಗಿಲ್ಲ ಅನ್ನಿಸ್ತು. ಮತ್ತೆ ಹೇಳಿದೆ.."
+image: /images/impana-duppatta.jpg
+---
 
 ಇಂಪನ ಅಮ್ಮನ ದುಪ್ಪಟ್ಟಾವನ್ನು ಉದ್ದಕ್ಕೆ ಹೊದ್ದುಕೊಂಡು ಬಂದಳು. ನೋಡಿದ ತಕ್ಷಣ ಗೊತ್ತಾಯ್ತು, ಈಗ ನೋಡುತ್ತಿರುವ ಮಹಾಭಾರತದ ಪ್ರಭಾವ ಎಂದು.
 

@@ -1,11 +1,8 @@
-GlusterFS Tools
-###############
-
-:slug: glusterfs-tools
-:author: Aravinda VK
-:date: 2013-06-18
-:tags: glusterfs,tools,glusterfsblog
-:summary: A wrapper around GlusterFS CLI tool
+---
+title: GlusterFS Tools
+tags: glusterfs,tools,glusterfsblog
+summary: A wrapper around GlusterFS CLI tool
+---
 
 .. raw:: html
 

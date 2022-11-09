@@ -1,11 +1,8 @@
-Rotating Rust programming logo
-##############################
-
-:slug: rotating-rust-logo
-:author: Aravinda VK
-:date: 2014-10-08
-:tags: rust
-:summary: SVG animation, rotating rust logo
+---
+title: Rotating Rust programming logo
+tags: rust
+summary: SVG animation, rotating rust logo
+---
 
 Today I learned to animate any shape in `SVG <http://en.wikipedia.org/wiki/Scalable_Vector_Graphics>`__ using `animateTransform <http://www.w3.org/TR/SVG/animate.html#AnimateTransformElement>`__ element, and tried it with `Rust programming <http://www.rust-lang.org/>`__ logo, here yo go :)
 

@@ -1,11 +1,8 @@
-Using Markdown and SHJS with PHP
-################################
-
-:slug: using-markdown-and-shjs-with-php
-:author: Aravinda VK
-:date: 2009-09-28
-:tags: php,markdown,javascript
-:summary: Markdown is a wiki like syntax standard, to have highly readable content.
+---
+title: Using Markdown and SHJS with PHP
+tags: php,markdown,javascript
+summary: Markdown is a wiki like syntax standard, to have highly readable content.
+---
 
 In this article we will discuss 
 

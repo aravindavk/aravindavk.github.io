@@ -1,11 +1,8 @@
-ಅವನು-ಇವನು - ಕೆಲಸ
-################
-
-:slug: avanu-ivanu-kelasa
-:author: Aravinda VK
-:date: 2010-10-04
-:tags: ಅವನು-ಇವನು,ಹಾಸ್ಯ,kannadablog
-:summary: ಅವನು: ಏನೋ ಬರ್ತೀಏನೋ?
+---
+title: ಅವನು-ಇವನು - ಕೆಲಸ
+tags: ಅವನು-ಇವನು,ಹಾಸ್ಯ,kannadablog
+summary: "ಅವನು: ಏನೋ ಬರ್ತೀಏನೋ?"
+---
 
 ಹಿಂಗೊಂದು ಕತೆ
 

@@ -1,9 +1,8 @@
-Title: Improving Geo-replication Status
-Slug: improving-georep-status
-Author: Aravinda VK
-Date: 2019-03-28
-Tags: gluster, glusterfsblog
-Summary: Until the above issues are fixed in official Gluster CLI, we can use gluster-georep-status tool
+---
+title: Improving Geo-replication Status
+tags: gluster, glusterfsblog
+summary: Until the above issues are fixed in official Gluster CLI, we can use gluster-georep-status tool
+---
 
 <div class="notice-update">
 This blog was first published on <a href="https://gluster.github.io/devblog/improving-geo-replication-status">Gluster Devblog</a>

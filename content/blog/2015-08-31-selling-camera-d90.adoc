@@ -1,11 +1,8 @@
-Selling My camera Nikon D90
-###########################
-
-:slug: selling-camera-d90
-:author: Aravinda VK
-:date: 2015-08-31
-:tags: camera, nikon, d90
-:summary: Lens is covered with a UV filter from day zero, so no scratches on the lens.
+---
+title: Selling My camera Nikon D90
+tags: camera, nikon, d90
+summary: Lens is covered with a UV filter from day zero, so no scratches on the lens.
+---
 
 I am selling my Nikon D90 Camera. Let me know if anybody interested in buying(Preferably in Bengaluru).
 

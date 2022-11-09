@@ -1,11 +1,8 @@
-gvolinfojson - A utility to convert xml output of gluster volume info to json
-#############################################################################
-
-:slug: gvolinfojson
-:author: Aravinda VK
-:date: 2014-05-13
-:tags: glusterfs,tools,glusterfsblog
-:summary: A utility to convert xml output of gluster volume info to json.
+---
+title: gvolinfojson - A utility to convert xml output of gluster volume info to json
+tags: glusterfs,tools,glusterfsblog
+summary: A utility to convert xml output of gluster volume info to json.
+---
 
 Today I wrote a small utility using `golang <http://golang.org/>`__ to convert xml output of command :code:`gluster volume info` to json.
 

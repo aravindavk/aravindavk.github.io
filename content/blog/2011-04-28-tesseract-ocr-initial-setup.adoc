@@ -1,12 +1,8 @@
-Tesseract OCR initial setup
-###########################
-
-:slug: tesseract-ocr-initial-setup
-:author: Aravinda VK
-:date: 2011-04-28
-:tags: tesseract,OCR,Kannada OCR
-:summary: Tesseract OCR needs to be trained for Kannada and other Indic languages.
-
+---
+title: Tesseract OCR initial setup
+tags: tesseract,OCR,Kannada OCR
+summary: Tesseract OCR needs to be trained for Kannada and other Indic languages.
+---
 
 Tesseract OCR is
 ================

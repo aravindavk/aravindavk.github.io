@@ -1,9 +1,9 @@
-Title: ಇಂಪನ ಮತ್ತು ಮನೆ ಕ್ಲೀನ್
-Slug: impana-house-clean
-Author: Aravinda Vishwanathapura
-Date: 2020-09-25
-Tags: kannada, impana
-Summary: ಇಂಪನಾ.. ನೋಡು ಎಲ್ಲಾ ಕಡೆ ಪೆನ್ಸಿಲ್ ಹರಡಿಟ್ಟಿದೀಯ, ಎಲ್ಲಾ ರೂಮಲ್ಲೂ ಎರಡೆರಡು ಪೆನ್ಸಿಲ್ ಇದೆ ನೋಡು ಎಂದೆ.
+---
+title: ಇಂಪನ ಮತ್ತು ಮನೆ ಕ್ಲೀನ್
+tags: kannada, impana
+summary: ಇಂಪನಾ.. ನೋಡು ಎಲ್ಲಾ ಕಡೆ ಪೆನ್ಸಿಲ್ ಹರಡಿಟ್ಟಿದೀಯ, ಎಲ್ಲಾ ರೂಮಲ್ಲೂ ಎರಡೆರಡು ಪೆನ್ಸಿಲ್ ಇದೆ ನೋಡು ಎಂದೆ.
+---
+
 Image: /images/kai_sontada_mele.jpg
 
 ಒಂದಿನ ಮನೆ ಗುಡಿಸಿ ಕ್ಲೀನ್ ಮಾಡ್ತಿದ್ದೆ. ಎಲ್ಲಾ ಕಡೆ ಇಂಪನ ಕಲರ್ ಪೆನ್ಸಿಲ್ ಹರಡಿಟ್ಟಿದ್ದಳು.

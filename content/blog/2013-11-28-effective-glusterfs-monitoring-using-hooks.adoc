@@ -1,11 +1,8 @@
-Effective GlusterFs monitoring using hooks
-##########################################
-
-:slug: effective-glusterfs-monitoring-using-hooks
-:author: Aravinda VK
-:date: 2013-11-28
-:tags: glusterfs,glusterfsblog
-:summary: Let us imagine we have a GlusterFs monitoring system which displays list of volumes and its state, to show the realtime status, monitoring app need to query the GlusterFs in regular interval to check volume status, new volumes etc. Assume if the polling interval is 5 seconds then monitoring app has to run "gluster volume info command" ~17000 times a day!
+---
+title: Effective GlusterFs monitoring using hooks
+tags: glusterfs,glusterfsblog
+summary: Let us imagine we have a GlusterFs monitoring system which displays list of volumes and its state, to show the realtime status, monitoring app need to query the GlusterFs in regular interval to check volume status, new volumes etc. Assume if the polling interval is 5 seconds then monitoring app has to run "gluster volume info command" ~17000 times a day!
+---
 
 Let us imagine we have a GlusterFs monitoring system which displays list of volumes and its state, to show the realtime status, monitoring app need to query the GlusterFs in regular interval to check volume status, new volumes etc. Assume if the polling interval is 5 seconds then monitoring app has to run :code:`gluster volume info` command ~17000 times a day!
 

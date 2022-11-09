@@ -1,9 +1,8 @@
-Title: Gluster Volume utilization - Multiple approaches
-Slug: gluster-volume-utilization-multiple-approaches
-Author: Aravinda VK
-Date: 2019-09-24
-Tags: gluster, glusterfsblog
-Summary: This blog discusses the multiple approaches available to get the Volume utilization and comparisons between them.
+---
+title: Gluster Volume utilization - Multiple approaches
+tags: gluster, glusterfsblog
+summary: This blog discusses the multiple approaches available to get the Volume utilization and comparisons between them.
+---
 
 <div class="notice-update">
 This blog was first published on <a href="https://gluster.github.io/devblog/gluster-volume-utilization-multiple-approaches">Gluster Devblog</a>

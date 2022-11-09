@@ -1,12 +1,8 @@
-Space Glyph issue in Lohit Kannada Font
-#######################################
-
-:slug: space-glyph-issue-in-lohit-kannada-font
-:author: Aravinda VK
-:date: 2010-01-15
-:tags: kannada,fonts
-:summary: Lohit Kannada is one of the good fonts available for Kannada. But the “space” glyph has very less width, results in less space between the words.
-
+---
+title: Space Glyph issue in Lohit Kannada Font
+tags: kannada,fonts
+summary: Lohit Kannada is one of the good fonts available for Kannada. But the “space” glyph has very less width, results in less space between the words.
+---
 
 Lohit Kannada is one of the good fonts available for Kannada. But the “space” glyph has very less width, results in less space between the words.
 

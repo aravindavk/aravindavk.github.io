@@ -1,11 +1,8 @@
-Firefox OS
-##########
-
-:slug: firefox-os
-:author: Aravinda VK
-:date: 2013-01-25
-:tags: firefoxos,mobile
-:summary: I was impressed by the demo videos and blog posts about Firefox OS and decided to try it on my phone Nexus S
+---
+title: Firefox OS
+tags: firefoxos,mobile
+summary: I was impressed by the demo videos and blog posts about Firefox OS and decided to try it on my phone Nexus S
+---
 
 I was impressed by the demo videos and blog posts about Firefox OS and decided to try it on my phone Nexus S. Searched for Nexus S ROM and found one `here <http://forum.xda-developers.com/showthread.php?t=1924367>`__. (`TODO: Try building latest version of Firefox OS`)
 

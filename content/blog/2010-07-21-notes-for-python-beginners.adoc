@@ -1,11 +1,8 @@
-Notes for Python beginners
-##########################
-
-:slug: notes-for-python-beginners
-:author: Aravinda VK
-:date: 2010-07-21
-:tags: python
-:summary: Notes for Python beginners
+---
+title: Notes for Python beginners
+tags: python
+summary: Notes for Python beginners
+---
 
 Using Python documentation similar to unix man pages
 ====================================================

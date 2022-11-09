@@ -1,10 +1,9 @@
-Title: Last day at Red Hat
-Slug: last-day-at-redhat
-Author: Aravinda VK
-Date: 2019-11-29
-Tags: redhat
-Summary: Last day at Red Hat
-Image: /images/last-day-at-redhat.jpg
+---
+title: Last day at Red Hat
+tags: redhat
+summary: Last day at Red Hat
+image: /images/last-day-at-redhat.jpg
+---
 
 Today is my last day at Red Hat(Bengaluru, India). It was a fantastic
 journey of 7+ years working with Red Hat Storage team and GlusterFS

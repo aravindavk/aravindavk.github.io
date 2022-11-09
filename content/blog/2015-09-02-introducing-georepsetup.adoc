@@ -1,12 +1,9 @@
-Introducing georepsetup - Gluster Geo-replication Setup Tool
-#############################################################
-
-:slug: introducing-georepsetup
-:author: Aravinda VK
-:date: 2015-09-02
-:tags: geo-replication, gluster, glusterfsblog
-:summary: Now setting up Geo-replication is as easy as running one command. Yay!
-:image: /images/georepsetup.png
+---
+title: Introducing georepsetup - Gluster Geo-replication Setup Tool
+tags: geo-replication, gluster, glusterfsblog
+summary: Now setting up Geo-replication is as easy as running one command. Yay!
+image: /images/georepsetup.png
+---
 
 .. raw:: html
 

@@ -1,11 +1,8 @@
-ಟ್ವಿಟ್ಕತೆ - Absent Minded
-#########################
-
-:slug: twitkathe
-:author: Aravinda VK
-:date: 2012-10-11
-:tags: ಕನ್ನಡ,ಕತೆ,kannadablog
-:summary: ಪುಟ್ಟ ಕತೆ, ಟ್ವಿಟ್ಕತೆ :)
+---
+title: ಟ್ವಿಟ್ಕತೆ - Absent Minded
+tags: ಕನ್ನಡ,ಕತೆ,kannadablog
+summary: ಪುಟ್ಟ ಕತೆ, ಟ್ವಿಟ್ಕತೆ :)
+---
 
 "ಹೇ ಪುಟ್ಟಾ ನೀನೇನು ಇಲ್ಲಿ?"
 

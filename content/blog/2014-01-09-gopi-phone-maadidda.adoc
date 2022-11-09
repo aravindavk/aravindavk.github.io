@@ -1,11 +1,8 @@
-ಗೋಪಿ ಫೋನ್ ಮಾಡಿದ್ದ...
-####################
-
-:slug: gopi-phone-maadidda
-:author: Aravinda VK
-:date: 2014-01-09
-:tags: ಕನ್ನಡ,ಕಥೆ,kannadablog
-:summary: ಇವತ್ತು ಅಪರೂಪಕ್ಕೆ ಗೋಪಿ ಫೋನ್ ಮಾಡ್ಬಿಟ್ಟಿದ್ದ...
+---
+title: ಗೋಪಿ ಫೋನ್ ಮಾಡಿದ್ದ...
+tags: ಕನ್ನಡ,ಕಥೆ,kannadablog
+summary: ಇವತ್ತು ಅಪರೂಪಕ್ಕೆ ಗೋಪಿ ಫೋನ್ ಮಾಡ್ಬಿಟ್ಟಿದ್ದ...
+---
 
 ಇವತ್ತು ಅಪರೂಪಕ್ಕೆ ಗೋಪಿ ಫೋನ್ ಮಾಡ್ಬಿಟ್ಟಿದ್ದ...(ಗೋಪಿ ಬಗ್ಗೆ ಗೊತ್ತಿಲ್ಲದಿದ್ದರೆ `ಇದನ್ನ <http://aravindavk.in/blog/alarm/>`__ ಮತ್ತು `ಇದನ್ನ <http://aravindavk.in/blog/matte-banda-gopi/>`__ ಓದಿ)
 

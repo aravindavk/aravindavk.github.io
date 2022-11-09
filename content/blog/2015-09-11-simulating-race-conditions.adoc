@@ -1,12 +1,9 @@
-Simulating Race Conditions
-##########################
-
-:slug: simulating-race-conditions
-:author: Aravinda VK
-:date: 2015-09-11
-:tags: gluster, glusterfsblog
-:summary: To uncover the bugs we need to setup workload and run multiple times since issues may not happen always. But it is tedious to run multiple times with actual data. How about simulating/mocking it?
-:image: /images/rebalance.png
+---
+title: Simulating Race Conditions
+tags: gluster, glusterfsblog
+summary: To uncover the bugs we need to setup workload and run multiple times since issues may not happen always. But it is tedious to run multiple times with actual data. How about simulating/mocking it?
+image: /images/rebalance.png
+---
 
 `Tiering <http://gluster.readthedocs.org/en/release-3.7.0/Features/tier/>`__ feature is introduced in `Gluster 3.7 <http://www.gluster.org/>`__ release. Geo-replication may not perform well with Tiering feature yet. Races can happen since Rebalance moves files from one brick to another brick(hot to cold and cold to hot), but the Changelog/Journal remails in old brick itself. We know there will be problems since each Geo-replication worker(per brick) processes Changelogs belonging to respective brick and sync the data independently. Sync happens as two step operation, Create entry in Slave with the GFID recorded in Changelog, then use Rsync to sync data(using GFID access)
 
