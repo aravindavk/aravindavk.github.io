@@ -13,7 +13,7 @@
 .content .imageblock {
     text-align: center;
 }
-.listingblock .title {
+.listingblock .title, .imageblock .title {
     font-size: 1.2em;
     color: #666666;
     margin-bottom: 0;

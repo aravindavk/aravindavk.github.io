@@ -12,7 +12,5 @@ summary: ಹೇಳಿ ಕೊಟ್ಟಿದ್ದೆಲ್ಲಾ ಹೇಳಲು
 
 ಇಂಪನಂಗೂ ಪಪಪಂಗೂ ಏನು ಲಿಂಕ್ ಅಂತ ಯಾರಿಗಾದ್ರೂ ಗೊತ್ತಿದ್ರೆ ಹೇಳ್ತೀರಾ?
 
-.. figure:: /images/papapa.jpg
-   :alt: Papapa
-
-   ಬ್ಲಾಗ್ ಹಾಕೋಕೂ ಮುಂಚೆ proofread ಮಾಡ್ತಿರೋದು...
+.ಬ್ಲಾಗ್ ಹಾಕೋಕೂ ಮುಂಚೆ proofread ಮಾಡ್ತಿರೋದು...
+image::/images/papapa.jpg[Papapa]

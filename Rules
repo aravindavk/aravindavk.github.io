@@ -22,7 +22,8 @@ compile '/blog/*.adoc' do
            'last-update-label!=', # Do not show last updated label in every page
            'source-highlighter=rouge',
            'showtitle=yes',
-           'stylesheet!='
+           'stylesheet!=',
+           'figure-caption!'
          ]
   layout '/blog.*'
 
@@ -35,7 +36,8 @@ compile '/**/*.adoc' do
            'last-update-label!=', # Do not show last updated label in every page
            'source-highlighter=rouge',
            'showtitle=yes',
-           'stylesheet!='
+           'stylesheet!=',
+           'figure-caption!'
          ]
   layout '/page.*'
 
