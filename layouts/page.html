@@ -8,10 +8,12 @@
                 <figure class="image is-64x64" style="margin: auto">
                     <img class="is-rounded" src="/images/me.jpg">
                 </figure>
-                <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
-                <h1 class="title"><%= @item[:title] %></h1>
+                <p class="has-text-grey mb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+                <% if @item[:title] %>
+                <h1 class="title mb-6"><%= @item[:title] %></h1>
+                <% end %>
             </div>
-            <div class="content py-6">
+            <div class="content">
                 <%= yield %>
             </div>
         </div>

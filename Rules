@@ -10,18 +10,6 @@ compile '/**/*.html' do
   end
 end
 
-# compile '/**/index.adoc' do
-#   filter :asciidoctor, :standalone => false, :attributes => [
-#            'last-update-label!=', # Do not show last updated label in every page
-#            'source-highlighter=rouge',
-#            'showtitle=yes',
-#            'stylesheet!='
-#          ]
-#   layout '/plain.*'
-
-#   write item.identifier.without_ext + ".html"
-# end
-
 route '/blog/*' do
   y, m, d, slug = /([0-9]+)\-([0-9]+)\-([0-9]+)\-([^\/]+)/.match(item.identifier.without_ext).captures
 
@@ -51,7 +39,11 @@ compile '/**/*.adoc' do
          ]
   layout '/page.*'
 
-  write item.identifier.without_ext + '/index.html'
+  if item.identifier =~ '**/index.*'
+    write item.identifier.without_ext + '.html'
+  else
+    write item.identifier.without_ext + '/index.html'
+  end
 end
 
 compile '/**/*' do

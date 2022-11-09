@@ -1,0 +1,52 @@
+---
+title: 
+---
+
+++++
+<div class="has-text-centered mb-6 notification is-info is-light">
+  Co-Founder & CTO at <a href="https://kadalu.tech">Kadalu Technologies</a>,
+  Creator of <a href="https://aravindavk.in/sanka">Sanka</a>,
+  Creator of <a href="https://aravindavk.in/chitra">Chitra</a>,
+  <a href="https://gluster.org">GlusterFS</a> core team member,
+  Maintainer of <a href="https://github.com/kadalu">Kadalu Storage</a>
+</div>
+++++
+
+++++
+<div class="columns is-multiline">
+  <% HOME_PAGE_DETAILS.each do |post| %>
+  <div class="column is-6">
+    <div class="card">
+      <div class="card-content">
+        <div class="content has-text-centered">
+          <p class="has-text-weight-semibold is-size-4 my-1"><%= post[:title] %></p>
+          <img src="<%= post[:image] %>" class="image mb-2" style="margin:auto; height: 50px"/>
+          <p class="has-text-left py-4"><%= post[:summary] %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+++++
+
+++++
+<h2 class="has-text-centered py-4">List of Blog Posts</h2>
+<div class="columns is-multiline">
+  <% sort_blog_posts(@items.find_all('/blog/*')).each do |post| %>
+  <% slug, created_at = slug_and_created_at(post) %>
+  <div class="column is-6">
+    <div class="card">
+      <div class="card-content">
+        <div class="content has-text-centered">
+          <p class="has-text-weight-semibold is-size-4 my-1"><%= post[:title] %></p>
+          <p class="is-size-7 has-text-grey"><%= get_pretty_date(created_at) %> <span class="tag"><%= reading_time(post.compiled_content) %> read</span></p>
+          <p class="has-text-left py-4"><%= post[:summary] %>...</p>
+          <a class="button is-small" href="/blog/<%= slug %>">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+++++

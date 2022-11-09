@@ -1,6 +1,6 @@
 ---
 title: Nanoc
-summary:
+summary: Awesome nanoc
 ---
 
 After a long wait, I finally started generating my website using https://nanoc.app[nanoc].

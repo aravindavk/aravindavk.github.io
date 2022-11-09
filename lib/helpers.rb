@@ -37,3 +37,32 @@ def reading_time(content)
 
   "1 minute"
 end
+
+
+HOME_PAGE_DETAILS = [
+  {
+    :title => "Co-Founder & CTO at Kadalu Technologies",
+    :image => "https://kadalu-tech.github.io/images/logo.svg",
+    :summary => "Kadalu Technologies provides Enterprise support for Kadalu Storage, Consultancy and Gluster feature development services. Visit https://kadalu.tech[kadalu.tech] for more details."
+  },
+  {
+    :title => "Gluster Core Team member",
+    :image => "https://www.gluster.org/wp-content/uploads/2016/03/gluster-ant.png",
+    :summary => "Gluster is a distributed storage solution."
+  },
+  {
+    :title => "Creator of Sanka",
+    :image => "",
+    :summary => "Free and Open Source web application to convert from ASCII to Unicode and Unicode to ASCII."
+  },
+  {
+    :title => "Creator of Chitra",
+    :image => "https://aravindavk.in/chitra/static/logo.png",
+    :summary => ""
+  },
+  {
+    :title => "Maintainer of Kadalu Storage",
+    :image => "https://avatars.githubusercontent.com/u/48346407?s=50&v=4",
+    :summary => "Kadalu Storage is a opinionated Storage solution based on GlusterFS."
+  }
+]

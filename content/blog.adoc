@@ -3,7 +3,7 @@ title: List of Blog Posts
 ---
 
 ++++
-<div class="columns">
+<div class="columns is-multiline">
   <% sort_blog_posts(@items.find_all('/blog/*')).each do |post| %>
   <% slug, created_at = slug_and_created_at(post) %>
   <div class="column is-6">

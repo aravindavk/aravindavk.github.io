@@ -1,3 +1,8 @@
 .content h2 {
     margin-top: 10px;
 }
+
+.home-page-title h4 {
+    margin-top: 2em;
+    color: #666666;
+}
