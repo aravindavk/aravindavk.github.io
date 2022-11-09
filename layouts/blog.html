@@ -5,13 +5,20 @@
     <body>
         <div id="main" class="container is-max-desktop">
             <div class="has-text-centered py-6">
-                <figure class="image is-64x64" style="margin: auto">
-                    <img class="is-rounded" src="/images/me.jpg">
-                </figure>
-                <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+                <a href="/">
+                    <figure class="image is-64x64" style="margin: auto">
+                        <img class="is-rounded" src="/images/me.jpg">
+                    </figure>
+                    <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+                </a>
                 <h1 class="title"><%= @item[:title] %></h1>
                 <div class=""><%= get_pretty_date(created_at) %></div>
                 <div class=""><strong><%= reading_time(item.compiled_content) %></strong> read</div>
+                <div>
+                    <% @item[:tags].split(",").each do |tag| %>
+                    <span class="tag is-info is-light"><%= tag %></span>
+                    <% end %>
+                </div>
             </div>
             <div class="content py-6">
                 <%= yield %>

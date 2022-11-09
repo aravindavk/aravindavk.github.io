@@ -1,6 +1,7 @@
 ---
 title: Nanoc
 summary: Awesome nanoc
+tags: nanoc,website,bulma
 ---
 
 After a long wait, I finally started generating my website using https://nanoc.app[nanoc].
