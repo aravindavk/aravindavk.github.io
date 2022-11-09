@@ -13,7 +13,7 @@ image: /images/thumbs_up.jpg
 
 ಇಂಪನ ಫುಲ್ ಜೋಶ್ ಅಲ್ಲಿ Thumbs up ಮಾಡಿದ್ಲು.
 
-![Impana](/images/thumbs_up.jpg)
+image::/images/thumbs_up.jpg[Impana]
 
 ನಾನು ಮನಸಲ್ಲೇ ಅಂದುಕೊಂಡೆ, "ಸೂಪರ್ ಅಲಾ.. ಇಂಪನ ಇಷ್ಟು ಫಾಸ್ಟ್ ಆಗಿ ಇಂಗ್ಲಿಷ್ ಅಲ್ಲಿ ಹೇಳಿದ್ದನ್ನು ಅರ್ಥ ಮಾಡಿಕೊಂಡಳಾ" ಅಂತ ಇಂಪನನ ಮುಖ ನೋಡಿದೆ.
 

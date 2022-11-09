@@ -9,7 +9,7 @@ image: /images/impana-duppatta.jpg
 
 "ಇಂಪೂ... ನೋಡು ಹಿಂಗೆ ಉದ್ದಕ್ಕೆ ಹಾಕಿಕೊಂಡು ಬರಬಾರದು, ಎಲ್ಲಿಗಾದರೂ ಸಿಕ್ಕಿಹಾಕಿಕೊಂಡರೆ.. ಅಥ್ವಾ ನೀನೇ ತುಳ್ಕೊಂಡ್ರೆ ಅಬ್ಬು ಆಗುತ್ತೆ ಅಲ್ವಾ?"
 
-![Impana Duppatta](/images/impana-duppatta.jpg)
+image::/images/impana-duppatta.jpg[Impana Duppatta]
 
 ಸುಮ್ಮನೆ ಹೂ ಅಂತ ತಲೆ ಅಲ್ಲಾಡಿಸಿದ್ಳು.. ಇನ್ನೂ ಸರಿಯಾಗಿ ಅರ್ಥ ಆಗಿಲ್ಲ ಅನ್ನಿಸ್ತು. ಮತ್ತೆ ಹೇಳಿದೆ..
 

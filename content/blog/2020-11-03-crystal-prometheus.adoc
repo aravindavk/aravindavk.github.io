@@ -4,13 +4,14 @@ tags: amber, crystal, prometheus, crometheus
 summary: In this blog, we will see how to monitor an external application or a log file.
 ---
 
-In the [last blog](https://aravindavk.in/blog/amber-prometheus/) post, we discussed instrumenting [Amber](https://amberframework.org) apps using the [Crometheus](https://github.com/Darwinnn/crometheus) library. In this blog, we will see how to monitor an external application or a log file.
+In the https://aravindavk.in/blog/amber-prometheus/[last blog] post, we discussed instrumenting https://amberframework.org[Amber] apps using the https://github.com/Darwinnn/crometheus[Crometheus] library. In this blog, we will see how to monitor an external application or a log file.
 
 One main difference here is defining various metric types like Counter, Guage, etc.. are not required. But export the sample values when requested.
 
 I created a demo app using the HTTP server example available on the Crystal language home page. In this blog, we will instrument this web app by collecting a few metrics externally.
 
-```crystal
+[source,crystal]
+----
 # file: myapp.cr
 require "http/server"
 
@@ -21,27 +22,30 @@ end
 
 puts "Listening on http://127.0.0.1:8080"
 server.listen(8080)
-```
+----
 
 Build and run the application,
 
-```
+[source]
+----
 $ crystal build myapp.cr
 $ ./myapp
-```
+----
 
 Now let's create an app that collects the CPU, Memory, and uptime details about the app we created initially(or any other app). Create and install the project dependencies using,
 
-```
+[source]
+----
 $ mkdir myapp_exporter
 $ cd myapp_exporter
 $ shards init
 $ mkdir src
 $ touch src/myapp_exporter.cr
 $ shards install
-```
+----
 
-```yaml
+[source,yaml]
+----
 # file: shard.yml
 name: myapp_exporter
 version: 0.1.0
@@ -54,15 +58,17 @@ dependencies:
 targets:
   myapp_exporter:
     main: src/myapp_exporter.cr
-```
+----
 
 The below command provides the CPU, memory, and uptime information about the application.
 
-```
+[source]
+----
 $ ps --no-header -ww -o pcpu,pmem,rsz,vsz,etimes,comm -C myapp
-```
+----
 
-```crystal
+[source,crystal]
+----
 # file: src/myapp_exporter.cr
 require "crometheus"
 
@@ -94,18 +100,20 @@ MyappMetrics.new(:myapp, "CPU, Memory and Uptime metrics")
 
 Crometheus.default_registry.path = "/metrics"
 Crometheus.default_registry.run_server
-```
+----
 
 Build and run,
 
-```
+[source]
+----
 $ shards build
 $ ./bin/myapp_exporter
-```
+----
 
-Now browse [http://localhost:5000/metrics](http://localhost:5000/metrics) to see the metrics related to `myapp`
+Now browse http://localhost:5000/metrics to see the metrics related to `myapp`
 
-```text
+[source]
+----
 # HELP myapp CPU, Memory and Uptime metrics
 # TYPE myapp gauge
 myapp_cpu_percentage{server="server1.example.com"} 0.0
@@ -113,6 +121,6 @@ myapp_memory_percentage{server="server1.example.com"} 0.3
 myapp_resident_memory_bytes{server="server1.example.com"} 6664192.0
 myapp_virtual_memory_bytes{server="server1.example.com"} 48365568.0
 myapp_uptime_seconds{server="server1.example.com"} 1656.0
-```
+----
 
 Add multiple classes to collect more meaningful data. For example, connect to the database and query the table to see the number of users or any other entities.

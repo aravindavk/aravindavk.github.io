@@ -6,3 +6,17 @@
     margin-top: 2em;
     color: #666666;
 }
+
+.content .paragraph, .content .listingblock, .content .quoteblock {
+    margin-bottom:1em;
+}
+.content .imageblock {
+    text-align: center;
+}
+.listingblock .title {
+    font-size: 1.2em;
+    color: #666666;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+}

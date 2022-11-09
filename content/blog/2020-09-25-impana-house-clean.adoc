@@ -2,9 +2,8 @@
 title: ಇಂಪನ ಮತ್ತು ಮನೆ ಕ್ಲೀನ್
 tags: kannada, impana
 summary: ಇಂಪನಾ.. ನೋಡು ಎಲ್ಲಾ ಕಡೆ ಪೆನ್ಸಿಲ್ ಹರಡಿಟ್ಟಿದೀಯ, ಎಲ್ಲಾ ರೂಮಲ್ಲೂ ಎರಡೆರಡು ಪೆನ್ಸಿಲ್ ಇದೆ ನೋಡು ಎಂದೆ.
+image: /images/kai_sontada_mele.jpg
 ---
-
-Image: /images/kai_sontada_mele.jpg
 
 ಒಂದಿನ ಮನೆ ಗುಡಿಸಿ ಕ್ಲೀನ್ ಮಾಡ್ತಿದ್ದೆ. ಎಲ್ಲಾ ಕಡೆ ಇಂಪನ ಕಲರ್ ಪೆನ್ಸಿಲ್ ಹರಡಿಟ್ಟಿದ್ದಳು.
 
@@ -16,7 +15,7 @@ Image: /images/kai_sontada_mele.jpg
 
 "ಎಲ್ಲಾ ರೂಮಲ್ಲೂ ಎರಡೆರಡು ಪೆನ್ಸಿಲ್ ಇದೆ ಅಂದ್ಯಲ್ವಾ.. ಈ ರೂಮಲ್ಲಿ ಎಲ್ಲಿದೆ?" ಅಂತ ಕೇಳಿದ್ಳು ಸೊಂಟದ ಮೇಲೆ ಕೈ ಇಟ್ಟುಕೊಂಡು.
 
-![Impana](/images/kai_sontada_mele.jpg)
+image::/images/kai_sontada_mele.jpg[Impana]
 
 ಎಲ್ಲಾ ರೂಮಲ್ಲೂ ಇದೆ, ಈ ರೂಮಲ್ಲಿ ಒಂದು ಇಟ್ಟಿಲ್ಲ ನೋಡು ಅಂತ ಹೇಳಿ ಕಳುಹಿಸಿದೆ.
 
