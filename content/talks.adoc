@@ -16,3 +16,9 @@ summary: My Talks and Articles
 *Jan 21, 2012* - **ತೆರೆಯ ಮೇಲೆ ಸುಂದರ ಅಕ್ಷರಗಳು** Talk about Kannada Fonts and Tools(https://github.com/aravindavk/talks/tree/master/hejje[link]) in the event http://hejje.sanchaya.net[Hejje]
 
 *Nov 07, 2012* - **Rethinking Font development workflow** Lightning Talk(https://github.com/aravindavk/talks/tree/master/LanguageSummitPune[link]) at https://www.mediawiki.org/wiki/Pune_LanguageSummit_November_2012[Language Summit Pune]
+
+*Sep 15, 2021* - **Achieving High availability for Stateful Workloads on Kubernetes**(https://www.aritha.com/achieving-high-availability-for-stateful-workloads-on-kubernetes/[link1], https://www.youtube.com/watch?v=oJQbQyetZag[link2])
+
+++++
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oJQbQyetZag" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+++++
