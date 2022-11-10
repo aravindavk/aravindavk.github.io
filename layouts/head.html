@@ -20,17 +20,19 @@
     <meta property="og:description" content="<%= @item[:summary] %>"/>
     <link rel="canonical" href="<%= @item.path %>"/>
     <meta property="og:url" content="<%= @item.path %>"/>
-    <meta property="og:site_name" content="Kadalu"/>
-    <meta property="og:image" content="<%= @item[:image] %>"/>
+    <meta property="og:site_name" content="Aravinda Vishwanathapura"/>
     <meta property="og:type" content="article"/>
     <meta property="article:published_time" content="<%= created_at %>"/>
     <% if @item[:image] && @item[:image] != "" %>
     <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:image" content="<%= @item[:image] %>"/>
+    <meta name="twitter:image" content="https://aravindavk.in<%= @item[:image] %>"/>
+    <meta property="og:image" content="https://aravindavk.in<%= @item[:image] %>"/>
     <% else %>
     <meta name="twitter:card" content="summary"/>
+    <meta property="og:image" content="https://aravindavk.in/images/me.jpg"/>
+    <meta name="twitter:image" content="https://aravindavk.in/images/me.jpg"/>
     <% end %>
-    <meta name="twitter:site" content="https://kadalu.tech"/>
+    <meta name="twitter:site" content="https://aravindavk.in"/>
     <meta name="twitter:title" content="<%= @item[:title] %>"/>
     <meta name="twitter:description" content="<%= @item[:summary] %>"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
