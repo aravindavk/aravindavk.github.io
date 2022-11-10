@@ -4,9 +4,9 @@ tags: glusterfs,tools,glusterfsblog
 summary: A utility to convert xml output of gluster volume info to json.
 ---
 
-Today I wrote a small utility using `golang <http://golang.org/>`__ to convert xml output of command `gluster volume info` to json.
+Today I wrote a small utility using http://golang.org/[Golang] to convert xml output of command `gluster volume info` to json.
 
-Download the binary from `here <https://github.com/aravindavk/gvolinfojson/releases/download/1.0/gvolinfojson>`__ and copy to /usr/local/bin directory(or any other directory, which is available in PATH).
+Download the binary from https://github.com/aravindavk/gvolinfojson/releases/download/1.0/gvolinfojson[here] and copy to /usr/local/bin directory(or any other directory, which is available in PATH).
 
 [source,text]
 ----
@@ -38,6 +38,6 @@ Thats it, you will get the json output of volume info command. If you need prett
 sudo gluster volume info --xml | gvolinfojson --pretty
 ----
 
-Source code is available `here <https://github.com/aravindavk/gvolinfojson>`__.
+Source code is available https://github.com/aravindavk/gvolinfojson[here].
 
 C & S Welcome.

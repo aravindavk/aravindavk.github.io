@@ -85,7 +85,7 @@ for i in sys.modules:
 Books/documentation
 ===================
 
-1. `Dive into Python <http://diveintopython.org>`__ and `Dive into Python3 <http://diveintopython3.org/>`__
-2. `Byte of Python <http://www.swaroopch.com/notes/Python>`__
-3. `Python documentation <http://docs.python.org/>`__
-4. `Python for beginners <http://wiki.python.org/moin/BeginnersGuide>`__
+1. http://diveintopython.org[Dive into Python] and http://diveintopython3.org/[Dive into Python3]
+2. http://www.swaroopch.com/notes/Python[Byte of Python]
+3. http://docs.python.org/[Python documentation]
+4. http://wiki.python.org/moin/BeginnersGuide[Python for beginners]

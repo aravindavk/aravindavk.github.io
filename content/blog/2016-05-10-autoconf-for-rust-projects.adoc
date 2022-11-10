@@ -4,12 +4,12 @@ tags: rust, autoconf
 summary: In this blog we will discuss about using Autoconf for Rust projects along with Cargo.
 ---
 
-Cargo is an awesome tool for managing `Rust <http://rust-lang.org>`__
+Cargo is an awesome tool for managing http://rust-lang.org[Rust]
 projects, it takes care of all the Rust dependencies. But to package
 and distribute the generated files specific to target distribution is
 very difficult. For example, if the generated binary to be used by
-sudo user then we need to copy that to ``/usr/sbin`` directory instead
-of ``/usr/bin`` (sbin path may change for example ``/usr/local/sbin`` ). 
+sudo user then we need to copy that to `/usr/sbin` directory instead
+of `/usr/bin` (sbin path may change for example `/usr/local/sbin` ). 
 
 In this blog we will discuss about using Autoconf for Rust projects
 along with Cargo.
@@ -18,14 +18,14 @@ along with Cargo.
 Example: Simple Web server and a systemd service file
 -----------------------------------------------------
 
-Create a new project called ``myservice`` using,
+Create a new project called `myservice` using,
 
 [source,bash]
 ----
 cargo new myservice --bin
 ----
 
-Update ``Cargo.toml`` with required Rust dependencies and other details.
+Update `Cargo.toml` with required Rust dependencies and other details.
 
 [source,ini]
 ----
@@ -38,7 +38,7 @@ authors = ["NAME <EMAIL>"]
 iron = "*"
 ----
 
-and add the following example code in ``src/main.rs`` (Copied from http://ironframework.io)
+and add the following example code in `src/main.rs` (Copied from http://ironframework.io)
 
 [source,rust]
 ----
@@ -60,7 +60,7 @@ fn main() {
 Create a systemd unit file with the following content, we need Path of
 bin to add it to service file. We will take help of Autoconf to
 dynamically generate systemd unit file. Create a systemd unit file as
-``myserviced.service.in`` (Note the @SBINDIR@ autoconf variable)
+`myserviced.service.in` (Note the @SBINDIR@ autoconf variable)
 
 [source,ini]
 ----
@@ -77,11 +77,11 @@ ExecReload=/bin/kill -SIGUSR2 $MAINPID
 WantedBy=multi-user.target
 ----
 
-If we use ``@sbindir@`` then it will not expand completely, introduce
-a new variable ``SBINDIR`` in ``configure.ac`` which will expand
+If we use `@sbindir@` then it will not expand completely, introduce
+a new variable `SBINDIR` in `configure.ac` which will expand
 completely with default path.
 
-Now we will create ``configure.ac`` file
+Now we will create `configure.ac` file
 
 [source,bash]
 ----
@@ -115,7 +115,7 @@ AC_CONFIG_FILES([Makefile
 AC_OUTPUT
 ----
 
-and ``Makefile.in`` file
+and `Makefile.in` file
 
 [source,bash]
 ----
@@ -162,8 +162,8 @@ $myservice/
     - myservice.service.in
 ----
 
-Run ``autoconf`` to generate ``configure`` file from ``configure.ac``
-file. Then run ``./configure``, it will generate following files
+Run `autoconf` to generate `configure` file from `configure.ac`
+file. Then run `./configure`, it will generate following files
 
 [source,text]
 ----
@@ -171,7 +171,7 @@ Makefile.in => Makefile
 myserviced.service.in => myserviced.service
 myservice.spec.in => myservice.spec
 ----
-Steps to install ``myservice`` (Source installation),
+Steps to install `myservice` (Source installation),
 
 [source,bash]
 ----
@@ -184,11 +184,11 @@ make install will run cargo build --release, and copies generated
 binary to /usr/local/sbin and systemd service file to
 /usr/lib/systemd/system
 
-Binary can be installed to /usr/sbin by passing ``--prefix=/usr`` or
-``--sbindir=/usr/sbin`` to configure(For example,
-``./configure --prefix=/usr`` )
+Binary can be installed to /usr/sbin by passing `--prefix=/usr` or
+`--sbindir=/usr/sbin` to configure(For example,
+`./configure --prefix=/usr` )
 
-``myservice`` can now be enabled using,
+`myservice` can now be enabled using,
 
 [source,bash]
 ----
@@ -198,7 +198,7 @@ sudo systemctl start myserviced
 
 Bonus: Generate RPM for your package
 -------------------------------------
-Sample RPM spec file is available in the `repo <https://github.com/aravinda/rust_autoconf/myservice.spec.in>`__
+Sample RPM spec file is available in the https://github.com/aravinda/rust_autoconf/myservice.spec.in[repo]
 
 [source,bash]
 ----
@@ -207,7 +207,7 @@ autoconf
 make rpm
 ----
 
-Generated RPM will be available in ``$HOME/rpmbuild/RPMS/x86_64/``
+Generated RPM will be available in `$HOME/rpmbuild/RPMS/x86_64/`
 
 [source,bash]
 ----

@@ -4,7 +4,7 @@ tags: ಕನ್ನಡ,kannada,fonts
 summary: For most use cases glyph names doesn't matter, it is font developers choice to give different names to the glyphs and write font rules according to their glyph names
 ---
 
-During `#languageSummitPune <http://www.mediawiki.org/wiki/Language_portal/Pune_LanguageSummit_November_2013>`__, `Pravin <http://pravin-s.blogspot.in/>`__ explained about glyph naming specification by adobe and its benifits. 
+During http://www.mediawiki.org/wiki/Language_portal/Pune_LanguageSummit_November_2013[#languageSummitPune], http://pravin-s.blogspot.in/[Pravin] explained about glyph naming specification by adobe and its benifits. 
 
 Glyph is a entity inside font which holds the co-ordinates information about a shape(letter). For most use cases glyph names doesn't matter, it is font developers choice to give different names to the glyphs and write font rules according to their glyph names. Rendering engine always deals with Unicode values and font returns respective glyphs to display based on the rules and glyphs inside font.
 
@@ -14,9 +14,9 @@ PDF. pdf displays unicode chars even though no rendering support present in the 
 
 When user types some phrase to find inside pdf, pdf readers will try to convert unicode value of input phrase into glyph sequence and looks inside pdf for that sequence. If each font uses its own glyph names it not possible to reverse lookup by pdf reader and text search fails.
 
-`Adobe Glyph specification <http://sourceforge.net/adobe/aglfn/wiki/AGL%20Specification/>`__ suggests to name the glyph as unicode value with `uni` prefix. For example Unicode value of Kannada letter `ಅ` is `U+0C85`, so we have to name the glyph `ಅ` as `uni0C85`. 
+http://sourceforge.net/adobe/aglfn/wiki/AGL%20Specification/[Adobe Glyph specification] suggests to name the glyph as unicode value with `uni` prefix. For example Unicode value of Kannada letter `ಅ` is `U+0C85`, so we have to name the glyph `ಅ` as `uni0C85`. 
 
-Some font developers prefer to name the glyphs as some human readable name instead of code name(like `avowelknd`, `kaknd` etc). Human readable names may help at the time of adding rules, but their are other problems associated with it. If we use our own naming in the font then we should take care adding those names in `glyphlist.txt <http://sourceforge.net/adobe/aglfn/wiki/Home/>`__. We will endup introducing one more naming standard for each language, also untill all pdf reader software picks up the updated glyphlist, new names will not be used in pdf search. Another important problem is that all fonts developer will not agree to use the glyph naming proposed by one font developer. (For example one can propose language name as prefix and other can say language name as suffix, `kaknd` or `kndka` or `knka`)
+Some font developers prefer to name the glyphs as some human readable name instead of code name(like `avowelknd`, `kaknd` etc). Human readable names may help at the time of adding rules, but their are other problems associated with it. If we use our own naming in the font then we should take care adding those names in http://sourceforge.net/adobe/aglfn/wiki/Home/[glyphlist.txt]. We will endup introducing one more naming standard for each language, also untill all pdf reader software picks up the updated glyphlist, new names will not be used in pdf search. Another important problem is that all fonts developer will not agree to use the glyph naming proposed by one font developer. (For example one can propose language name as prefix and other can say language name as suffix, `kaknd` or `kndka` or `knka`)
 
 Glyph name - Ligature
 =====================
@@ -63,7 +63,7 @@ Glyph names validator:
 ======================
 I created a tool using python to validate the glyph names, which accepts two parameters a font file and a text file with possible letters/words. It uses `hb-shape` to get the glyphs list from the input text file, and generates required glyphs list and compares between them.
 
-Download the python script from `here <https://raw.github.com/aravindavk/fontscripts/master/validate_glyphnames.py>`__
+Download the python script from https://raw.github.com/aravindavk/fontscripts/master/validate_glyphnames.py[here]
 
 [source,bash]
 ----

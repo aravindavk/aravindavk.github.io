@@ -62,12 +62,12 @@ will be converted to
 <p><a href="http://localhost">Link</a></p>
 ----
     
-Click `here <http://daringfireball.net/projects/markdown/>`__ for more details about markdown. 
+Click http://daringfireball.net/projects/markdown/[here] for more details about markdown. 
     
 Markdown PHP
 ============
     
-PHP implementation of markdown is available `here <http://michelf.com/projects/php-markdown/>`__. We can store the content in database in the markdown format itself, While displaying to user we can convert to HTML using the Markdown PHP library. 
+PHP implementation of markdown is available http://michelf.com/projects/php-markdown/[here]. We can store the content in database in the markdown format itself, While displaying to user we can convert to HTML using the Markdown PHP library. 
 
 [source,php]
 ----
@@ -89,7 +89,7 @@ User can use any editors which highlights the markdown syntax(I use Emacs) or an
 SHJS - Syntax highlighter using JS
 ==================================
 
-It will be good if we able to highlight the code inside pre element, I found a Javascript utility SHJS(Syntax Highlighter with JavaScript), which has very good features and multiple themes support. Read the documentation about SHJS `here <http://shjs.sourceforge.net/>`__. 
+It will be good if we able to highlight the code inside pre element, I found a Javascript utility SHJS(Syntax Highlighter with JavaScript), which has very good features and multiple themes support. Read the documentation about SHJS http://shjs.sourceforge.net/[here]. 
 
 SHJS library requires class to be defined in pre tag like `<pre class="sh_php">` for PHP code, but it is not possible to add class in markdown syntax, so we will write an PHP function to add the class to each pre element. We need to add `#!sh_php` (php is used as example, that will change depending on the language) in the markdown text whereever highlighting is required. 
 

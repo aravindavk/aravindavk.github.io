@@ -4,7 +4,7 @@ tags: ಕನ್ನಡ,ಕಥೆ,kannadablog
 summary: ಇವತ್ತು ಅಪರೂಪಕ್ಕೆ ಗೋಪಿ ಫೋನ್ ಮಾಡ್ಬಿಟ್ಟಿದ್ದ...
 ---
 
-ಇವತ್ತು ಅಪರೂಪಕ್ಕೆ ಗೋಪಿ ಫೋನ್ ಮಾಡ್ಬಿಟ್ಟಿದ್ದ...(ಗೋಪಿ ಬಗ್ಗೆ ಗೊತ್ತಿಲ್ಲದಿದ್ದರೆ `ಇದನ್ನ <http://aravindavk.in/blog/alarm/>`__ ಮತ್ತು `ಇದನ್ನ <http://aravindavk.in/blog/matte-banda-gopi/>`__ ಓದಿ)
+ಇವತ್ತು ಅಪರೂಪಕ್ಕೆ ಗೋಪಿ ಫೋನ್ ಮಾಡ್ಬಿಟ್ಟಿದ್ದ...(ಗೋಪಿ ಬಗ್ಗೆ ಗೊತ್ತಿಲ್ಲದಿದ್ದರೆ http://aravindavk.in/blog/alarm/[ಇದನ್ನ] ಮತ್ತು http://aravindavk.in/blog/matte-banda-gopi/[ಇದನ್ನ] ಓದಿ)
 
 "ಏನಾ ಗೋಪಿ ಏನ್ಸಮಾಚಾರ? ಫೋನ್ ಮಾಡ್ಬಿಟ್ಟಿದೀಯಾ?"
 

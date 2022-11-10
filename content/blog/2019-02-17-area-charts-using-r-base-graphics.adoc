@@ -4,9 +4,8 @@ tags: R, area-graph
 summary: Today I learnt to create Area graph using R Base graphics. polygon function (help(polygon)) can be used to fill the area under the line.
 ---
 
-Today I learnt to create `Area chart
-<https://en.wikipedia.org/wiki/Area_chart>`__ using R Base
-graphics. ``polygon`` function (``help(polygon)``) can be used to fill
+Today I learnt to create https://en.wikipedia.org/wiki/Area_chart[Area chart] using R Base
+graphics. `polygon` function (`help(polygon)`) can be used to fill
 the area under the line.
 
 Lets pick a simple data set from my website - Number of blog posts

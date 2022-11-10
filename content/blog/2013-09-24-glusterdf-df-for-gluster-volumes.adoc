@@ -4,7 +4,7 @@ tags: glusterfs,tools,glusterfsblog
 summary: A CLI utility to check the disk usage of glusterfs volumes
 ---
 
-A CLI utility to check the disk usage of `glusterfs <http://gluster.org/>`__ volumes. Using `df` command we can view the disk usage of only mounted glusterfs volumes. This utility takes care of mounting gluster volumes available in the machine where this command is executed. glusterdf uses `libgfapi <https://github.com/gluster/glusterfs/tree/master/api>`__ provided by glusterfs to fetch the statvfs information.
+A CLI utility to check the disk usage of http://gluster.org/[Gluster] volumes. Using `df` command we can view the disk usage of only mounted glusterfs volumes. This utility takes care of mounting gluster volumes available in the machine where this command is executed. glusterdf uses https://github.com/gluster/glusterfs/tree/master/api[libgfapi] provided by glusterfs to fetch the statvfs information.
 
 Installation is very simple,
 
@@ -15,7 +15,7 @@ cd glusterfs-tools
 sudo python setup.py install
 ----
 
-You can also clone this project from `forge.gluster.org/glusterfs-tools <https://forge.gluster.org/glusterfs-tools>`__
+You can also clone this project from https://forge.gluster.org/glusterfs-tools
 
 Once installed, two tools will be available `glustervolumes` and `glusterdf`.
 
@@ -41,7 +41,7 @@ image::/images/glusterfs/glusterdf_json.png[sudo glusterdf --status up --type re
 .sudo glusterdf --help
 image::/images/glusterfs/glusterdf-help.png[glusterdf --help]
 
-In my previous blog(`this <http://aravindavk.in/blog/glusterfs-tools/>`__) I wrote about gfvolumes(now it is `glustervolumes`). glusterfs-tools is rewritten as python library which can be used with your Python programs.
+In my previous blog(http://aravindavk.in/blog/glusterfs-tools/[this]) I wrote about gfvolumes(now it is `glustervolumes`). glusterfs-tools is rewritten as python library which can be used with your Python programs.
 
 For example 
 
@@ -65,7 +65,7 @@ vols = volumes.search({"status": "down", "volumewithbricks": "/gfs"})
 print (volumes.filters())
 ----    
 
-volumes.search accepts filters as parameter, extending volume filters is very simple. For example name filter looks like this(`src/glusterfstools/volumefilters.py <https://github.com/aravindavk/glusterfs-tools/blob/master/src/glusterfstools/volumefilters.py>`__)
+volumes.search accepts filters as parameter, extending volume filters is very simple. For example name filter looks like this(https://github.com/aravindavk/glusterfs-tools/blob/master/src/glusterfstools/volumefilters.py[src/glusterfstools/volumefilters.py])
 
 [source,python]
 ----

@@ -6,9 +6,7 @@ summary: Geo-replication is aware of Gluster Sharding feature and taking the adv
 
 Gluster introduced sharding feature to store large files(which can
 grow beyond a single brick) or to support running Virtual machines in
-Gluster Volumes. Read more about sharding `here
-<http://blog.gluster.org/2015/12/introducing-shard-translator/>`__ and
-`here <http://blog.gluster.org/2015/12/sharding-what-next-2/>`__.
+Gluster Volumes. Read more about sharding http://blog.gluster.org/2015/12/introducing-shard-translator/[here] and http://blog.gluster.org/2015/12/sharding-what-next-2/[here].
 
 How to backup VM images?
 ------------------------
@@ -20,7 +18,7 @@ advantage of syncing small sharded files instead of big qcow2 image
 files. But is the data consistent? In this blog we will understand how
 to backup VM images to DR site consistently.
 
-Read `here <http://hrkscribbles.blogspot.in/2016/02/gluster-geo-replication-with-sharding.html>`__ to know more about Geo-replication support for sharding.
+Read http://hrkscribbles.blogspot.in/2016/02/gluster-geo-replication-with-sharding.html[here] to know more about Geo-replication support for sharding.
 
 Setup:
 ------
@@ -64,8 +62,8 @@ Set the checkpoint and automatically stops Geo-replication once
 checkpoint is reached.(This utility will be available with
 `glusterfs-3.7.9` release.)
 
-Run ``/usr/share/glusterfs/scripts/schedule_georep.py --help`` for more
-details about the script.(``/usr/local/share/`` in case of source install)
+Run `/usr/share/glusterfs/scripts/schedule_georep.py --help` for more
+details about the script.(`/usr/local/share/` in case of source install)
 
 Psudeo code:
 
@@ -77,7 +75,7 @@ For each images, take qcow2 snapshot
 Run schedule_georep script
 ----
 
-Once the scheduler script completes, check the ``qemu-img info`` in Slave
+Once the scheduler script completes, check the `qemu-img info` in Slave
 and confirm that Geo-rep synced everything from master Volume
 including Snapshots created.
 
@@ -110,7 +108,7 @@ Using External Qcow2 snapshot
 -----------------------------
 Once we take external snapshot, qcow2 image will become read only base
 image and snapshot file will become overlay(Read more about backing
-chain and overlay `here <https://kashyapc.fedorapeople.org/virt/lc-2012/snapshots-handout.html>`__).
+chain and overlay https://kashyapc.fedorapeople.org/virt/lc-2012/snapshots-handout.html[here]).
 
 New changes will be recorded in the overlay instead of base image,
 Since base image is frozen Geo-rep will sync the consistent image to

@@ -4,12 +4,12 @@ tags: gluster, glusterfsblog, glusterd2
 summary: Glusterd2 also provides facility to set default Volume options when a Volume is created. Each Volume type can have its own default Volume options to be enabled by default.
 ---
 
-Volfiles are the configuration files used by `Gluster <https://www.gluster.org/>`__
+Volfiles are the configuration files used by https://www.gluster.org/[Gluster]
 processes. Volfile contains the details about the list of Xlators to
 be loaded in a glusterfs process and options for each of those
 xlators.
 
-`Glusterd2 <https://github.com/gluster/glusterd2>`__ adds flexibility to
+https://github.com/gluster/glusterd2[Glusterd2] adds flexibility to
 the Volfiles generation process by adding template support.
 
 .Template based Volfile generation
@@ -21,12 +21,12 @@ With Template based Volgen,
   brick, glustershd etc.)
 - Default enabled or disabled state of each Xlator can be
   customized. **Note**: To enable an Xlator using the Volume Set that
-  needs to be included in the template with ``disabled=true``.
+  needs to be included in the template with `disabled=true`.
 - By default, if an Xlator is disabled, then that xlator will not be
   included in the Volfile. If some xlator are expected to always
   present in volfile but enabled state is decided based on an xlator
   option, then that can be specified using
-  ``enable-by-option=true``. For example, ``features/changelog``
+  `enable-by-option=true`. For example, `features/changelog`
 
 [source,text]
 ----
@@ -47,13 +47,13 @@ With Template based Volgen,
 
 Glusterd2 generates the default template on its first start, generated
 template is saved in
-``/var/lib/glusterd2/templates/defaults.json``. Any new changes made
+`/var/lib/glusterd2/templates/defaults.json`. Any new changes made
 to the template will be applied only on glusterd2 restart.
 
 Default template can be modified by changing the Go
-code(``$SRC/glusterd2/volgen/defaults.go``) if the change is
+code(`$SRC/glusterd2/volgen/defaults.go`) if the change is
 applicable for most use cases or modifying the JSON
-template(``/var/lib/glusterd2/templates/defaults.json``) on disk and
+template(`/var/lib/glusterd2/templates/defaults.json`) on disk and
 restarting the Glusterd2.
 
 **Note**: All New Volumes will get the volfiles using the modified
@@ -68,22 +68,22 @@ distributed replicate) volume is created, then
 customized similar to volfile templates customization.
 
 Default template can be modified by changing the Go
-code(``$SRC/glusterd2/commands/volumes/grouped-options.go``) or
+code(`$SRC/glusterd2/commands/volumes/grouped-options.go`) or
 modifying JSON profile
-file(``/var/lib/glusterd2/templates/profiles.json``) and restarting
+file(`/var/lib/glusterd2/templates/profiles.json`) and restarting
 Glusterd2.
 
 Volume options will be applied in the following order while generating
 the Volfile,
 
-- Xlator default options directly from Option table in Xlator ``*.so``
+- Xlator default options directly from Option table in Xlator `*.so`
   files.
 - Xlator options from the template
 - Options from Volume info(This includes default profile options set
   during Volume create and options set using Volume set)
 
 Volume options can be set for a specific Volfile or for all volfiles
-which use that xlator. For example, ``debug/io-stats`` xlator is used
+which use that xlator. For example, `debug/io-stats` xlator is used
 in almost all volfiles. If we set log-level to debug as below, then it
 will be added to all Volfiles(Client, brick, glustershd etc).
 

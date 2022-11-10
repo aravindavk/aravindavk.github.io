@@ -5,7 +5,7 @@ summary: To uncover the bugs we need to setup workload and run multiple times si
 image: /images/rebalance.png
 ---
 
-`Tiering <http://gluster.readthedocs.org/en/release-3.7.0/Features/tier/>`__ feature is introduced in `Gluster 3.7 <http://www.gluster.org/>`__ release. Geo-replication may not perform well with Tiering feature yet. Races can happen since Rebalance moves files from one brick to another brick(hot to cold and cold to hot), but the Changelog/Journal remails in old brick itself. We know there will be problems since each Geo-replication worker(per brick) processes Changelogs belonging to respective brick and sync the data independently. Sync happens as two step operation, Create entry in Slave with the GFID recorded in Changelog, then use Rsync to sync data(using GFID access)
+http://gluster.readthedocs.org/en/release-3.7.0/Features/tier/[Tiering]_ feature is introduced in http://www.gluster.org/[Gluster 3.7] release. Geo-replication may not perform well with Tiering feature yet. Races can happen since Rebalance moves files from one brick to another brick(hot to cold and cold to hot), but the Changelog/Journal remails in old brick itself. We know there will be problems since each Geo-replication worker(per brick) processes Changelogs belonging to respective brick and sync the data independently. Sync happens as two step operation, Create entry in Slave with the GFID recorded in Changelog, then use Rsync to sync data(using GFID access)
 
 To uncover the bugs we need to setup workload and run multiple times since issues may not happen always. But it is tedious to run multiple times with actual data. How about simulating/mocking it?
 
@@ -103,7 +103,7 @@ While mixing b2 in b1, for first element in b2 we can randomly choose a position
 
 Now, to insert "G", we should randomly choose anywhere after "F". Once we get the sequence, mock the FOPs and compare with expected values.
 
-I added a `gist <https://gist.github.com/aravindavk/193eda60b6049ad025f4>`__ for testing following workload, it generates multiple sequences for testing.
+I added a https://gist.github.com/aravindavk/193eda60b6049ad025f4[gist] for testing following workload, it generates multiple sequences for testing.
 
 [source,text]
 ----

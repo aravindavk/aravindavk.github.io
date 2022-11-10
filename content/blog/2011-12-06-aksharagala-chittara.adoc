@@ -4,7 +4,7 @@ tags: inkscape,hyphenation,kannada,art,kannadablog
 summary: InkScape ತಂತ್ರಾಂಶ ಉಪಯೋಗಿಸಿ ಮಾಡಿದ ಚಿತ್ತಾರಗಳಿವು.
 ---
 
-InkScape ತಂತ್ರಾಂಶ ಉಪಯೋಗಿಸಿ ಮಾಡಿದ ಚಿತ್ತಾರಗಳಿವು. ಇದನ್ನು ಮಾಡಲು ಅವಶ್ಯವಿದ್ದ `hyphenationಗೆ <http://en.wikipedia.org/wiki/Hyphen>`__ ಸಹಾಯ ಮಾಡಿದ್ದು `ಸಂತೋಷ್‍ರವರು <http://thottingal.in>`__ ಇಂಕ್‍ಸ್ಕೇಪ್‍ಗೆ ಬರೆದ ಪ್ಲಗ್ ಇನ್. ಅವರು ಬರೆದಿರುವ ಪ್ಲಗ್ ಇನ್ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗಾಗಿ `ಇಲ್ಲಿ <http://thottingal.in/blog/2009/10/03/inkscape-hyphenation-extension/>`__ ನೋಡಿ.
+InkScape ತಂತ್ರಾಂಶ ಉಪಯೋಗಿಸಿ ಮಾಡಿದ ಚಿತ್ತಾರಗಳಿವು. ಇದನ್ನು ಮಾಡಲು ಅವಶ್ಯವಿದ್ದ http://en.wikipedia.org/wiki/Hyphen[hyphenationಗೆ] ಸಹಾಯ ಮಾಡಿದ್ದು http://thottingal.in[ಸಂತೋಷ್‍ರವರು] ಇಂಕ್‍ಸ್ಕೇಪ್‍ಗೆ ಬರೆದ ಪ್ಲಗ್ ಇನ್. ಅವರು ಬರೆದಿರುವ ಪ್ಲಗ್ ಇನ್ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗಾಗಿ http://thottingal.in/blog/2009/10/03/inkscape-hyphenation-extension/[ಇಲ್ಲಿ] ನೋಡಿ.
 
 .ಅಕ್ಷರದೊಳಗೆ ಅಕ್ಷರಗಳು :)
 image::/images/text-art-ka/m.png[ಕ]

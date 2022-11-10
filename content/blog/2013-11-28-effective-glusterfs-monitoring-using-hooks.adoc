@@ -59,7 +59,7 @@ Experimental project - GlusterWeb
 
 This experimental project maintains a sqlite database `/var/lib/glusterd/nodestate/glusternodestate.db` which gets updated after any GlusterFs event. For example if a GlusterFs volume is created then it updates volumes table and also bricks table.
 
-This project depends on `glusterfs-tools <https://github.com/aravindavk/glusterfs-tools>`__ so install both projects.
+This project depends on https://github.com/aravindavk/glusterfs-tools[glusterfs-tools] so install both projects.
 
 [source,bash]
 ----

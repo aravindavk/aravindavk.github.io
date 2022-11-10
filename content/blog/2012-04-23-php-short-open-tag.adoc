@@ -17,7 +17,7 @@ Many PHP programmers use short open tag `<?` instead of `<?php`. It saves time(r
 </scripting>
 ----
 
-**Note**: foreach loop in above example uses PHP's alternate syntax for foreach loop. You can read more about alternate syntax `here <http://php.net/manual/en/control-structures.alternative-syntax.php>`__.
+**Note**: foreach loop in above example uses PHP's alternate syntax for foreach loop. You can read more about alternate syntax http://php.net/manual/en/control-structures.alternative-syntax.php[here].
 
 If short_open_tag is disabled in ini file, then modify the above script by adding `<?php` instead of `<?` and `<?php echo ` instead of `<?=`, then it will run successfully without any issues.
 
@@ -62,5 +62,5 @@ Following example shows the use of this shortcut and PHP alternate syntax for co
 
 **References:**
 
-1. `PHP short_open_tag <http://www.php.net/manual/en/ini.core.php#ini.short-open-tag>`__
-2. `Alternative syntax for control structures <http://php.net/manual/en/control-structures.alternative-syntax.php>`__
+1. http://www.php.net/manual/en/ini.core.php#ini.short-open-tag[PHP short_open_tag]
+2. http://php.net/manual/en/control-structures.alternative-syntax.php[Alternative syntax for control structures]

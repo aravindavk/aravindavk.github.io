@@ -17,7 +17,7 @@ image::/images/penguin.jpg[All poses]
 
 image::/images/penguin-with-debian.jpg[Penguin with Debian]
 
-ಪೆಂಗ್ವಿನ್ ಹುಚ್ಚು ನಮ್ಮ ಗುಂಪಲ್ಲಿ ಮತ್ಯಾರಿಗಿದೆ ಅಂತ ಹುಡುಕುತ್ತಾ ಹೋದೆ, ಪೆಂಗ್ವಿನ್ ಸಂಸಾರನೇ ಸಿಗ್ತಾ ಹೋಯ್ತು. :) `ಶಶಿ <http://manku.thimma.org/>`__ ಅಂತೂ ಮೈಸೂರಿನ ತಮ್ಮ ಆಫೀಸಿನಲ್ಲಿ ಆನೆಯ ಮೇಲೆ ಪೆಂಗ್ವಿನ್ ಗೆ ಸವಾರಿ ಮಾಡಿಸಿದ್ದರು.
+ಪೆಂಗ್ವಿನ್ ಹುಚ್ಚು ನಮ್ಮ ಗುಂಪಲ್ಲಿ ಮತ್ಯಾರಿಗಿದೆ ಅಂತ ಹುಡುಕುತ್ತಾ ಹೋದೆ, ಪೆಂಗ್ವಿನ್ ಸಂಸಾರನೇ ಸಿಗ್ತಾ ಹೋಯ್ತು. :) http://manku.thimma.org/[ಶಶಿ] ಅಂತೂ ಮೈಸೂರಿನ ತಮ್ಮ ಆಫೀಸಿನಲ್ಲಿ ಆನೆಯ ಮೇಲೆ ಪೆಂಗ್ವಿನ್ ಗೆ ಸವಾರಿ ಮಾಡಿಸಿದ್ದರು.
 
 image::/images/penguin-in-shashi-office.jpg[Penguin in Shashi office]
 
@@ -25,9 +25,9 @@ image::/images/penguin-in-shashi-office.jpg[Penguin in Shashi office]
 
 image::/images/penguin-in-raghava-mane.jpg[Penguin in Raghava mane]
 
-ಇನ್ನು `Linus Torvalds <http://en.wikipedia.org/wiki/Linus_Torvalds>`__ ಮನೆಯಲ್ಲಿ ಪೆಂಗ್ವಿನ್ ಗಳ ದೊಡ್ಡ ಗುಂಪೇ ಇದೆ ಅಂತ ಮೊನ್ನೆ ಮೊನ್ನೆ ತಿಳಿದು ಬಂತು :)
+ಇನ್ನು http://en.wikipedia.org/wiki/Linus_Torvalds[Linus Torvalds] ಮನೆಯಲ್ಲಿ ಪೆಂಗ್ವಿನ್ ಗಳ ದೊಡ್ಡ ಗುಂಪೇ ಇದೆ ಅಂತ ಮೊನ್ನೆ ಮೊನ್ನೆ ತಿಳಿದು ಬಂತು :)
 
-Ref: `http://www.wired.com/wiredenterprise/2012/03/mr-linux/all/1 <http://www.wired.com/wiredenterprise/2012/03/mr-linux/all/1>`__ Photo: Jon Snyder/Wired
+Ref: http://www.wired.com/wiredenterprise/2012/03/mr-linux/all/1 Photo: Jon Snyder/Wired
 
 image::/images/linus-penguins.jpg[Penguins in Linus home]
 

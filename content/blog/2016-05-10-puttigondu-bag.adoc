@@ -30,7 +30,7 @@ Notes
 - ಒಂದು ಡಿಸೈನ್ ಆಯ್ಕೆ ಮಾಡಿದ ಮೇಲೆ ಅದಕ್ಕೆ ಏನನ್ನೂ ಸೇರಿಸಲು ಹೋಗಬಾರದು. ಐಡಿಯಾ ಬಂದ್ರೆ
   ಬರೆದಿಟ್ಟುಕೊಂಡರೆ ಮುಂದಿನ ಸಲಕ್ಕೆ ಆಗುತ್ತೆ, ಆದರೆ ಶುರುಮಾಡಿರುವ ಡಿಸೈನ್ ಬದಲಾಯಿಸುತ್ತಿದ್ದರೆ
   complete ಮಾಡೋದು ಬಹಳ ಸಮಯ ತಗೊಳೊತ್ತೆ ಆಮೇಲೆ ಇಂಟರೆಷ್ಟ್ ಹೋಗಿ ಕೈಗೆತ್ತಿಕೊಂಡ ಕೆಲಸ
-  ಮುಗಿಯೋದೇ ಇಲ್ಲ.(software development ಅನುಭವ :) "`Release early, release often <https://en.wikipedia.org/wiki/Release_early,_release_often>`__")
+  ಮುಗಿಯೋದೇ ಇಲ್ಲ.(software development ಅನುಭವ :) "https://en.wikipedia.org/wiki/Release_early,_release_often[Release early, release often]"
 - Steps ಗಳ ಫೋಟೋಸ್ ತೆಗೆದುಕೊಂಡ್ರೆ ಮುಂದೆ ಉಪಯೋಗಕ್ಕೆ ಬರುತ್ತೆ.(ನನಗೀಸಲ ಮರೆತುಹೋಯ್ತು)
 
 ತಪ್ಪುಗಳು

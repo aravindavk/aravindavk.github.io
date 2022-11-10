@@ -5,24 +5,21 @@ summary: Without Events APIs, one way to get status of Cluster is by calling Glu
 ---
 
 Last week I got opportunity to present about Gluster Events APIs in
-`Gluster meetup Bangalore <http://www.meetup.com/glusterfs-India/events/233515975>`__.
+http://www.meetup.com/glusterfs-India/events/233515975[Gluster meetup Bangalore].
 
-Events APIs will be available with ``Gluster 3.9`` release.(`Release
-Candidate
-<http://www.gluster.org/pipermail/maintainers/2016-September/001442.html>`__
+Events APIs will be available with `Gluster 3.9` release.(http://www.gluster.org/pipermail/maintainers/2016-September/001442.html[Release Candidate]
 is available if anybody interested in testing)
 
 Without Events APIs, one way to get status of Cluster is by
 calling Gluster status command/api in periodic intervals.
 
-Below illustration shows calling ``status`` once every 10 seconds.
+Below illustration shows calling `status` once every 10 seconds.
 
 image::/images/gluster_monitor_without_events.jpg[Get Cluster status without Events APIs]
 
 With Events APIs, setup a listener Webhook and register with Gluster
-using ``gluster-eventsapi webhook-add <URL>``. Call Gluster status
-command whenever webhook receives an Event.(Check `this
-<http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/>`__ blog
+using `gluster-eventsapi webhook-add <URL>`. Call Gluster status
+command whenever webhook receives an Event.(Check http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/[this] blog
 to know Webhooks and Events APIs in detail)
 
 image::/images/gluster_monitor_with_events.jpg[Get Cluster status with Events APIs]
@@ -48,11 +45,9 @@ image::/images/volume_stop.gif[Volume Stop]
 References:
 -----------
 - Documentation for the Events APIs feature is available
-  `here <http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/>`__.
-- Gif images created using ``byzanz`` tool.(Example: ``sleep 2;
+  http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/[here].
+- Gif images created using `byzanz` tool.(Example: `sleep 2;
   byzanz-record --duration=5 --x=500 --y=0 --width=1024 --height=800
-  volume_stop.gif``
-- Illustrations are created using `mypaint <http://mypaint.org/>`__ software and Wacom Tablet.
-- Dashboard prototype was created using `Python
-  <http://python.org/>`__ `Flask <http://flask.pocoo.org/>`__ + `Elm
-  <http://elm-lang.org/>`__ + Websockets
+  volume_stop.gif`
+- Illustrations are created using http://mypaint.org/[mypaint] software and Wacom Tablet.
+- Dashboard prototype was created using http://python.org/[Python] http://flask.pocoo.org/[Flask] + http://elm-lang.org/[Elm] + Websockets

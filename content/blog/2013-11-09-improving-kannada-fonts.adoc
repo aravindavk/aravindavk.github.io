@@ -4,7 +4,7 @@ tags: ಕನ್ನಡ,kannada,fonts
 summary: Today I completed first stage, created two python scripts to change the glyph names and to adjust left and right space.
 ---
 
-`Pravin <http://pravin-s.blogspot.in/>`__, maintainer of Lohit fonts started `lohit2 <https://github.com/pravins/lohit2>`__ project to update all lohit fonts according to Open Type specifications. Read more `here <http://pravin-s.blogspot.in/2013/08/project-creating-standard-and-reusable.html>`__ and `here <http://pravin-s.blogspot.in/2013/10/lohit2-surely-helping-identifying.html>`__
+http://pravin-s.blogspot.in/[Pravin], maintainer of Lohit fonts started https://github.com/pravins/lohit2[lohit2]_ project to update all lohit fonts according to Open Type specifications. Read more http://pravin-s.blogspot.in/2013/08/project-creating-standard-and-reusable.html[here] and http://pravin-s.blogspot.in/2013/10/lohit2-surely-helping-identifying.html[here]
 
 I am planning to improve Lohit Kannada(also Gubbi and Navilu) and identified following stages.
 
@@ -19,7 +19,7 @@ Stage two
 =========
 1. Create half forms of base glyphs which are required for creating ligatures.
 2. Delete the unused ligatures(Can be achieved using rules)
-3. Add `GSUB <http://partners.adobe.com/public/developer/opentype/index_table_formats1.html>`__ rules for consonants.
+3. Add http://partners.adobe.com/public/developer/opentype/index_table_formats1.html[GSUB] rules for consonants.
 4. Mark to Base GPOS rules.
 5. Identify special consonant for which separate ligature is required.(ki, gi etc)
 6. Testing
@@ -27,19 +27,19 @@ Stage two
 Stage three
 ===========
 1. Create ligatures which are identified in previous stage.(Most of the ligatures already exists in fonts)
-2. Add `GSUB <http://partners.adobe.com/public/developer/opentype/index_table_formats1.html>`__ rules for those ligatures
+2. Add http://partners.adobe.com/public/developer/opentype/index_table_formats1.html[GSUB] rules for those ligatures
 3. Testing
 
 Stage four
 ==========
 1. Rename all vattakshara glyphs.
-2. Add `GSUB <http://partners.adobe.com/public/developer/opentype/index_table_formats1.html>`__ rules.
-3. Mark to Base `GPOS <http://partners.adobe.com/public/developer/opentype/index_table_formats2.html>`__ rules for vattakshara
+2. Add http://partners.adobe.com/public/developer/opentype/index_table_formats1.html[GSUB] rules.
+3. Mark to Base http://partners.adobe.com/public/developer/opentype/index_table_formats2.html[GPOS] rules for vattakshara
 4. Testing
 
 Stage five
 ==========
-1. Mark to Mark `GPOS <http://partners.adobe.com/public/developer/opentype/index_table_formats2.html>`__ rules for double vattakshara.
+1. Mark to Mark http://partners.adobe.com/public/developer/opentype/index_table_formats2.html[GPOS] rules for double vattakshara.
 2. Create additional ligatures if required for any double vattakshara combination.
 3. Testing
 
@@ -56,7 +56,7 @@ Stage seven
 3. Testing
 
 
-Today I completed first stage, created two `python scripts <https://github.com/aravindavk/fontscripts>`__ to change the glyph names and to adjust left and right space.
+Today I completed first stage, created two https://github.com/aravindavk/fontscripts[Python scripts] to change the glyph names and to adjust left and right space.
 
 [source,bash]
 ----

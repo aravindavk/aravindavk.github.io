@@ -88,44 +88,43 @@ Many projects are still in young stage. Comments and Suggestions are welcome.
 
 **Projects started in 2013**
 
-- ``python`` https://github.com/aravindavk/glusterfs-tools[Tool to show Volume information in tabular format and df like command for Gluster Volumes]
-- ``python`` https://github.com/aravindavk/glusterfs-web[Gluster Monitoring experiment using Gluster hooks]
+- `python` https://github.com/aravindavk/glusterfs-tools[Tool to show Volume information in tabular format and df like command for Gluster Volumes]
+- `python` https://github.com/aravindavk/glusterfs-web[Gluster Monitoring experiment using Gluster hooks]
 
 **Projects started in 2014**
 
-- ``golang`` `Tool to convert XML output of gluster volume info --xml to json <https://github.com/aravindavk/gvolinfojson>`__
-- ``python`` ``emberjs`` `Light weight Web dashboard to view Cluster information in Web <https://github.com/aravindavk/gdash>`__
-- ``rust`` `Gluster Changelog parser library and utility <https://github.com/aravindavk/glusterchangelog>`__
+- `golang` https://github.com/aravindavk/gvolinfojson[Tool to convert XML output of gluster volume info --xml to json]
+- `python` `emberjs` https://github.com/aravindavk/gdash[Light weight Web dashboard to view Cluster information in Web]
+- `rust` https://github.com/aravindavk/glusterchangelog[Gluster Changelog parser library and utility]
 
 **Projects started in 2015**
 
-- ``golang`` `Experimental GlusterFS brick crawler <https://github.com/aravindavk/crawler>`__
-- ``python`` `GFID to Path using Historical Changelogs <https://github.com/aravindavk/gfid_to_path>`__
-- ``python`` `Collection of Geo-replication troubleshooting scripts(Changelog parser, xtime, stime and gfid utilities) <https://github.com/aravindavk/gluster_georep_scripts>`__
-- ``python`` `Alternate setup tool for Gluster Geo-replication <https://github.com/aravindavk/georepsetup>`__
+- `golang` https://github.com/aravindavk/crawler[Experimental GlusterFS brick crawler]
+- `python` https://github.com/aravindavk/gfid_to_path[GFID to Path using Historical Changelogs]
+- `python` https://github.com/aravindavk/gluster_georep_scripts[Collection of Geo-replication troubleshooting scripts(Changelog parser, xtime, stime and gfid utilities)]
+- `python` https://github.com/aravindavk/georepsetup[Alternate setup tool for Gluster Geo-replication]
 
 **Projects started in 2016**
 
-- ``go``     `Go language bindings for Gluster CLI commands <https://github.com/aravindavk/glustercli>`__
-- ``python`` `Changelog based utility to search modified/not modified files in Gluster Volume <https://github.com/aravindavk/gchangelogapi>`__
-- ``python`` `Tool to generate workload by reading existing changelogs <https://github.com/aravindavk/gluster_changelog_to_workload>`__
-- ``python`` `Utility to find life cycle of a file or directory using Gluster Changelogs <https://github.com/aravindavk/gluster-file-history>`__
-- ``python`` `Python bindings for Gluster CLI commands <https://github.com/gluster/glustercli-python>`__
-- ``rust``   `Library to manage Gluster Xattrs(Not all xattrs covered Yet) <https://github.com/aravindavk/glusterxattr>`__
-- ``rust``   `A tool to find issues with directories in Gluster Volume <https://github.com/aravindavk/gluster-dir-health-check>`__
-- ``python`` `Better Geo-replication status and setup tool <https://github.com/aravindavk/gluster-georep-tools>`__
-- ``python`` `(Incomplete) REST APIs for Gluster Management(wrappers around CLI commands) <https://github.com/gluster/restapi>`__
-- ``python`` `Collection of Gluster debugging tools(gfid, dirgfid2path, changelogparser, stime, xtime, volmark) <https://github.com/gluster/glustertool>`__
-- ``python`` ``elm`` `Geo-replication Dashboard experiment using Events APIs <https://github.com/aravindavk/gluster-georepdash>`__
+- `go`     https://github.com/aravindavk/glustercli[Go language bindings for Gluster CLI commands]
+- `python` https://github.com/aravindavk/gchangelogapi[Changelog based utility to search modified/not modified files in Gluster Volume]
+- `python` https://github.com/aravindavk/gluster_changelog_to_workload[Tool to generate workload by reading existing changelogs]
+- `python` https://github.com/aravindavk/gluster-file-history[Utility to find life cycle of a file or directory using Gluster Changelogs]
+- `python` https://github.com/gluster/glustercli-python[Python bindings for Gluster CLI commands]
+- `rust`   https://github.com/aravindavk/glusterxattr[Library to manage Gluster Xattrs(Not all xattrs covered Yet)]
+- `rust`   https://github.com/aravindavk/gluster-dir-health-check[A tool to find issues with directories in Gluster Volume]
+- `python` https://github.com/aravindavk/gluster-georep-tools[Better Geo-replication status and setup tool]
+- `python` https://github.com/gluster/restapi[(Incomplete) REST APIs for Gluster Management(wrappers around CLI commands)]
+- `python` https://github.com/gluster/glustertool[Collection of Gluster debugging tools(gfid, dirgfid2path, changelogparser, stime, xtime, volmark)]
+- `python` `elm` https://github.com/aravindavk/gluster-georepdash[Geo-replication Dashboard experiment using Events APIs]
   
 image::/images/gluster-github-projects-till-2016.png[Gluster Projects]
   
-..
-    R code to generate Blogs graph
-    library(ggplot2)
-    dd <- data.frame(year=c(2013, 2014, 2015, 2016), num=c(2, 3, 4, 11))
-    png("gluster-github-projects-till-2016.png", width=400, height=300)
-    ggplot(dd, aes(x=year)) + geom_bar(stat="identity", aes(y=num), fill="#483d8b") + geom_text(aes(label=num, y=num), vjust=2, color="white") + labs(x="Years", y="Number of Projects")
-    dev.off()
+// R code to generate Blogs graph
+// library(ggplot2)
+// dd <- data.frame(year=c(2013, 2014, 2015, 2016), num=c(2, 3, 4, 11))
+// png("gluster-github-projects-till-2016.png", width=400, height=300)
+// ggplot(dd, aes(x=year)) + geom_bar(stat="identity", aes(y=num), fill="#483d8b") + geom_text(aes(label=num, y=num), vjust=2, color="white") + labs(x="Years", y="Number of Projects")
+// dev.off()
 
-Charts are created using ``ggplot2`` of `R <https://www.r-project.org/>`__ programming, For code look in HTML comments of this page :)
+Charts are created using `ggplot2` of https://www.r-project.org/[R] programming, For code look in HTML comments of this page :)

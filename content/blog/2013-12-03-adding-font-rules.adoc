@@ -99,7 +99,7 @@ feature abvs {
 } abvs;
 ----
 
-Once we save the above content in knda_gsub.fea, download the python script from `here <https://raw.github.com/aravindavk/fontforge-python-cookbook/master/apply_gsub_featurefile.py>`__ and run
+Once we save the above content in knda_gsub.fea, download the python script from https://raw.github.com/aravindavk/fontforge-python-cookbook/master/apply_gsub_featurefile.py[here] and run
 
 [source,bash]
 ----

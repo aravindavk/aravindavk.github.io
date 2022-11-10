@@ -6,8 +6,8 @@ summary: A demo app created to showcase Gluster Events APIs
 
 Gluster Events APIs are available with Gluster 3.9 release. This
 project is created as an experiment to showcase the capabilities of
-Gluster `Events APIs <http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/>`__, Dashboard shows realtime
-`Geo-replication <http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Geo%20Replication/>`__
+Gluster http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/[Events APIs], Dashboard shows realtime
+http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Geo%20Replication/[Geo-replication]
 status without refreshing the page.
 
 **Note: This is not ready for production use Yet!**
@@ -33,14 +33,14 @@ Install the following Python dependencies using,
 sudo pip install flask flask_sockets glustercli
 ----
 
-Install ``elm`` and ``bower`` using,
+Install `elm` and `bower` using,
 
 [source,bash]
 ----
 sudo npm install -g bower elm
 ----
 
-Update the ``serverName`` in ``App.elm`` and then generate ``static/app.js``
+Update the `serverName` in `App.elm` and then generate `static/app.js`
 using,(editing serverName should be automatic, this is code bug! will
 fix later)
 
@@ -51,7 +51,7 @@ elm-package install
 elm-make App.elm --output static/app.js
 ----
 
-Install ``purecss`` for style using,
+Install `purecss` for style using,
 
 [source,bash]
 ----
@@ -61,11 +61,11 @@ bower install
 
 Usage
 -----
-Run ``main.py``, to start the app server. Dashboard can be
+Run `main.py`, to start the app server. Dashboard can be
 accessed using `http://nodename:5000`
 
-Test and register this node as Events API subscriber by calling ``webhook-add``
-command. Read more about starting Events service `here <http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/>`__
+Test and register this node as Events API subscriber by calling `webhook-add`
+command. Read more about starting Events service http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/[here]
 
 [source,bash]
 ----
@@ -94,7 +94,7 @@ image::/images/georep_faulty.gif[When Geo-replication is stopped]
 UI/Dashboard Notes
 ------------------
 - UI is very raw since it is created for demo purpose
-- Frontend developed using `Elm <http://elm-lang.org/>`__
+- Frontend developed using http://elm-lang.org/[Elm]
 - No event available for change in "Last Synced" column, So that
   column value will not match with realtime output from status
   command. Refresh the page to see the latest status.

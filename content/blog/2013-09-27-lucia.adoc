@@ -12,6 +12,6 @@ summary: ಆನ್‍ಲೈನ್ ಡಿಸ್ಟ್ರಿಬ್ಯುಟರ್ 
 
 ಆನ್‍ಲೈನ್ ಡಿಸ್ಟ್ರಿಬ್ಯುಟರ್ ಆಗಿದ್ದು ಏನೋ ಒಂತರಾ ಹೊಸಾ ಅನುಭವ, ಖುಶಿ :) ಅದೇ ಖುಶಿಯಲ್ಲಿ "ಹಳ್ಳಿಮನೆ ಟಾಕೀಸ್" ಅಂತ ಒಂದು ವೆಬ್ ಪೇಜ್ ಮಾಡಿದ್ದೇನೆ. ಲೂಸಿಯಾ ಮೂವಿಯನ್ನ ಅಲ್ಲೇ ನೋಡಬಹುದು :)
 
-`ಹಳ್ಳಿಮನೆ ಟಾಕೀಸ್ <http://aravindavk.in/talkies/>`__ ಗೆ ಒಮ್ಮೆ ಬನ್ನಿ. :)
+http://aravindavk.in/talkies/[ಹಳ್ಳಿಮನೆ ಟಾಕೀಸ್] ಗೆ ಒಮ್ಮೆ ಬನ್ನಿ. :)
 
-`http://aravindavk.in/talkies/ <http://aravindavk.in/talkies/>`__
+http://aravindavk.in/talkies/

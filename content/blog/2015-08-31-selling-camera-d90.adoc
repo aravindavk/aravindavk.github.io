@@ -29,12 +29,12 @@ Notes:
 2. LCD Display is covered with a guard, photos of with and without display guard posted in Album. (display guard is little scratched)
 3. Both Camera and Lenses are in good working condition.
 4. Battery is in good condition
-5. Shutter count: 21092 (Found using exiftool, ``exiftool <LAST_PHOTO> | grep "Shutter Count"``)
-   Nikon D90 is `tested to over 100,000 cycles <https://support.nikonusa.com/app/answers/detail/a_id/16492/~/how-many-pictures-has-my-camera-taken%3F-how-many-will-it-take%3F>`__. But people using for `more than that(292,758+) <http://nikonites.com/d90/1734-nikon-d90-shutter-limit.html#axzz3k5yaHNnV>`__ :)
+5. Shutter count: 21092 (Found using exiftool, `exiftool <LAST_PHOTO> | grep "Shutter Count"`)
+   Nikon D90 is https://support.nikonusa.com/app/answers/detail/a_id/16492/~/how-many-pictures-has-my-camera-taken%3F-how-many-will-it-take%3F[tested to over 100,000 cycles]. But people using for http://nikonites.com/d90/1734-nikon-d90-shutter-limit.html#axzz3k5yaHNnV[more than that(292,758+)] :)
 
 Added some photos to help in making decision, let me know if any more photos required or any questions.
 
-`https://www.flickr.com/photos/aravindavk/sets/72157658008803101 <https://www.flickr.com/photos/aravindavk/sets/72157658008803101>`__
+https://www.flickr.com/photos/aravindavk/sets/72157658008803101
 
 FAQs
 ------
@@ -45,7 +45,7 @@ FAQs
 4. **Is the Item under warranty?** No
 5. **Accepted Payment Types:** NEFT/Cash
 6. **Location:** Bengaluru
-7. **Specifications:** `http://www.nikon.co.in/en_IN/product/digital-slr-cameras/d90 <http://www.nikon.co.in/en_IN/product/digital-slr-cameras/d90>`__
+7. **Specifications:** http://www.nikon.co.in/en_IN/product/digital-slr-cameras/d90
 8. **Shutter Count:** 21092
 9. **Purchase dates:**:
    Nikon D90 camera body + 18-105mm lens on 17 Nov 2010, 50mm Lens on 21 Nov 2012 and Remote on 20 Apr 2012

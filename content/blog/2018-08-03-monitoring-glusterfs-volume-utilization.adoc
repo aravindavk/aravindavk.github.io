@@ -4,15 +4,13 @@ tags: gluster, glusterfsblog
 summary: With this approach export the brick utilization directly from each node and aggregating at the Prometheus server.
 ---
 
-This blog explains the approaches to monitor `Gluster
-<https://www.gluster.org/>`__ Volume utilization using `Prometheus
-<https://prometheus.io>`__.
+This blog explains the approaches to monitor https://www.gluster.org/[Gluster] Volume utilization using https://prometheus.io[Prometheus].
 
 .Gluster Volume Utilization visualized using https://grafana.com/[Grafana]
 image::/images/gluster-volume-utilization.png[Gluster Volume Utilization]
 
-To get the Gluster Volume utilization, easy way is to use ``mount`` and
-``df``.
+To get the Gluster Volume utilization, easy way is to use `mount` and
+`df`.
 
 [source,bash]
 ----
@@ -21,8 +19,7 @@ mount -t glusterfs localhost:gv1 /mnt/gv1
 df /mnt/gv1
 ----
 
-Alternatively we can use “libgfapi”(For example `glusterdf
-<http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/>`__ tool
+Alternatively we can use “libgfapi”(For example http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/[glusterdf] tool
 uses “libgfapi”)
 
 Exporter from all nodes exports volume utilization
@@ -76,8 +73,8 @@ glusterd aggregates the brick sizes and provides the Volume output.
 With this approach export the brick utilization directly from each
 node and aggregating at the Prometheus server.
 
-For example, let us consider a "2x3" Volume with bricks ``b1`` to
-``b6``. If each node exporters publishes local bricks utilization,
+For example, let us consider a "2x3" Volume with bricks `b1` to
+`b6`. If each node exporters publishes local bricks utilization,
 total volume utilization can be found using,
 
 [source,text]
