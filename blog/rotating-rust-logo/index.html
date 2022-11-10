@@ -65,61 +65,45 @@
             </div>
             <div class="content py-6">
                 <div class="paragraph">
-<p>Today I learned to animate any shape in `SVG &lt;<a href="http://en.wikipedia.org/wiki/Scalable_Vector_Graphics&gt;`" class="bare">http://en.wikipedia.org/wiki/Scalable_Vector_Graphics&gt;`</a><em> using `animateTransform &lt;<a href="http://www.w3.org/TR/SVG/animate.html#AnimateTransformElement&gt;`" class="bare">http://www.w3.org/TR/SVG/animate.html#AnimateTransformElement&gt;`</a></em> element, and tried it with `Rust programming &lt;<a href="http://www.rust-lang.org/&gt;`__" class="bare">http://www.rust-lang.org/&gt;`__</a> logo, here yo go :)</p>
+<p>Today I learned to animate any shape in <a href="http://en.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a> using <a href="http://www.w3.org/TR/SVG/animate.html#AnimateTransformElement">animateTransform</a> element, and tried it with <a href="http://www.rust-lang.org/">Rust programming</a> logo, here yo go :)</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>raw:: html</p>
-<div class="literalblock">
+<embed src="/images/rust_rotating.svg" type="image/svg+xml" />
+<div class="paragraph">
+<p>I downloaded SVG from <a href="http://en.wikipedia.org/wiki/File:Rust_programming_language_black_logo.svg">here</a>, and added <code>animateTransform</code> as child of <code>path</code></p>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>&lt;embed src="/images/rust_rotating.svg" type="image/svg+xml" /&gt;</pre>
+<pre class="rouge highlight"><code data-lang="xml"><span class="cp">&lt;?xml version="1.0" encoding="windows-1252"?&gt;</span>
+<span class="cp">&lt;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"&gt;</span>
+<span class="nt">&lt;svg</span> <span class="na">version=</span><span class="s">"1.1"</span> <span class="na">id=</span><span class="s">"Layer_1"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span>
+     <span class="na">xmlns:xlink=</span><span class="s">"http://www.w3.org/1999/xlink"</span>
+     <span class="na">x=</span><span class="s">"0px"</span> <span class="na">y=</span><span class="s">"0px"</span> <span class="na">width=</span><span class="s">"144px"</span> <span class="na">height=</span><span class="s">"144px"</span>
+     <span class="na">viewBox=</span><span class="s">"19 19 106 106"</span> <span class="na">style=</span><span class="s">"enable-background:new 0 0 144 144;"</span>
+     <span class="na">xml:space=</span><span class="s">"preserve"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;path</span> <span class="na">d=</span><span class="s">"M122.631,69.716l-4.394-2.72....z"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;animateTransform</span> <span class="na">attributeType=</span><span class="s">"xml"</span>
+                      <span class="na">attributeName=</span><span class="s">"transform"</span>
+                      <span class="na">type=</span><span class="s">"rotate"</span>
+                      <span class="na">from=</span><span class="s">"0 71 71"</span>
+                      <span class="na">to=</span><span class="s">"360 71 71"</span>
+                      <span class="na">dur=</span><span class="s">"10s"</span>
+                      <span class="na">repeatCount=</span><span class="s">"indefinite"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/path&gt;</span>
+<span class="nt">&lt;/svg&gt;</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>I downloaded SVG from <code>here &lt;<a href="http://en.wikipedia.org/wiki/File:Rust_programming_language_black_logo.svg&gt;`__" class="bare">http://en.wikipedia.org/wiki/File:Rust_programming_language_black_logo.svg&gt;`__</a>, and added :code:`animateTransform</code> as child of :code:`path`</p>
-</div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: xml</p>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;?xml version="1.0" encoding="windows-1252"?&gt;
-&lt;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"&gt;
-&lt;svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink"
-     x="0px" y="0px" width="144px" height="144px"
-     viewBox="19 19 106 106" style="enable-background:new 0 0 144 144;"
-     xml:space="preserve"&gt;
-&lt;path d="M122.631,69.716l-4.394-2.72....z"&gt;
-    &lt;animateTransform attributeType="xml"
-                      attributeName="transform"
-                      type="rotate"
-                      from="0 71 71"
-                      to="360 71 71"
-                      dur="10s"
-                      repeatCount="indefinite"/&gt;
-&lt;/path&gt;
-&lt;/svg&gt;</pre>
-</div>
-</div>
-</li>
-</ol>
+<p>Above code is partial, illustrative purpose only. You can download modified SVG from <a href="/images/rust_rotating.svg">here</a></p>
 </div>
 <div class="paragraph">
-<p>Above code is partial, illustrative purpose only. You can download modified SVG from `here &lt;/images/rust_rotating.svg&gt;`__</p>
+<p>BTW, If you never heard of programming language Rust, Go and checkout <a href="http://www.rust-lang.org/">rust-lang.org</a> and <a href="http://doc.rust-lang.org/guide.html">Guide</a>. It is awesome.</p>
 </div>
+<div class="quoteblock">
+<blockquote>
 <div class="paragraph">
-<p>BTW, If you never heard of programming language Rust, Go and checkout `rust-lang.org &lt;<a href="http://www.rust-lang.org/&gt;`" class="bare">http://www.rust-lang.org/&gt;`</a><em> and `Guide &lt;<a href="http://doc.rust-lang.org/guide.html&gt;`" class="bare">http://doc.rust-lang.org/guide.html&gt;`</a></em>. It is awesome.</p>
+<p><strong>Rust</strong> is a systems programming language that runs blazingly fast, prevents almost all crashes*, and eliminates data races.</p>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>**Rust** is a systems programming language that runs blazingly fast, prevents almost all crashes*, and eliminates data races.</pre>
-</div>
+</blockquote>
 </div>
             </div>
         </div>

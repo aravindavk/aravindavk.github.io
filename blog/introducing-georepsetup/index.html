@@ -56,7 +56,7 @@
             <div class="has-text-centered">
                 <h1 class="title">Introducing georepsetup - Gluster Geo-replication Setup Tool</h1>
                 <div class="">Sep 2, 2015</div>
-                <div class=""><strong>2 minutes</strong> read</div>
+                <div class=""><strong>1 minute</strong> read</div>
                 <div>
                     
                     <span class="tag is-info is-light">geo-replication</span>
@@ -68,22 +68,11 @@
                 </div>
             </div>
             <div class="content py-6">
-                <div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>raw:: html</p>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;div class="notice-update"&gt;
-&lt;b&gt;UPDATE:&lt;/b&gt; This tool is merged with &lt;em&gt;gluster-georep-tools&lt;/em&gt;. Check this &lt;a href="/blog/gluster-georep-tools/"&gt;blog&lt;/a&gt; for more details.
-&lt;/div&gt;</pre>
-</div>
-</div>
-</li>
-</ol>
+                <div class="notification is-warning">
+    <b>UPDATE:</b> This tool is merged with <em>gluster-georep-tools</em>. Check this <a href="/blog/gluster-georep-tools/">blog</a> for more details.
 </div>
 <div class="paragraph">
-<p>How many of you succeeded to set up Gluster Geo-replication for the first time? SSH keys need to be deployed to all Slave nodes from all Master nodes as part of the Geo-replication setup. So number of steps involved in setting up Geo-rep is not very easy to manage. We get more queries in `gluster-devel &lt;<a href="http://www.gluster.org/mailman/listinfo/gluster-devel&gt;`" class="bare">http://www.gluster.org/mailman/listinfo/gluster-devel&gt;`</a><em> and `gluster-users &lt;<a href="http://www.gluster.org/mailman/listinfo/gluster-users&gt;`" class="bare">http://www.gluster.org/mailman/listinfo/gluster-users&gt;`</a></em> lists related to Geo-rep Setup than actually using Geo-replication, many users stopped trying Geo-replication after they faced issues during setup.</p>
+<p>How many of you succeeded to set up Gluster Geo-replication for the first time? SSH keys need to be deployed to all Slave nodes from all Master nodes as part of the Geo-replication setup. So number of steps involved in setting up Geo-rep is not very easy to manage. We get more queries in <a href="http://www.gluster.org/mailman/listinfo/gluster-devel">gluster-devel</a> and <a href="http://www.gluster.org/mailman/listinfo/gluster-users">gluster-users</a> lists related to Geo-rep Setup than actually using Geo-replication, many users stopped trying Geo-replication after they faced issues during setup.</p>
 </div>
 <div class="paragraph">
 <p>With the release of Gluster 3.7, the Geo-replication got lots of improvements. Will write blog about new features and improvements in my next blog. Yesterday I wrote a CLI tool using Python to simplify the steps involved in Geo-replication setup. Now setting up Geo-replication is as easy as running one command. Yay!</p>
@@ -91,17 +80,10 @@
 <div class="paragraph">
 <p>For example,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>sudo georepsetup &lt;MASTERVOL&gt; &lt;SLAVEHOST&gt; &lt;SLAVEVOL&gt;</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">sudo </span>georepsetup &lt;MASTERVOL&gt; &lt;SLAVEHOST&gt; &lt;SLAVEVOL&gt;</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>It prompts for the Root&#8217;s Password of Slave node specified in the command. That&#8217;s it!</p>
@@ -109,13 +91,10 @@
 <div class="paragraph">
 <p>This command also produces a good summary as shown below. Now it is very easy to trace the errors and handle them.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/georepsetup.png
-:alt: Summary</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/georepsetup.png" alt="Summary">
+</div>
 </div>
 <div class="sect1">
 <h2 id="_install">Install</h2>
@@ -123,19 +102,12 @@
 <div class="paragraph">
 <p>Install this tool on any one master node where you wish to initiate the Geo-replication setup,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>git clone https://github.com/aravindavk/georepsetup.git
-cd georepsetup
-sudo python setup.py install</pre>
+<pre class="rouge highlight"><code data-lang="bash">git clone https://github.com/aravindavk/georepsetup.git
+<span class="nb">cd </span>georepsetup
+<span class="nb">sudo </span>python setup.py <span class="nb">install</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>This tool is not packaged as RPM/Deb Yet. Pull requests are Welcome :)</p>
@@ -144,7 +116,7 @@ sudo python setup.py install</pre>
 <p>Setting up non-root Geo-replication still involves some manual steps, will try to improve in future.</p>
 </div>
 <div class="paragraph">
-<p>Documentation is available `here &lt;<a href="https://github.com/aravindavk/georepsetup/blob/master/README.md&gt;`__" class="bare">https://github.com/aravindavk/georepsetup/blob/master/README.md&gt;`__</a></p>
+<p>Documentation is available <a href="https://github.com/aravindavk/georepsetup/blob/master/README.md">here</a></p>
 </div>
 <div class="paragraph">
 <p>Comments &amp; Suggestions Welcome.</p>

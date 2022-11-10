@@ -74,91 +74,60 @@
 <div class="paragraph">
 <p>If you are a GNOME user then</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>apt-get install ttf-kannada-fonts scim-bridge-client-gtk scim-m17n</pre>
+<pre class="rouge highlight"><code data-lang="bash">apt-get <span class="nb">install </span>ttf-kannada-fonts scim-bridge-client-gtk scim-m17n</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>If You are KDE 4.x user then</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>apt-get install ttf-kannada-fonts scim-bridge-client-qt4 scim-m17n</pre>
+<pre class="rouge highlight"><code data-lang="bash">apt-get <span class="nb">install </span>ttf-kannada-fonts scim-bridge-client-qt4 scim-m17n</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Create a folder in your home directory with name ".xinput.d" and create a file "all\_ALL" inside the folder created just now.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>mkdir $HOME/.xinput.d
-gedit $HOME/.xinput.d/all_ALL</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">mkdir</span> <span class="nv">$HOME</span>/.xinput.d
+gedit <span class="nv">$HOME</span>/.xinput.d/all_ALL</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Copy below lines in the file all_ALL.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>#file: all_ALL
-XIM=SCIM
-if [ -e /usr/bin/skim ]; then
-    XIM_PROGRAM=" "
-else
-    XIM_PROGRAM=/usr/bin/scim
-fi
-XIM_ARGS="-d"
-if [ -e /usr/lib/gtk-2.0/*/immodules/im-scim-bridge.so ]; then
-    GTK_IM_MODULE=scim-bridge
-else
-    GTK_IM_MODULE=xim
-fi
-if [ -e /usr/lib/qt3/plugins/inputmethods/im-scim-bridge.so -o \
-     -e /usr/lib/qt4/plugins/inputmethods/im-scim-bridge.so ]
-then
-    QT_IM_MODULE=scim-bridge
-else
-    QT_IM_MODULE=xim
-fi</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="c">#file: all_ALL</span>
+<span class="nv">XIM</span><span class="o">=</span>SCIM
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-e</span> /usr/bin/skim <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nv">XIM_PROGRAM</span><span class="o">=</span><span class="s2">" "</span>
+<span class="k">else
+    </span><span class="nv">XIM_PROGRAM</span><span class="o">=</span>/usr/bin/scim
+<span class="k">fi
+</span><span class="nv">XIM_ARGS</span><span class="o">=</span><span class="s2">"-d"</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-e</span> /usr/lib/gtk-2.0/<span class="k">*</span>/immodules/im-scim-bridge.so <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nv">GTK_IM_MODULE</span><span class="o">=</span>scim-bridge
+<span class="k">else
+    </span><span class="nv">GTK_IM_MODULE</span><span class="o">=</span>xim
+<span class="k">fi
+if</span> <span class="o">[</span> <span class="nt">-e</span> /usr/lib/qt3/plugins/inputmethods/im-scim-bridge.so <span class="nt">-o</span> <span class="se">\</span>
+     <span class="nt">-e</span> /usr/lib/qt4/plugins/inputmethods/im-scim-bridge.so <span class="o">]</span>
+<span class="k">then
+    </span><span class="nv">QT_IM_MODULE</span><span class="o">=</span>scim-bridge
+<span class="k">else
+    </span><span class="nv">QT_IM_MODULE</span><span class="o">=</span>xim
+<span class="k">fi
+
+</span><span class="nv">DEPENDS</span><span class="o">=</span><span class="s2">"scim | skim, scim-bridge-agent, scim-bridge-client-gtk | </span><span class="se">\</span><span class="s2">
+         scim-bridge-client-qt | scim-bridge-client-qt4"</span></code></pre>
 </div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>DEPENDS="scim | skim, scim-bridge-agent, scim-bridge-client-gtk | \
-         scim-bridge-client-qt | scim-bridge-client-qt4"</pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>The above xinput script is shared by `Ravi &lt;<a href="http://linmaya.net&gt;`__" class="bare">http://linmaya.net&gt;`__</a></p>
+<p>The above xinput script is shared by <a href="http://linmaya.net">Ravi</a></p>
 </div>
 <div class="paragraph">
 <p>Save the file and logoff. When you login to your system you will see small keyboard icon in the panel, that means all installations and configurations are successful.</p>

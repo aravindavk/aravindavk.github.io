@@ -94,25 +94,25 @@ argument.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="D">import std.stdio;
-import std.getopt;
+<pre class="rouge highlight"><code data-lang="d"><span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">stdio</span><span class="p">;</span>
+<span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">getopt</span><span class="p">;</span>
 
-int main(string[] args)
-{
-    string name;
-    auto opts = getopt(
-        args,
-        "n|name", "Your Name", &amp;name
-    );
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nb">string</span> <span class="n">name</span><span class="p">;</span>
+    <span class="k">auto</span> <span class="n">opts</span> <span class="p">=</span> <span class="n">getopt</span><span class="p">(</span>
+        <span class="n">args</span><span class="p">,</span>
+        <span class="s">"n|name"</span><span class="p">,</span> <span class="s">"Your Name"</span><span class="p">,</span> <span class="p">&amp;</span><span class="n">name</span>
+    <span class="p">);</span>
 
-    if (opts.helpWanted) {
-        defaultGetoptPrinter("./mycli", opts.options);
-        return 1;
-    }
+    <span class="k">if</span> <span class="p">(</span><span class="n">opts</span><span class="p">.</span><span class="n">helpWanted</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">defaultGetoptPrinter</span><span class="p">(</span><span class="s">"./mycli"</span><span class="p">,</span> <span class="n">opts</span><span class="p">.</span><span class="n">options</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    writefln("Hello %s", name);
-    return 0;
-}</code></pre>
+    <span class="n">writefln</span><span class="p">(</span><span class="s">"Hello %s"</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -121,27 +121,27 @@ arguments(positional arguments). For example,</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="D">import std.stdio;
-import std.getopt;
+<pre class="rouge highlight"><code data-lang="d"><span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">stdio</span><span class="p">;</span>
+<span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">getopt</span><span class="p">;</span>
 
-int main(string[] args)
-{
-    string lastName;
-    auto opts = getopt(
-        args,
-        "last-name", "Your Last Name", &amp;lastName
-    );
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nb">string</span> <span class="n">lastName</span><span class="p">;</span>
+    <span class="k">auto</span> <span class="n">opts</span> <span class="p">=</span> <span class="n">getopt</span><span class="p">(</span>
+        <span class="n">args</span><span class="p">,</span>
+        <span class="s">"last-name"</span><span class="p">,</span> <span class="s">"Your Last Name"</span><span class="p">,</span> <span class="p">&amp;</span><span class="n">lastName</span>
+    <span class="p">);</span>
 
-    if (opts.helpWanted || args.length != 2) {
-        defaultGetoptPrinter("./mycli &lt;name&gt; [OPTIONS]", opts.options);
-        return 1;
-    }
+    <span class="k">if</span> <span class="p">(</span><span class="n">opts</span><span class="p">.</span><span class="n">helpWanted</span> <span class="p">||</span> <span class="n">args</span><span class="p">.</span><span class="n">length</span> <span class="p">!=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">defaultGetoptPrinter</span><span class="p">(</span><span class="s">"./mycli &lt;name&gt; [OPTIONS]"</span><span class="p">,</span> <span class="n">opts</span><span class="p">.</span><span class="n">options</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    string name = args[1];
+    <span class="nb">string</span> <span class="n">name</span> <span class="p">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 
-    writefln("Hello %s %s", name, lastName);
-    return 0;
-}</code></pre>
+    <span class="n">writefln</span><span class="p">(</span><span class="s">"Hello %s %s"</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">lastName</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">

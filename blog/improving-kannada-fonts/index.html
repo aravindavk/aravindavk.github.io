@@ -56,7 +56,7 @@
             <div class="has-text-centered">
                 <h1 class="title">Improving Kannada Fonts</h1>
                 <div class="">Nov 9, 2013</div>
-                <div class=""><strong>3 minutes</strong> read</div>
+                <div class=""><strong>2 minutes</strong> read</div>
                 <div>
                     
                     <span class="tag is-info is-light">ಕನ್ನಡ</span>
@@ -69,7 +69,7 @@
             </div>
             <div class="content py-6">
                 <div class="paragraph">
-<p>`Pravin &lt;<a href="http://pravin-s.blogspot.in/&gt;`" class="bare">http://pravin-s.blogspot.in/&gt;`</a><em>, maintainer of Lohit fonts started `lohit2 &lt;<a href="https://github.com/pravins/lohit2&gt;`" class="bare">https://github.com/pravins/lohit2&gt;`</a></em> project to update all lohit fonts according to Open Type specifications. Read more `here &lt;<a href="http://pravin-s.blogspot.in/2013/08/project-creating-standard-and-reusable.html&gt;`" class="bare">http://pravin-s.blogspot.in/2013/08/project-creating-standard-and-reusable.html&gt;`</a><em> and `here &lt;<a href="http://pravin-s.blogspot.in/2013/10/lohit2-surely-helping-identifying.html&gt;`" class="bare">http://pravin-s.blogspot.in/2013/10/lohit2-surely-helping-identifying.html&gt;`</a></em></p>
+<p><a href="http://pravin-s.blogspot.in/">Pravin</a>, maintainer of Lohit fonts started <a href="https://github.com/pravins/lohit2">lohit2</a>_ project to update all lohit fonts according to Open Type specifications. Read more <a href="http://pravin-s.blogspot.in/2013/08/project-creating-standard-and-reusable.html">here</a> and <a href="http://pravin-s.blogspot.in/2013/10/lohit2-surely-helping-identifying.html">here</a></p>
 </div>
 <div class="paragraph">
 <p>I am planning to improve Lohit Kannada(also Gubbi and Navilu) and identified following stages.</p>
@@ -101,7 +101,7 @@
 <p>Delete the unused ligatures(Can be achieved using rules)</p>
 </li>
 <li>
-<p>Add `GSUB &lt;<a href="http://partners.adobe.com/public/developer/opentype/index_table_formats1.html&gt;`__" class="bare">http://partners.adobe.com/public/developer/opentype/index_table_formats1.html&gt;`__</a> rules for consonants.</p>
+<p>Add <a href="http://partners.adobe.com/public/developer/opentype/index_table_formats1.html">GSUB</a> rules for consonants.</p>
 </li>
 <li>
 <p>Mark to Base GPOS rules.</p>
@@ -121,7 +121,7 @@
 <p>Create ligatures which are identified in previous stage.(Most of the ligatures already exists in fonts)</p>
 </li>
 <li>
-<p>Add `GSUB &lt;<a href="http://partners.adobe.com/public/developer/opentype/index_table_formats1.html&gt;`__" class="bare">http://partners.adobe.com/public/developer/opentype/index_table_formats1.html&gt;`__</a> rules for those ligatures</p>
+<p>Add <a href="http://partners.adobe.com/public/developer/opentype/index_table_formats1.html">GSUB</a> rules for those ligatures</p>
 </li>
 <li>
 <p>Testing</p>
@@ -135,10 +135,10 @@
 <p>Rename all vattakshara glyphs.</p>
 </li>
 <li>
-<p>Add `GSUB &lt;<a href="http://partners.adobe.com/public/developer/opentype/index_table_formats1.html&gt;`__" class="bare">http://partners.adobe.com/public/developer/opentype/index_table_formats1.html&gt;`__</a> rules.</p>
+<p>Add <a href="http://partners.adobe.com/public/developer/opentype/index_table_formats1.html">GSUB</a> rules.</p>
 </li>
 <li>
-<p>Mark to Base `GPOS &lt;<a href="http://partners.adobe.com/public/developer/opentype/index_table_formats2.html&gt;`__" class="bare">http://partners.adobe.com/public/developer/opentype/index_table_formats2.html&gt;`__</a> rules for vattakshara</p>
+<p>Mark to Base <a href="http://partners.adobe.com/public/developer/opentype/index_table_formats2.html">GPOS</a> rules for vattakshara</p>
 </li>
 <li>
 <p>Testing</p>
@@ -149,7 +149,7 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Mark to Mark `GPOS &lt;<a href="http://partners.adobe.com/public/developer/opentype/index_table_formats2.html&gt;`__" class="bare">http://partners.adobe.com/public/developer/opentype/index_table_formats2.html&gt;`__</a> rules for double vattakshara.</p>
+<p>Mark to Mark <a href="http://partners.adobe.com/public/developer/opentype/index_table_formats2.html">GPOS</a> rules for double vattakshara.</p>
 </li>
 <li>
 <p>Create additional ligatures if required for any double vattakshara combination.</p>
@@ -188,60 +188,37 @@
 </ol>
 </div>
 <div class="paragraph">
-<p>Today I completed first stage, created two `python scripts &lt;<a href="https://github.com/aravindavk/fontscripts&gt;`__" class="bare">https://github.com/aravindavk/fontscripts&gt;`__</a> to change the glyph names and to adjust left and right space.</p>
+<p>Today I completed first stage, created two <a href="https://github.com/aravindavk/fontscripts">Python scripts</a> to change the glyph names and to adjust left and right space.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>cd $WORK
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">cd</span> <span class="nv">$WORK</span>
 git clone https://github.com/aravindavk/fontscripts.git
 git clone https://github.com/aravindavk/lohit2.git
 git clone https://github.com/aravindavk/Gubbi.git
 git clone https://github.com/aravindavk/Navilu.git
-cd fontscripts</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># Lohit Kannada
+<span class="nb">cd </span>fontscripts
+
+<span class="c"># Lohit Kannada</span>
 python rename_base_glyphs.py ../lohit2/kannada/Lohit-Kannada.sfd
-python adjust_spacing.py ../lohit2/kannada/Lohit-Kannada.sfd</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># Gubbi
+python adjust_spacing.py ../lohit2/kannada/Lohit-Kannada.sfd
+
+<span class="c"># Gubbi</span>
 python rename_base_glyphs.py ../Gubbi/Gubbi.sfd
-python adjust_spacing.py ../Gubbi/Gubbi.sfd</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># Navilu
+python adjust_spacing.py ../Gubbi/Gubbi.sfd
+
+<span class="c"># Navilu</span>
 python rename_base_glyphs.py ../Navilu/Navilu.sfd
-python adjust_spacing.py ../Navilu/Navilu.sfd</pre>
+python adjust_spacing.py ../Navilu/Navilu.sfd</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Now generate the fonts to test the changes. Harfbuzz can be used for testing.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>hb-view ../lohit2/kannada/Lohit-Kannada.ttf "$(cat stage1_tests.txt )" --output-file preview_lohit.png</pre>
+<pre class="rouge highlight"><code data-lang="bash">hb-view ../lohit2/kannada/Lohit-Kannada.ttf <span class="s2">"</span><span class="si">$(</span><span class="nb">cat </span>stage1_tests.txt <span class="si">)</span><span class="s2">"</span> <span class="nt">--output-file</span> preview_lohit.png</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Let me know if anybody interested to join and contribute to improve Kannada fonts.</p>

@@ -69,27 +69,20 @@
             </div>
             <div class="content py-6">
                 <div class="paragraph">
-<p>Volfiles are the configuration files used by `Gluster &lt;<a href="https://www.gluster.org/&gt;`__" class="bare">https://www.gluster.org/&gt;`__</a>
+<p>Volfiles are the configuration files used by <a href="https://www.gluster.org/">Gluster</a>
 processes. Volfile contains the details about the list of Xlators to
 be loaded in a glusterfs process and options for each of those
 xlators.</p>
 </div>
 <div class="paragraph">
-<p>`Glusterd2 &lt;<a href="https://github.com/gluster/glusterd2&gt;`__" class="bare">https://github.com/gluster/glusterd2&gt;`__</a> adds flexibility to
+<p><a href="https://github.com/gluster/glusterd2">Glusterd2</a> adds flexibility to
 the Volfiles generation process by adding template support.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>figure:: /images/gluster-template-based-volgen.jpg
-:alt: Template based Volfile generation</p>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>Template based Volfile generation</pre>
+<img src="/images/gluster-template-based-volgen.jpg" alt="Template based Volfile generation">
 </div>
-</div>
-</li>
-</ol>
+<div class="title">Template based Volfile generation</div>
 </div>
 <div class="paragraph">
 <p>With Template based Volgen,</p>
@@ -111,32 +104,25 @@ included in the Volfile. If some xlator are expected to always
 present in volfile but enabled state is decided based on an xlator
 option, then that can be specified using
 <code>enable-by-option=true</code>. For example, <code>features/changelog</code></p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
-<div class="content">
-<pre>volume gv1-changelog
-    type features/changelog
-    option changelog off
-    option op-mode realtime
-    option fsync-interval 5
-    option changelog-barrier-timeout 120
-    option rollover-time 15
-    option capture-del-path on
-    option changelog-brick /exports/bricks/brick1/brick
-    option changelog-dir /exports/bricks/brick1/brick/.glusterfs/changelogs
-    option encoding ascii
-    subvolumes gv1-posix
-end-volume</pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
 </li>
 </ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="text">    volume gv1-changelog
+        type features/changelog
+        option changelog off
+        option op-mode realtime
+        option fsync-interval 5
+        option changelog-barrier-timeout 120
+        option rollover-time 15
+        option capture-del-path on
+        option changelog-brick /exports/bricks/brick1/brick
+        option changelog-dir /exports/bricks/brick1/brick/.glusterfs/changelogs
+        option encoding ascii
+        subvolumes gv1-posix
+    end-volume</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Glusterd2 generates the default template on its first start, generated
@@ -196,49 +182,28 @@ which use that xlator. For example, <code>debug/io-stats</code> xlator is used
 in almost all volfiles. If we set log-level to debug as below, then it
 will be added to all Volfiles(Client, brick, glustershd etc).</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>glustercli volume set &lt;volname&gt; debug/io-stats.log-level DEBUG</pre>
+<pre class="rouge highlight"><code data-lang="text">glustercli volume set &lt;volname&gt; debug/io-stats.log-level DEBUG</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>But if we want to set log-level only to the client then,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>glustercli volume set &lt;volname&gt; client.debug/io-stats.log-level DEBUG</pre>
+<pre class="rouge highlight"><code data-lang="text">glustercli volume set &lt;volname&gt; client.debug/io-stats.log-level DEBUG</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p><strong>Note</strong>: Providing xlator category during Volume set is optional. For
 example, below commands are valid too.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>glustercli volume set &lt;volname&gt; io-stats.log-level DEBUG
-glustercli volume set &lt;volname&gt; client.io-stats.log-level DEBUG</pre>
+<pre class="rouge highlight"><code data-lang="text">glustercli volume set &lt;volname&gt; io-stats.log-level DEBUG
+glustercli volume set &lt;volname&gt; client.io-stats.log-level DEBUG</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Known issues/Limitations:</p>

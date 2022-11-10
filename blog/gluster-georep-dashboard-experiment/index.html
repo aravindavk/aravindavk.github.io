@@ -69,8 +69,8 @@
                 <div class="paragraph">
 <p>Gluster Events APIs are available with Gluster 3.9 release. This
 project is created as an experiment to showcase the capabilities of
-Gluster `Events APIs &lt;<a href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/&gt;`" class="bare">http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/&gt;`</a><em>, Dashboard shows realtime
-`Geo-replication &lt;<a href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Geo%20Replication/&gt;`" class="bare">http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Geo%20Replication/&gt;`</a></em>
+Gluster <a href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/">Events APIs</a>, Dashboard shows realtime
+<a href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Geo%20Replication/">Geo-replication</a>
 status without refreshing the page.</p>
 </div>
 <div class="paragraph">
@@ -87,83 +87,48 @@ as static display, manual page reload is required to check current status).</p>
 <div class="paragraph">
 <p>Install the app in any one node of Cluster.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>git clone https://github.com/aravindavk/gluster-georepdash.git
-cd gluster-georepdash/</pre>
+<pre class="rouge highlight"><code data-lang="bash">git clone https://github.com/aravindavk/gluster-georepdash.git
+<span class="nb">cd </span>gluster-georepdash/</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Install the following Python dependencies using,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>sudo pip install flask flask_sockets glustercli</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">sudo </span>pip <span class="nb">install </span>flask flask_sockets glustercli</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Install <code>elm</code> and <code>bower</code> using,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>sudo npm install -g bower elm</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">sudo </span>npm <span class="nb">install</span> <span class="nt">-g</span> bower elm</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Update the <code>serverName</code> in <code>App.elm</code> and then generate <code>static/app.js</code>
 using,(editing serverName should be automatic, this is code bug! will
 fix later)</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>cd gluster-georepdash/
-elm-package install
-elm-make App.elm --output static/app.js</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">cd </span>gluster-georepdash/
+elm-package <span class="nb">install
+</span>elm-make App.elm <span class="nt">--output</span> static/app.js</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Install <code>purecss</code> for style using,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>cd gluster-georepdash/static
-bower install</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">cd </span>gluster-georepdash/static
+bower <span class="nb">install</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
@@ -176,34 +141,20 @@ accessed using <code><a href="http://nodename:5000" class="bare">http://nodename
 </div>
 <div class="paragraph">
 <p>Test and register this node as Events API subscriber by calling <code>webhook-add</code>
-command. Read more about starting Events service `here &lt;<a href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/&gt;`__" class="bare">http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/&gt;`__</a></p>
+command. Read more about starting Events service <a href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/">here</a></p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>gluster-eventsapi webhook-test http://nodename:5000/listen</pre>
+<pre class="rouge highlight"><code data-lang="bash">gluster-eventsapi webhook-test http://nodename:5000/listen</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>If Webhook status is OK from all nodes, then add webhook using,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>gluster-eventsapi webhook-add http://nodename:5000/listen</pre>
+<pre class="rouge highlight"><code data-lang="bash">gluster-eventsapi webhook-add http://nodename:5000/listen</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Thats all! If everything is okay, dashboard will show realtime
@@ -214,27 +165,17 @@ Geo-replication status.</p>
 <div class="sect1">
 <h2 id="_screenshots">Screenshots</h2>
 <div class="sectionbody">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>figure:: /images/georep_stop.gif
-:alt: When Geo-replication is stopped</p>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>UI Changes when a Geo-rep session is stopped from anywhere in Cluster</pre>
+<img src="/images/georep_stop.gif" alt="When Geo-replication is stopped">
 </div>
+<div class="title">UI Changes when a Geo-rep session is stopped from anywhere in Cluster</div>
 </div>
-</li>
-<li>
-<p>figure:: /images/georep_faulty.gif
-:alt: When Geo-replication is stopped</p>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>UI Changes when a Geo-rep session goes to Faulty</pre>
+<img src="/images/georep_faulty.gif" alt="When Geo-replication is stopped">
 </div>
-</div>
-</li>
-</ol>
+<div class="title">UI Changes when a Geo-rep session goes to Faulty</div>
 </div>
 </div>
 </div>
@@ -247,7 +188,7 @@ Geo-replication status.</p>
 <p>UI is very raw since it is created for demo purpose</p>
 </li>
 <li>
-<p>Frontend developed using `Elm &lt;<a href="http://elm-lang.org/&gt;`__" class="bare">http://elm-lang.org/&gt;`__</a></p>
+<p>Frontend developed using <a href="http://elm-lang.org/">Elm</a></p>
 </li>
 <li>
 <p>No event available for change in "Last Synced" column, So that

@@ -56,7 +56,7 @@
             <div class="has-text-centered">
                 <h1 class="title">Effective Gluster Monitoring using Events APIs</h1>
                 <div class="">Sep 26, 2016</div>
-                <div class=""><strong>2 minutes</strong> read</div>
+                <div class=""><strong>1 minute</strong> read</div>
                 <div>
                     
                     <span class="tag is-info is-light">gluster</span>
@@ -68,12 +68,10 @@
             <div class="content py-6">
                 <div class="paragraph">
 <p>Last week I got opportunity to present about Gluster Events APIs in
-`Gluster meetup Bangalore &lt;<a href="http://www.meetup.com/glusterfs-India/events/233515975&gt;`__" class="bare">http://www.meetup.com/glusterfs-India/events/233515975&gt;`__</a>.</p>
+<a href="http://www.meetup.com/glusterfs-India/events/233515975">Gluster meetup Bangalore</a>.</p>
 </div>
 <div class="paragraph">
-<p>Events APIs will be available with <code>Gluster 3.9</code> release.(`Release
-Candidate
-&lt;<a href="http://www.gluster.org/pipermail/maintainers/2016-September/001442.html&gt;`__" class="bare">http://www.gluster.org/pipermail/maintainers/2016-September/001442.html&gt;`__</a>
+<p>Events APIs will be available with <code>Gluster 3.9</code> release.(<a href="http://www.gluster.org/pipermail/maintainers/2016-September/001442.html">Release Candidate</a>
 is available if anybody interested in testing)</p>
 </div>
 <div class="paragraph">
@@ -83,28 +81,21 @@ calling Gluster status command/api in periodic intervals.</p>
 <div class="paragraph">
 <p>Below illustration shows calling <code>status</code> once every 10 seconds.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/gluster_monitor_without_events.jpg
-:alt: Get Cluster status without Events APIs</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/gluster_monitor_without_events.jpg" alt="Get Cluster status without Events APIs">
+</div>
 </div>
 <div class="paragraph">
 <p>With Events APIs, setup a listener Webhook and register with Gluster
 using <code>gluster-eventsapi webhook-add &lt;URL&gt;</code>. Call Gluster status
-command whenever webhook receives an Event.(Check `this
-&lt;<a href="http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/&gt;`__" class="bare">http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/&gt;`__</a> blog
+command whenever webhook receives an Event.(Check <a href="http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/">this</a> blog
 to know Webhooks and Events APIs in detail)</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/gluster_monitor_with_events.jpg
-:alt: Get Cluster status with Events APIs</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/gluster_monitor_with_events.jpg" alt="Get Cluster status with Events APIs">
+</div>
 </div>
 <div class="paragraph">
 <p>As part of presentation, created some visualizations to show how these
@@ -115,35 +106,26 @@ when Gluster cluster state changes.</p>
 <p>Following gif shows the UI change immediately after creating a Gluster
 Volume.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/create_start_volume.gif
-:alt: Gluster Volume Create and Start</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/create_start_volume.gif" alt="Gluster Volume Create and Start">
+</div>
 </div>
 <div class="paragraph">
 <p>When a brick process is killed,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/brick_down.gif
-:alt: Brick Process Killed</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/brick_down.gif" alt="Brick Process Killed">
+</div>
 </div>
 <div class="paragraph">
 <p>Volume Stop,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/volume_stop.gif
-:alt: Volume Stop</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/volume_stop.gif" alt="Volume Stop">
+</div>
 </div>
 <div class="sect1">
 <h2 id="_references">References:</h2>
@@ -152,7 +134,7 @@ Volume.</p>
 <ul>
 <li>
 <p>Documentation for the Events APIs feature is available
-`here &lt;<a href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/&gt;`__" class="bare">http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/&gt;`__</a>.</p>
+<a href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/">here</a>.</p>
 </li>
 <li>
 <p>Gif images created using <code>byzanz</code> tool.(Example: <code>sleep 2;
@@ -160,12 +142,10 @@ byzanz-record --duration=5 --x=500 --y=0 --width=1024 --height=800
 volume_stop.gif</code></p>
 </li>
 <li>
-<p>Illustrations are created using `mypaint &lt;<a href="http://mypaint.org/&gt;`__" class="bare">http://mypaint.org/&gt;`__</a> software and Wacom Tablet.</p>
+<p>Illustrations are created using <a href="http://mypaint.org/">mypaint</a> software and Wacom Tablet.</p>
 </li>
 <li>
-<p>Dashboard prototype was created using `Python
-&lt;<a href="http://python.org/&gt;`" class="bare">http://python.org/&gt;`</a><em> `Flask &lt;<a href="http://flask.pocoo.org/&gt;`" class="bare">http://flask.pocoo.org/&gt;`</a></em> + `Elm
-&lt;<a href="http://elm-lang.org/&gt;`__" class="bare">http://elm-lang.org/&gt;`__</a> + Websockets</p>
+<p>Dashboard prototype was created using <a href="http://python.org/">Python</a> <a href="http://flask.pocoo.org/">Flask</a> + <a href="http://elm-lang.org/">Elm</a> + Websockets</p>
 </li>
 </ul>
 </div>

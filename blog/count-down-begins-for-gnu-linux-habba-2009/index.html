@@ -83,41 +83,27 @@
 <div class="paragraph">
 <p>Create a DIV container in your webpage, Include the below script inside that container. You can apply positioning styles to that container.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: html</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>&lt;script type="text/javascript" src="http://aravinda-vk.appspot.com/js/countdown.js"&gt;
-&lt;/script&gt;
-&lt;!-- or design2 --&gt;
-&lt;script type="text/javascript" src="http://aravinda-vk.appspot.com/js/countdown-design2.js"&gt;
-&lt;/script&gt;</pre>
+<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"http://aravinda-vk.appspot.com/js/countdown.js"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="c">&lt;!-- or design2 --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"http://aravinda-vk.appspot.com/js/countdown-design2.js"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/script&gt;</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_example">Example</h2>
 <div class="sectionbody">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: html</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>&lt;div style="float:right;margin-right:10px;"&gt;
-&lt;script type="text/javascript" src="http://aravinda-vk.appspot.com/js/countdown.js"&gt;
-&lt;/script&gt;
-&lt;/div&gt;</pre>
+<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"float:right;margin-right:10px;"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"http://aravinda-vk.appspot.com/js/countdown.js"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
@@ -130,55 +116,36 @@
 <div class="paragraph">
 <p>Image source will be dynamically generated based on the number of days remaining.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: javascript</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>/* File Name: countdown.js
+<pre class="rouge highlight"><code data-lang="js"><span class="cm">/* File Name: countdown.js
  * This script will display the image based on the number of days left
- */
-// Hosted at
-var basePath = "http://aravinda-vk.appspot.com/";</pre>
+ */</span>
+<span class="c1">// Hosted at</span>
+<span class="kd">var</span> <span class="nx">basePath</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">http://aravinda-vk.appspot.com/</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// get todays date and convert to IST</span>
+<span class="kd">var</span> <span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+<span class="c1">// +5.5hrs = 330 mins</span>
+<span class="nx">today</span><span class="p">.</span><span class="nx">setTime</span><span class="p">(</span><span class="nx">today</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">+</span>  <span class="p">(</span><span class="nx">today</span><span class="p">.</span><span class="nx">getTimezoneOffset</span><span class="p">()</span><span class="o">+</span><span class="mi">330</span><span class="p">)</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>
+
+<span class="c1">// get Event date and convert to IST</span>
+<span class="kd">var</span> <span class="nx">eventDate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="dl">"</span><span class="s2">February 07, 2009</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">eventDate</span><span class="p">.</span><span class="nx">setTime</span><span class="p">(</span><span class="nx">eventDate</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">+</span>  <span class="p">(</span><span class="nx">eventDate</span><span class="p">.</span><span class="nx">getTimezoneOffset</span><span class="p">()</span><span class="o">+</span><span class="mi">330</span><span class="p">)</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>  <span class="c1">//+5.5hrs = 330 mins</span>
+<span class="kd">var</span> <span class="nx">miliSecsPerDay</span> <span class="o">=</span> <span class="mi">86400000</span><span class="p">;</span>  <span class="c1">//24 * 60 * 60 * 1000 ;</span>
+
+<span class="c1">// Calculate days left</span>
+<span class="kd">var</span> <span class="nx">numDaysRemaining</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">eventDate</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">-</span> <span class="nx">today</span><span class="p">.</span><span class="nx">getTime</span><span class="p">())</span><span class="o">/</span><span class="nx">miliSecsPerDay</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">// Display If event is not over</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">numDaysRemaining</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">){</span>
+    <span class="nx">imgSrcString</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">&lt;img src="</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">basePath</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">img/</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">numDaysRemaining</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">.png" </span><span class="dl">'</span><span class="p">;</span>
+    <span class="nx">imgSrcString</span> <span class="o">=</span> <span class="nx">imgSrcString</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> alt="Gnu/Linux Habba in </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">numDaysRemaining</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> days" </span><span class="dl">'</span><span class="p">;</span>
+    <span class="nx">imgSrcString</span> <span class="o">=</span> <span class="nx">imgSrcString</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> title="Gnu/Linux Habba in </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">numDaysRemaining</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> days" </span><span class="dl">'</span><span class="p">;</span>
+    <span class="nx">imgSrcString</span> <span class="o">=</span> <span class="nx">imgSrcString</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> style="border:0px;" /&gt;</span><span class="dl">'</span><span class="p">;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">&lt;a href="http://habba.in"&gt;</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">imgSrcString</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">&lt;/a&gt;</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
 </div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>// get todays date and convert to IST
-var today = new Date();
-// +5.5hrs = 330 mins
-today.setTime(today.getTime() +  (today.getTimezoneOffset()+330)*60*1000);</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>// get Event date and convert to IST
-var eventDate = new Date("February 07, 2009");
-eventDate.setTime(eventDate.getTime() +  (eventDate.getTimezoneOffset()+330)*60*1000);  //+5.5hrs = 330 mins
-var miliSecsPerDay = 86400000;  //24 * 60 * 60 * 1000 ;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>// Calculate days left
-var numDaysRemaining = Math.floor((eventDate.getTime() - today.getTime())/miliSecsPerDay) + 1;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>// Display If event is not over
-if(numDaysRemaining &gt;= 0){
-    imgSrcString = '&lt;img src="' + basePath + 'img/' + numDaysRemaining + '.png" ';
-    imgSrcString = imgSrcString + ' alt="Gnu/Linux Habba in ' + numDaysRemaining + ' days" ';
-    imgSrcString = imgSrcString + ' title="Gnu/Linux Habba in ' + numDaysRemaining + ' days" ';
-    imgSrcString = imgSrcString + ' style="border:0px;" /&gt;';
-    document.write('&lt;a href="http://habba.in"&gt;' + imgSrcString + '&lt;/a&gt;');
-}</pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>

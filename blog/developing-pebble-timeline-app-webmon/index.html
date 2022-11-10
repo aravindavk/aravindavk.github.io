@@ -65,21 +65,18 @@
             </div>
             <div class="content py-6">
                 <div class="paragraph">
-<p>Pebble firmware 3.0 introduced a new feature called `Timeline &lt;<a href="https://developer.getpebble.com/guides/timeline/&gt;`__" class="bare">https://developer.getpebble.com/guides/timeline/&gt;`__</a>, the advantage of Timeline app is that processing happens in App server instead of in the Mobile / Watch, and can directly send notification to Watch (via the Timeline API website and phone, but no additional app required on the phone).</p>
+<p>Pebble firmware 3.0 introduced a new feature called <a href="https://developer.getpebble.com/guides/timeline/">Timeline</a>, the advantage of Timeline app is that processing happens in App server instead of in the Mobile / Watch, and can directly send notification to Watch (via the Timeline API website and phone, but no additional app required on the phone).</p>
 </div>
 <div class="paragraph">
-<p>I created a Pebble Timeline application to monitor the status of websites called `Webmon &lt;<a href="https://apps.getpebble.com/en_US/application/554627a6ab49e41f8f00004b&gt;`__" class="bare">https://apps.getpebble.com/en_US/application/554627a6ab49e41f8f00004b&gt;`__</a>. Sometimes friends/users will ping or email to inform that our website is not accessible for some reason. We may lose our business if we don&#8217;t monitor them regularly.</p>
+<p>I created a Pebble Timeline application to monitor the status of websites called <a href="https://apps.getpebble.com/en_US/application/554627a6ab49e41f8f00004b">Webmon</a>. Sometimes friends/users will ping or email to inform that our website is not accessible for some reason. We may lose our business if we don&#8217;t monitor them regularly.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/webmon_logo.png
-:alt: Webmon App Logo</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/webmon_logo.png" alt="Webmon App Logo">
+</div>
 </div>
 <div class="paragraph">
-<p>I submitted this app as part of `#timelinechallenge &lt;<a href="https://developer.getpebble.com/blog/2015/04/14/the-timeline-challenge-is-live/&gt;`__" class="bare">https://developer.getpebble.com/blog/2015/04/14/the-timeline-challenge-is-live/&gt;`__</a>, but the app was not fully working that time and had issues with sending user Pins. I am not sure Pebble team looked at this app or not. :) And now most of the issues got resolved.</p>
+<p>I submitted this app as part of <a href="https://developer.getpebble.com/blog/2015/04/14/the-timeline-challenge-is-live/">#timelinechallenge</a>, but the app was not fully working that time and had issues with sending user Pins. I am not sure Pebble team looked at this app or not. :) And now most of the issues got resolved.</p>
 </div>
 <div class="paragraph">
 <p>There are other possibilities similar to this app, for example</p>
@@ -90,15 +87,15 @@
 <p>User can register a stock with min and max values, A cron can run every 5-15 mins in the app server. If stock price crosses the user configured limit, then send Timeline notification to user.</p>
 </li>
 <li>
-<p>User can configure his/her blood group and location, A daemon in app server can run listening to various APIs like `@tweet4blood &lt;<a href="https://twitter.com/tweet4blood&gt;`__" class="bare">https://twitter.com/tweet4blood&gt;`__</a>, if any matching request, send notification to Pebble user with blood request. The user can respond Yes/No(Anytime user can unsubscribe to the service)</p>
+<p>User can configure his/her blood group and location, A daemon in app server can run listening to various APIs like <a href="https://twitter.com/tweet4blood">@tweet4blood</a>, if any matching request, send notification to Pebble user with blood request. The user can respond Yes/No(Anytime user can unsubscribe to the service)</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>This application is written using Python (with Postgresql database) and hosted on `Red Hat OpenShift &lt;<a href="https://www.openshift.com/&gt;`__" class="bare">https://www.openshift.com/&gt;`__</a> cloud platform. (Free account as of now). Number of tracking URLs per user is limited as of now, but based on the feedbacks/usage I will enhance it to track multiple websites.</p>
+<p>This application is written using Python (with Postgresql database) and hosted on <a href="https://www.openshift.com/">Red Hat OpenShift</a> cloud platform. (Free account as of now). Number of tracking URLs per user is limited as of now, but based on the feedbacks/usage I will enhance it to track multiple websites.</p>
 </div>
 <div class="paragraph">
-<p>When I published the app link on `reddit &lt;<a href="http://www.reddit.com/r/pebble/comments/34sb31/webmon_website_health_monitor_timeline_app/&gt;`" class="bare">http://www.reddit.com/r/pebble/comments/34sb31/webmon_website_health_monitor_timeline_app/&gt;`</a><em>, `spangborn &lt;<a href="http://www.reddit.com/user/spangborn&gt;`" class="bare">http://www.reddit.com/user/spangborn&gt;`</a></em> was very concerned about the security issues and chances of app server getting blocked by domain owners. He raised some valid concerns, I am planning to address some of those comments soon.</p>
+<p>When I published the app link on <a href="http://www.reddit.com/r/pebble/comments/34sb31/webmon_website_health_monitor_timeline_app/">reddit</a>, <a href="http://www.reddit.com/user/spangborn">spangborn</a> was very concerned about the security issues and chances of app server getting blocked by domain owners. He raised some valid concerns, I am planning to address some of those comments soon.</p>
 </div>
 <div class="paragraph">
 <p>Timeline APIs are good, <strong>but I feel insecure when it is allowed to push the User pins without using APP_KEY</strong>. If a user_token is exposed then anybody can send timeline messages and spam that user.</p>
@@ -106,61 +103,46 @@
 <div class="paragraph">
 <p>Pebble watch app "webmon" is simple, just displays a banner page to guide the user to configure the app in app config.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>figure:: /images/webmon_watchapp.png
-:alt: Screenshot of Watchapp</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/webmon_watchapp.png" alt="Screenshot of Watchapp">
+</div>
 </div>
 <div class="paragraph">
 <p>In configure window, enter the website URL you want to track and click SAVE. You can anytime disable/enable the website tracking. When configuration is set, it sends registration request to the app server to register a website for tracking using PebbleKit JS.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>figure:: /images/webmon_config.png
-:alt: Configuration page</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/webmon_config.png" alt="Configuration page">
+</div>
 </div>
 <div class="paragraph">
 <p>A cron job runs on app server every one hour, gets the unique list of websites and does an HTTP GET request. If any website&#8217;s state is different from previous state, then it prepares a Timeline notification and sends it. The app will not spam by sending too many messages, it only notifies the user if the state changed after previous run.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/webmon_healthy.png
-:alt: Healthy Notification</p>
-</li>
-<li>
-<p>image:: /images/webmon_faulty.png
-:alt: Faulty Notification</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/webmon_healthy.png" alt="Healthy Notification">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/webmon_faulty.png" alt="Faulty Notification">
+</div>
 </div>
 <div class="paragraph">
-<p>Sending user pin is super easy with Python, I used Python library `requests &lt;<a href="https://pypi.python.org/pypi/requests&gt;`__" class="bare">https://pypi.python.org/pypi/requests&gt;`__</a></p>
+<p>Sending user pin is super easy with Python, I used Python library <a href="https://pypi.python.org/pypi/requests">requests</a></p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: python</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>import requests
-pin = {..} # Valid Pin object
-url = "https://timeline-api.getpebble.com/v1/user/pins/%s" % pin["id"]
-resp = requests.put(url,
-                    headers={"X-User-Token": user_token,
-                             "Content-Type": "application/json"},
-                    data=json.dumps(pin))
-print resp.status_code</pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">pin</span> <span class="o">=</span> <span class="p">{..}</span> <span class="c1"># Valid Pin object
+</span><span class="n">url</span> <span class="o">=</span> <span class="s">"https://timeline-api.getpebble.com/v1/user/pins/%s"</span> <span class="o">%</span> <span class="n">pin</span><span class="p">[</span><span class="s">"id"</span><span class="p">]</span>
+<span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span>
+                    <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">"X-User-Token"</span><span class="p">:</span> <span class="n">user_token</span><span class="p">,</span>
+                             <span class="s">"Content-Type"</span><span class="p">:</span> <span class="s">"application/json"</span><span class="p">},</span>
+                    <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">pin</span><span class="p">))</span>
+<span class="k">print</span> <span class="n">resp</span><span class="p">.</span><span class="n">status_code</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="sect1">
 <h2 id="_technologies_used">Technologies used:</h2>
@@ -187,7 +169,7 @@ print resp.status_code</pre>
 <h2 id="_problems_faced">Problems faced:</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Without having actual device, testing app is very very difficult to test the Timeline apps. I developed app using installed SDK, but for testing Timeline I copied all code to `cloudpebble.net &lt;<a href="https://cloudpebble.net/&gt;`__" class="bare">https://cloudpebble.net/&gt;`__</a></p>
+<p>Without having actual device, testing app is very very difficult to test the Timeline apps. I developed app using installed SDK, but for testing Timeline I copied all code to <a href="https://cloudpebble.net/">cloudpebble.net</a></p>
 </div>
 </div>
 </div>
@@ -195,7 +177,7 @@ print resp.status_code</pre>
 <h2 id="_show_me_the_code">Show me the Code:</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>I love Open Source and sharing code makes me happy. Code is available in `github.com/aravindavk/webmon &lt;<a href="https://github.com/aravindavk/webmon&gt;`__" class="bare">https://github.com/aravindavk/webmon&gt;`__</a> with MIT license.</p>
+<p>I love Open Source and sharing code makes me happy. Code is available in <a href="https://github.com/aravindavk/webmon">github.com/aravindavk/webmon</a> with MIT license.</p>
 </div>
 <div class="paragraph">
 <p>***</p>

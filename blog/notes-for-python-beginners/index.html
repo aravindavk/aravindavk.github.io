@@ -67,154 +67,91 @@
                 <h1>Using Python documentation similar to unix man pages</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>pydoc sys</pre>
+<pre class="rouge highlight"><code data-lang="bash">pydoc sys</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>or</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>python -m pydoc sys</pre>
+<pre class="rouge highlight"><code data-lang="bash">python <span class="nt">-m</span> pydoc sys</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
 <h1 id="_for_html_documentation" class="sect0">For html documentation</h1>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>pydoc -p 9000</pre>
+<pre class="rouge highlight"><code data-lang="bash">pydoc <span class="nt">-p</span> 9000</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Now server will start running in port 9000. we can access the documentation in <a href="http://localhost:9000" class="bare">http://localhost:9000</a></p>
 </div>
 <h1 id="_to_get_help_while_working_inside_interpreter_type_help" class="sect0">To get help while working inside interpreter, type help()</h1>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>&gt;&gt;help()</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="o">&gt;&gt;</span><span class="nb">help</span><span class="o">()</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Help prompt will come, now we can type module name to get details about that module.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>sys</pre>
+<pre class="rouge highlight"><code data-lang="bash">sys</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <h1 id="_to_list_functionsattributes_inside_a_module" class="sect0">To list functions/attributes inside a module</h1>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: python</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>import sys
-dir(sys)</pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">dir</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>To get it in readable format</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: python</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>import sys
-for i in dir(sys):
-    print i</pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">sys</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">i</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <h1 id="_to_list_builtin_functions" class="sect0">To list builtin functions,</h1>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: python</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>import __builtin__
-for i in dir(__builtin__):
-    print i</pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="nn">__builtin__</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">__builtin__</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">i</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <h1 id="_to_see_which_are_all_the_modules_loaded_in_our_program" class="sect0">To see which are all the modules loaded in our program</h1>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: python</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>import sys
-for i in sys.modules:
-    print i, ": ", sys.modules[i]</pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sys</span><span class="p">.</span><span class="n">modules</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="s">": "</span><span class="p">,</span> <span class="n">sys</span><span class="p">.</span><span class="n">modules</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <h1 id="_booksdocumentation" class="sect0">Books/documentation</h1>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>`Dive into Python &lt;<a href="http://diveintopython.org&gt;`" class="bare">http://diveintopython.org&gt;`</a><em> and `Dive into Python3 &lt;<a href="http://diveintopython3.org/&gt;`" class="bare">http://diveintopython3.org/&gt;`</a></em></p>
+<p><a href="http://diveintopython.org">Dive into Python</a> and <a href="http://diveintopython3.org/">Dive into Python3</a></p>
 </li>
 <li>
-<p>`Byte of Python &lt;<a href="http://www.swaroopch.com/notes/Python&gt;`__" class="bare">http://www.swaroopch.com/notes/Python&gt;`__</a></p>
+<p><a href="http://www.swaroopch.com/notes/Python">Byte of Python</a></p>
 </li>
 <li>
-<p>`Python documentation &lt;<a href="http://docs.python.org/&gt;`__" class="bare">http://docs.python.org/&gt;`__</a></p>
+<p><a href="http://docs.python.org/">Python documentation</a></p>
 </li>
 <li>
-<p>`Python for beginners &lt;<a href="http://wiki.python.org/moin/BeginnersGuide&gt;`__" class="bare">http://wiki.python.org/moin/BeginnersGuide&gt;`__</a></p>
+<p><a href="http://wiki.python.org/moin/BeginnersGuide">Python for beginners</a></p>
 </li>
 </ol>
 </div>

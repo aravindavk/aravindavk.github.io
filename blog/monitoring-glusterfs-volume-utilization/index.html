@@ -56,7 +56,7 @@
             <div class="has-text-centered">
                 <h1 class="title">Monitoring GlusterFS - Volume Utilization</h1>
                 <div class="">Aug 3, 2018</div>
-                <div class=""><strong>4 minutes</strong> read</div>
+                <div class=""><strong>3 minutes</strong> read</div>
                 <div>
                     
                     <span class="tag is-info is-light">gluster</span>
@@ -67,44 +67,27 @@
             </div>
             <div class="content py-6">
                 <div class="paragraph">
-<p>This blog explains the approaches to monitor `Gluster
-&lt;<a href="https://www.gluster.org/&gt;`" class="bare">https://www.gluster.org/&gt;`</a><em> Volume utilization using `Prometheus
-&lt;<a href="https://prometheus.io&gt;`" class="bare">https://prometheus.io&gt;`</a></em>.</p>
+<p>This blog explains the approaches to monitor <a href="https://www.gluster.org/">Gluster</a> Volume utilization using <a href="https://prometheus.io">Prometheus</a>.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>figure:: /images/gluster-volume-utilization.png
-:alt: Gluster Volume Utilization</p>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>Gluster Volume Utilization visualized using `Grafana &lt;https://grafana.com/&gt;`__</pre>
+<img src="/images/gluster-volume-utilization.png" alt="Gluster Volume Utilization">
 </div>
-</div>
-</li>
-</ol>
+<div class="title">Gluster Volume Utilization visualized using <a href="https://grafana.com/">Grafana</a></div>
 </div>
 <div class="paragraph">
 <p>To get the Gluster Volume utilization, easy way is to use <code>mount</code> and
 <code>df</code>.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>mkdir /mnt/gv1
-mount -t glusterfs localhost:gv1 /mnt/gv1
-df /mnt/gv1</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">mkdir</span> /mnt/gv1
+mount <span class="nt">-t</span> glusterfs localhost:gv1 /mnt/gv1
+<span class="nb">df</span> /mnt/gv1</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>Alternatively we can use “libgfapi”(For example `glusterdf
-&lt;<a href="http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/&gt;`__" class="bare">http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/&gt;`__</a> tool
+<p>Alternatively we can use “libgfapi”(For example <a href="http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/">glusterdf</a> tool
 uses “libgfapi”)</p>
 </div>
 <div class="sect1">
@@ -115,38 +98,24 @@ uses “libgfapi”)</p>
 volumes needs to be mounted in all nodes and exporters will export
 duplicate data from all nodes.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>gluster_volume_utilization{instance="node1.example.com:8080",volname="gv1"} 790425600</pre>
+<pre class="rouge highlight"><code data-lang="text">gluster_volume_utilization{instance="node1.example.com:8080",volname="gv1"} 790425600</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>If exported data is like above then add the following rule to
 Prometheus configuration so that duplicate data will be eliminated in
 the visualization.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>groups:
-- name: gluster_volume_utilization
-  rules:
-  - record: gluster:volume_utilization_total:sum
-    expr: max(gluster_volume_utilization) by (volname)</pre>
+<pre class="rouge highlight"><code data-lang="text">    groups:
+    - name: gluster_volume_utilization
+      rules:
+      - record: gluster:volume_utilization_total:sum
+        expr: max(gluster_volume_utilization) by (volname)</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
@@ -158,20 +127,13 @@ the visualization.</p>
 node will be overloaded by the mount processes if we have more
 number of volumes.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: d</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>leader_node = online_peers().sorted().first()
-if (leader_node.id == local_node.id) {
-    export_volume_utilization()
-}</pre>
+<pre class="rouge highlight"><code data-lang="d">   <span class="n">leader_node</span> <span class="p">=</span> <span class="n">online_peers</span><span class="p">().</span><span class="n">sorted</span><span class="p">().</span><span class="n">first</span><span class="p">()</span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">leader_node</span><span class="p">.</span><span class="n">id</span> <span class="p">==</span> <span class="n">local_node</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="p">{</span>
+       <span class="n">export_volume_utilization</span><span class="p">()</span>
+   <span class="p">}</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>In this approach, no aggregation rules required at Prometheus side but
@@ -197,56 +159,35 @@ node and aggregating at the Prometheus server.</p>
 <code>b6</code>. If each node exporters publishes local bricks utilization,
 total volume utilization can be found using,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>subvol1_utilizaton = max(b1_utilization, b2_utilization, b3_utilization)
-subvol2_utilizaton = max(b4_utilization, b5_utilization, b6_utilization)
-volume_utilization = sum(subvol1_utilization, subvol2_utilization)</pre>
+<pre class="rouge highlight"><code data-lang="text">   subvol1_utilizaton = max(b1_utilization, b2_utilization, b3_utilization)
+   subvol2_utilizaton = max(b4_utilization, b5_utilization, b6_utilization)
+   volume_utilization = sum(subvol1_utilization, subvol2_utilization)</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>This formula works great for replicate volume, but in case of disperse
 Volume aggregated value will give wrong value, So multiply each
 brick&#8217;s utilization with number of data bricks.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>subvol_size = number_of_data_bricks * per_brick_utilization</pre>
+<pre class="rouge highlight"><code data-lang="text">   subvol_size = number_of_data_bricks * per_brick_utilization</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>To accommodate this, exporter needs to be modified to export effective
 utilization along with raw utilization.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>subvol_utilization = df(brick_path).used
-if (disperse_volume)
-    effective_subvol_utilization = brick_utilization * number_of_data_bricks
-else
-    effective_subvol_utilization = brick_utilization</pre>
+<pre class="rouge highlight"><code data-lang="text">   subvol_utilization = df(brick_path).used
+   if (disperse_volume)
+       effective_subvol_utilization = brick_utilization * number_of_data_bricks
+   else
+       effective_subvol_utilization = brick_utilization</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>With the above two exported values, both Volume and brick utilization
@@ -255,41 +196,27 @@ can be monitored without mounting the Gluster volume.</p>
 <div class="paragraph">
 <p>Example: Exported values for Volume gv1(Replica 3 volume)</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>gluster_subvol_capacity_used_bytes{instance="node1.example.com:8080",job="gluster",path="/exports/bricks/gv1/s1/brick1/brick",subvolume="s1",volume="gv1"} 790425600
-gluster_subvol_capacity_used_bytes{instance="node2.example.com:8080",job="gluster",path="/exports/bricks/gv1/s1/brick2/brick",subvolume="s1",volume="gv1"} 788611072
-gluster_subvol_capacity_used_bytes{instance="node3.example.com:8080",job="gluster",path="/exports/bricks/gv1/s1/brick3/brick",subvolume="s1",volume="gv1"} 790175744</pre>
+<pre class="rouge highlight"><code data-lang="text">   gluster_subvol_capacity_used_bytes{instance="node1.example.com:8080",job="gluster",path="/exports/bricks/gv1/s1/brick1/brick",subvolume="s1",volume="gv1"} 790425600
+   gluster_subvol_capacity_used_bytes{instance="node2.example.com:8080",job="gluster",path="/exports/bricks/gv1/s1/brick2/brick",subvolume="s1",volume="gv1"} 788611072
+   gluster_subvol_capacity_used_bytes{instance="node3.example.com:8080",job="gluster",path="/exports/bricks/gv1/s1/brick3/brick",subvolume="s1",volume="gv1"} 790175744</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Add the following rule in the Prometheus configuration file to record the
 Volume utilization.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: yml</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>---
-- name: gluster_volume_utilization
-  rules:
-  - record: gluster:volume_capacity_used_bytes_total:sum
-    expr: &gt;
-      sum(max(gluster_subvol_capacity_used_bytes)
-      by (volume, subvolume)) by (volume)</pre>
+<pre class="rouge highlight"><code data-lang="yaml">    <span class="s">---</span>
+    <span class="s">- name</span><span class="err">:</span> <span class="s">gluster_volume_utilization</span>
+      <span class="s">rules</span><span class="err">:</span>
+      <span class="pi">-</span> <span class="na">record</span><span class="pi">:</span> <span class="s">gluster:volume_capacity_used_bytes_total:sum</span>
+        <span class="na">expr</span><span class="pi">:</span> <span class="pi">&gt;</span>
+          <span class="s">sum(max(gluster_subvol_capacity_used_bytes)</span>
+          <span class="s">by (volume, subvolume)) by (volume)</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>If one or more bricks of a sub volume goes down, it still exports

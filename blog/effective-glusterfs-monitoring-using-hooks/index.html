@@ -56,7 +56,7 @@
             <div class="has-text-centered">
                 <h1 class="title">Effective GlusterFs monitoring using hooks</h1>
                 <div class="">Nov 28, 2013</div>
-                <div class=""><strong>4 minutes</strong> read</div>
+                <div class=""><strong>3 minutes</strong> read</div>
                 <div>
                     
                     <span class="tag is-info is-light">glusterfs</span>
@@ -67,7 +67,7 @@
             </div>
             <div class="content py-6">
                 <div class="paragraph">
-<p>Let us imagine we have a GlusterFs monitoring system which displays list of volumes and its state, to show the realtime status, monitoring app need to query the GlusterFs in regular interval to check volume status, new volumes etc. Assume if the polling interval is 5 seconds then monitoring app has to run :code:`gluster volume info` command ~17000 times a day!</p>
+<p>Let us imagine we have a GlusterFs monitoring system which displays list of volumes and its state, to show the realtime status, monitoring app need to query the GlusterFs in regular interval to check volume status, new volumes etc. Assume if the polling interval is 5 seconds then monitoring app has to run <code>gluster volume info</code> command ~17000 times a day!</p>
 </div>
 <div class="paragraph">
 <p>How about maintaining a state file in each node? which gets updated after every new GlusterFs event(create, delete, start, stop etc).</p>
@@ -78,163 +78,105 @@
 <div class="paragraph">
 <p>As of today GlusterFs provides following hooks, which we can use to update our state file.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>create
-delete
-start
-stop
-add-brick
-remove-brick
-set</pre>
+<pre class="rouge highlight"><code data-lang="text">    create
+    delete
+    start
+    stop
+    add-brick
+    remove-brick
+    set</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <h1 id="_how_to_use_hooks" class="sect0">How to use hooks</h1>
 <div class="paragraph">
-<p>GlusterFs hooks present in :code:`/var/lib/glusterd/hooks/1` directory. Following example shows sending message to all users using :code:`wall` command when any new GlusterFs volume is created.</p>
+<p>GlusterFs hooks present in <code>/var/lib/glusterd/hooks/1</code> directory. Following example shows sending message to all users using <code>wall</code> command when any new GlusterFs volume is created.</p>
 </div>
 <div class="paragraph">
-<p>Create a shell script :code:`/var/lib/glusterd/hooks/1/create/post/SNotify.bash` and make it executable. Whenever a volume is created GlusterFs executes all the executable scripts present in respective hook directory(Glusterfs executes only the scripts which filename starting with 'S')</p>
+<p>Create a shell script <code>/var/lib/glusterd/hooks/1/create/post/SNotify.bash</code> and make it executable. Whenever a volume is created GlusterFs executes all the executable scripts present in respective hook directory(Glusterfs executes only the scripts which filename starting with 'S')</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>#!/bin/bash
-VOL=
-ARGS=$(getopt -l "volname:"  -name "" $@)
-eval set -- "$ARGS"
-while true; do
-    case $1 in
-        --volname)
-            shift
-            VOL=$1
-            ;;
-        *)
-            shift
-            break
-            ;;
-    esac
-    shift
-done</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="c">#!/bin/bash</span>
+<span class="nv">VOL</span><span class="o">=</span>
+<span class="nv">ARGS</span><span class="o">=</span><span class="si">$(</span>getopt <span class="nt">-l</span> <span class="s2">"volname:"</span>  <span class="nt">-name</span> <span class="s2">""</span> <span class="nv">$@</span><span class="si">)</span>
+<span class="nb">eval set</span> <span class="nt">--</span> <span class="s2">"</span><span class="nv">$ARGS</span><span class="s2">"</span>
+<span class="k">while </span><span class="nb">true</span><span class="p">;</span> <span class="k">do
+    case</span> <span class="nv">$1</span> <span class="k">in</span>
+        <span class="nt">--volname</span><span class="p">)</span>
+            <span class="nb">shift
+            </span><span class="nv">VOL</span><span class="o">=</span><span class="nv">$1</span>
+            <span class="p">;;</span>
+        <span class="k">*</span><span class="p">)</span>
+            <span class="nb">shift
+            break</span>
+            <span class="p">;;</span>
+    <span class="k">esac</span>
+    <span class="nb">shift
+</span><span class="k">done
+
+</span>wall <span class="s2">"Gluster Volume Created: </span><span class="nv">$VOL</span><span class="s2">"</span><span class="p">;</span></code></pre>
 </div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>wall "Gluster Volume Created: $VOL";</pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 <h1 id="_experimental_project_glusterweb" class="sect0">Experimental project - GlusterWeb</h1>
 <div class="paragraph">
-<p>This experimental project maintains a sqlite database :code:`/var/lib/glusterd/nodestate/glusternodestate.db` which gets updated after any GlusterFs event. For example if a GlusterFs volume is created then it updates volumes table and also bricks table.</p>
+<p>This experimental project maintains a sqlite database <code>/var/lib/glusterd/nodestate/glusternodestate.db</code> which gets updated after any GlusterFs event. For example if a GlusterFs volume is created then it updates volumes table and also bricks table.</p>
 </div>
 <div class="paragraph">
-<p>This project depends on `glusterfs-tools &lt;<a href="https://github.com/aravindavk/glusterfs-tools&gt;`__" class="bare">https://github.com/aravindavk/glusterfs-tools&gt;`__</a> so install both projects.</p>
+<p>This project depends on <a href="https://github.com/aravindavk/glusterfs-tools">glusterfs-tools</a> so install both projects.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>git clone https://github.com/aravindavk/glusterfs-tools.git
-cd glusterfs-tools
-sudo python setup.py install</pre>
+<pre class="rouge highlight"><code data-lang="bash">git clone https://github.com/aravindavk/glusterfs-tools.git
+<span class="nb">cd </span>glusterfs-tools
+<span class="nb">sudo </span>python setup.py <span class="nb">install
+
+</span>git clone https://github.com/aravindavk/glusterfs-web.git
+<span class="nb">cd </span>glusterfs-web
+<span class="nb">sudo </span>python setup.py <span class="nb">install</span></code></pre>
 </div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>git clone https://github.com/aravindavk/glusterfs-web.git
-cd glusterfs-web
-sudo python setup.py install</pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>By running <code>setup</code>, this tool will install all the hooks which are required for monitoring. (<code>cleanup</code> is for removing all the hooks)</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>sudo glusternodestate setup</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">sudo </span>glusternodestate setup</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>All set! now run :code:`glusterweb` to start webapp.</p>
+<p>All set! now run <code>glusterweb</code> to start webapp.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>sudo glusterweb</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">sudo </span>glusterweb</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>Web application starts running in :code:`http://localhost:8080` you can change the port using :code:`--port` or :code:`-p` option.</p>
+<p>Web application starts running in <code><a href="http://localhost:8080" class="bare">http://localhost:8080</a></code> you can change the port using <code>--port</code> or <code>-p</code> option.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>sudo glusterweb -p 9000</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">sudo </span>glusterweb <span class="nt">-p</span> 9000</code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>figure:: /images/glusterweb-v0.1.png
-:alt: GlusterWeb</p>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>Initial version of web interface.</pre>
+<img src="/images/glusterweb-v0.1.png" alt="GlusterWeb">
 </div>
-</div>
-</li>
-</ol>
+<div class="title">Initial version of web interface.</div>
 </div>
 <h1 id="_future_plans" class="sect0">Future plans</h1>
 <div class="paragraph">
 <p><strong>Authentication</strong>: Option to provide username and password or access key while running glusterweb, For example</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>sudo glusterweb --username aravindavk --password somesecret
-# or
-sudo glusterweb --key secretonlyiknow</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">sudo </span>glusterweb <span class="nt">--username</span> aravindavk <span class="nt">--password</span> somesecret
+<span class="c"># or</span>
+<span class="nb">sudo </span>glusterweb <span class="nt">--key</span> secretonlyiknow</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p><strong>More gluster hooks support:</strong> we need more GlusterFs hooks for better monitoring(refer Problems below)</p>
@@ -258,23 +200,16 @@ sudo glusterweb --key secretonlyiknow</pre>
 <div class="paragraph">
 <p><strong>More hooks:</strong> As of today we don&#8217;t have hooks for volume down/up, brick down/up and other events. We need following hooks for effective monitoring glusterfs.(Add more if anything missing in the list)</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>glusterd-start
-peer probe
-peer detach
-volume-down
-volume-up
-brick-up
-brick-down</pre>
+<pre class="rouge highlight"><code data-lang="text">    glusterd-start
+    peer probe
+    peer detach
+    volume-down
+    volume-up
+    brick-up
+    brick-down</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Let me know your thoughts! Thanks.</p>

@@ -56,7 +56,7 @@
             <div class="has-text-centered">
                 <h1 class="title">Tesseract OCR initial setup</h1>
                 <div class="">Apr 28, 2011</div>
-                <div class=""><strong>5 minutes</strong> read</div>
+                <div class=""><strong>4 minutes</strong> read</div>
                 <div>
                     
                     <span class="tag is-info is-light">tesseract</span>
@@ -71,10 +71,12 @@
                 <h1>Tesseract OCR is</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="literalblock">
-<div class="content">
-<pre>The `Tesseract OCR &lt;http://code.google.com/p/tesseract-ocr/&gt;`__ engine was one of the top 3 engines in the 1995 UNLV Accuracy test. Between 1995 and 2006 it had little work done on it, but it is probably one of the most accurate open source OCR engines available. The source code will read a binary, grey or color image and output text. A tiff reader is built in that will read uncompressed TIFF images, or libtiff can be added to read compressed images.</pre>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>The <a href="http://code.google.com/p/tesseract-ocr/">Tesseract OCR</a> engine was one of the top 3 engines in the 1995 UNLV Accuracy test. Between 1995 and 2006 it had little work done on it, but it is probably one of the most accurate open source OCR engines available. The source code will read a binary, grey or color image and output text. A tiff reader is built in that will read uncompressed TIFF images, or libtiff can be added to read compressed images.</p>
 </div>
+</blockquote>
 </div>
 <div class="paragraph">
 <p>Tesseract OCR needs to be trained for Kannada and other Indic languages.</p>
@@ -82,23 +84,16 @@
 <div class="paragraph">
 <p>Downloaded latest version of Tesseract OCR from svn repository and installed in my system.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>svn checkout http://tesseract-ocr.googlecode.com/svn/trunk/ tesseract-ocr
+<pre class="rouge highlight"><code data-lang="bash">svn checkout http://tesseract-ocr.googlecode.com/svn/trunk/ tesseract-ocr
 ./configure
 make
-make install</pre>
+make <span class="nb">install</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>Tesseract OCR looks for training data in :code:<code>/usr/local/share/tessdata</code> directory. If we train anything new then we have to copy .traineddata file to this directory.</p>
+<p>Tesseract OCR looks for training data in <code>/usr/local/share/tessdata</code> directory. If we train anything new then we have to copy .traineddata file to this directory.</p>
 </div>
 <div class="paragraph">
 <p>I divided training process into four steps.</p>
@@ -122,32 +117,18 @@ make install</pre>
 <div class="paragraph">
 <p>I use Gimp to create tif images required for training. If you have jpg or png image convert to tif using</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>convert -depth 4 sample.jpg sample.tif</pre>
+<pre class="rouge highlight"><code data-lang="bash">convert <span class="nt">-depth</span> 4 sample.jpg sample.tif</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>I have :code:<code>apps</code> directory in my home directory, which is added to PATH using</p>
+<p>I have <code>apps</code> directory in my home directory, which is added to PATH using</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>PATH=/home/aravinda/apps:PATH; export PATH</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">PATH</span><span class="o">=</span>/home/aravinda/apps:PATH<span class="p">;</span> <span class="nb">export </span>PATH</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>I use this directory to save all my personal scripts and applications.</p>
@@ -155,37 +136,23 @@ make install</pre>
 <div class="paragraph">
 <p>Created a script called tessGenBox in apps directory, which accepts lang name as parameter.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>#!/bin/sh
-tesseract $1.tif $1 batch.nochop makebox</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="c">#!/bin/sh</span>
+tesseract <span class="nv">$1</span>.tif <span class="nv">$1</span> batch.nochop makebox</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Since only one font is used for exploring Tesseract traning options, not worried much on naming conventions. (Actual file name format is [lang].[fontname].[exp][num])</p>
 </div>
 <div class="paragraph">
-<p>I downloaded <code>QT based box editor &lt;https://github.com/zdenop/qt-box-editor/&gt;`__ as mentioned in the Tesseract wiki. After the installation copied :code:`qt-box-editor-1.04dev</code> file to apps directory and created shell script called tessBoxEdit in apps directory.</p>
+<p>I downloaded <a href="https://github.com/zdenop/qt-box-editor/">QT based box editor</a> as mentioned in the Tesseract wiki. After the installation copied <code>qt-box-editor-1.04dev</code> file to apps directory and created shell script called tessBoxEdit in apps directory.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>#!/bin/sh
-/home/aravinda/apps/qt-box-editor-1.04dev $1</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="c">#!/bin/sh</span>
+/home/aravinda/apps/qt-box-editor-1.04dev <span class="nv">$1</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Tif filename as parameter.</p>
@@ -193,34 +160,27 @@ tesseract $1.tif $1 batch.nochop makebox</pre>
 <div class="paragraph">
 <p>I created one more script tessGenData, which I will use to generate trained data based on previously generated box file.(Accepts language name as parameter)</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>#!/bin/sh
-tesseract $1.tif $1 nobatch box.train
-unicharset_extractor $1.box
-echo $1 0 0 0 0 0 &gt; font_properties
-mftraining -F font_properties -U unicharset $1.tr
-mftraining -F font_properties -U unicharset -O $1.unicharset $1.tr
-cntraining $1.tr
-mv Microfeat $1.Microfeat
-mv normproto $1.normproto
-mv pffmtable $1.pffmtable
-mv mfunicharset $1.mfunicharset
-mv inttemp $1.inttemp
-combine_tessdata $1.
-# Used su since I use Debian, use sudo if you are using Ubuntu
-su -c "cp $1.traineddata /usr/local/share/tessdata/"</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="c">#!/bin/sh</span>
+tesseract <span class="nv">$1</span>.tif <span class="nv">$1</span> nobatch box.train
+unicharset_extractor <span class="nv">$1</span>.box
+<span class="nb">echo</span> <span class="nv">$1</span> 0 0 0 0 0 <span class="o">&gt;</span> font_properties
+mftraining <span class="nt">-F</span> font_properties <span class="nt">-U</span> unicharset <span class="nv">$1</span>.tr
+mftraining <span class="nt">-F</span> font_properties <span class="nt">-U</span> unicharset <span class="nt">-O</span> <span class="nv">$1</span>.unicharset <span class="nv">$1</span>.tr
+cntraining <span class="nv">$1</span>.tr
+<span class="nb">mv </span>Microfeat <span class="nv">$1</span>.Microfeat
+<span class="nb">mv </span>normproto <span class="nv">$1</span>.normproto
+<span class="nb">mv </span>pffmtable <span class="nv">$1</span>.pffmtable
+<span class="nb">mv </span>mfunicharset <span class="nv">$1</span>.mfunicharset
+<span class="nb">mv </span>inttemp <span class="nv">$1</span>.inttemp
+combine_tessdata <span class="nv">$1</span><span class="nb">.</span>
+<span class="c"># Used su since I use Debian, use sudo if you are using Ubuntu</span>
+su <span class="nt">-c</span> <span class="s2">"cp </span><span class="nv">$1</span><span class="s2">.traineddata /usr/local/share/tessdata/"</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>It will ask password at the end to copy trained data file to :code:<code>/usr/local/share/tessdata</code></p>
+<p>It will ask password at the end to copy trained data file to <code>/usr/local/share/tessdata</code></p>
 </div>
 <div class="paragraph">
 <p>I created two additional scripts to clean the space in between if required.</p>
@@ -228,72 +188,51 @@ su -c "cp $1.traineddata /usr/local/share/tessdata/"</pre>
 <div class="paragraph">
 <p>tessCleanAfterBox - cleans the directory by removing all generated files except .box file</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>#!/bin/sh
-rm font_properties*
-rm $1.txt
-rm $1.normproto
-rm $1.traineddata
-rm $1.unicharset
-rm $1.mfunicharset
-rm $1.Microfeat
-rm $1.pffmtable
-rm $1.tr
-rm $1.inttemp
-rm unicharset
-rm *.bak</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="c">#!/bin/sh</span>
+<span class="nb">rm </span>font_properties<span class="k">*</span>
+<span class="nb">rm</span> <span class="nv">$1</span>.txt
+<span class="nb">rm</span> <span class="nv">$1</span>.normproto
+<span class="nb">rm</span> <span class="nv">$1</span>.traineddata
+<span class="nb">rm</span> <span class="nv">$1</span>.unicharset
+<span class="nb">rm</span> <span class="nv">$1</span>.mfunicharset
+<span class="nb">rm</span> <span class="nv">$1</span>.Microfeat
+<span class="nb">rm</span> <span class="nv">$1</span>.pffmtable
+<span class="nb">rm</span> <span class="nv">$1</span>.tr
+<span class="nb">rm</span> <span class="nv">$1</span>.inttemp
+<span class="nb">rm </span>unicharset
+<span class="nb">rm</span> <span class="k">*</span>.bak</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>tessCleanAll - Cleans all data including box file except images.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>#!/bin/sh
-rm font_properties*
-rm $1.txt
-rm $1.box
-rm $1.normproto
-rm $1.traineddata
-rm $1.unicharset
-rm $1.mfunicharset
-rm $1.Microfeat
-rm $1.pffmtable
-rm $1.tr
-rm $1.inttemp
-rm unicharset
-rm *.bak</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="c">#!/bin/sh</span>
+<span class="nb">rm </span>font_properties<span class="k">*</span>
+<span class="nb">rm</span> <span class="nv">$1</span>.txt
+<span class="nb">rm</span> <span class="nv">$1</span>.box
+<span class="nb">rm</span> <span class="nv">$1</span>.normproto
+<span class="nb">rm</span> <span class="nv">$1</span>.traineddata
+<span class="nb">rm</span> <span class="nv">$1</span>.unicharset
+<span class="nb">rm</span> <span class="nv">$1</span>.mfunicharset
+<span class="nb">rm</span> <span class="nv">$1</span>.Microfeat
+<span class="nb">rm</span> <span class="nv">$1</span>.pffmtable
+<span class="nb">rm</span> <span class="nv">$1</span>.tr
+<span class="nb">rm</span> <span class="nv">$1</span>.inttemp
+<span class="nb">rm </span>unicharset
+<span class="nb">rm</span> <span class="k">*</span>.bak</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Once these scripts are created, we need to make these files as executable.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>chmod +x /home/aravinda/apps/tess*</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">chmod</span> +x /home/aravinda/apps/tess<span class="k">*</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
@@ -310,13 +249,13 @@ rm *.bak</pre>
 <p>Create a image with sample text and save as kan1.tif</p>
 </li>
 <li>
-<p>Create a box file :code:<code>tessGenBox kan1</code></p>
+<p>Create a box file <code>tessGenBox kan1</code></p>
 </li>
 <li>
-<p>Edit box file :code:<code>tessBoxEdit kan1</code></p>
+<p>Edit box file <code>tessBoxEdit kan1</code></p>
 </li>
 <li>
-<p>Generate trained data :code:<code>tessGenData kan1</code> and provide password.</p>
+<p>Generate trained data <code>tessGenData kan1</code> and provide password.</p>
 </li>
 </ol>
 </div>
@@ -326,13 +265,13 @@ rm *.bak</pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Edit box file :code:<code>tessBoxEdit kan1</code></p>
+<p>Edit box file <code>tessBoxEdit kan1</code></p>
 </li>
 <li>
-<p>Clean the directory :code:<code>tessCleanAfterBox kan1</code></p>
+<p>Clean the directory <code>tessCleanAfterBox kan1</code></p>
 </li>
 <li>
-<p>Generate trained data :code:<code>tessGenData kan1</code> and provide password.</p>
+<p>Generate trained data <code>tessGenData kan1</code> and provide password.</p>
 </li>
 </ol>
 </div>
@@ -342,16 +281,16 @@ rm *.bak</pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Clean the directory :code:<code>tessCleanAll kan1</code></p>
+<p>Clean the directory <code>tessCleanAll kan1</code></p>
 </li>
 <li>
-<p>Create a box file :code:<code>tessGenBox kan1</code></p>
+<p>Create a box file <code>tessGenBox kan1</code></p>
 </li>
 <li>
-<p>Edit box file :code:<code>tessBoxEdit kan1</code></p>
+<p>Edit box file <code>tessBoxEdit kan1</code></p>
 </li>
 <li>
-<p>Generate trained data :code:<code>tessGenData kan1</code> and provide password.</p>
+<p>Generate trained data <code>tessGenData kan1</code> and provide password.</p>
 </li>
 </ol>
 </div>

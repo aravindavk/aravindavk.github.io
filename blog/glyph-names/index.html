@@ -56,7 +56,7 @@
             <div class="has-text-centered">
                 <h1 class="title">Improving Kannada Fonts - Glyph Names</h1>
                 <div class="">Dec 24, 2013</div>
-                <div class=""><strong>5 minutes</strong> read</div>
+                <div class=""><strong>4 minutes</strong> read</div>
                 <div>
                     
                     <span class="tag is-info is-light">ಕನ್ನಡ</span>
@@ -69,7 +69,7 @@
             </div>
             <div class="content py-6">
                 <div class="paragraph">
-<p>During `#languageSummitPune &lt;<a href="http://www.mediawiki.org/wiki/Language_portal/Pune_LanguageSummit_November_2013&gt;`" class="bare">http://www.mediawiki.org/wiki/Language_portal/Pune_LanguageSummit_November_2013&gt;`</a><em>, `Pravin &lt;<a href="http://pravin-s.blogspot.in/&gt;`" class="bare">http://pravin-s.blogspot.in/&gt;`</a></em> explained about glyph naming specification by adobe and its benifits.</p>
+<p>During <a href="http://www.mediawiki.org/wiki/Language_portal/Pune_LanguageSummit_November_2013">#languageSummitPune</a>, <a href="http://pravin-s.blogspot.in/">Pravin</a> explained about glyph naming specification by adobe and its benifits.</p>
 </div>
 <div class="paragraph">
 <p>Glyph is a entity inside font which holds the co-ordinates information about a shape(letter). For most use cases glyph names doesn&#8217;t matter, it is font developers choice to give different names to the glyphs and write font rules according to their glyph names. Rendering engine always deals with Unicode values and font returns respective glyphs to display based on the rules and glyphs inside font.</p>
@@ -82,127 +82,90 @@
 <p>When user types some phrase to find inside pdf, pdf readers will try to convert unicode value of input phrase into glyph sequence and looks inside pdf for that sequence. If each font uses its own glyph names it not possible to reverse lookup by pdf reader and text search fails.</p>
 </div>
 <div class="paragraph">
-<p><code>Adobe Glyph specification &lt;<a href="http://sourceforge.net/adobe/aglfn/wiki/AGL%20Specification/&gt;`__" class="bare">http://sourceforge.net/adobe/aglfn/wiki/AGL%20Specification/&gt;`__</a> suggests to name the glyph as unicode value with :code:`uni</code> prefix. For example Unicode value of Kannada letter :code:`ಅ` is <code>U+0C85</code>, so we have to name the glyph :code:`ಅ` as <code>uni0C85</code>.</p>
+<p><a href="http://sourceforge.net/adobe/aglfn/wiki/AGL%20Specification/">Adobe Glyph specification</a> suggests to name the glyph as unicode value with <code>uni</code> prefix. For example Unicode value of Kannada letter <code>ಅ</code> is <code>U+0C85</code>, so we have to name the glyph <code>ಅ</code> as <code>uni0C85</code>.</p>
 </div>
 <div class="paragraph">
-<p>Some font developers prefer to name the glyphs as some human readable name instead of code name(like <code>avowelknd</code>, :code:`kaknd` etc). Human readable names may help at the time of adding rules, but their are other problems associated with it. If we use our own naming in the font then we should take care adding those names in <code>glyphlist.txt &lt;<a href="http://sourceforge.net/adobe/aglfn/wiki/Home/&gt;`__" class="bare">http://sourceforge.net/adobe/aglfn/wiki/Home/&gt;`__</a>. We will endup introducing one more naming standard for each language, also untill all pdf reader software picks up the updated glyphlist, new names will not be used in pdf search. Another important problem is that all fonts developer will not agree to use the glyph naming proposed by one font developer. (For example one can propose language name as prefix and other can say language name as suffix, :code:`kaknd</code> or :code:`kndka` or <code>knka</code>)</p>
+<p>Some font developers prefer to name the glyphs as some human readable name instead of code name(like <code>avowelknd</code>, <code>kaknd</code> etc). Human readable names may help at the time of adding rules, but their are other problems associated with it. If we use our own naming in the font then we should take care adding those names in <a href="http://sourceforge.net/adobe/aglfn/wiki/Home/">glyphlist.txt</a>. We will endup introducing one more naming standard for each language, also untill all pdf reader software picks up the updated glyphlist, new names will not be used in pdf search. Another important problem is that all fonts developer will not agree to use the glyph naming proposed by one font developer. (For example one can propose language name as prefix and other can say language name as suffix, <code>kaknd</code> or <code>kndka</code> or <code>knka</code>)</p>
 </div>
 <h1 id="_glyph_name_ligature" class="sect0">Glyph name - Ligature</h1>
 <div class="paragraph">
-<p>If a glyph shape is formed by two or more unicode values and the resultant glyph doesn&#8217;t have any unicode value then the glyph should be named as combination of two glyph names seperated by underscore. Suffix can be added to differenciate between multiple ligatures for the same unicode value combination. In the below example, suffix :code:`.abvs` is used since this ligature will be used in opentype feature <code>abvs</code> (above base substitution).</p>
+<p>If a glyph shape is formed by two or more unicode values and the resultant glyph doesn&#8217;t have any unicode value then the glyph should be named as combination of two glyph names seperated by underscore. Suffix can be added to differenciate between multiple ligatures for the same unicode value combination. In the below example, suffix <code>.abvs</code> is used since this ligature will be used in opentype feature <code>abvs</code> (above base substitution).</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/fontrules/group2.png
-:alt: ki</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/fontrules/group2.png" alt="ki">
+</div>
 </div>
 <div class="paragraph">
 <p>An example to understand how this reverse lookup works. Kannada text <code>ಮಂಕುತಿಮ್ಮ</code>, Unicode splitup and glyph names for the same is</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/mankutimma-unicode.png
-:alt: ಮಂಕುತಿಮ್ಮ - Unicode</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/mankutimma-unicode.png" alt="ಮಂಕುತಿಮ್ಮ - Unicode">
+</div>
 </div>
 <div class="paragraph">
 <p>Glyph names stored inside pdf are as follows(ignores all the suffix and joins together using underscore)</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>0CAE_0C82_0C95_0CC1_0CA4_0CBF_0CAE_0CCD_0CAE</pre>
+<pre class="rouge highlight"><code data-lang="text">0CAE_0C82_0C95_0CC1_0CA4_0CBF_0CAE_0CCD_0CAE</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Following psudo code shows how to convert unicode string to glyphs list without any help of rendering engine.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: python</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>def get_glyphs_list(unicode_str):
-    glyph_seq = []
-    for letter in unicode_str:
-        n = (hex(ord(letter)).replace("0x", "").upper().zfill(4))
-        glyph_seq.append(n)
-    return "_".join(glyph_seq)</pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="k">def</span> <span class="nf">get_glyphs_list</span><span class="p">(</span><span class="n">unicode_str</span><span class="p">):</span>
+    <span class="n">glyph_seq</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">unicode_str</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">letter</span><span class="p">)).</span><span class="n">replace</span><span class="p">(</span><span class="s">"0x"</span><span class="p">,</span> <span class="s">""</span><span class="p">).</span><span class="n">upper</span><span class="p">().</span><span class="n">zfill</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+        <span class="n">glyph_seq</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s">"_"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">glyph_seq</span><span class="p">)</span>
+
+<span class="c1"># Example:
+</span><span class="k">print</span> <span class="n">get_glyphs_list</span><span class="p">(</span><span class="sa">u</span><span class="s">"ಮಂಕುತಿಮ್ಮ"</span><span class="p">)</span>
+<span class="c1"># Output:
+# 0CAE_0C82_0C95_0CC1_0CA4_0CBF_0CAE_0CCD_0CAE</span></code></pre>
 </div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># Example:
-print get_glyphs_list(u"ಮಂಕುತಿಮ್ಮ")
-# Output:
-# 0CAE_0C82_0C95_0CC1_0CA4_0CBF_0CAE_0CCD_0CAE</pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>When we fetch glyph list for text :code:`ಕಿ` above function returns <code>0C95_0CBF</code>, which is easy to search from the available glyph list.</p>
+<p>When we fetch glyph list for text <code>ಕಿ</code> above function returns <code>0C95_0CBF</code>, which is easy to search from the available glyph list.</p>
 </div>
 <h1 id="_problems" class="sect0">Problems:</h1>
 <div class="paragraph">
-<p>In case of vattakshara, for example <code>ತಿಮ್ಮಿ</code>, dependent vowel will be reordered as shown in the image below, so resultant glyphset will be :code:`0CA4_0CBF_0CAE_0CBF_0CCD_0CAE` but above function returns as <code>0CA4_0CBF_0CAE_0CCD_0CAE_0CBF</code>.</p>
+<p>In case of vattakshara, for example <code>ತಿಮ್ಮಿ</code>, dependent vowel will be reordered as shown in the image below, so resultant glyphset will be <code>0CA4_0CBF_0CAE_0CBF_0CCD_0CAE</code> but above function returns as <code>0CA4_0CBF_0CAE_0CCD_0CAE_0CBF</code>.</p>
 </div>
 <h1 id="_glyph_names_validator" class="sect0">Glyph names validator:</h1>
 <div class="paragraph">
-<p>I created a tool using python to validate the glyph names, which accepts two parameters a font file and a text file with possible letters/words. It uses :code:`hb-shape` to get the glyphs list from the input text file, and generates required glyphs list and compares between them.</p>
+<p>I created a tool using python to validate the glyph names, which accepts two parameters a font file and a text file with possible letters/words. It uses <code>hb-shape</code> to get the glyphs list from the input text file, and generates required glyphs list and compares between them.</p>
 </div>
 <div class="paragraph">
-<p>Download the python script from `here &lt;<a href="https://raw.github.com/aravindavk/fontscripts/master/validate_glyphnames.py&gt;`__" class="bare">https://raw.github.com/aravindavk/fontscripts/master/validate_glyphnames.py&gt;`__</a></p>
+<p>Download the python script from <a href="https://raw.github.com/aravindavk/fontscripts/master/validate_glyphnames.py">here</a></p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>python validate_glyphnames.py Gubbi.ttf kannada_tests.txt</pre>
+<pre class="rouge highlight"><code data-lang="bash">python validate_glyphnames.py Gubbi.ttf kannada_tests.txt</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Sample test file</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>ಅ
+<pre class="rouge highlight"><code data-lang="text">ಅ
 ಆ
 ಇ
 ಈ
-ಕಾ</pre>
+ಕಾ</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Will write more about this tool later, If glyph names are standardized then we can create lot of automation tools.</p>
 </div>
 <div class="paragraph">
-<p>Let us start using the glyph names as :code:`uniXXXX` format, I am not sure about the solution for above mentioned problem, let me know your suggestion.</p>
+<p>Let us start using the glyph names as <code>uniXXXX</code> format, I am not sure about the solution for above mentioned problem, let me know your suggestion.</p>
 </div>
 <div class="paragraph">
 <p>C &amp; S welcome.</p>

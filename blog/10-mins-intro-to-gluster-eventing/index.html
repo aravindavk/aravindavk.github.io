@@ -56,7 +56,7 @@
             <div class="has-text-centered">
                 <h1 class="title">10 minutes introduction to Gluster Eventing Feature</h1>
                 <div class="">May 11, 2016</div>
-                <div class=""><strong>5 minutes</strong> read</div>
+                <div class=""><strong>4 minutes</strong> read</div>
                 <div>
                     
                     <span class="tag is-info is-light">gluster</span>
@@ -66,19 +66,8 @@
                 </div>
             </div>
             <div class="content py-6">
-                <div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>raw:: html</p>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;div class="notice-update"&gt;
-Demo video is included in the end, or you can directly watch it on &lt;a href="https://www.youtube.com/watch?v=urzong5sKqc"&gt;Youtube&lt;/a&gt;
-&lt;/div&gt;</pre>
-</div>
-</div>
-</li>
-</ol>
+                <div class="notification is-warning">
+    Demo video is included in the end, or you can directly watch it on <a href="https://www.youtube.com/watch?v=urzong5sKqc">Youtube</a>
 </div>
 <div class="paragraph">
 <p>Gluster Eventing is the new feature as part of Gluster.Next
@@ -88,10 +77,7 @@ the Gluster cluster state changes.</p>
 <div class="paragraph">
 <p>Websockets APIs to consume events will be added later. Now we emit
 events via another popular mechanism called "Webhooks".(Many popular
-products provide notifications via Webhooks `Github,
-&lt;<a href="https://developer.github.com/webhooks/&gt;`" class="bare">https://developer.github.com/webhooks/&gt;`</a><em> `Atlassian,
-&lt;<a href="https://developer.atlassian.com/jiradev/jira-apis/webhooks&gt;`" class="bare">https://developer.atlassian.com/jiradev/jira-apis/webhooks&gt;`</a></em>
-`Dropbox, &lt;<a href="https://www.dropbox.com/developers/reference/webhooks&gt;`__" class="bare">https://www.dropbox.com/developers/reference/webhooks&gt;`__</a> and many more)</p>
+products provide notifications via Webhooks <a href="https://developer.github.com/webhooks/">Github</a>, <a href="https://developer.atlassian.com/jiradev/jira-apis/webhooks">Atlassian</a>, <a href="https://www.dropbox.com/developers/reference/webhooks">Dropbox</a> and many more)</p>
 </div>
 <div class="paragraph">
 <p><strong>Webhooks</strong> are similar to callbacks(over HTTP), on event Gluster will
@@ -104,89 +90,56 @@ later.</p>
 <div class="paragraph">
 <p>Example Webhook written in python,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: python</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>from flask import Flask, request</pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/listen"</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">"POST"</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">events_listener</span><span class="p">():</span>
+    <span class="n">gluster_event</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">json</span>
+    <span class="k">if</span> <span class="n">gluster_event</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="c1"># No event to process, may be test call
+</span>        <span class="k">return</span> <span class="s">"OK"</span>
+
+    <span class="c1"># Process gluster_event
+</span>    <span class="c1"># {
+</span>    <span class="c1">#  "nodeid": NODEID,
+</span>    <span class="c1">#  "ts": EVENT_TIMESTAMP,
+</span>    <span class="c1">#  "event": EVENT_TYPE,
+</span>    <span class="c1">#  "message": EVENT_DATA
+</span>    <span class="c1"># }
+</span>    <span class="k">return</span> <span class="s">"OK"</span>
+
+<span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">"0.0.0.0"</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">9000</span><span class="p">)</span></code></pre>
 </div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>app = Flask(__name__)</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>@app.route("/listen", methods=["POST"])
-def events_listener():
-    gluster_event = request.json
-    if gluster_event is None:
-        # No event to process, may be test call
-        return "OK"</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># Process gluster_event
-# {
-#  "nodeid": NODEID,
-#  "ts": EVENT_TIMESTAMP,
-#  "event": EVENT_TYPE,
-#  "message": EVENT_DATA
-# }
-return "OK"</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>app.run(host="0.0.0.0", port=9000)</pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Eventing feature is not yet available in any of the releases, patch is
 under review in upstream master(<a href="http://review.gluster.org/14248" class="bare">http://review.gluster.org/14248</a>). If anybody interested in trying it
 out can cherrypick the patch from review.gluster.org</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>git clone http://review.gluster.org/glusterfs
-cd glusterfs
+<pre class="rouge highlight"><code data-lang="bash">git clone http://review.gluster.org/glusterfs
+<span class="nb">cd </span>glusterfs
 git fetch http://review.gluster.org/glusterfs refs/changes/48/14248/5
 git checkout FETCH_HEAD
-git checkout -b &lt;YOUR_BRANCH_NAME&gt;
+git checkout <span class="nt">-b</span> &lt;YOUR_BRANCH_NAME&gt;
 ./autogen.sh
 ./configure
 make
-make install</pre>
+make <span class="nb">install</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Start the Eventing using,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>gluster-eventing start</pre>
+<pre class="rouge highlight"><code data-lang="bash">gluster-eventing start</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Other commands available are stop, restart, reload and
@@ -197,103 +150,61 @@ status. <code>gluster-eventing --help</code> for more details.</p>
 server listening to a POST request and register that URL to Gluster
 Eventing. Thats all.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>gluster-eventing webhook-add &lt;MY_WEB_SERVER_URL&gt;</pre>
+<pre class="rouge highlight"><code data-lang="bash">gluster-eventing webhook-add &lt;MY_WEB_SERVER_URL&gt;</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>For example, if my webserver is running at <code><a href="http://192.168.122.188:9000/listen" class="bare">http://192.168.122.188:9000/listen</a></code>
 then register using,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>gluster-eventing webhook-add ``http://192.168.122.188:9000/listen``</pre>
+<pre class="rouge highlight"><code data-lang="bash">gluster-eventing webhook-add <span class="sb">`</span>http://192.168.122.188:9000/listen<span class="sb">`</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>We can also test if web server is accessible from all Gluster nodes
 using <code>webhook-test</code> subcommand.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>gluster-eventing webhook-test http://192.168.122.188:9000/listen</pre>
+<pre class="rouge highlight"><code data-lang="bash">gluster-eventing webhook-test http://192.168.122.188:9000/listen</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>With the initial patch only basic events are covered, I will add more
 events once this patch gets merged. Following events are available
 now.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>Volume Create
+<pre class="rouge highlight"><code data-lang="text">Volume Create
 Volume Delete
 Volume Start
 Volume Stop
 Peer Attach
-Peer Detach</pre>
+Peer Detach</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Created a small demo to show this eventing feature, it uses Web server
 which is included with the patch for Testing.(laptop hostname is <code>sonne</code>)</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>/usr/share/glusterfs/scripts/eventsdash.py --port 8080</pre>
+<pre class="rouge highlight"><code data-lang="bash">/usr/share/glusterfs/scripts/eventsdash.py <span class="nt">--port</span> 8080</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Login to Gluster node and start the eventing,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>gluster-eventing start
-gluster-eventing webhook-add http://sonne:8080/listen</pre>
+<pre class="rouge highlight"><code data-lang="bash">gluster-eventing start
+gluster-eventing webhook-add http://sonne:8080/listen</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>And then login to VM and run Gluster commands to probe/detach peer,
@@ -303,23 +214,16 @@ the same where eventsdash is running.</p>
 <div class="paragraph">
 <p>Example,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>ssh root@fvm1
+<pre class="rouge highlight"><code data-lang="bash">ssh root@fvm1
 gluster peer attach fvm2
 gluster volume create gv1 fvm1:/bricks/b1 fvm2:/bricks/b2 force
 gluster volume start gv1
 gluster volume stop gv1
 gluster volume delete gv1
-gluster peer detach fvm2</pre>
+gluster peer detach fvm2</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Demo also includes a Web UI which refreshes its UI automatically when
@@ -327,18 +231,7 @@ something changes in Cluster.(I am still fine tuning this UI, not yet
 available with the patch. But soon will be available as seperate repo
 in my github)</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>raw:: html</p>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;iframe width="640" height="360" src="https://www.youtube.com/embed/urzong5sKqc" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/urzong5sKqc" frameborder="0" allowfullscreen></iframe>
 <div class="sect1">
 <h2 id="_faq">FAQ:</h2>
 <div class="sectionbody">
@@ -346,45 +239,37 @@ in my github)</p>
 <ul>
 <li>
 <p><strong>Will this feature available in 3.8 release?</strong></p>
-<div class="literalblock">
-<div class="content">
-<pre>Sadly No. I couldn't get this merged before 3.8 feature freeze :(</pre>
-</div>
+<div class="paragraph">
+<p>Sadly No. I couldn&#8217;t get this merged before 3.8 feature freeze :(</p>
 </div>
 </li>
 <li>
 <p><strong>Is it possible to create a simple Gluster dashboard outside the
 cluster?</strong></p>
-<div class="literalblock">
-<div class="content">
-<pre>It is possible, along with the events we also need REST APIs to get
+<div class="paragraph">
+<p>It is possible, along with the events we also need REST APIs to get
 more information from cluster or to perform any action in cluster.
-(WIP REST APIs are available `here &lt;https://github.com/aravindavk/glusterfs-restapi&gt;`__)</pre>
-</div>
+(WIP REST APIs are available <a href="https://github.com/aravindavk/glusterfs-restapi">here</a>)</p>
 </div>
 </li>
 <li>
 <p><strong>Is it possible to filter only alerts or critical notifications?</strong></p>
-<div class="literalblock">
-<div class="content">
-<pre>Thanks `Kotresh &lt;http://hrkscribbles.blogspot.in/&gt;`__ for the
+<div class="paragraph">
+<p>Thanks <a href="http://hrkscribbles.blogspot.in/">Kotresh</a> for the
 suggestion. Yes it is possible to add event_type and event_group
 information to the dict so that it can be filtered easily.(Not yet
 available now, but will add this feature once this patch gets merged
-in Master)</pre>
-</div>
+in Master)</p>
 </div>
 </li>
 <li>
 <p><strong>Is documentation available to know more about eventing design and
 internals?</strong></p>
-<div class="literalblock">
-<div class="content">
-<pre>Design spec available `here &lt;http://review.gluster.org/13115&gt;`__
-(which discusses about Websockets, currently we don't have
+<div class="paragraph">
+<p>Design spec available <a href="http://review.gluster.org/13115">here</a>
+(which discusses about Websockets, currently we don&#8217;t have
 Websockets support). Usage documentation is available in the commit
-message of the patch(http://review.gluster.org/14248).</pre>
-</div>
+message of the patch(<a href="http://review.gluster.org/14248" class="bare">http://review.gluster.org/14248</a>).</p>
 </div>
 </li>
 </ul>

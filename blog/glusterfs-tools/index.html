@@ -68,22 +68,11 @@
                 </div>
             </div>
             <div class="content py-6">
-                <div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>raw:: html</p>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;div class="notice-update"&gt;
-UPDATE: &lt;br/&gt;Installation and usage is simplified with the new release of glusterfs-tools, refer &lt;a href="http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/"&gt;this blog&lt;/a&gt; for more details.
-&lt;/div&gt;</pre>
-</div>
-</div>
-</li>
-</ol>
+                <div class="notification is-warning">
+    UPDATE: <br/>Installation and usage is simplified with the new release of glusterfs-tools, refer <a href="http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/">this blog</a> for more details.
 </div>
 <div class="paragraph">
-<p>From `GlusterFS website &lt;<a href="http://gluster.org&gt;`__" class="bare">http://gluster.org&gt;`__</a></p>
+<p>From <a href="http://gluster.org">Gluster website</a></p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -94,142 +83,88 @@ UPDATE: &lt;br/&gt;Installation and usage is simplified with the new release of 
 <p>Gluster CLI has limited features to view and filter the volume info. I started a small project to enhance Gluster CLI for personal use. As of now it consists of a tool to list Gluster volumes in tabular format. Other intersesting features includes filtering the output based on name, type, status, bricks etc.</p>
 </div>
 <div class="paragraph">
-<p>Clone the project(I cloned it to :code:`/home/aravinda/sandbox/`)</p>
+<p>Clone the project(I cloned it to <code>/home/aravinda/sandbox/</code>)</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>cd /home/aravinda/sandbox
-git clone https://github.com/aravindavk/glusterfs-tools.git</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">cd</span> /home/aravinda/sandbox
+git clone https://github.com/aravindavk/glusterfs-tools.git</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Create a shellscript to call gftools /usr/local/bin/gfvolumes</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>#!/bin/bash
-python /home/aravinda/sandbox/glusterfs-tools/gftools/volumes.py "$@"</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="c">#!/bin/bash</span>
+python /home/aravinda/sandbox/glusterfs-tools/gftools/volumes.py <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Make gfvolumes executable</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>chmod +x /usr/local/bin/gfvolumes</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">chmod</span> +x /usr/local/bin/gfvolumes</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>Now we can run :code:`sudo gfvolumes` to see the list of glusterfs volumes. Type :code:`gfvolumes --help` for help.</p>
+<p>Now we can run <code>sudo gfvolumes</code> to see the list of glusterfs volumes. Type <code>gfvolumes --help</code> for help.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>figure:: /images/glusterfs/all_volumes.png
-:alt: All Volumes</p>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>All Volumes</pre>
+<img src="/images/glusterfs/all_volumes.png" alt="All Volumes">
 </div>
+<div class="title">All Volumes</div>
 </div>
-</li>
-<li>
-<p>figure:: /images/glusterfs/name_filter.png
-:alt: Name Filter</p>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>Name Filter</pre>
+<img src="/images/glusterfs/name_filter.png" alt="Name Filter">
 </div>
+<div class="title">Name Filter</div>
 </div>
-</li>
-<li>
-<p>figure:: /images/glusterfs/status_filter.png
-:alt: Status Filter</p>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>Status Filter</pre>
+<img src="/images/glusterfs/status_filter.png" alt="Status Filter">
 </div>
+<div class="title">Status Filter</div>
 </div>
-</li>
-<li>
-<p>figure:: /images/glusterfs/type_filter.png
-:alt: Type Filter</p>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>Type Filter</pre>
+<img src="/images/glusterfs/type_filter.png" alt="Type Filter">
 </div>
+<div class="title">Type Filter</div>
 </div>
-</li>
-<li>
-<p>figure:: /images/glusterfs/show_bricks.png
-:alt: Name Filter</p>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>Show Bricks</pre>
+<img src="/images/glusterfs/show_bricks.png" alt="Name Filter">
 </div>
-</div>
-</li>
-</ol>
+<div class="title">Show Bricks</div>
 </div>
 <div class="paragraph">
 <p>Additionally it can output filtered details in JSON format.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>figure:: /images/glusterfs/json_format.png
-:alt: Name Filter</p>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>JSON Format</pre>
+<img src="/images/glusterfs/json_format.png" alt="Name Filter">
 </div>
-</div>
-</li>
-</ol>
+<div class="title">JSON Format</div>
 </div>
 <div class="paragraph">
 <p>We can easily import this in our python script.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: python</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>#!/usr/bin/python
-from gftools import volumes
-gfvols = volumes.GfVolumes()
-ok, vols = gfvols.get(name='^gv[0-9]$', status='down') # Various filters available
-if ok:
-    # Do action</pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="c1">#!/usr/bin/python
+</span><span class="kn">from</span> <span class="nn">gftools</span> <span class="kn">import</span> <span class="n">volumes</span>
+<span class="n">gfvols</span> <span class="o">=</span> <span class="n">volumes</span><span class="p">.</span><span class="n">GfVolumes</span><span class="p">()</span>
+<span class="n">ok</span><span class="p">,</span> <span class="n">vols</span> <span class="o">=</span> <span class="n">gfvols</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'^gv[0-9]$'</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s">'down'</span><span class="p">)</span> <span class="c1"># Various filters available
+</span><span class="k">if</span> <span class="n">ok</span><span class="p">:</span>
+    <span class="c1"># Do action</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p><strong>Note:</strong> root permission is required to run gluster command, so run gfvolumes as root(:code:`sudo gfvolumes`)</p>
+<p><strong>Note:</strong> root permission is required to run gluster command, so run gfvolumes as root(<code>sudo gfvolumes</code>)</p>
 </div>
 <h1 id="_future_plans" class="sect0">Future plans:</h1>
 <div class="olist arabic">

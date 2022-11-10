@@ -56,7 +56,7 @@
             <div class="has-text-centered">
                 <h1 class="title">PHP Short open tag and Alternate syntax</h1>
                 <div class="">Apr 23, 2012</div>
-                <div class=""><strong>3 minutes</strong> read</div>
+                <div class=""><strong>2 minutes</strong> read</div>
                 <div>
                     
                     <span class="tag is-info is-light">php</span>
@@ -67,93 +67,65 @@
             </div>
             <div class="content py-6">
                 <div class="paragraph">
-<p>Many PHP programmers use short open tag :code:`&lt;?` instead of :code:`&lt;?php`. It saves time(really?) in coding especially while using PHP code in between HTML. But the use of short open tag is discouraged because it conflicts with XML and other languages. In the following example PHP interpreter fail to decide which is PHP and which is not, it tries to execute/interpret XML as PHP script and gives error.</p>
+<p>Many PHP programmers use short open tag <code>&lt;?</code> instead of <code>&lt;?php</code>. It saves time(really?) in coding especially while using PHP code in between HTML. But the use of short open tag is discouraged because it conflicts with XML and other languages. In the following example PHP interpreter fail to decide which is PHP and which is not, it tries to execute/interpret XML as PHP script and gives error.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: php</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>&lt;?xml version="1.0"?&gt;
-&lt;? $fav_languages = Array("PHP", "Python"); ?&gt;
-&lt;scripting&gt;
-    &lt;? foreach($fav_languages as $fav): ?&gt;
-        &lt;lang&gt;&lt;?= $fav; ?&gt;&lt;/lang&gt;
-    &lt;? endforeach; ?&gt;
-&lt;/scripting&gt;</pre>
+<pre class="rouge highlight"><code data-lang="php"><span class="o">&lt;?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s2">"1.0"</span><span class="cp">?&gt;</span>
+<span class="cp">&lt;?</span> <span class="nv">$fav_languages</span> <span class="o">=</span> <span class="k">Array</span><span class="p">(</span><span class="s2">"PHP"</span><span class="p">,</span> <span class="s2">"Python"</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;script</span><span class="na">ing</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;?</span> <span class="k">foreach</span><span class="p">(</span><span class="nv">$fav_languages</span> <span class="k">as</span> <span class="nv">$fav</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+        <span class="o">&lt;</span><span class="nx">lang</span><span class="o">&gt;</span><span class="cp">&lt;?=</span> <span class="nv">$fav</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="o">&lt;</span><span class="sr">/lang</span><span class="err">&gt;
+</span>    <span class="cp">&lt;?</span> <span class="k">endforeach</span><span class="p">;</span> <span class="cp">?&gt;</span>
+<span class="o">&lt;</span><span class="sr">/scripting&gt;</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p><strong>Note</strong>: foreach loop in above example uses PHP&#8217;s alternate syntax for foreach loop. You can read more about alternate syntax `here &lt;<a href="http://php.net/manual/en/control-structures.alternative-syntax.php&gt;`__" class="bare">http://php.net/manual/en/control-structures.alternative-syntax.php&gt;`__</a>.</p>
+<p><strong>Note</strong>: foreach loop in above example uses PHP&#8217;s alternate syntax for foreach loop. You can read more about alternate syntax <a href="http://php.net/manual/en/control-structures.alternative-syntax.php">here</a>.</p>
 </div>
 <div class="paragraph">
-<p>If short_open_tag is disabled in ini file, then modify the above script by adding :code:`&lt;?php` instead of :code:`&lt;?` and :code:`&lt;?php echo ` instead of :code:`&lt;?=`, then it will run successfully without any issues.</p>
+<p>If short_open_tag is disabled in ini file, then modify the above script by adding <code>&lt;?php</code> instead of <code>&lt;?</code> and <code>&lt;?php echo ` instead of `&lt;?=</code>, then it will run successfully without any issues.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: php</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>&lt;?xml version="1.0"?&gt;
-&lt;?php $fav_languages = Array("PHP", "Python"); ?&gt;
-&lt;scripting&gt;
-    &lt;?php foreach($fav_languages as $fav): ?&gt;
-        &lt;lang&gt;&lt;?php echo $fav; ?&gt;&lt;/lang&gt;
-    &lt;?php endforeach; ?&gt;
-&lt;/scripting&gt;</pre>
+<pre class="rouge highlight"><code data-lang="php"><span class="o">&lt;?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s2">"1.0"</span><span class="cp">?&gt;</span>
+<span class="cp">&lt;?php</span> <span class="nv">$fav_languages</span> <span class="o">=</span> <span class="k">Array</span><span class="p">(</span><span class="s2">"PHP"</span><span class="p">,</span> <span class="s2">"Python"</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;script</span><span class="na">ing</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">foreach</span><span class="p">(</span><span class="nv">$fav_languages</span> <span class="k">as</span> <span class="nv">$fav</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+        <span class="o">&lt;</span><span class="nx">lang</span><span class="o">&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$fav</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="o">&lt;</span><span class="sr">/lang</span><span class="err">&gt;
+</span>    <span class="cp">&lt;?php</span> <span class="k">endforeach</span><span class="p">;</span> <span class="cp">?&gt;</span>
+<span class="o">&lt;</span><span class="sr">/scripting&gt;</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>short_open_tag setting is disabled by default in PHP 5.3 onwards, so if we enable this flag then we should be careful while dealing with XML data. Following example helps to write XML even if short_open_tag is enabled.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: php</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>&lt;?= '&lt;?xml version="1.0"?&gt;'; ?&gt;
-&lt;? $fav_languages = Array("PHP", "Python"); ?&gt;
-&lt;scripting&gt;
-    &lt;? foreach($fav_languages as $fav): ?&gt;
-        &lt;lang&gt;&lt;?= $fav; ?&gt;&lt;/lang&gt;
-    &lt;? endforeach; ?&gt;
-&lt;/scripting&gt;</pre>
+<pre class="rouge highlight"><code data-lang="php"><span class="o">&lt;?=</span> <span class="s1">'&lt;?xml version="1.0"?&gt;'</span><span class="p">;</span> <span class="cp">?&gt;</span>
+<span class="cp">&lt;?</span> <span class="nv">$fav_languages</span> <span class="o">=</span> <span class="k">Array</span><span class="p">(</span><span class="s2">"PHP"</span><span class="p">,</span> <span class="s2">"Python"</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;script</span><span class="na">ing</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;?</span> <span class="k">foreach</span><span class="p">(</span><span class="nv">$fav_languages</span> <span class="k">as</span> <span class="nv">$fav</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+        <span class="o">&lt;</span><span class="nx">lang</span><span class="o">&gt;</span><span class="cp">&lt;?=</span> <span class="nv">$fav</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="o">&lt;</span><span class="sr">/lang</span><span class="err">&gt;
+</span>    <span class="cp">&lt;?</span> <span class="k">endforeach</span><span class="p">;</span> <span class="cp">?&gt;</span>
+<span class="o">&lt;</span><span class="sr">/scripting&gt;</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>The shortcut :code:`&lt;?=` is very useful and no conflicts between other markups. Good news is that from PHP 5.4 onwards :code:`&lt;?=` is always available irrespective of the short_open_tag settings.</p>
+<p>The shortcut <code>&lt;?=</code> is very useful and no conflicts between other markups. Good news is that from PHP 5.4 onwards <code>&lt;?=</code> is always available irrespective of the short_open_tag settings.</p>
 </div>
 <div class="paragraph">
 <p>Following example shows the use of this shortcut and PHP alternate syntax for control statements. Be careful and check your server configuration before deploying PHP code, your PHP code will be displayed as is without interpreting if this flag is not enabled.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: php</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>&lt;?php $menus = Array("Home" =&gt; "/", "Blog" =&gt; "/blog", "About" =&gt; "/about"); ?&gt;
-&lt;ul id="menu"&gt;
-    &lt;?php foreach($menus as $menu=&gt;$url): ?&gt;
-        &lt;li&gt;&lt;a href="&lt;?= $url; ?&gt;"&gt;&lt;?= $menu; ?&gt;&lt;/a&gt;&lt;/li&gt;
-    &lt;?php endforeach; ?&gt;
-&lt;/ul&gt;</pre>
+<pre class="rouge highlight"><code data-lang="php"><span class="o">&lt;?</span><span class="n">php</span> <span class="nv">$menus</span> <span class="o">=</span> <span class="k">Array</span><span class="p">(</span><span class="s2">"Home"</span> <span class="o">=&gt;</span> <span class="s2">"/"</span><span class="p">,</span> <span class="s2">"Blog"</span> <span class="o">=&gt;</span> <span class="s2">"/blog"</span><span class="p">,</span> <span class="s2">"About"</span> <span class="o">=&gt;</span> <span class="s2">"/about"</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"menu"</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">foreach</span><span class="p">(</span><span class="nv">$menus</span> <span class="k">as</span> <span class="nv">$menu</span><span class="o">=&gt;</span><span class="nv">$url</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nv">$url</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span><span class="cp">&lt;?=</span> <span class="nv">$menu</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">endforeach</span><span class="p">;</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;/ul&gt;</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p><strong>References:</strong></p>
@@ -161,10 +133,10 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>`PHP short_open_tag &lt;<a href="http://www.php.net/manual/en/ini.core.php#ini.short-open-tag&gt;`__" class="bare">http://www.php.net/manual/en/ini.core.php#ini.short-open-tag&gt;`__</a></p>
+<p><a href="http://www.php.net/manual/en/ini.core.php#ini.short-open-tag">PHP short_open_tag</a></p>
 </li>
 <li>
-<p>`Alternative syntax for control structures &lt;<a href="http://php.net/manual/en/control-structures.alternative-syntax.php&gt;`__" class="bare">http://php.net/manual/en/control-structures.alternative-syntax.php&gt;`__</a></p>
+<p><a href="http://php.net/manual/en/control-structures.alternative-syntax.php">Alternative syntax for control structures</a></p>
 </li>
 </ol>
 </div>

@@ -73,27 +73,17 @@
                 <div class="paragraph">
 <p>Now a days my incoming and outgoing SMS trend looks like this for some(known) reason :)</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>figure:: /images/incoming_sms_trend.png
-:alt: Incoming sms trend</p>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>Incoming SMS trend(Nov 2012 - Apr 2013)</pre>
+<img src="/images/incoming_sms_trend.png" alt="Incoming sms trend">
 </div>
+<div class="title">Incoming SMS trend(Nov 2012 - Apr 2013)</div>
 </div>
-</li>
-<li>
-<p>figure:: /images/outgoing_sms_trend.png
-:alt: Outgoing sms trend</p>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>Outgoing SMS trend(Nov 2012 - Apr 2013)</pre>
+<img src="/images/outgoing_sms_trend.png" alt="Outgoing sms trend">
 </div>
-</div>
-</li>
-</ol>
+<div class="title">Outgoing SMS trend(Nov 2012 - Apr 2013)</div>
 </div>
 <div class="paragraph">
 <p><strong>PS</strong>: Sometimes I delete telemarketing SMS as and when I receive, so incoming trend may not show actual :) Also while playing with Android OS I lost all the SMS prior to Nov 2012.</p>
@@ -125,92 +115,61 @@
 <div class="paragraph">
 <p>In Android, SMS data is stored in sqlite database, and it is located in the following directory(in phone).</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>/data/data/com.android.providers.telephony/databases/mmssms.db</pre>
+<pre class="rouge highlight"><code data-lang="bash">/data/data/com.android.providers.telephony/databases/mmssms.db</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>So we can run sql queries to get the details from sms table as per our need. To access the data from db, Android phone should be rooted.</p>
 </div>
 <div class="paragraph">
-<p>Add :code:`adb` path(in my machine adb path is :code:`/home/aravinda/android-sdk/platform-tools/<code>) to environment variable PATH, and run :code:`adb</code> as root.</p>
+<p>Add <code>adb</code> path(in my machine adb path is <code>/home/aravinda/android-sdk/platform-tools/</code>) to environment variable PATH, and run <code>adb</code> as root.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>adb root</pre>
+<pre class="rouge highlight"><code data-lang="bash">adb root</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>In sqlite we can see the list of tables present in a database using :code:`.tables` (:code:`sqlite3 &lt;db path&gt; ".tables"`) query.</p>
+<p>In sqlite we can see the list of tables present in a database using <code>.tables</code> (<code>sqlite3 &lt;db path&gt; ".tables"</code>) query.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>adb shell 'sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db ".tables"'</pre>
+<pre class="rouge highlight"><code data-lang="bash">adb shell <span class="s1">'sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db ".tables"'</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>and we can get schema of the required sqlite table using :code:`.schema &lt;table name&gt;` query.</p>
+<p>and we can get schema of the required sqlite table using <code>.schema &lt;table name&gt;</code> query.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>adb shell 'sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db ".schema sms"'</pre>
+<pre class="rouge highlight"><code data-lang="bash">adb shell <span class="s1">'sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db ".schema sms"'</span></code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>code-block:: sql</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>CREATE TABLE sms
-(
-    _id                INTEGER PRIMARY KEY,
-    thread_id          INTEGER,
-    address            TEXT,
-    person             INTEGER,
-    date               INTEGER,
-    date_sent          INTEGER DEFAULT 0,
-    protocol           INTEGER,
-    read               INTEGER DEFAULT 0,
-    status             INTEGER DEFAULT -1,
-    type               INTEGER,
-    reply_path_present INTEGER,
-    subject            TEXT,
-    body               TEXT,
-    service_center     TEXT,
-    locked             INTEGER DEFAULT 0,
-    error_code         INTEGER DEFAULT 0,
-    seen               INTEGER DEFAULT 0
-);</pre>
+<pre class="rouge highlight"><code data-lang="sql">    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">sms</span>
+    <span class="p">(</span>
+        <span class="n">_id</span>                <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+        <span class="n">thread_id</span>          <span class="nb">INTEGER</span><span class="p">,</span>
+        <span class="n">address</span>            <span class="nb">TEXT</span><span class="p">,</span>
+        <span class="n">person</span>             <span class="nb">INTEGER</span><span class="p">,</span>
+        <span class="nb">date</span>               <span class="nb">INTEGER</span><span class="p">,</span>
+        <span class="n">date_sent</span>          <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">protocol</span>           <span class="nb">INTEGER</span><span class="p">,</span>
+        <span class="k">read</span>               <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">status</span>             <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="k">type</span>               <span class="nb">INTEGER</span><span class="p">,</span>
+        <span class="n">reply_path_present</span> <span class="nb">INTEGER</span><span class="p">,</span>
+        <span class="n">subject</span>            <span class="nb">TEXT</span><span class="p">,</span>
+        <span class="n">body</span>               <span class="nb">TEXT</span><span class="p">,</span>
+        <span class="n">service_center</span>     <span class="nb">TEXT</span><span class="p">,</span>
+        <span class="n">locked</span>             <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">error_code</span>         <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">seen</span>               <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span>
+    <span class="p">);</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Now we know how to run queries inside phone using <code>adb</code>, let us list down some of the ideas which we can implement using available sms data.</p>
@@ -255,63 +214,42 @@
 <div class="paragraph">
 <p>Query is</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: sql</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>SELECT STRFTIME("%Y%m%d", DATETIME(date/1000, "unixepoch", "localtime")) dte,
-       COUNT(_id)
-FROM sms
-WHERE type = 2
-GROUP BY dte
-ORDER BY dte</pre>
+<pre class="rouge highlight"><code data-lang="sql">    <span class="k">SELECT</span> <span class="n">STRFTIME</span><span class="p">(</span><span class="nv">"%Y%m%d"</span><span class="p">,</span> <span class="nb">DATETIME</span><span class="p">(</span><span class="nb">date</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="nv">"unixepoch"</span><span class="p">,</span> <span class="nv">"localtime"</span><span class="p">))</span> <span class="n">dte</span><span class="p">,</span>
+           <span class="k">COUNT</span><span class="p">(</span><span class="n">_id</span><span class="p">)</span>
+    <span class="k">FROM</span> <span class="n">sms</span>
+    <span class="k">WHERE</span> <span class="k">type</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">dte</span>
+    <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">dte</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>where type 2 is sent and 1 is received.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>adb shell 'sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db \
-"SELECT STRFTIME(\"%Y%m%d\", DATETIME(date/1000, \"unixepoch\", \"localtime\")) dte,  \
-COUNT(_id) FROM sms WHERE type = 2 GROUP BY dte ORDER BY dte"'</pre>
+<pre class="rouge highlight"><code data-lang="bash">adb shell <span class="s1">'sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db \
+  "SELECT STRFTIME(\"%Y%m%d\", DATETIME(date/1000, \"unixepoch\", \"localtime\")) dte,  \
+  COUNT(_id) FROM sms WHERE type = 2 GROUP BY dte ORDER BY dte"'</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>If you want to find number of sms sent per day for a particular phone number then add the condition in WHERE clause as follows</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: sql</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>SELECT STRFTIME("%Y%m%d", DATETIME(date/1000, "unixepoch", "localtime")) dte,
-       COUNT(_id)
-FROM sms
-WHERE type = 2
-GROUP BY dte
-ORDER BY dte
-AND REPLACE(REPLACE(address, "+91",""), " ", "") = "XXXXX"</pre>
+<pre class="rouge highlight"><code data-lang="sql">    <span class="k">SELECT</span> <span class="n">STRFTIME</span><span class="p">(</span><span class="nv">"%Y%m%d"</span><span class="p">,</span> <span class="nb">DATETIME</span><span class="p">(</span><span class="nb">date</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="nv">"unixepoch"</span><span class="p">,</span> <span class="nv">"localtime"</span><span class="p">))</span> <span class="n">dte</span><span class="p">,</span>
+           <span class="k">COUNT</span><span class="p">(</span><span class="n">_id</span><span class="p">)</span>
+    <span class="k">FROM</span> <span class="n">sms</span>
+    <span class="k">WHERE</span> <span class="k">type</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">dte</span>
+    <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">dte</span>
+    <span class="k">AND</span> <span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="nv">"+91"</span><span class="p">,</span><span class="nv">""</span><span class="p">),</span> <span class="nv">" "</span><span class="p">,</span> <span class="nv">""</span><span class="p">)</span> <span class="o">=</span> <span class="nv">"XXXXX"</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>I created `Python script &lt;<a href="https://gist.github.com/aravindavk/5339192&gt;`__" class="bare">https://gist.github.com/aravindavk/5339192&gt;`__</a> to extract data as described above. Additionally script generates csv output which can be used to plot as required. Use any familiar library(Matplotlib, PhantomJS and d3, flot etc..) or just use Spreadsheet to plot the graph as required. I used Libreoffice Calc to create these charts.</p>
+<p>I created <a href="https://gist.github.com/aravindavk/5339192">Python script</a> to extract data as described above. Additionally script generates csv output which can be used to plot as required. Use any familiar library(Matplotlib, PhantomJS and d3, flot etc..) or just use Spreadsheet to plot the graph as required. I used Libreoffice Calc to create these charts.</p>
 </div>
 <div class="paragraph">
 <p>Let me know if you find this blog useful and need any help in writing SQL queries :)</p>

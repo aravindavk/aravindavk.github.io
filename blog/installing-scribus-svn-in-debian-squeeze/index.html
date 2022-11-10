@@ -74,66 +74,38 @@
 <div class="paragraph">
 <p>Downloaded svn source using following command to my Debian Squeeze machine.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>svn co svn://scribus.net/trunk/Scribus myscribus</pre>
+<pre class="rouge highlight"><code data-lang="bash">svn co svn://scribus.net/trunk/Scribus myscribus</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>First installed cmake, which is required to compile Scribus.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>apt-get install cmake</pre>
+<pre class="rouge highlight"><code data-lang="bash">apt-get <span class="nb">install </span>cmake</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>When I ran :code:`cmake .` as root user, it started listing dependency issues. Installed development libraries as and when cmake throws error. Finally ended up installing following dev libraries.</p>
+<p>When I ran <code>cmake .</code> as root user, it started listing dependency issues. Installed development libraries as and when cmake throws error. Finally ended up installing following dev libraries.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>apt-get install libtiff4-dev python-dev libfreetype6-dev
-                libcups2-dev libxml2-dev liblcms1-dev
-                libpixman-1-dev libaspel-dev libfontconfig1-dev</pre>
+<pre class="rouge highlight"><code data-lang="bash">apt-get <span class="nb">install </span>libtiff4-dev python-dev libfreetype6-dev
+               libcups2-dev libxml2-dev liblcms1-dev
+               libpixman-1-dev libaspel-dev libfontconfig1-dev</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Now run</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>cd myscribus
-cmake .
-make &amp; make install</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">cd </span>myscribus
+cmake <span class="nb">.</span>
+make &amp; make <span class="nb">install</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Compilation took almost an hour in my laptop. :)</p>

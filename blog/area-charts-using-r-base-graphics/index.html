@@ -67,8 +67,7 @@
             </div>
             <div class="content py-6">
                 <div class="paragraph">
-<p>Today I learnt to create `Area chart
-&lt;<a href="https://en.wikipedia.org/wiki/Area_chart&gt;`__" class="bare">https://en.wikipedia.org/wiki/Area_chart&gt;`__</a> using R Base
+<p>Today I learnt to create <a href="https://en.wikipedia.org/wiki/Area_chart">Area chart</a> using R Base
 graphics. <code>polygon</code> function (<code>help(polygon)</code>) can be used to fill
 the area under the line.</p>
 </div>
@@ -76,117 +75,82 @@ the area under the line.</p>
 <p>Lets pick a simple data set from my website - Number of blog posts
 per year.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>Year,Blog
-2008,12
-2009,20
-2010,11
-2011,19
-2012,16
-2013, 6
-2014, 7
-2015, 9
-2016,12
-2017, 3
-2018, 2
-2019, 1</pre>
+<pre class="rouge highlight"><code data-lang="text">    Year,Blog
+    2008,12
+    2009,20
+    2010,11
+    2011,19
+    2012,16
+    2013, 6
+    2014, 7
+    2015, 9
+    2016,12
+    2017, 3
+    2018, 2
+    2019, 1</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Now lets draw the line graph as below.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: R</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>dat &lt;- read.csv("blogs_data.csv")
-numYears &lt;- length(dat$Blog)</pre>
+<pre class="rouge highlight"><code data-lang="r"><span class="w">    </span><span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"blogs_data.csv"</span><span class="p">)</span><span class="w">
+    </span><span class="n">numYears</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">dat</span><span class="o">$</span><span class="n">Blog</span><span class="p">)</span><span class="w">
+
+    </span><span class="n">plot</span><span class="p">(</span><span class="w">
+        </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">numYears</span><span class="p">),</span><span class="w">     </span><span class="c1"># x axis</span><span class="w">
+        </span><span class="n">dat</span><span class="o">$</span><span class="n">Blog</span><span class="p">,</span><span class="w">          </span><span class="c1"># y axis</span><span class="w">
+        </span><span class="n">type</span><span class="o">=</span><span class="s2">"l"</span><span class="p">,</span><span class="w">          </span><span class="c1"># Line graph</span><span class="w">
+        </span><span class="n">col</span><span class="o">=</span><span class="s2">"#409ddf"</span><span class="p">,</span><span class="w">     </span><span class="c1"># Line Color</span><span class="w">
+        </span><span class="n">lwd</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="w">             </span><span class="c1"># Line Width</span><span class="w">
+        </span><span class="n">xlab</span><span class="o">=</span><span class="s2">"Years"</span><span class="p">,</span><span class="w">      </span><span class="c1"># X axis label</span><span class="w">
+        </span><span class="n">ylab</span><span class="o">=</span><span class="s2">"Blog posts"</span><span class="p">,</span><span class="w"> </span><span class="c1"># Y axis label</span><span class="w">
+        </span><span class="n">xaxt</span><span class="o">=</span><span class="s2">"n"</span><span class="p">,</span><span class="w">          </span><span class="c1"># Show X axis</span><span class="w">
+        </span><span class="n">yaxt</span><span class="o">=</span><span class="s2">"n"</span><span class="p">,</span><span class="w">          </span><span class="c1"># Show Y axis</span><span class="w">
+        </span><span class="n">main</span><span class="o">=</span><span class="s2">"Blog posts"</span><span class="p">,</span><span class="w"> </span><span class="c1"># Graph main title</span><span class="w">
+        </span><span class="p">)</span><span class="w">
+
+    </span><span class="n">axis</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">at</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="n">numYears</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="o">=</span><span class="n">sprintf</span><span class="p">(</span><span class="s2">"%s"</span><span class="p">,</span><span class="w"> </span><span class="n">dat</span><span class="o">$</span><span class="n">Year</span><span class="p">))</span><span class="w">
+    </span><span class="n">axis</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">tck</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="s2">"#dddddd"</span><span class="p">)</span></code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>plot(
-    c(1:numYears),     # x axis
-    dat$Blog,          # y axis
-    type="l",          # Line graph
-    col="#409ddf",     # Line Color
-    lwd=3,             # Line Width
-    xlab="Years",      # X axis label
-    ylab="Blog posts", # Y axis label
-    xaxt="n",          # Show X axis
-    yaxt="n",          # Show Y axis
-    main="Blog posts", # Graph main title
-    )</pre>
+<img src="/images/area-chart-only-line.jpg" alt="Line Chart">
 </div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>axis(1, at=1:numYears, labels=sprintf("%s", dat$Year))
-axis(2, tck=1, col="#dddddd")</pre>
-</div>
-</div>
-</li>
-<li>
-<p>image:: /images/area-chart-only-line.jpg
-:alt: Line Chart</p>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Identify the points required to draw a polygon as below,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/area-chart-polygon.jpg
-:alt: Polygon</p>
-</li>
-<li>
-<p>code-block:: R</p>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>yy &lt;- c(0, dat$Blog, 0, 0)          # P14, P1:P12, P13, P14
-xx &lt;- c(1, 1:numYears, numYears, 1) # P14, P1:P12, P13, P14</pre>
+<img src="/images/area-chart-polygon.jpg" alt="Polygon">
 </div>
 </div>
-</li>
-</ol>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="r"><span class="n">yy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">dat</span><span class="o">$</span><span class="n">Blog</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w">          </span><span class="c1"># P14, P1:P12, P13, P14</span><span class="w">
+</span><span class="n">xx</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">numYears</span><span class="p">,</span><span class="w"> </span><span class="n">numYears</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="c1"># P14, P1:P12, P13, P14</span></code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>And draw polygon using,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: R</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>polygon(xx, yy, col="#c3e1f57d", border=NA)</pre>
+<pre class="rouge highlight"><code data-lang="r"><span class="n">polygon</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="w"> </span><span class="n">yy</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="s2">"#c3e1f57d"</span><span class="p">,</span><span class="w"> </span><span class="n">border</span><span class="o">=</span><span class="kc">NA</span><span class="p">)</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>And the final Area chart,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/area-chart-final.jpg
-:alt: Final Area Chart</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/area-chart-final.jpg" alt="Final Area Chart">
+</div>
 </div>
 <div class="paragraph">
 <p>Comments and suggestions welcome.</p>

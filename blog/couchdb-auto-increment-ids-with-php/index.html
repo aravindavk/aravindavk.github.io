@@ -72,46 +72,32 @@
 <div class="paragraph">
 <p>Map function extracts numeric part of every doc of type "photo".</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: javascript</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>// Map function
-function(doc){
-    if(doc.type == "photo"){
-        emit(null, parseInt(doc._id.replace(/\D/g,'')));
-    }
-}</pre>
+<pre class="rouge highlight"><code data-lang="js"><span class="c1">// Map function</span>
+<span class="kd">function</span><span class="p">(</span><span class="nx">doc</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">photo</span><span class="dl">"</span><span class="p">){</span>
+        <span class="nx">emit</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">_id</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">\D</span><span class="sr">/g</span><span class="p">,</span><span class="dl">''</span><span class="p">)));</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>reduce function finds the max value from those numeric values emitted from map function.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: javascript</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>// Reduce function
-function(key, values){
-    var max = 0;
-    for(i in values){
-        if(max &lt; values[i]){
-            max = values[i];
-        }
-    }
-    return max;
-}</pre>
+<pre class="rouge highlight"><code data-lang="js"><span class="c1">// Reduce function</span>
+<span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">values</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">values</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">max</span> <span class="o">&lt;</span> <span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">]){</span>
+            <span class="nx">max</span> <span class="o">=</span> <span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">max</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>This view is saved as _design/helpers/photoid</p>
@@ -119,63 +105,40 @@ function(key, values){
 <div class="paragraph">
 <p>Now write a function in PHP to increment the ID as required and to add the document.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: php</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>&lt;?php
-function addDoc($url, $data, $seed, $idprefix, $incrementBy=1){
-    // Get the current ID value
-    $ch = curl_init("$url/_design/$seed");
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $result = json_decode(curl_exec($ch), true);</pre>
+<pre class="rouge highlight"><code data-lang="php"><span class="o">&lt;?</span><span class="n">php</span>
+<span class="k">function</span> <span class="n">addDoc</span><span class="p">(</span><span class="nv">$url</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="nv">$seed</span><span class="p">,</span> <span class="nv">$idprefix</span><span class="p">,</span> <span class="nv">$incrementBy</span><span class="o">=</span><span class="mi">1</span><span class="p">){</span>
+    <span class="c1">// Get the current ID value</span>
+    <span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s2">"</span><span class="nv">$url</span><span class="s2">/_design/</span><span class="nv">$seed</span><span class="s2">"</span><span class="p">);</span>
+    <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="nv">$result</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">),</span> <span class="kc">true</span><span class="p">);</span>
+
+    <span class="c1">// Increment and add prefix as per given parameters</span>
+    <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$idprefix</span> <span class="mf">.</span> <span class="p">(</span><span class="nv">$result</span><span class="p">[</span><span class="s1">'rows'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'value'</span><span class="p">]</span> <span class="o">+</span> <span class="nv">$incrementBy</span><span class="p">);</span>
+
+    <span class="c1">// Add document to couchdb</span>
+    <span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s2">"</span><span class="nv">$url</span><span class="s2">/</span><span class="nv">$id</span><span class="s2">"</span><span class="p">);</span>
+    <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_CUSTOMREQUEST</span><span class="p">,</span> <span class="s1">'PUT'</span><span class="p">);</span>
+    <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_POSTFIELDS</span><span class="p">,</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$data</span><span class="p">));</span>
+    <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_HTTPHEADER</span><span class="p">,</span> <span class="k">array</span> <span class="p">(</span><span class="s2">"Content-Type: application/json"</span><span class="p">));</span>
+    <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="c1">// Print result</span>
+    <span class="k">echo</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
 </div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>// Increment and add prefix as per given parameters
-$id = $idprefix . ($result['rows'][0]['value'] + $incrementBy);</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>// Add document to couchdb
-$ch = curl_init("$url/$id");
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-curl_setopt($ch, CURLOPT_HTTPHEADER, array ("Content-Type: application/json"));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>    // Print result
-    echo curl_exec($ch);
-}</pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Example usage of above PHP function</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: php</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>addDoc("http://localhost:5984/photoblog",
-       Array("type"=&gt;"photo", "published"=&gt;0, "place"=&gt;"Karnataka, India"),
-       "helpers/_view/photoid",
-       "p");</pre>
+<pre class="rouge highlight"><code data-lang="php"><span class="nf">addDoc</span><span class="p">(</span><span class="s2">"http://localhost:5984/photoblog"</span><span class="p">,</span>
+       <span class="k">Array</span><span class="p">(</span><span class="s2">"type"</span><span class="o">=&gt;</span><span class="s2">"photo"</span><span class="p">,</span> <span class="s2">"published"</span><span class="o">=&gt;</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"place"</span><span class="o">=&gt;</span><span class="s2">"Karnataka, India"</span><span class="p">),</span>
+       <span class="s2">"helpers/_view/photoid"</span><span class="p">,</span>
+       <span class="s2">"p"</span><span class="p">);</span></code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>As of now, PHP function involves two http calls for adding single document. Let me know if you find any ways to reduce it to one http call.</p>

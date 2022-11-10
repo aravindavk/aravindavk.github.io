@@ -56,7 +56,7 @@
             <div class="has-text-centered">
                 <h1 class="title">Firefox OS</h1>
                 <div class="">Jan 25, 2013</div>
-                <div class=""><strong>3 minutes</strong> read</div>
+                <div class=""><strong>1 minute</strong> read</div>
                 <div>
                     
                     <span class="tag is-info is-light">firefoxos</span>
@@ -67,162 +67,78 @@
             </div>
             <div class="content py-6">
                 <div class="paragraph">
-<p>I was impressed by the demo videos and blog posts about Firefox OS and decided to try it on my phone Nexus S. Searched for Nexus S ROM and found one <code>here &lt;<a href="http://forum.xda-developers.com/showthread.php?t=1924367&gt;`__" class="bare">http://forum.xda-developers.com/showthread.php?t=1924367&gt;`__</a>. (`TODO: Try building latest version of Firefox OS</code>)</p>
+<p>I was impressed by the demo videos and blog posts about Firefox OS and decided to try it on my phone Nexus S. Searched for Nexus S ROM and found one <a href="http://forum.xda-developers.com/showthread.php?t=1924367">here</a>. (<code>TODO: Try building latest version of Firefox OS</code>)</p>
 </div>
 <div class="paragraph">
-<p>Installation went smooth, followed the documentation from `here &lt;<a href="http://forum.xda-developers.com/showthread.php?t=1924367&gt;`__" class="bare">http://forum.xda-developers.com/showthread.php?t=1924367&gt;`__</a>.</p>
+<p>Installation went smooth, followed the documentation from <a href="http://forum.xda-developers.com/showthread.php?t=1924367">here</a>.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>raw:: html</p>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;blockquote class="twitter-tweet"&gt;&lt;p&gt;Installing Firefox OS on my Nexus S. Fingers crossed :)&lt;/p&gt;&amp;mdash; Aravinda (@aravindavk) &lt;a href="https://twitter.com/aravindavk/status/270116962045153280" data-datetime="2012-11-18T10:51:16+00:00"&gt;November 18, 2012&lt;/a&gt;&lt;/blockquote&gt;</pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
+<blockquote class="twitter-tweet"><p>Installing Firefox OS on my Nexus S. Fingers crossed :)</p>&mdash; Aravinda (@aravindavk) <a href="https://twitter.com/aravindavk/status/270116962045153280" data-datetime="2012-11-18T10:51:16+00:00">November 18, 2012</a></blockquote>
 <div class="paragraph">
 <p>Booting is superfast and Unicode rendering is awesome, adding new fonts also easy. I just used adb (Android Debugger) to push the font from my system.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>raw:: html</p>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;blockquote class="twitter-tweet"&gt;&lt;p&gt;Installing fonts is so easy in &lt;a href="https://twitter.com/search/%23FirefoxOS"&gt;#FirefoxOS&lt;/a&gt;, &lt;a href="https://twitter.com/search/%23kannada"&gt;#kannada&lt;/a&gt; works like a charm :) &lt;a href="https://twitter.com/search/%23mozilla"&gt;#mozilla&lt;/a&gt; &lt;a href="https://twitter.com/search/%23nexusS"&gt;#nexusS&lt;/a&gt;&lt;/p&gt;&amp;mdash; Aravinda (@aravindavk) &lt;a href="https://twitter.com/aravindavk/status/270149288326221824" data-datetime="2012-11-18T12:59:44+00:00"&gt;November 18, 2012&lt;/a&gt;&lt;/blockquote&gt;</pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
+<blockquote class="twitter-tweet"><p>Installing fonts is so easy in <a href="https://twitter.com/search/%23FirefoxOS">#FirefoxOS</a>, <a href="https://twitter.com/search/%23kannada">#kannada</a> works like a charm :) <a href="https://twitter.com/search/%23mozilla">#mozilla</a> <a href="https://twitter.com/search/%23nexusS">#nexusS</a></p>&mdash; Aravinda (@aravindavk) <a href="https://twitter.com/aravindavk/status/270149288326221824" data-datetime="2012-11-18T12:59:44+00:00">November 18, 2012</a></blockquote>
 <div class="paragraph">
 <p>I took screenshots using ADB and ffmpeg.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>./adb pull /dev/graphics/fb0
-ffmpeg -vframes 1 -f rawvideo -pix_fmt rgb32 -s 480x800 -i fb0 ~/firefoxos_screenshots/s1.png</pre>
+<pre class="rouge highlight"><code data-lang="bash">./adb pull /dev/graphics/fb0
+ffmpeg <span class="nt">-vframes</span> 1 <span class="nt">-f</span> rawvideo <span class="nt">-pix_fmt</span> rgb32 <span class="nt">-s</span> 480x800 <span class="nt">-i</span> fb0 ~/firefoxos_screenshots/s1.png</code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>image:: /images/firefoxos/s1.png
-:alt: Lock screen</p>
-</li>
-<li>
-<p>image:: /images/firefoxos/s2.png
-:alt: Twitter app</p>
-</li>
-</ol>
+<div class="paragraph">
+<p><span class="image"><img src="/images/firefoxos/s1.png" alt="Lock screen"></span>
+<span class="image"><img src="/images/firefoxos/s2.png" alt="Twitter app"></span></p>
 </div>
 <div class="paragraph">
 <p><strong>Lock screen and Twitter app</strong></p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/firefoxos/s3.png
-:alt: Kannada in browser</p>
-</li>
-<li>
-<p>image:: /images/firefoxos/s4.png
-:alt: Camera</p>
-</li>
-</ol>
+<div class="paragraph">
+<p><span class="image"><img src="/images/firefoxos/s3.png" alt="Kannada in browser"></span>
+<span class="image"><img src="/images/firefoxos/s4.png" alt="Camera"></span></p>
 </div>
 <div class="paragraph">
 <p><strong>Kannada in browser and Camera in action</strong></p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/firefoxos/s5.png
-:alt: Kannada in Twitter app</p>
-</li>
-<li>
-<p>image:: /images/firefoxos/s12.png
-:alt: Keyboard</p>
-</li>
-</ol>
+<div class="paragraph">
+<p><span class="image"><img src="/images/firefoxos/s5.png" alt="Kannada in Twitter app"></span>
+<span class="image"><img src="/images/firefoxos/s12.png" alt="Keyboard"></span></p>
 </div>
 <div class="paragraph">
 <p><strong>Kannada in Twitter app(Special case text using Zero Width Joiner) and Keyboard</strong></p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/firefoxos/s7.png
-:alt: Apps</p>
-</li>
-<li>
-<p>image:: /images/firefoxos/s8.png
-:alt: Marketplace</p>
-</li>
-</ol>
+<div class="paragraph">
+<p><span class="image"><img src="/images/firefoxos/s7.png" alt="Apps"></span>
+<span class="image"><img src="/images/firefoxos/s8.png" alt="Marketplace"></span></p>
 </div>
 <div class="paragraph">
 <p><strong>Apps and Marketplace</strong></p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/firefoxos/s9.png
-:alt: Dailer</p>
-</li>
-<li>
-<p>image:: /images/firefoxos/s10.png
-:alt: Outgoing call</p>
-</li>
-</ol>
+<div class="paragraph">
+<p><span class="image"><img src="/images/firefoxos/s9.png" alt="Dailer"></span>
+<span class="image"><img src="/images/firefoxos/s10.png" alt="Outgoing call"></span></p>
 </div>
 <div class="paragraph">
 <p><strong>Dailer and Outgoing call screen</strong></p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/firefoxos/s11.png
-:alt: Alt Tab</p>
-</li>
-<li>
-<p>image:: /images/firefoxos/s6.png
-:alt: Alt Tab</p>
-</li>
-</ol>
+<div class="paragraph">
+<p><span class="image"><img src="/images/firefoxos/s11.png" alt="Alt Tab"></span>
+<span class="image"><img src="/images/firefoxos/s6.png" alt="Alt Tab"></span></p>
 </div>
 <div class="paragraph">
 <p><strong>When home button is long pressed</strong></p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/firefoxos/s13.png
-:alt: Settings</p>
-</li>
-<li>
-<p>image:: /images/firefoxos/s14.png
-:alt: Notification slider</p>
-</li>
-</ol>
+<div class="paragraph">
+<p><span class="image"><img src="/images/firefoxos/s13.png" alt="Settings"></span>
+<span class="image"><img src="/images/firefoxos/s14.png" alt="Notification slider"></span></p>
 </div>
 <div class="paragraph">
 <p><strong>Settings and notification slider</strong></p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/firefoxos/s15.png
-:alt: Power Button</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/firefoxos/s15.png" alt="Power Button">
+</div>
 </div>
 <div class="paragraph">
 <p><strong>When power button long pressed</strong></p>
@@ -231,20 +147,9 @@ ffmpeg -vframes 1 -f rawvideo -pix_fmt rgb32 -s 480x800 -i fb0 ~/firefoxos_scree
 <p>Used it for a day and changed it back to Cynogenmod since it was not yet ready for day to day use.</p>
 </div>
 <div class="paragraph">
-<p>Hoping to learn more about Firefox OS in `Firefox OS App Days &lt;<a href="https://wiki.mozilla.org/Engagement/Developer_Engagement/FirefoxAppDays&gt;`__" class="bare">https://wiki.mozilla.org/Engagement/Developer_Engagement/FirefoxAppDays&gt;`__</a>.</p>
+<p>Hoping to learn more about Firefox OS in <a href="https://wiki.mozilla.org/Engagement/Developer_Engagement/FirefoxAppDays">Firefox OS App Days</a>.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>raw:: html</p>
-<div class="literalblock">
-<div class="content">
-<pre>&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;</pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
         </div>
         <footer class="footer has-background-white-bis mt-6">

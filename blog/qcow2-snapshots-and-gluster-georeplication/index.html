@@ -69,9 +69,7 @@
                 <div class="paragraph">
 <p>Gluster introduced sharding feature to store large files(which can
 grow beyond a single brick) or to support running Virtual machines in
-Gluster Volumes. Read more about sharding `here
-&lt;<a href="http://blog.gluster.org/2015/12/introducing-shard-translator/&gt;`" class="bare">http://blog.gluster.org/2015/12/introducing-shard-translator/&gt;`</a><em> and
-`here &lt;<a href="http://blog.gluster.org/2015/12/sharding-what-next-2/&gt;`" class="bare">http://blog.gluster.org/2015/12/sharding-what-next-2/&gt;`</a></em>.</p>
+Gluster Volumes. Read more about sharding <a href="http://blog.gluster.org/2015/12/introducing-shard-translator/">here</a> and <a href="http://blog.gluster.org/2015/12/sharding-what-next-2/">here</a>.</p>
 </div>
 <div class="sect1">
 <h2 id="_how_to_backup_vm_images">How to backup VM images?</h2>
@@ -87,7 +85,7 @@ files. But is the data consistent? In this blog we will understand how
 to backup VM images to DR site consistently.</p>
 </div>
 <div class="paragraph">
-<p>Read `here &lt;<a href="http://hrkscribbles.blogspot.in/2016/02/gluster-geo-replication-with-sharding.html&gt;`__" class="bare">http://hrkscribbles.blogspot.in/2016/02/gluster-geo-replication-with-sharding.html&gt;`__</a> to know more about Geo-replication support for sharding.</p>
+<p>Read <a href="http://hrkscribbles.blogspot.in/2016/02/gluster-geo-replication-with-sharding.html">here</a> to know more about Geo-replication support for sharding.</p>
 </div>
 </div>
 </div>
@@ -109,50 +107,29 @@ the Gluster Volumes.</p>
 the disks in Master Volume. Geo-rep will sync the data including the
 created snapshots.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>virsh snapshot-create-as --domain &lt;DOMAIN&gt; &lt;SNAP_NAME&gt;</pre>
+<pre class="rouge highlight"><code data-lang="bash">virsh snapshot-create-as <span class="nt">--domain</span> &lt;DOMAIN&gt; &lt;SNAP_NAME&gt;</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>For example,</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>virsh snapshot-create-as --domain fedora22 sn1</pre>
+<pre class="rouge highlight"><code data-lang="bash">virsh snapshot-create-as <span class="nt">--domain</span> fedora22 sn1</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>But while taking internal snapshot, guest is <strong>paused</strong> :(</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre># virsh list
+<pre class="rouge highlight"><code data-lang="text"># virsh list
  Id    Name                           State
 ----------------------------------------------------
- 3     fedora22                       paused</pre>
+ 3     fedora22                       paused</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p><strong>Note:</strong> If Guest has more RAM and actively modifying state, then more
@@ -171,48 +148,30 @@ details about the script.(<code>/usr/local/share/</code> in case of source insta
 <div class="paragraph">
 <p>Psudeo code:</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>pool_dir=&lt;PATH_OF_MASTER_VOL_MOUNT&gt;
+<pre class="rouge highlight"><code data-lang="text">pool_dir=&lt;PATH_OF_MASTER_VOL_MOUNT&gt;
 images=$(ls ${pool_dir})
 For each images, take qcow2 snapshot
-Run schedule_georep script</pre>
+Run schedule_georep script</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Once the scheduler script completes, check the <code>qemu-img info</code> in Slave
 and confirm that Geo-rep synced everything from master Volume
 including Snapshots created.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>qemu-img info /mnt/gv2/f22.qcow2</pre>
+<pre class="rouge highlight"><code data-lang="bash">qemu-img info /mnt/gv2/f22.qcow2</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>Example Output:</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>image: /mnt/gv2/f22.qcow2
+<pre class="rouge highlight"><code data-lang="text">image: /mnt/gv2/f22.qcow2
 file format: qcow2
 virtual size: 20G (21474836480 bytes)
 disk size: 2.8G
@@ -225,11 +184,8 @@ Format specific information:
     compat: 1.1
     lazy refcounts: false
     refcount bits: 16
-    corrupt: false</pre>
+    corrupt: false</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
@@ -239,7 +195,7 @@ Format specific information:
 <div class="paragraph">
 <p>Once we take external snapshot, qcow2 image will become read only base
 image and snapshot file will become overlay(Read more about backing
-chain and overlay `here &lt;<a href="https://kashyapc.fedorapeople.org/virt/lc-2012/snapshots-handout.html&gt;`__" class="bare">https://kashyapc.fedorapeople.org/virt/lc-2012/snapshots-handout.html&gt;`__</a>).</p>
+chain and overlay <a href="https://kashyapc.fedorapeople.org/virt/lc-2012/snapshots-handout.html">here</a>).</p>
 </div>
 <div class="paragraph">
 <p>New changes will be recorded in the overlay instead of base image,
@@ -256,44 +212,25 @@ backing chain.</p>
 <div class="paragraph">
 <p>Delete the external snapshot once the blockcommit returns success.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>pool_dir=&lt;PATH_OF_MASTER_VOL_MOUNT&gt;</pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">pool_dir</span><span class="o">=</span>&lt;PATH_OF_MASTER_VOL_MOUNT&gt;
+
+<span class="c"># Take External snapshot</span>
+virsh snapshot-create-as <span class="nt">--domain</span> &lt;DOMAIN&gt; &lt;SNAPNAME&gt;  <span class="se">\</span>
+    <span class="nt">--diskspec</span> vda,file<span class="o">=</span><span class="k">${</span><span class="nv">pool_dir</span><span class="k">}</span>/snaps/&lt;SNAPNAME&gt;.qcow2 <span class="se">\</span>
+    <span class="nt">--disk-only</span> <span class="nt">--atomic</span> <span class="nt">--no-metadata</span>
+
+<span class="c"># Run Geo-replication</span>
+/usr/share/glusterfs/scripts/schedule_georep.py <span class="se">\</span>
+    &lt;MASTERVOL&gt; &lt;SLAVE&gt; &lt;SLAVEVOL&gt;
+
+<span class="c"># Blockcommit</span>
+virsh blockcommit &lt;DOMAIN&gt; vda <span class="nt">--active</span> <span class="nt">--verbose</span> <span class="nt">--pivot</span>
+
+<span class="c"># Remove the external Snapshot file</span>
+<span class="nb">rm</span> <span class="k">${</span><span class="nv">pool_dir</span><span class="k">}</span>/snaps/&lt;SNAPNAME&gt;.qcow2</code></pre>
 </div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># Take External snapshot
-virsh snapshot-create-as --domain &lt;DOMAIN&gt; &lt;SNAPNAME&gt;  \
-    --diskspec vda,file=${pool_dir}/snaps/&lt;SNAPNAME&gt;.qcow2 \
-    --disk-only --atomic --no-metadata</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># Run Geo-replication
-/usr/share/glusterfs/scripts/schedule_georep.py \
-    &lt;MASTERVOL&gt; &lt;SLAVE&gt; &lt;SLAVEVOL&gt;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># Blockcommit
-virsh blockcommit &lt;DOMAIN&gt; vda --active --verbose --pivot</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># Remove the external Snapshot file
-rm ${pool_dir}/snaps/&lt;SNAPNAME&gt;.qcow2</pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>With this method, Slave will always have consitent base image.</p>

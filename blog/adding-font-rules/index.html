@@ -56,7 +56,7 @@
             <div class="has-text-centered">
                 <h1 class="title">Improving Kannada Fonts - Adding Opentype substitution rules</h1>
                 <div class="">Dec 3, 2013</div>
-                <div class=""><strong>3 minutes</strong> read</div>
+                <div class=""><strong>2 minutes</strong> read</div>
                 <div>
                     
                     <span class="tag is-info is-light">ಕನ್ನಡ</span>
@@ -69,213 +69,165 @@
             </div>
             <div class="content py-6">
                 <div class="paragraph">
-<p>In my `previous blog &lt;/blog/improving-kannada-fonts/&gt;`__ we discussed about the approach to improve Kannada fonts, in this blog we will discuss about adding rules to a font using fontforge python.</p>
+<p>In my <a href="/blog/improving-kannada-fonts/">previous blog</a> we discussed about the approach to improve Kannada fonts, in this blog we will discuss about adding rules to a font using fontforge python.</p>
 </div>
 <div class="paragraph">
-<p>Below image shows all the consonant forms of Kannada letter "ka", we will split that into different groups based on type of font rule required. (Read `OpenType specification &lt;<a href="http://www.microsoft.com/typography/OpenTypeDev/kannada/intro.htm&gt;`__" class="bare">http://www.microsoft.com/typography/OpenTypeDev/kannada/intro.htm&gt;`__</a> to understand more about rules)</p>
+<p>Below image shows all the consonant forms of Kannada letter "ka", we will split that into different groups based on type of font rule required. (Read <a href="http://www.microsoft.com/typography/OpenTypeDev/kannada/intro.htm">OpenType specification</a> to understand more about rules)</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/kagunita.png
-:alt: ಕ್ ಕ ಕಾ ಕಿ ಕೀ ಕು ಕೂ ಕೃ ಕೄ ಕೆ ಕೇ ಕೈ ಕೊ ಕೋ ಕೌ ಕಂ ಕಃ</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/kagunita.png" alt="ಕ್ ಕ ಕಾ ಕಿ ಕೀ ಕು ಕೂ ಕೃ ಕೄ ಕೆ ಕೇ ಕೈ ಕೊ ಕೋ ಕೌ ಕಂ ಕಃ">
 </div>
-<h1 id="_group_one_no_rules_required" class="sect0">Group one: No rules required</h1>
+</div>
+<div class="sect1">
+<h2 id="_group_one_no_rules_required">Group one: No rules required</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>If Unicode code points and Glyph ordering is same then no need to add any rules in font. (Some times positional rules may be required, we will discuss about positional rules later)</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/fontrules/group1.png
-:alt: Group 1</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/fontrules/group1.png" alt="Group 1">
+</div>
 </div>
 <div class="paragraph">
 <p>Consonant forms identified in this group are</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/fontrules/group1-detail.png
-:alt: Group 1 detail</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/fontrules/group1-detail.png" alt="Group 1 detail">
 </div>
-<h1 id="_group_two_above_base_substitution_separate_ligature" class="sect0">Group two: above base substitution - separate ligature</h1>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_group_two_above_base_substitution_separate_ligature">Group two: above base substitution - separate ligature</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>If the required shape can&#8217;t be achieved by joining two or more base glyphs as group 1, then we need separate ligature.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/fontrules/group2.png
-:alt: Group 2</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/fontrules/group2.png" alt="Group 2">
+</div>
 </div>
 <div class="paragraph">
 <p>Rule:</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>sub \uni0C95 \uni0CBF by \uni0C95_uni0CBF.abvs;</pre>
+<pre class="rouge highlight"><code data-lang="text">sub \uni0C95 \uni0CBF by \uni0C95_uni0CBF.abvs;</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>Where uni0C95 uni0CBF and uni0C95_uni0CBF.abvs are glyph names(Unicode code of "ka" is U+0C95) (`Refer &lt;<a href="http://www.unicode.org/charts/PDF/U0C80.pdf&gt;`__" class="bare">http://www.unicode.org/charts/PDF/U0C80.pdf&gt;`__</a>).</p>
+<p>Where uni0C95 uni0CBF and uni0C95_uni0CBF.abvs are glyph names(Unicode code of "ka" is U+0C95) (<a href="http://www.unicode.org/charts/PDF/U0C80.pdf">Refer</a>).</p>
 </div>
 <div class="paragraph">
-<p>In `#languageSummitPune &lt;<a href="http://www.mediawiki.org/wiki/Language_portal/Pune_LanguageSummit_November_2013&gt;`" class="bare">http://www.mediawiki.org/wiki/Language_portal/Pune_LanguageSummit_November_2013&gt;`</a><em> we(me, `Pravin &lt;<a href="http://pravin-s.blogspot.in/&gt;`" class="bare">http://pravin-s.blogspot.in/&gt;`</a></em>, `Sneha &lt;<a href="http://snehakore.blogspot.in/&gt;`" class="bare">http://snehakore.blogspot.in/&gt;`</a><em>, `Santhosh &lt;<a href="http://thottingal.in/&gt;`" class="bare">http://thottingal.in/&gt;`</a></em> and many others) discussed lot about glyph naming standard, will write about importance of glyph names in my next blog.</p>
+<p>In <a href="http://www.mediawiki.org/wiki/Language_portal/Pune_LanguageSummit_November_2013">#languageSummitPune</a> we(me, <a href="http://pravin-s.blogspot.in/">Pravin</a>, <a href="http://snehakore.blogspot.in/">Sneha</a>, <a href="http://thottingal.in">Santhosh</a> and many others) discussed lot about glyph naming standard, will write about importance of glyph names in my next blog.</p>
 </div>
-<h1 id="_group_three_above_base_substitution_using_modified_glyph_of_base_glyph" class="sect0">Group three: above base substitution - Using modified glyph of base glyph</h1>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_group_three_above_base_substitution_using_modified_glyph_of_base_glyph">Group three: above base substitution - Using modified glyph of base glyph</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Sometimes we can achieve the required shape by using half shape of base glyph instead of creating separate ligature as in group 2.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/fontrules/group3.png
-:alt: Group 3</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/fontrules/group3.png" alt="Group 3">
+</div>
 </div>
 <div class="paragraph">
 <p>Following consonants can be derived using half form of "ka"</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/fontrules/group3-detail.png
-:alt: Group 3 detail</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/fontrules/group3-detail.png" alt="Group 3 detail">
+</div>
 </div>
 <div class="paragraph">
 <p>Rule:</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>sub \uni0C95' [\uni0CCD \uni0CBE \uni0CC6 \uni0CCA \uni0CCC] by \uni0C95.half;</pre>
+<pre class="rouge highlight"><code data-lang="text">sub \uni0C95' [\uni0CCD \uni0CBE \uni0CC6 \uni0CCA \uni0CCC] by \uni0C95.half;</code></pre>
 </div>
 </div>
-</li>
-</ol>
 </div>
-<h1 id="_group_four_no_rule_required_because_of_normalization" class="sect0">Group four: No rule required because of Normalization</h1>
+</div>
+<div class="sect1">
+<h2 id="_group_four_no_rule_required_because_of_normalization">Group four: No rule required because of Normalization</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Some letters in Kannada Unicode normalizes into two or more Unicode characters for which rules will be applied(`Refer &lt;<a href="http://www.unicode.org/charts/normalization/chart_Kannada.html&gt;`__" class="bare">http://www.unicode.org/charts/normalization/chart_Kannada.html&gt;`__</a>).</p>
+<p>Some letters in Kannada Unicode normalizes into two or more Unicode characters for which rules will be applied(<a href="http://www.unicode.org/charts/normalization/chart_Kannada.html">Refer</a>).</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/fontrules/group4.png
-:alt: Group 4</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/fontrules/group4.png" alt="Group 4">
+</div>
 </div>
 <div class="paragraph">
 <p>For following consonants no rules required.</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>image:: /images/fontrules/group4-detail.png
-:alt: Group 4 detail</p>
-</li>
-</ol>
+<div class="imageblock">
+<div class="content">
+<img src="/images/fontrules/group4-detail.png" alt="Group 4 detail">
 </div>
-<h1 id="_featurefile" class="sect0">Featurefile</h1>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_featurefile">Featurefile</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>We can create featurefile and import all rules into the font using fontforge tool. Read `this &lt;<a href="http://www.adobe.com/devnet/opentype/afdko/topic_feature_file_syntax.html&gt;`__" class="bare">http://www.adobe.com/devnet/opentype/afdko/topic_feature_file_syntax.html&gt;`__</a> article to know more about featurefile syntax and specification.</p>
+<p>We can create featurefile and import all rules into the font using fontforge tool. Read <a href="http://www.adobe.com/devnet/opentype/afdko/topic_feature_file_syntax.html">this</a> article to know more about featurefile syntax and specification.</p>
 </div>
 <div class="paragraph">
 <p>For consonant forms of "ka" final featurefile looks like this..</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: text</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>lookup kn_abvs_lookup1 {
+<pre class="rouge highlight"><code data-lang="text">lookup kn_abvs_lookup1 {
     lookupflag 0;
     sub \uni0C95 \uni0CBF by \uni0C95_uni0CBF.abvs;
-} kn_abvs_lookup1;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>lookup kn_abvs_lookup2 {
+} kn_abvs_lookup1;
+
+lookup kn_abvs_lookup2 {
     lookupflag 0;
     sub \uni0C95' [\uni0CCD \uni0CBE \uni0CC6 \uni0CCA \uni0CCC] by \uni0C95.half;
-} kn_abvs_lookup2;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>feature abvs {
+} kn_abvs_lookup2;
+
+feature abvs {
     script knd2;
     language dflt;
     lookup kn_abvs_lookup1;
-    lookup kn_abvs_lookup2;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>    script knda;
+    lookup kn_abvs_lookup2;
+
+    script knda;
     language dflt;
     lookup kn_abvs_lookup1;
     lookup kn_abvs_lookup2;
-} abvs;</pre>
+} abvs;</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>Once we save the above content in knda_gsub.fea, download the python script from `here &lt;<a href="https://raw.github.com/aravindavk/fontforge-python-cookbook/master/apply_gsub_featurefile.py&gt;`__" class="bare">https://raw.github.com/aravindavk/fontforge-python-cookbook/master/apply_gsub_featurefile.py&gt;`__</a> and run</p>
+<p>Once we save the above content in knda_gsub.fea, download the python script from <a href="https://raw.github.com/aravindavk/fontforge-python-cookbook/master/apply_gsub_featurefile.py">here</a> and run</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>python apply_gsub_featurefile.py &lt;sfd file path&gt; &lt;fea file path&gt;</pre>
+<pre class="rouge highlight"><code data-lang="bash">python apply_gsub_featurefile.py &lt;sfd file path&gt; &lt;fea file path&gt;</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>For example:</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>code-block:: bash</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>python apply_gsub_featurefile.py Lohit-Kannada.sfd knda_gsub.fea</pre>
+<pre class="rouge highlight"><code data-lang="bash">python apply_gsub_featurefile.py Lohit-Kannada.sfd knda_gsub.fea</code></pre>
 </div>
 </div>
-</li>
-</ol>
+</div>
 </div>
             </div>
         </div>
