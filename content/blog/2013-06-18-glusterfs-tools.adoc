@@ -4,11 +4,12 @@ tags: glusterfs,tools,glusterfsblog
 summary: A wrapper around GlusterFS CLI tool
 ---
 
-.. raw:: html
+++++
 
-    <div class="notice-update">
+<div class="notification is-warning">
     UPDATE: <br/>Installation and usage is simplified with the new release of glusterfs-tools, refer <a href="http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/">this blog</a> for more details.
-    </div>
+</div>
+++++
 
 From `GlusterFS website <http://gluster.org>`__
 
@@ -41,44 +42,26 @@ Make gfvolumes executable
 
 Now we can run :code:`sudo gfvolumes` to see the list of glusterfs volumes. Type :code:`gfvolumes --help` for help.
 
+.All Volumes
+image::/images/glusterfs/all_volumes.png[All Volumes]
 
-.. figure:: /images/glusterfs/all_volumes.png
-   :alt: All Volumes
+.Name Filter
+image::/images/glusterfs/name_filter.png[Name Filter]
 
-   All Volumes
+.Status Filter
+image::/images/glusterfs/status_filter.png[Status Filter]
 
+.Type Filter
+image::/images/glusterfs/type_filter.png[Type Filter]
 
-
-.. figure:: /images/glusterfs/name_filter.png
-   :alt: Name Filter
-
-   Name Filter
-
-
-.. figure:: /images/glusterfs/status_filter.png
-   :alt: Status Filter
-
-   Status Filter
-
-.. figure:: /images/glusterfs/type_filter.png
-   :alt: Type Filter
-
-   Type Filter
-
-.. figure:: /images/glusterfs/show_bricks.png
-   :alt: Name Filter
-
-   Show Bricks
-
+.Show Bricks
+image::/images/glusterfs/show_bricks.png[Name Filter]
 
 Additionally it can output filtered details in JSON format. 
 
 
-.. figure:: /images/glusterfs/json_format.png
-   :alt: Name Filter
-
-   JSON Format
-
+.JSON Format
+image::/images/glusterfs/json_format.png[Name Filter]
 
 We can easily import this in our python script. 
 

@@ -6,16 +6,11 @@ summary: Now a days my incoming and outgoing SMS trend looks like this for some 
 
 Now a days my incoming and outgoing SMS trend looks like this for some(known) reason :)
 
+.Incoming SMS trend(Nov 2012 - Apr 2013)
+image::/images/incoming_sms_trend.png[Incoming sms trend]
 
-.. figure:: /images/incoming_sms_trend.png
-   :alt: Incoming sms trend
-
-   Incoming SMS trend(Nov 2012 - Apr 2013)
-
-.. figure:: /images/outgoing_sms_trend.png
-   :alt: Outgoing sms trend
-
-   Outgoing SMS trend(Nov 2012 - Apr 2013)
+.Outgoing SMS trend(Nov 2012 - Apr 2013)
+image::/images/outgoing_sms_trend.png[Outgoing sms trend]
 
 **PS**: Sometimes I delete telemarketing SMS as and when I receive, so incoming trend may not show actual :) Also while playing with Android OS I lost all the SMS prior to Nov 2012.
 

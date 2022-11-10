@@ -6,10 +6,8 @@ summary: Framework to add structured logging support is already available in Glu
 
 All Gluster components follow the same format for logging, as shown below
 
-.. figure:: /images/gluster-logs-format.png
-   :alt: Gluster Log Format
-
-   Gluster Log Format
+.Gluster Log Format
+image::/images/gluster-logs-format.png[Gluster Log Format]
 
 But as you have observed already, we don't follow any format for the
 actual message. No generic parser can extract metrics/details from the
@@ -38,17 +36,13 @@ Add colors to Gluster logs using ``gluster-log colorize``,
     cat /var/log/glusterfs/glusterd.log | gluster-log colorize > /tmp/glusterd_color.log
     less -R /tmp/glusterd_color.log
 
-.. figure:: /images/gluster-log-parsed.png
-   :alt: Gluster Log parsed
-
-   Colorized Gluster log
+.Colorized Gluster log
+image::/images/gluster-log-parsed.png[Gluster Log parsed]
 
 If logs are in structured logging is format,
 
-.. figure:: /images/gluster-log-parsed-structured-logging.png
-   :alt: Gluster Log parsed
-
-   Colorized Gluster log. Note: this tool also highlighted key values.
+.Colorized Gluster log. Note: this tool also highlighted key values.
+image::/images/gluster-log-parsed-structured-logging.png[Gluster Log parsed]
    
 Gluster logs in JSON format
 ---------------------------

@@ -16,8 +16,7 @@ I started working with the Gluster community since 2013.
 
 **Number of patches per year**
 
-.. image:: /images/gluster-contribution-by-year.png
-   :alt: Number of Patches per Year
+image::/images/gluster-contribution-by-year.png[Number of Patches per Year]
 
 ..
     2013     5
@@ -32,8 +31,7 @@ I started working with the Gluster community since 2013.
 
 **Number of patches per component**
 
-.. image:: /images/gluster-contribution-by-component.png
-   :alt: Number of Patches per Component
+image::/images/gluster-contribution-by-component.png[Number of Patches per Component]
 
 ..
     glusterfind             22
@@ -74,8 +72,7 @@ Blogs about Gluster
 - `Gluster Geo-replication Tools <http://aravindavk.in/blog/gluster-georep-tools>`__
 - `Gluster Geo-replication Dashboard Experiment <http://aravindavk.in/blog/gluster-georep-dashboard-experiment>`__
 
-.. image:: /images/gluster-blogs-till-2016.png
-   :alt: Gluster Blogs
+image::/images/gluster-blogs-till-2016.png[Gluster Blogs]
   
 ..
     R code to generate Blogs graph
@@ -121,8 +118,7 @@ Many projects are still in young stage. Comments and Suggestions are welcome.
 - ``python`` `Collection of Gluster debugging tools(gfid, dirgfid2path, changelogparser, stime, xtime, volmark) <https://github.com/gluster/glustertool>`__
 - ``python`` ``elm`` `Geo-replication Dashboard experiment using Events APIs <https://github.com/aravindavk/gluster-georepdash>`__
   
-.. image:: /images/gluster-github-projects-till-2016.png
-   :alt: Gluster Projects
+image::/images/gluster-github-projects-till-2016.png[Gluster Projects]
   
 ..
     R code to generate Blogs graph

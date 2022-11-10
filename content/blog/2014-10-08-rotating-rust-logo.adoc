@@ -6,9 +6,9 @@ summary: SVG animation, rotating rust logo
 
 Today I learned to animate any shape in `SVG <http://en.wikipedia.org/wiki/Scalable_Vector_Graphics>`__ using `animateTransform <http://www.w3.org/TR/SVG/animate.html#AnimateTransformElement>`__ element, and tried it with `Rust programming <http://www.rust-lang.org/>`__ logo, here yo go :)
 
-.. raw:: html
-
-   <embed src="/images/rust_rotating.svg" type="image/svg+xml" />
+++++
+<embed src="/images/rust_rotating.svg" type="image/svg+xml" />
+++++
 
 I downloaded SVG from `here <http://en.wikipedia.org/wiki/File:Rust_programming_language_black_logo.svg>`__, and added :code:`animateTransform` as child of :code:`path`
 

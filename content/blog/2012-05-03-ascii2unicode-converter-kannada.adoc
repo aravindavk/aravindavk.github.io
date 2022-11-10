@@ -9,11 +9,7 @@ ASCII/ANSI ಕನ್ನಡದಲ್ಲಿ ಬರೆದದ್ದನ್ನು ಯ�
 ಉಪಯೋಗಿಸಿ ಹಾಗೂ ಗೆಳೆಯರೊಡನೆ ಹಂಚಿಕೊಳ್ಳಿ. Online ಆವೃತ್ತಿ `ಇಲ್ಲಿದೆ <http://aravindavk.github.com/ascii2unicode/>`__. 
 
 
-.. image:: /images/ascii2unicode.png
-   :alt: ASCII2Unicode
-   :target: http://aravindavk.github.com/ascii2unicode/
-
-
+image::/images/ascii2unicode.png[ASCII2Unicode,link="http://aravindavk.github.com/ascii2unicode/"]
 
 ಈಗಿನ ಆವೃತ್ತಿಯಲ್ಲಿ ಸರಿಪಡಿಸಿದ ತೊಂದರೆಗಳು
 =====================================

@@ -52,13 +52,11 @@ Now lets draw the line graph as below.
     axis(2, tck=1, col="#dddddd")
 
 
-.. image:: /images/area-chart-only-line.jpg
-   :alt: Line Chart
+image::/images/area-chart-only-line.jpg[Line Chart]
 
 Identify the points required to draw a polygon as below,
 
-.. image:: /images/area-chart-polygon.jpg
-   :alt: Polygon
+image::/images/area-chart-polygon.jpg[Polygon]
 
 .. code-block:: R
 
@@ -75,7 +73,6 @@ And draw polygon using,
 
 And the final Area chart,
 
-.. image:: /images/area-chart-final.jpg
-   :alt: Final Area Chart
+image::/images/area-chart-final.jpg[Final Area Chart]
 
 Comments and suggestions welcome.

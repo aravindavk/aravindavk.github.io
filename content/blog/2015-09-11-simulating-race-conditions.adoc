@@ -11,8 +11,7 @@ To uncover the bugs we need to setup workload and run multiple times since issue
 
 Let us consider simple case of Rebalance, A file "f1" is created in Brick1 and after some time it becomes hot and Rebalance moved it to Brick2.
 
-.. image:: /images/rebalance.png
-   :alt: Rebalance explained
+image::/images/rebalance.png[Rebalance explained]
 
 In Changelog we don't capture the Rebalance Traffic, so in respective brick changelogs will contain,
 

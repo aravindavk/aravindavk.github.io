@@ -24,26 +24,21 @@ or
     sudo easy_install gdash
 
 gdash is created using Python `Flask <http://flask.pocoo.org/>`__ and `ember <http://emberjs.com/>`__ (I used `ember-cli <http://ember-cli.com>`__). 
+.gdash home screen
+image::/images/gdash-home.png[gdash home screen]
 
-.. figure:: /images/gdash-home.png
-   :alt: gdash home screen
-
-   gdash home screen
-
-.. figure:: /images/gdash-detail.png
-   :alt: gdash detail screen
-
-   gdash Volume details page
+.gdash Volume details page
+image::/images/gdash-detail.png[gdash detail screen]
 
 Usage
 =====
 Use case 1 - Local Volumes
 --------------------------
-Just run :code:`sudo gdash`, gdash starts running in port 8080. visit http://localhost:8080 to view GlusterFS volumes of local machine.
+Just run `sudo gdash`, gdash starts running in port 8080. visit http://localhost:8080 to view GlusterFS volumes of local machine.
 
 Use case 2 - Remote Volumes
 ---------------------------
-Run :code:`sudo gdash --host 192.168.1.6`, visit http://localhost:8080 to view GlusterFS volume information of remote host. Dashboard shows all the volumes which are part of that remote host.
+Run `sudo gdash --host 192.168.1.6`, visit http://localhost:8080 to view GlusterFS volume information of remote host. Dashboard shows all the volumes which are part of that remote host.
 
 Use case 3 - Multiple clusters
 ------------------------------

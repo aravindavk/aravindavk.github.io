@@ -8,7 +8,7 @@ Pebble firmware 3.0 introduced a new feature called `Timeline <https://developer
 
 I created a Pebble Timeline application to monitor the status of websites called `Webmon <https://apps.getpebble.com/en_US/application/554627a6ab49e41f8f00004b>`__. Sometimes friends/users will ping or email to inform that our website is not accessible for some reason. We may lose our business if we don't monitor them regularly.
 
-.. image:: /images/webmon_logo.png
+image::/images/webmon_logo.png
    :alt: Webmon App Logo
 
 I submitted this app as part of `#timelinechallenge <https://developer.getpebble.com/blog/2015/04/14/the-timeline-challenge-is-live/>`__, but the app was not fully working that time and had issues with sending user Pins. I am not sure Pebble team looked at this app or not. :) And now most of the issues got resolved.
@@ -26,20 +26,17 @@ Timeline APIs are good, **but I feel insecure when it is allowed to push the Use
 
 Pebble watch app "webmon" is simple, just displays a banner page to guide the user to configure the app in app config.
 
-.. figure:: /images/webmon_watchapp.png
-   :alt: Screenshot of Watchapp
+image::/images/webmon_watchapp.png[Screenshot of Watchapp]
 
 In configure window, enter the website URL you want to track and click SAVE. You can anytime disable/enable the website tracking. When configuration is set, it sends registration request to the app server to register a website for tracking using PebbleKit JS.
 
-.. figure:: /images/webmon_config.png
-   :alt: Configuration page
+image::/images/webmon_config.png[Configuration page]
 
 A cron job runs on app server every one hour, gets the unique list of websites and does an HTTP GET request. If any website's state is different from previous state, then it prepares a Timeline notification and sends it. The app will not spam by sending too many messages, it only notifies the user if the state changed after previous run.
 
-.. image:: /images/webmon_healthy.png
-   :alt: Healthy Notification
-.. image:: /images/webmon_faulty.png
-   :alt: Faulty Notification
+image::/images/webmon_healthy.png[Healthy Notification]
+
+image::/images/webmon_faulty.png[Faulty Notification]
 
 Sending user pin is super easy with Python, I used Python library `requests <https://pypi.python.org/pypi/requests>`__
 

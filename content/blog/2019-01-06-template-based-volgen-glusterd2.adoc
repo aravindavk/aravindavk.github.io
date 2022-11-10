@@ -12,10 +12,8 @@ xlators.
 `Glusterd2 <https://github.com/gluster/glusterd2>`__ adds flexibility to
 the Volfiles generation process by adding template support.
 
-.. figure:: /images/gluster-template-based-volgen.jpg
-   :alt: Template based Volfile generation
-
-   Template based Volfile generation
+.Template based Volfile generation
+image::/images/gluster-template-based-volgen.jpg[Template based Volfile generation]
 
 With Template based Volgen,
 

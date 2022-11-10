@@ -61,8 +61,7 @@ In previous blog, we discussed about this tool. This tool simplifies
 the steps involved in Geo-replication setup. Now setting up
 Geo-replication is as easy as running one command. Yay!
 
-.. image:: /images/gluster-georep-setup.png
-   :alt: Gluster Geo-rep Setup
+image::/images/gluster-georep-setup.png[Gluster Geo-rep Setup]
 
 Usage instructions of all the tools are available `here
 <https://github.com/aravindavk/gluster-georep-tools>`__

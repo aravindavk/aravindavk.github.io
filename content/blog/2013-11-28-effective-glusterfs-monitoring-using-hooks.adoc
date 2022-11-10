@@ -93,12 +93,8 @@ Web application starts running in :code:`http://localhost:8080` you can change t
     sudo glusterweb -p 9000
 
 
-
-.. figure:: /images/glusterweb-v0.1.png
-   :alt: GlusterWeb
-   
-   Initial version of web interface.
-
+.Initial version of web interface.
+image::/images/glusterweb-v0.1.png[GlusterWeb]
 
 Future plans
 ============

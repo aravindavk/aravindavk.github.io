@@ -23,13 +23,11 @@ Glyph name - Ligature
 If a glyph shape is formed by two or more unicode values and the resultant glyph doesn't have any unicode value then the glyph should be named as combination of two glyph names seperated by underscore. Suffix can be added to differenciate between multiple ligatures for the same unicode value combination. In the below example, suffix :code:`.abvs` is used since this ligature will be used in opentype feature `abvs` (above base substitution).
 
 
-.. image:: /images/fontrules/group2.png
-   :alt: ki
+image::/images/fontrules/group2.png[ki]
 
 An example to understand how this reverse lookup works. Kannada text `ಮಂಕುತಿಮ್ಮ`, Unicode splitup and glyph names for the same is
 
-.. image:: /images/mankutimma-unicode.png
-   :alt: ಮಂಕುತಿಮ್ಮ - Unicode
+image::/images/mankutimma-unicode.png[ಮಂಕುತಿಮ್ಮ - Unicode]
 
 Glyph names stored inside pdf are as follows(ignores all the suffix and joins together using underscore)
 

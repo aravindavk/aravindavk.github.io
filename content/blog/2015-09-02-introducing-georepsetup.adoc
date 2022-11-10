@@ -25,8 +25,7 @@ It prompts for the Root's Password of Slave node specified in the command. That'
 
 This command also produces a good summary as shown below. Now it is very easy to trace the errors and handle them.
 
-.. image:: /images/georepsetup.png
-   :alt: Summary
+image::/images/georepsetup.png[Summary]
 
 
 Install

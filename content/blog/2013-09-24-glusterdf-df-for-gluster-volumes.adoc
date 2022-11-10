@@ -19,45 +19,27 @@ You can also clone this project from `forge.gluster.org/glusterfs-tools <https:/
 
 Once installed, two tools will be available :code:`glustervolumes` and `glusterdf`.
 
-:code:`sudo glusterdf --help` to know more about options available. (same for glustervolumes `sudo glustervolumes --help`)
+`sudo glusterdf --help` to know more about options available. (same for glustervolumes `sudo glustervolumes --help`)
 
 Usage examples:
 
-.. figure:: /images/glusterfs/glusterdf_h.png
-   :alt: glusterdf -h
+.sudo glusterdf -h (Disk usage in human readable format)
+image::/images/glusterfs/glusterdf_h.png[glusterdf -h]
 
-   sudo glusterdf -h (Disk usage in human readable format)
+.sudo glusterdf -i (View inodes usage information)
+image::/images/glusterfs/glusterdf_i.png[glusterdf -i]
 
+.sudo glusterdf --status up --type repl -h (View all running replicated volumes)
+image::/images/glusterfs/glusterdf_status_type_h.png[sudo glusterdf --status up --type repl -h]
 
-.. figure:: /images/glusterfs/glusterdf_i.png
-   :alt: glusterdf -i
+.sudo glusterdf -h --volumewithbrick "/b[12]"
+image::/images/glusterfs/glusterdf_volumewithbrick.png[sudo glusterdf -h --volumewithbrick "/b[12]"]
 
-   sudo glusterdf -i (View inodes usage information)
+.sudo glusterdf --status up --type repli -h --json | python -m json.tool
+image::/images/glusterfs/glusterdf_json.png[sudo glusterdf --status up --type repli -h --json | python -m json.tool]
 
-
-.. figure:: /images/glusterfs/glusterdf_status_type_h.png
-   :alt: sudo glusterdf --status up --type repl -h
-
-   sudo glusterdf --status up --type repl -h (View all running replicated volumes)
-
-
-.. figure:: /images/glusterfs/glusterdf_volumewithbrick.png
-   :alt: sudo glusterdf -h --volumewithbrick "/b[12]"
-
-   sudo glusterdf -h --volumewithbrick "/b[12]"
-
-
-.. figure:: /images/glusterfs/glusterdf_json.png
-   :alt: sudo glusterdf --status up --type repli -h --json | python -m json.tool
-
-   sudo glusterdf --status up --type repli -h --json | python -m json.tool
-
-
-.. figure:: /images/glusterfs/glusterdf-help.png
-   :alt: glusterdf --help
-
-   sudo glusterdf --help
-
+.sudo glusterdf --help
+image::/images/glusterfs/glusterdf-help.png[glusterdf --help]
 
 In my previous blog(`this <http://aravindavk.in/blog/glusterfs-tools/>`__) I wrote about gfvolumes(now it is `glustervolumes`). glusterfs-tools is rewritten as python library which can be used with your Python programs.
 

@@ -78,15 +78,11 @@ Geo-replication status.
 Screenshots
 -----------
 
-.. figure:: /images/georep_stop.gif
-   :alt: When Geo-replication is stopped
+.UI Changes when a Geo-rep session is stopped from anywhere in Cluster
+image::/images/georep_stop.gif[When Geo-replication is stopped]
 
-   UI Changes when a Geo-rep session is stopped from anywhere in Cluster
-
-.. figure:: /images/georep_faulty.gif
-   :alt: When Geo-replication is stopped
-
-   UI Changes when a Geo-rep session goes to Faulty
+.UI Changes when a Geo-rep session goes to Faulty
+image::/images/georep_faulty.gif[When Geo-replication is stopped]
    
 UI/Dashboard Notes
 ------------------

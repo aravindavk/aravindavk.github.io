@@ -6,6 +6,4 @@ summary: Wishing you all Happy new year 2012.
 
 Wishing you all Happy new year 2012.
 
-
-.. image:: /images/new-year-2012/m.jpg
-   :alt: Welcoming New
+image::/images/new-year-2012/m.jpg[Welcoming New]

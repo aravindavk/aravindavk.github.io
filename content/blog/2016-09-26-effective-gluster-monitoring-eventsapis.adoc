@@ -17,8 +17,7 @@ calling Gluster status command/api in periodic intervals.
 
 Below illustration shows calling ``status`` once every 10 seconds.
 
-.. image:: /images/gluster_monitor_without_events.jpg
-   :alt: Get Cluster status without Events APIs
+image::/images/gluster_monitor_without_events.jpg[Get Cluster status without Events APIs]
 
 With Events APIs, setup a listener Webhook and register with Gluster
 using ``gluster-eventsapi webhook-add <URL>``. Call Gluster status
@@ -26,8 +25,7 @@ command whenever webhook receives an Event.(Check `this
 <http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/>`__ blog
 to know Webhooks and Events APIs in detail)
 
-.. image:: /images/gluster_monitor_with_events.jpg
-   :alt: Get Cluster status with Events APIs
+image::/images/gluster_monitor_with_events.jpg[Get Cluster status with Events APIs]
 
 As part of presentation, created some visualizations to show how these
 real time notifications can be used to refresh the UI automatically
@@ -36,18 +34,15 @@ when Gluster cluster state changes.
 Following gif shows the UI change immediately after creating a Gluster
 Volume.
 
-.. image:: /images/create_start_volume.gif
-   :alt: Gluster Volume Create and Start
+image::/images/create_start_volume.gif[Gluster Volume Create and Start]
 
 When a brick process is killed,
 
-.. image:: /images/brick_down.gif
-   :alt: Brick Process Killed
+image::/images/brick_down.gif[Brick Process Killed]
 
 Volume Stop,
 
-.. image:: /images/volume_stop.gif
-   :alt: Volume Stop
+image::/images/volume_stop.gif[Volume Stop]
 
 
 References:

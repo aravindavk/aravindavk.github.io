@@ -8,10 +8,8 @@ This blog explains the approaches to monitor `Gluster
 <https://www.gluster.org/>`__ Volume utilization using `Prometheus
 <https://prometheus.io>`__.
 
-.. figure:: /images/gluster-volume-utilization.png
-   :alt: Gluster Volume Utilization
-
-   Gluster Volume Utilization visualized using `Grafana <https://grafana.com/>`__
+.Gluster Volume Utilization visualized using https://grafana.com/[Grafana]
+image::/images/gluster-volume-utilization.png[Gluster Volume Utilization]
 
 To get the Gluster Volume utilization, easy way is to use ``mount`` and
 ``df``.
