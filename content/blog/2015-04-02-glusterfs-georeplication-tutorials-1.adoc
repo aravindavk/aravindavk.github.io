@@ -8,10 +8,10 @@ Geo-replication is one of the awesome feature of `GlusterFS <http://gluster.org/
 
 This blog is first in a series of Understanding GlusterFS Geo-replication, Comments and Suggestions welcome.
 
-.. raw:: html
-
-    <script async class="speakerdeck-embed" data-id="f509ae7c9216494fa690f8dfee0e91c1" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js">
-    </script>
+++++
+<script async class="speakerdeck-embed" data-id="f509ae7c9216494fa690f8dfee0e91c1" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js">
+</script>
+++++
 
 Link: https://speakerdeck.com/aravindavk/understanding-glusterfs-geo-replication-session-creation
 

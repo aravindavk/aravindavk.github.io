@@ -25,13 +25,14 @@ image::/images/impana-book-making.jpg[ಇಂಪನ,link=/files/allonduralli-putt
 ಪ್ರಿಂಟ್ ಮಾಡಲು ಅನುಕೂಲವಾಗುವಂತೆ ಪುಟಗಳನ್ನು ಹೊಂದಿಸಿಕೊಡಲು ಕೆಳಗಿನಂತೆ ಲೇಟೆಕ್ ಕೋಡ್
 ಬಳಸಿದೆ.
 
-```latex
+[source,latex]
+----
 \documentclass[a4paper]{article}
 \usepackage{pdfpages}
 
 \begin{document}
 \includepdf[pages=-,nup=1x2,noautoscale,booklet,landscape]{allonduralli-puttahakki.pdf}
 \end{document}
-```
+----
 
 ಇಂಪನಳ ಪುಸ್ತಕದ link:/files/allonduralli-puttahakki.pdf[ಪಿಡಿಎಫ್ ಇಲ್ಲಿದೆ]. ನೋಡಿ ನಿಮ್ಮ ಅನಿಸಿಕೆ ತಿಳಿಸಿ.

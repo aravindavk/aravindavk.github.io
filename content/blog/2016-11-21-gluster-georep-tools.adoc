@@ -4,7 +4,7 @@ tags: gluster, glusterfsblog
 summary: A must have tools collection for Gluster Geo-replication users!
 ---
 
-A must have tools collection for `Gluster Geo-replication <http://gluster.readthedocs.io/en/latest/Administrator Guide/Geo Replication>`__ users!
+A must have tools collection for http://gluster.readthedocs.io/en/latest/Administrator%2FGuide/Geo%2FReplication[Gluster Geo-replication] users!
 
 Currently this repository contains ``gluster-georep-setup`` and
 ``gluster-georep-status`` tools. More tools will be added in future. Let
@@ -12,8 +12,7 @@ me know if you need any specific tool to manage Gluster
 Geo-replication.
 
 ``gluster-georep-setup`` was previously called as ``georepsetup`` (Blog
-about georepsetup is `here
-<http://aravindavk.in/blog/introducing-georepsetup/>`__).
+about georepsetup is http://aravindavk.in/blog/introducing-georepsetup/[here]).
 
 Installation
 ------------
@@ -35,25 +34,26 @@ Geo-rep status and Volume info to get following advantageous.
 
 Example output(Listing all the sessions, ``gluster-georep-status``:
 
-.. code-block:: text
+[source]
+----
+SESSION: gv1 ==> fvm1::gv2
++-----------------+--------+-----------------+------------+---------------------+------------+-----------------+-----------------------+
+|      MASTER     | STATUS |   CRAWL STATUS  | SLAVE NODE |     LAST SYNCED     | CHKPT TIME | CHKPT COMPLETED | CHKPT COMPLETION TIME |
++-----------------+--------+-----------------+------------+---------------------+------------+-----------------+-----------------------+
+| fvm1:/bricks/b1 | Active | Changelog Crawl |    fvm1    | 2016-11-14 08:34:40 |    N/A     |       N/A       |          N/A          |
+| fvm1:/bricks/b2 | Active | Changelog Crawl |    fvm1    | 2016-11-14 08:32:21 |    N/A     |       N/A       |          N/A          |
++-----------------+--------+-----------------+------------+---------------------+------------+-----------------+-----------------------+
+Active: 2 | Passive: 0 | Faulty: 0 | Created: 0 | Offline: 0 | Stopped: 0 | Initializing: 0 | Total: 2
 
-    SESSION: gv1 ==> fvm1::gv2
-    +-----------------+--------+-----------------+------------+---------------------+------------+-----------------+-----------------------+
-    |      MASTER     | STATUS |   CRAWL STATUS  | SLAVE NODE |     LAST SYNCED     | CHKPT TIME | CHKPT COMPLETED | CHKPT COMPLETION TIME |
-    +-----------------+--------+-----------------+------------+---------------------+------------+-----------------+-----------------------+
-    | fvm1:/bricks/b1 | Active | Changelog Crawl |    fvm1    | 2016-11-14 08:34:40 |    N/A     |       N/A       |          N/A          |
-    | fvm1:/bricks/b2 | Active | Changelog Crawl |    fvm1    | 2016-11-14 08:32:21 |    N/A     |       N/A       |          N/A          |
-    +-----------------+--------+-----------------+------------+---------------------+------------+-----------------+-----------------------+
-    Active: 2 | Passive: 0 | Faulty: 0 | Created: 0 | Offline: 0 | Stopped: 0 | Initializing: 0 | Total: 2
-
-    SESSION: gv1 ==> geoaccount@fvm1::gv3
-    +-----------------+---------+--------------+------------+-------------+------------+-----------------+-----------------------+
-    |      MASTER     |  STATUS | CRAWL STATUS | SLAVE NODE | LAST SYNCED | CHKPT TIME | CHKPT COMPLETED | CHKPT COMPLETION TIME |
-    +-----------------+---------+--------------+------------+-------------+------------+-----------------+-----------------------+
-    | fvm1:/bricks/b1 | Stopped |     N/A      |    N/A     |     N/A     |    N/A     |       N/A       |          N/A          |
-    | fvm1:/bricks/b2 | Stopped |     N/A      |    N/A     |     N/A     |    N/A     |       N/A       |          N/A          |
-    +-----------------+---------+--------------+------------+-------------+------------+-----------------+-----------------------+
-    Active: 0 | Passive: 0 | Faulty: 0 | Created: 0 | Offline: 0 | Stopped: 2 | Initializing: 0 | Total: 2
+SESSION: gv1 ==> geoaccount@fvm1::gv3
++-----------------+---------+--------------+------------+-------------+------------+-----------------+-----------------------+
+|      MASTER     |  STATUS | CRAWL STATUS | SLAVE NODE | LAST SYNCED | CHKPT TIME | CHKPT COMPLETED | CHKPT COMPLETION TIME |
++-----------------+---------+--------------+------------+-------------+------------+-----------------+-----------------------+
+| fvm1:/bricks/b1 | Stopped |     N/A      |    N/A     |     N/A     |    N/A     |       N/A       |          N/A          |
+| fvm1:/bricks/b2 | Stopped |     N/A      |    N/A     |     N/A     |    N/A     |       N/A       |          N/A          |
++-----------------+---------+--------------+------------+-------------+------------+-----------------+-----------------------+
+Active: 0 | Passive: 0 | Faulty: 0 | Created: 0 | Offline: 0 | Stopped: 2 | Initializing: 0 | Total: 2
+----
 
 gluster-georep-setup
 ---------------------
@@ -63,7 +63,6 @@ Geo-replication is as easy as running one command. Yay!
 
 image::/images/gluster-georep-setup.png[Gluster Geo-rep Setup]
 
-Usage instructions of all the tools are available `here
-<https://github.com/aravindavk/gluster-georep-tools>`__
+Usage instructions of all the tools are available https://github.com/aravindavk/gluster-georep-tools[here]
 
 Let me know if these tools are useful.

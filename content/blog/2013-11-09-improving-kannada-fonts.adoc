@@ -58,33 +58,33 @@ Stage seven
 
 Today I completed first stage, created two `python scripts <https://github.com/aravindavk/fontscripts>`__ to change the glyph names and to adjust left and right space.
 
-.. code-block:: bash
+[source,bash]
+----
+cd $WORK
+git clone https://github.com/aravindavk/fontscripts.git
+git clone https://github.com/aravindavk/lohit2.git
+git clone https://github.com/aravindavk/Gubbi.git
+git clone https://github.com/aravindavk/Navilu.git
+cd fontscripts
 
-    cd $WORK
-    git clone https://github.com/aravindavk/fontscripts.git
-    git clone https://github.com/aravindavk/lohit2.git
-    git clone https://github.com/aravindavk/Gubbi.git
-    git clone https://github.com/aravindavk/Navilu.git
-    cd fontscripts
-    
-    # Lohit Kannada
-    python rename_base_glyphs.py ../lohit2/kannada/Lohit-Kannada.sfd
-    python adjust_spacing.py ../lohit2/kannada/Lohit-Kannada.sfd
-    
-    # Gubbi
-    python rename_base_glyphs.py ../Gubbi/Gubbi.sfd
-    python adjust_spacing.py ../Gubbi/Gubbi.sfd
-    
-    # Navilu
-    python rename_base_glyphs.py ../Navilu/Navilu.sfd
-    python adjust_spacing.py ../Navilu/Navilu.sfd
+# Lohit Kannada
+python rename_base_glyphs.py ../lohit2/kannada/Lohit-Kannada.sfd
+python adjust_spacing.py ../lohit2/kannada/Lohit-Kannada.sfd
 
+# Gubbi
+python rename_base_glyphs.py ../Gubbi/Gubbi.sfd
+python adjust_spacing.py ../Gubbi/Gubbi.sfd
+
+# Navilu
+python rename_base_glyphs.py ../Navilu/Navilu.sfd
+python adjust_spacing.py ../Navilu/Navilu.sfd
+----
 
 Now generate the fonts to test the changes. Harfbuzz can be used for testing.
 
-.. code-block:: bash
-
-    hb-view ../lohit2/kannada/Lohit-Kannada.ttf "$(cat stage1_tests.txt )" --output-file preview_lohit.png
-
+[source,bash]
+----
+hb-view ../lohit2/kannada/Lohit-Kannada.ttf "$(cat stage1_tests.txt )" --output-file preview_lohit.png
+----
 
 Let me know if anybody interested to join and contribute to improve Kannada fonts.

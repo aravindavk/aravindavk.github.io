@@ -29,36 +29,36 @@ Idea:
 =====
 In Android, SMS data is stored in sqlite database, and it is located in the following directory(in phone).
 
-.. code-block:: bash
-
-    /data/data/com.android.providers.telephony/databases/mmssms.db
-
+[source,bash]
+----
+/data/data/com.android.providers.telephony/databases/mmssms.db
+----
 
 So we can run sql queries to get the details from sms table as per our need. To access the data from db, Android phone should be rooted. 
 
-Add :code:`adb` path(in my machine adb path is :code:`/home/aravinda/android-sdk/platform-tools/`) to environment variable PATH, and run :code:`adb` as root. 
+Add `adb` path(in my machine adb path is `/home/aravinda/android-sdk/platform-tools/`) to environment variable PATH, and run `adb` as root. 
 
-.. code-block:: bash
+[source,bash]
+----
+adb root
+----
 
-    adb root
+In sqlite we can see the list of tables present in a database using `.tables` (`sqlite3 <db path> ".tables"`) query.
 
+[source,bash]
+----
+adb shell 'sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db ".tables"'
+----
 
-In sqlite we can see the list of tables present in a database using :code:`.tables` (:code:`sqlite3 <db path> ".tables"`) query.
+and we can get schema of the required sqlite table using `.schema <table name>` query.
 
-.. code-block:: bash
+[source,bash]
+----
+adb shell 'sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db ".schema sms"'
+----
 
-    adb shell 'sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db ".tables"'
-
-
-and we can get schema of the required sqlite table using :code:`.schema <table name>` query.
-
-.. code-block:: bash
-
-    adb shell 'sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db ".schema sms"'
-
-
-.. code-block:: sql
-
+[source,sql]
+----
     CREATE TABLE sms
     (
         _id                INTEGER PRIMARY KEY,
@@ -79,7 +79,7 @@ and we can get schema of the required sqlite table using :code:`.schema <table n
         error_code         INTEGER DEFAULT 0,
         seen               INTEGER DEFAULT 0
     );
-
+----
 
 Now we know how to run queries inside phone using `adb`, let us list down some of the ideas which we can implement using available sms data. 
 
@@ -99,28 +99,29 @@ Now we know how to run queries inside phone using `adb`, let us list down some o
 
 Query is
 
-.. code-block:: sql
-
+[source,sql]
+----
     SELECT STRFTIME("%Y%m%d", DATETIME(date/1000, "unixepoch", "localtime")) dte,
            COUNT(_id)
     FROM sms
     WHERE type = 2
     GROUP BY dte
     ORDER BY dte
+----
 
 where type 2 is sent and 1 is received.
 
-.. code-block:: bash
-
-    adb shell 'sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db \
-    "SELECT STRFTIME(\"%Y%m%d\", DATETIME(date/1000, \"unixepoch\", \"localtime\")) dte,  \
-    COUNT(_id) FROM sms WHERE type = 2 GROUP BY dte ORDER BY dte"'
-
+[source,bash]
+----
+adb shell 'sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db \
+  "SELECT STRFTIME(\"%Y%m%d\", DATETIME(date/1000, \"unixepoch\", \"localtime\")) dte,  \
+  COUNT(_id) FROM sms WHERE type = 2 GROUP BY dte ORDER BY dte"'
+----
 
 If you want to find number of sms sent per day for a particular phone number then add the condition in WHERE clause as follows
 
-.. code-block:: sql
-
+[source,sql]
+----
     SELECT STRFTIME("%Y%m%d", DATETIME(date/1000, "unixepoch", "localtime")) dte,
            COUNT(_id)
     FROM sms
@@ -128,7 +129,7 @@ If you want to find number of sms sent per day for a particular phone number the
     GROUP BY dte
     ORDER BY dte
     AND REPLACE(REPLACE(address, "+91",""), " ", "") = "XXXXX"
-
+----
 
 I created `Python script <https://gist.github.com/aravindavk/5339192>`__ to extract data as described above. Additionally script generates csv output which can be used to plot as required. Use any familiar library(Matplotlib, PhantomJS and d3, flot etc..) or just use Spreadsheet to plot the graph as required. I used Libreoffice Calc to create these charts. 
 

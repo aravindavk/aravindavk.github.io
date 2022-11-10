@@ -34,6 +34,6 @@ image::/images/alarm_snooze.png[snooze gap]
 
 ಹಂಗೇ ಟೈಮ್ ಆದಾಗ `Mesai Team <http://www.mesai.co.kr/>`__ ಮಾಡಿದ ಈ ವೀಡಿಯೋ ನೋಡಿ :)
 
-.. raw:: html
-
-    <iframe width="560" height="315" src="http://www.youtube.com/embed/vN83DfmH9Tw?rel=0" frameborder="0" allowfullscreen></iframe>
+++++
+<iframe width="560" height="315" src="http://www.youtube.com/embed/vN83DfmH9Tw?rel=0" frameborder="0" allowfullscreen></iframe>
+++++

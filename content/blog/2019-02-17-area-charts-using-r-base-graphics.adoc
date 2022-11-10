@@ -12,8 +12,8 @@ the area under the line.
 Lets pick a simple data set from my website - Number of blog posts
 per year.
 
-.. code-block:: text
-
+[source,text]
+----
     Year,Blog
     2008,12
     2009,20
@@ -27,11 +27,12 @@ per year.
     2017, 3
     2018, 2
     2019, 1
+----
 
 Now lets draw the line graph as below.
 
-.. code-block:: R
-                
+[source,r]
+----         
     dat <- read.csv("blogs_data.csv")
     numYears <- length(dat$Blog)
 
@@ -50,7 +51,7 @@ Now lets draw the line graph as below.
  
     axis(1, at=1:numYears, labels=sprintf("%s", dat$Year))
     axis(2, tck=1, col="#dddddd")
-
+----
 
 image::/images/area-chart-only-line.jpg[Line Chart]
 
@@ -58,18 +59,18 @@ Identify the points required to draw a polygon as below,
 
 image::/images/area-chart-polygon.jpg[Polygon]
 
-.. code-block:: R
-
-   yy <- c(0, dat$Blog, 0, 0)          # P14, P1:P12, P13, P14
-   xx <- c(1, 1:numYears, numYears, 1) # P14, P1:P12, P13, P14
-
+[source,r]
+----
+yy <- c(0, dat$Blog, 0, 0)          # P14, P1:P12, P13, P14
+xx <- c(1, 1:numYears, numYears, 1) # P14, P1:P12, P13, P14
+----
 
 And draw polygon using,
 
-.. code-block:: R
-                
-   polygon(xx, yy, col="#c3e1f57d", border=NA)
-
+[source,r]
+----         
+polygon(xx, yy, col="#c3e1f57d", border=NA)
+----
 
 And the final Area chart,
 

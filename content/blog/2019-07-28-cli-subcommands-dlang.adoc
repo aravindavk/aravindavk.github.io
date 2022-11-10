@@ -21,7 +21,8 @@ applications.
 Below example shows a basic program which accepts `--name` or `-n`
 argument.
 
-```D
+[source,d]
+----
 import std.stdio;
 import std.getopt;
 
@@ -41,12 +42,13 @@ int main(string[] args)
     writefln("Hello %s", name);
     return 0;
 }
-```
+----
 
 Once "getopt" parses the flags, args will contain only remaining
 arguments(positional arguments). For example,
 
-```D
+[source,d]
+----
 import std.stdio;
 import std.getopt;
 
@@ -68,12 +70,13 @@ int main(string[] args)
     writefln("Hello %s %s", name, lastName);
     return 0;
 }
-```
+----
 
 Now to handle sub-commands, we need to define multiple getopt. For
 Example,
 
-```d
+[source,d]
+----
 import std.stdio;
 import std.getopt;
 
@@ -146,14 +149,15 @@ int main(string[] args)
     }
     return (*func)(args);
 }
-```
+----
 
 If the program needs global flags which are applicable for all
 sub-commands, then make sure to add global flags getopt before parsing
 sub-commands. Also, add `std.getopt.config.passThrough` to avoid
 failing to parse flags related to sub-commands.
 
-```d
+[source,d]
+----
 struct globalFlags
 {
     string logLevel = "INFO";
@@ -200,7 +204,7 @@ int main(string[] args)
     }
     return (*func)(args);
 }
-```
+----
 
 Notes:
 

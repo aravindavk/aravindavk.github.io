@@ -7,80 +7,80 @@ summary: Notes for Python beginners
 Using Python documentation similar to unix man pages
 ====================================================
 
-.. code-block:: bash
-
-        pydoc sys
-
+[source,bash]
+----
+pydoc sys
+----
 
 or
 
-.. code-block:: bash
-
-        python -m pydoc sys
-
+[source,bash]
+----
+python -m pydoc sys
+----
 
 For html documentation
 ======================
 
-.. code-block:: bash
-
-        pydoc -p 9000
-
+[source,bash]
+----
+pydoc -p 9000
+----
 
 Now server will start running in port 9000. we can access the documentation in http://localhost:9000
 
 To get help while working inside interpreter, type help()
 =========================================================
 
-.. code-block:: bash
-
-        >>help()
-
+[source,bash]
+----
+>>help()
+----
 
 Help prompt will come, now we can type module name to get details about that module.
 
-.. code-block:: bash
-
-        sys
-
+[source,bash]
+----
+sys
+----
 
 To list functions/attributes inside a module
 ============================================
 
-.. code-block:: python
-
-        import sys
-        dir(sys)
-
+[source,python]
+----
+import sys
+dir(sys)
+----
 
 To get it in readable format
 
-.. code-block:: python
-
-        import sys
-        for i in dir(sys):
-            print i
-
+[source,python]
+----
+import sys
+for i in dir(sys):
+    print i
+----
 
 To list builtin functions,
 ==========================
 
-.. code-block:: python
-
-        import __builtin__
-        for i in dir(__builtin__):
-            print i
-
+[source,python]
+----
+import __builtin__
+for i in dir(__builtin__):
+    print i
+----
 
 To see which are all the modules loaded in our program
 ======================================================
 
-.. code-block:: python
-
-        import sys
-        for i in sys.modules:
-            print i, ": ", sys.modules[i]
-
+[source,python]
+----
+import sys
+for i in sys.modules:
+    print i, ": ", sys.modules[i]
+----
 
 Books/documentation
 ===================

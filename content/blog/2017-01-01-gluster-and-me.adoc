@@ -10,7 +10,7 @@ I started working with the Gluster community since 2013.
 
 **Main highlights**
 
-- Became `Maintainer <http://www.gluster.org/pipermail/gluster-devel/2016-March/048620.html>`__ of Gluster Geo-replication component
+- Became http://www.gluster.org/pipermail/gluster-devel/2016-March/048620.html[Maintainer] of Gluster Geo-replication component
 - Designed and implemented Events APIs for Gluster
 - Attended Gluster developer summit in Berlin
 
@@ -48,29 +48,29 @@ Blogs about Gluster
 -------------------
 **2013**
 
-- `GlusterFS Tools <http://aravindavk.in/blog/glusterfs-tools>`__
-- `glusterdf - df for gluster volumes <http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes>`__
-- `Effective GlusterFs monitoring using hooks <http://aravindavk.in/blog/effective-glusterfs-monitoring-using-hooks>`__
+- http://aravindavk.in/blog/glusterfs-tools[GlusterFS Tools]
+- http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes[glusterdf - df for gluster volumes]
+- http://aravindavk.in/blog/effective-glusterfs-monitoring-using-hooks[Effective GlusterFs monitoring using hooks]
 
 **2014**
 
-- `gvolinfojson - A utility to convert xml output of gluster volume info to json <http://aravindavk.in/blog/gvolinfojson>`__
-- `Introducing gdash - GlusterFS Dashboard <http://aravindavk.in/blog/introducing-gdash>`__
+- http://aravindavk.in/blog/gvolinfojson[gvolinfojson - A utility to convert xml output of gluster volume info to json]
+- http://aravindavk.in/blog/introducing-gdash[Introducing gdash - GlusterFS Dashboard]
 
 **2015**
 
-- `GlusterFS Geo-replication Tutorials - Understanding Session Creation <http://aravindavk.in/blog/glusterfs-georeplication-tutorials-1>`__
-- `Introducing georepsetup - Gluster Geo-replication Setup Tool <http://aravindavk.in/blog/introducing-georepsetup>`__
-- `Simulating Race Conditions <http://aravindavk.in/blog/simulating-race-conditions>`__
+- http://aravindavk.in/blog/glusterfs-georeplication-tutorials-1[GlusterFS Geo-replication Tutorials - Understanding Session Creation]
+- http://aravindavk.in/blog/introducing-georepsetup[Introducing georepsetup - Gluster Geo-replication Setup Tool]
+- http://aravindavk.in/blog/simulating-race-conditions[Simulating Race Conditions]
 
 **2016**
 
-- `Interfaces for Gluster Management <http://aravindavk.in/blog/interfaces-for-gluster-management>`__
-- `Qcow2 snapshots and Gluster Geo-replication <http://aravindavk.in/blog/qcow2-snapshots-and-gluster-georeplication>`__
-- `10 minutes introduction to Gluster Eventing Feature <http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing>`__
-- `Effective Gluster Monitoring using Events APIs <http://aravindavk.in/blog/effective-gluster-monitoring-eventsapis>`__
-- `Gluster Geo-replication Tools <http://aravindavk.in/blog/gluster-georep-tools>`__
-- `Gluster Geo-replication Dashboard Experiment <http://aravindavk.in/blog/gluster-georep-dashboard-experiment>`__
+- http://aravindavk.in/blog/interfaces-for-gluster-management[Interfaces for Gluster Management]
+- http://aravindavk.in/blog/qcow2-snapshots-and-gluster-georeplication[Qcow2 snapshots and Gluster Geo-replication]
+- http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing[10 minutes introduction to Gluster Eventing Feature]
+- http://aravindavk.in/blog/effective-gluster-monitoring-eventsapis[Effective Gluster Monitoring using Events APIs]
+- http://aravindavk.in/blog/gluster-georep-tools[Gluster Geo-replication Tools]
+- http://aravindavk.in/blog/gluster-georep-dashboard-experiment[Gluster Geo-replication Dashboard Experiment]
 
 image::/images/gluster-blogs-till-2016.png[Gluster Blogs]
   
@@ -88,8 +88,8 @@ Many projects are still in young stage. Comments and Suggestions are welcome.
 
 **Projects started in 2013**
 
-- ``python`` `Tool to show Volume information in tabular format and df like command for Gluster Volumes <https://github.com/aravindavk/glusterfs-tools>`__
-- ``python`` `Gluster Monitoring experiment using Gluster hooks <https://github.com/aravindavk/glusterfs-web>`__
+- ``python`` https://github.com/aravindavk/glusterfs-tools[Tool to show Volume information in tabular format and df like command for Gluster Volumes]
+- ``python`` https://github.com/aravindavk/glusterfs-web[Gluster Monitoring experiment using Gluster hooks]
 
 **Projects started in 2014**
 

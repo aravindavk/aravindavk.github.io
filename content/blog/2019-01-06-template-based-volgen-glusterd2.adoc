@@ -28,8 +28,8 @@ With Template based Volgen,
   option, then that can be specified using
   ``enable-by-option=true``. For example, ``features/changelog``
 
-.. code-block:: text
-
+[source,text]
+----
     volume gv1-changelog
         type features/changelog
         option changelog off
@@ -43,6 +43,7 @@ With Template based Volgen,
         option encoding ascii
         subvolumes gv1-posix
     end-volume
+----
 
 Glusterd2 generates the default template on its first start, generated
 template is saved in
@@ -86,25 +87,26 @@ which use that xlator. For example, ``debug/io-stats`` xlator is used
 in almost all volfiles. If we set log-level to debug as below, then it
 will be added to all Volfiles(Client, brick, glustershd etc).
 
-.. code-block:: text
-
-   glustercli volume set <volname> debug/io-stats.log-level DEBUG
-
+[source,text]
+----
+glustercli volume set <volname> debug/io-stats.log-level DEBUG
+----
 
 But if we want to set log-level only to the client then,
 
-.. code-block:: text
-
-   glustercli volume set <volname> client.debug/io-stats.log-level DEBUG
+[source,text]
+----
+glustercli volume set <volname> client.debug/io-stats.log-level DEBUG
+----
 
 **Note**: Providing xlator category during Volume set is optional. For
 example, below commands are valid too.
 
-.. code-block:: text
-
-   glustercli volume set <volname> io-stats.log-level DEBUG
-   glustercli volume set <volname> client.io-stats.log-level DEBUG
-
+[source,text]
+----
+glustercli volume set <volname> io-stats.log-level DEBUG
+glustercli volume set <volname> client.io-stats.log-level DEBUG
+----
 
 Known issues/Limitations:
 

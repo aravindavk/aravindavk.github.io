@@ -4,20 +4,20 @@ tags: glusterfs,tools,glusterfsblog
 summary: A CLI utility to check the disk usage of glusterfs volumes
 ---
 
-A CLI utility to check the disk usage of `glusterfs <http://gluster.org/>`__ volumes. Using :code:`df` command we can view the disk usage of only mounted glusterfs volumes. This utility takes care of mounting gluster volumes available in the machine where this command is executed. glusterdf uses `libgfapi <https://github.com/gluster/glusterfs/tree/master/api>`__ provided by glusterfs to fetch the statvfs information.
+A CLI utility to check the disk usage of `glusterfs <http://gluster.org/>`__ volumes. Using `df` command we can view the disk usage of only mounted glusterfs volumes. This utility takes care of mounting gluster volumes available in the machine where this command is executed. glusterdf uses `libgfapi <https://github.com/gluster/glusterfs/tree/master/api>`__ provided by glusterfs to fetch the statvfs information.
 
 Installation is very simple,
 
-.. code-block:: bash
-
-    git clone https://github.com/aravindavk/glusterfs-tools.git
-    cd glusterfs-tools
-    sudo python setup.py install
-
+[source,bash]
+----
+git clone https://github.com/aravindavk/glusterfs-tools.git
+cd glusterfs-tools
+sudo python setup.py install
+----
 
 You can also clone this project from `forge.gluster.org/glusterfs-tools <https://forge.gluster.org/glusterfs-tools>`__
 
-Once installed, two tools will be available :code:`glustervolumes` and `glusterdf`.
+Once installed, two tools will be available `glustervolumes` and `glusterdf`.
 
 `sudo glusterdf --help` to know more about options available. (same for glustervolumes `sudo glustervolumes --help`)
 
@@ -45,51 +45,50 @@ In my previous blog(`this <http://aravindavk.in/blog/glusterfs-tools/>`__) I wro
 
 For example 
 
-.. code-block:: python
-
-    from glusterfstools import volumes, gfapi
-    # Get all volumes
-    vols = volumes.get()
-    # Get a specific volume information
-    vol = volumes.get(name="gv1")
-    # Search volumes by status
-    down_volumes = volumes.search({"status": "down"})
-    # Search volumes by type
-    distribute_volumes = volumes.search({"type": "distribute"})
-    # Statvfs information
-    vol_statvfs = gfapi.statvfs("gv1")
-    # To view information about gluster volumes which are down
-    # and having bricks like "/gfs"
-    vols = volumes.search({"status": "down", "volumewithbricks": "/gfs"})
-    # To view filters available
-    print (volumes.filters())
-    
-
+[source,python]
+----
+from glusterfstools import volumes, gfapi
+# Get all volumes
+vols = volumes.get()
+# Get a specific volume information
+vol = volumes.get(name="gv1")
+# Search volumes by status
+down_volumes = volumes.search({"status": "down"})
+# Search volumes by type
+distribute_volumes = volumes.search({"type": "distribute"})
+# Statvfs information
+vol_statvfs = gfapi.statvfs("gv1")
+# To view information about gluster volumes which are down
+# and having bricks like "/gfs"
+vols = volumes.search({"status": "down", "volumewithbricks": "/gfs"})
+# To view filters available
+print (volumes.filters())
+----    
 
 volumes.search accepts filters as parameter, extending volume filters is very simple. For example name filter looks like this(`src/glusterfstools/volumefilters.py <https://github.com/aravindavk/glusterfs-tools/blob/master/src/glusterfstools/volumefilters.py>`__)
 
-.. code-block:: python
+[source,python]
+----
+@filter("name")
+def name_filter(vols, value):
+    def is_match(vol, value):
+        if value in ['', 'all'] or \
+            vol["name"].lower() == value.lower().strip() or \
+            re.search(value, vol["name"]):
+            return True
+        else:
+            return False
 
-    @filter("name")
-    def name_filter(vols, value):
-        def is_match(vol, value):
-            if value in ['', 'all'] or \
-                vol["name"].lower() == value.lower().strip() or \
-                re.search(value, vol["name"]):
-                return True
-            else:
-                return False
-    
-        return [v for v in vols if is_match(v, value)]
-
+    return [v for v in vols if is_match(v, value)]
+----
 
 The filter can be used as below
 
-.. code-block:: python
+[source,python]
+----
+from glusterfstools import volumes
 
-    from glusterfstools import volumes
-    
-    # Filters the volumes with name either gv1 or gv2
-    filters = {"name": "gv[12]"}
-    print volumes.search(filters)
-    
+# Filters the volumes with name either gv1 or gv2
+filters = {"name": "gv[12]"}
+print volumes.search(filters)
+----  

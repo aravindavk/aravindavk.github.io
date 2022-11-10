@@ -6,7 +6,7 @@ summary: Install fortune package in your system, just type `fortune` in command 
 
 http://en.wikipedia.org/wiki/Fortune_%28program%29[fortune] is an awesome application in Gnu/Linux, which picks random quote from the dictionary and displays it.
 
-Install fortune package in your system, just type :code:`fortune` in command prompt to see how it will work. Refer manual page to see the options available in fortune.
+Install fortune package in your system, just type `fortune` in command prompt to see how it will work. Refer manual page to see the options available in fortune.
 
 [source,bash]
 ----

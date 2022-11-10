@@ -39,7 +39,8 @@ This tool also supports filters like `--with-status=active`,
 
 Example output:
 
-```
+[source]
+----
 $ gluster-georep-status
 SESSION: photos ==> bkp1.example.com::backup_photos
 +-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
@@ -58,6 +59,6 @@ SESSION: data ==> geoaccount@bkp2.example.com::backup_data
 | prod2.example.com:/bricks/data/b2 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |
 | prod3.example.com:/bricks/data/b3 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |
 +-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
-```
+----
 
 Comments & Suggestions Welcome.

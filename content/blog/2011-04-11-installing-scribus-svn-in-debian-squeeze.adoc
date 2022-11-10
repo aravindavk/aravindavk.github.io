@@ -8,35 +8,35 @@ I heard that Unicode rending issues of complex scripts are fixed in svn version 
 
 Downloaded svn source using following command to my Debian Squeeze machine. 
 
-.. code-block:: bash
-
-    svn co svn://scribus.net/trunk/Scribus myscribus
-
+[source,bash]
+----
+svn co svn://scribus.net/trunk/Scribus myscribus
+----
 
 First installed cmake, which is required to compile Scribus.
 
-.. code-block:: bash
+[source,bash]
+----
+apt-get install cmake
+----
 
-    apt-get install cmake
+When I ran `cmake .` as root user, it started listing dependency issues. Installed development libraries as and when cmake throws error. Finally ended up installing following dev libraries.
 
-
-When I ran :code:`cmake .` as root user, it started listing dependency issues. Installed development libraries as and when cmake throws error. Finally ended up installing following dev libraries.
-
-.. code-block:: bash
-
-    apt-get install libtiff4-dev python-dev libfreetype6-dev
-                    libcups2-dev libxml2-dev liblcms1-dev
-                    libpixman-1-dev libaspel-dev libfontconfig1-dev
-
+[source,bash]
+----
+apt-get install libtiff4-dev python-dev libfreetype6-dev
+               libcups2-dev libxml2-dev liblcms1-dev
+               libpixman-1-dev libaspel-dev libfontconfig1-dev
+----
 
 Now run
 
-.. code-block:: bash
-
-    cd myscribus
-    cmake .
-    make & make install
-
+[source,bash]
+----
+cd myscribus
+cmake .
+make & make install
+----
                     
 Compilation took almost an hour in my laptop. :) 
 

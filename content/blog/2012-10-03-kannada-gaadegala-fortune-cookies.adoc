@@ -14,9 +14,10 @@ github ನಲ್ಲಿ `fortunes-kn-gaadegalu <https://github.com/aravindavk/for
 
 ಗಾದೆಗಳನ್ನು ಸೇರಿಸುವಾಗ ಒಂದು ಗಾದೆಯನ್ನ ಒಂದೇ ಲೈನ್ ನಲ್ಲಿ ಬರೆಯಿರಿ. ಉದಾಹರಣೆಗೆ, 
 
-.. code-block:: text
-
-    ವೇದ ಸುಳ್ಳಾದರೂ ಗಾದೆ ಸುಳ್ಳಲ್ಲ.
-    ಹಾಸಿಗೆ ಇದ್ದಷ್ಟು ಕಾಲು ಚಾಚು.
+[source,text]
+----
+ವೇದ ಸುಳ್ಳಾದರೂ ಗಾದೆ ಸುಳ್ಳಲ್ಲ.
+ಹಾಸಿಗೆ ಇದ್ದಷ್ಟು ಕಾಲು ಚಾಚು.
+----
 
 ಅದರಲ್ಲಿರುವ ಗಾದೆಗಳನ್ನ ಬೇರೆ ಬೇರೆ format ಗೆ ಬದಲಾಯಿಸಿಕೊಳ್ಳಬಹುದು, ಈಗಿನಂತೆ fortune, PHP array ಮತ್ತು JSON format ಗೆ ಬದಲಾಯಿಸಿಕೊಳ್ಳಬಹುದಾಗಿದೆ. (`ಇಲ್ಲಿ <https://github.com/aravindavk/fortunes-kn-gaadegalu/blob/master/README.md>`__ ನೋಡಿ.)

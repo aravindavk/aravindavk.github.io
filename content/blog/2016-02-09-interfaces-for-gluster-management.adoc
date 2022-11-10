@@ -7,9 +7,10 @@ summary: But Gluster CLIs are not enough for managing from remote place or to in
 Gluster provides CLIs to manage the Cluster, which can be
 programmatly consumed by passing ``--xml`` option. For example,
 
-.. code-block:: bash
-
-	gluster volume info --xml
+[source,bash]
+----
+gluster volume info --xml
+----
 
 But Gluster CLIs are not enough for managing from remote place or to
 integrate with third party Management/Monitoring applications like `Cockpit <http://cockpit-project.org/>`__,
@@ -23,12 +24,13 @@ language and start using it?
 
 For example in Python,
 
-.. code-block:: python
-				
-	from glustercli import volumes
+[source,python]
+----				
+from glustercli import volumes
 
-	gv1 = volumes.Volume("gv1")
-	gv1.start()
+gv1 = volumes.Volume("gv1")
+gv1.start()
+----
 
 **Status:** `Python <https://github.com/aravindavk/glustertool/tree/master/glustertool/utils/glustercli>`__ and `Go <https://github.com/aravindavk/glustercli>`__ bindings are in progress
 
@@ -57,13 +59,14 @@ web application can easily communicate with Gluster using HTTP calls.
 For example, Web application can send HTTP POST request to Start the
 Volume
 
-.. code-block:: bash
-
-    curl -X POST \
-        -H "content-type: application/json" \
-        -H "Date: Tue, 09 Feb 2016 12:38:10 +0000" \
-        -H "Authorization: HMAC_SHA256 MyApp:g0b1IOmdRMOlPs2f5D4UJPgng9tNUuY0k+c+ee/k2Hk=" \
-        http://hostname/v1/volumes/gv1/start
+[source,bash]
+----
+curl -X POST \
+    -H "content-type: application/json" \
+    -H "Date: Tue, 09 Feb 2016 12:38:10 +0000" \
+    -H "Authorization: HMAC_SHA256 MyApp:g0b1IOmdRMOlPs2f5D4UJPgng9tNUuY0k+c+ee/k2Hk=" \
+    http://hostname/v1/volumes/gv1/start
+----
 
 **Status:** In progress. Watch this space for more update about this feature :)
 

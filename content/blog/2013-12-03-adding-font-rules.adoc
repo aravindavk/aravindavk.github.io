@@ -31,11 +31,12 @@ image::/images/fontrules/group2.png[Group 2]
 
 Rule:
 
-.. code-block:: text
+[source,text]
+----
+sub \uni0C95 \uni0CBF by \uni0C95_uni0CBF.abvs;
+----
 
-    sub \uni0C95 \uni0CBF by \uni0C95_uni0CBF.abvs;
-
-Where uni0C95 uni0CBF and uni0C95_uni0CBF.abvs are glyph names(Unicode code of "ka" is U+0C95) (`Refer <http://www.unicode.org/charts/PDF/U0C80.pdf>`__). 
+Where uni0C95 uni0CBF and uni0C95_uni0CBF.abvs are glyph names(Unicode code of "ka" is U+0C95) (http://www.unicode.org/charts/PDF/U0C80.pdf[Refer]). 
 
 In http://www.mediawiki.org/wiki/Language_portal/Pune_LanguageSummit_November_2013[#languageSummitPune] we(me, http://pravin-s.blogspot.in/[Pravin], http://snehakore.blogspot.in/[Sneha], http://thottingal.in[Santhosh] and many others) discussed lot about glyph naming standard, will write about importance of glyph names in my next blog.
 
@@ -52,10 +53,10 @@ image::/images/fontrules/group3-detail.png[Group 3 detail]
 
 Rule:
 
-.. code-block:: text
-
-    sub \uni0C95' [\uni0CCD \uni0CBE \uni0CC6 \uni0CCA \uni0CCC] by \uni0C95.half;
-
+[source,text]
+----
+sub \uni0C95' [\uni0CCD \uni0CBE \uni0CC6 \uni0CCA \uni0CCC] by \uni0C95.half;
+----
 
 == Group four: No rule required because of Normalization
 Some letters in Kannada Unicode normalizes into two or more Unicode characters for which rules will be applied(http://www.unicode.org/charts/normalization/chart_Kannada.html[Refer]).
@@ -73,39 +74,41 @@ We can create featurefile and import all rules into the font using fontforge too
 
 For consonant forms of "ka" final featurefile looks like this.. 
 
-.. code-block:: text
+[source,text]
+----
+lookup kn_abvs_lookup1 {
+    lookupflag 0;
+    sub \uni0C95 \uni0CBF by \uni0C95_uni0CBF.abvs;
+} kn_abvs_lookup1;
 
-    lookup kn_abvs_lookup1 {
-        lookupflag 0;
-        sub \uni0C95 \uni0CBF by \uni0C95_uni0CBF.abvs;
-    } kn_abvs_lookup1;
+lookup kn_abvs_lookup2 {
+    lookupflag 0;
+    sub \uni0C95' [\uni0CCD \uni0CBE \uni0CC6 \uni0CCA \uni0CCC] by \uni0C95.half;
+} kn_abvs_lookup2;
 
-    lookup kn_abvs_lookup2 {
-        lookupflag 0;
-        sub \uni0C95' [\uni0CCD \uni0CBE \uni0CC6 \uni0CCA \uni0CCC] by \uni0C95.half;
-    } kn_abvs_lookup2;
-
-    feature abvs {
-        script knd2;
-        language dflt;
-        lookup kn_abvs_lookup1;
-        lookup kn_abvs_lookup2;
-     
-        script knda;
-        language dflt;
-        lookup kn_abvs_lookup1;
-        lookup kn_abvs_lookup2;
-    } abvs;
+feature abvs {
+    script knd2;
+    language dflt;
+    lookup kn_abvs_lookup1;
+    lookup kn_abvs_lookup2;
+ 
+    script knda;
+    language dflt;
+    lookup kn_abvs_lookup1;
+    lookup kn_abvs_lookup2;
+} abvs;
+----
 
 Once we save the above content in knda_gsub.fea, download the python script from `here <https://raw.github.com/aravindavk/fontforge-python-cookbook/master/apply_gsub_featurefile.py>`__ and run
 
-.. code-block:: bash
-
-    python apply_gsub_featurefile.py <sfd file path> <fea file path>
-
+[source,bash]
+----
+python apply_gsub_featurefile.py <sfd file path> <fea file path>
+----
 
 For example:
 
-.. code-block:: bash
-
-    python apply_gsub_featurefile.py Lohit-Kannada.sfd knda_gsub.fea
+[source,bash]
+----
+python apply_gsub_featurefile.py Lohit-Kannada.sfd knda_gsub.fea
+----

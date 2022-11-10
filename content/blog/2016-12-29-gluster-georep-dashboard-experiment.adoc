@@ -20,39 +20,44 @@ Install
 -------
 Install the app in any one node of Cluster.
 
-.. code-block:: bash
-
-   git clone https://github.com/aravindavk/gluster-georepdash.git
-   cd gluster-georepdash/
+[source,bash]
+----
+git clone https://github.com/aravindavk/gluster-georepdash.git
+cd gluster-georepdash/
+----
 
 Install the following Python dependencies using,
 
-.. code-block:: bash
-
-    sudo pip install flask flask_sockets glustercli
+[source,bash]
+----
+sudo pip install flask flask_sockets glustercli
+----
 
 Install ``elm`` and ``bower`` using,
 
-.. code-block:: bash
-
-    sudo npm install -g bower elm
+[source,bash]
+----
+sudo npm install -g bower elm
+----
 
 Update the ``serverName`` in ``App.elm`` and then generate ``static/app.js``
 using,(editing serverName should be automatic, this is code bug! will
 fix later)
 
-.. code-block:: bash
-
-   cd gluster-georepdash/
-   elm-package install
-   elm-make App.elm --output static/app.js
+[source,bash]
+----
+cd gluster-georepdash/
+elm-package install
+elm-make App.elm --output static/app.js
+----
 
 Install ``purecss`` for style using,
 
-.. code-block:: bash
-
-    cd gluster-georepdash/static
-    bower install
+[source,bash]
+----
+cd gluster-georepdash/static
+bower install
+----
 
 Usage
 -----
@@ -62,15 +67,17 @@ accessed using `http://nodename:5000`
 Test and register this node as Events API subscriber by calling ``webhook-add``
 command. Read more about starting Events service `here <http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/>`__
 
-.. code-block:: bash
-
-    gluster-eventsapi webhook-test http://nodename:5000/listen
+[source,bash]
+----
+gluster-eventsapi webhook-test http://nodename:5000/listen
+----
 
 If Webhook status is OK from all nodes, then add webhook using,
 
-.. code-block:: bash
-
-    gluster-eventsapi webhook-add http://nodename:5000/listen
+[source,bash]
+----
+gluster-eventsapi webhook-add http://nodename:5000/listen
+----
 
 Thats all! If everything is okay, dashboard will show realtime
 Geo-replication status.
