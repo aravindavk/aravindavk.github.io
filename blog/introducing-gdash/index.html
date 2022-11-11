@@ -108,26 +108,23 @@
 </div>
 <div class="title">gdash Volume details page</div>
 </div>
-<h1 id="_usage" class="sect0">Usage</h1>
 <div class="sect1">
-<h2 id="_use_case_1_local_volumes">Use case 1 - Local Volumes</h2>
+<h2 id="_usage">Usage</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_use_case_1_local_volumes">Use case 1 - Local Volumes</h3>
 <div class="paragraph">
 <p>Just run <code>sudo gdash</code>, gdash starts running in port 8080. visit <a href="http://localhost:8080" class="bare">http://localhost:8080</a> to view GlusterFS volumes of local machine.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_use_case_2_remote_volumes">Use case 2 - Remote Volumes</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_use_case_2_remote_volumes">Use case 2 - Remote Volumes</h3>
 <div class="paragraph">
 <p>Run <code>sudo gdash --host 192.168.1.6</code>, visit <a href="http://localhost:8080" class="bare">http://localhost:8080</a> to view GlusterFS volume information of remote host. Dashboard shows all the volumes which are part of that remote host.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_use_case_3_multiple_clusters">Use case 3 - Multiple clusters</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_use_case_3_multiple_clusters">Use case 3 - Multiple clusters</h3>
 <div class="paragraph">
 <p>Create a clusters.conf file as example shown below, specify at least one host from each cluster.</p>
 </div>
@@ -147,10 +144,8 @@ cluster2 = host4, host5, host6</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_use_case_4_multiple_teams">Use case 4 - Multiple teams</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_use_case_4_multiple_teams">Use case 4 - Multiple teams</h3>
 <div class="paragraph">
 <p>If two teams monitoring two clusters and if you don&#8217;t want to share the other cluster details then, just run below commands in two terminals and give respective URL to each team. Other solution is create two seperate config files and run it separately for different ports.</p>
 </div>
@@ -165,7 +160,10 @@ cluster2 = host4, host5, host6</code></pre>
 </div>
 </div>
 </div>
-<h1 id="_available_options" class="sect0">Available Options</h1>
+</div>
+<div class="sect1">
+<h2 id="_available_options">Available Options</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="text">usage: gdash [-h] [--port PORT] [--cache CACHE] [--debug] [--host HOST]
@@ -191,6 +189,8 @@ optional arguments:
 </div>
 <div class="paragraph">
 <p>Code is hosted in <a href="https://github.com/aravindavk/gdash">github/aravindavk</a>, licensed under <a href="https://github.com/aravindavk/gdash/blob/master/LICENSE.txt">MIT</a>.</p>
+</div>
+</div>
 </div>
             </div>
         </div>

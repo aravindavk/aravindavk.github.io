@@ -89,7 +89,9 @@
     set</code></pre>
 </div>
 </div>
-<h1 id="_how_to_use_hooks" class="sect0">How to use hooks</h1>
+<div class="sect1">
+<h2 id="_how_to_use_hooks">How to use hooks</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>GlusterFs hooks present in <code>/var/lib/glusterd/hooks/1</code> directory. Following example shows sending message to all users using <code>wall</code> command when any new GlusterFs volume is created.</p>
 </div>
@@ -119,7 +121,11 @@
 </span>wall <span class="s2">"Gluster Volume Created: </span><span class="nv">$VOL</span><span class="s2">"</span><span class="p">;</span></code></pre>
 </div>
 </div>
-<h1 id="_experimental_project_glusterweb" class="sect0">Experimental project - GlusterWeb</h1>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_experimental_project_glusterweb">Experimental project - GlusterWeb</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>This experimental project maintains a sqlite database <code>/var/lib/glusterd/nodestate/glusternodestate.db</code> which gets updated after any GlusterFs event. For example if a GlusterFs volume is created then it updates volumes table and also bricks table.</p>
 </div>
@@ -167,7 +173,11 @@
 </div>
 <div class="title">Initial version of web interface.</div>
 </div>
-<h1 id="_future_plans" class="sect0">Future plans</h1>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_future_plans">Future plans</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><strong>Authentication</strong>: Option to provide username and password or access key while running glusterweb, For example</p>
 </div>
@@ -193,7 +203,11 @@
 <div class="paragraph">
 <p><strong>Many more:</strong> Not yet planned :)</p>
 </div>
-<h1 id="_problems" class="sect0">Problems</h1>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_problems">Problems</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><strong>State file consistency:</strong> If glusterd goes down in the node then the database will have wrong details about node&#8217;s state. One workaround is to reset the database if glusterd is down using a cron job, when glusterd comes up, database will not gets updated and the database will have previous updated details. To prevent this we need a glusterfs hook for <code>glusterd-start</code>.</p>
 </div>
@@ -213,6 +227,8 @@
 </div>
 <div class="paragraph">
 <p>Let me know your thoughts! Thanks.</p>
+</div>
+</div>
 </div>
             </div>
         </div>
