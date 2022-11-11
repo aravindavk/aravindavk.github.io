@@ -8,7 +8,7 @@ summary: Until the above issues are fixed in official Gluster CLI, we can use gl
 This blog was first published on <a href="https://gluster.github.io/devblog/improving-geo-replication-status">Gluster Devblog</a>
 </div>
 
-[Geo-replication](https://docs.gluster.org/en/latest/Administrator%20Guide/Geo%20Replication/)
+https://docs.gluster.org/en/latest/Administrator%20Guide/Geo%20Replication/[Geo-replication]
 is a feature in Glusterfs to sync data from one Gluster Volume to
 another.
 
@@ -27,12 +27,12 @@ Current Geo-replication status has the following limitations.
 
 Until the above issues are fixed in official Gluster CLI, we can use
 `gluster-georep-status` tool from
-[gluster-tools](https://github.com/aravindavk/gluster-georep-tools)
+https://github.com/aravindavk/gluster-georep-tools[gluster-tools]
 project. This tool merges Volume info and Geo-rep status to identify
 the Offline status and bricks order.
 
 Installation instructions are available in project
-[README](https://github.com/aravindavk/gluster-georep-tools/blob/master/README.md)
+https://github.com/aravindavk/gluster-georep-tools/blob/master/README.md[README]
 
 This tool also supports filters like `--with-status=active`,
 `--with-crawl-status=changelog` etc.

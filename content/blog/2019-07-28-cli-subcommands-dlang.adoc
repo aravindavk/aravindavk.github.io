@@ -11,9 +11,9 @@ Never heard of D Programming?
 > Language, write fast, read fast, and run fast.
 >
 > Fast code, fast.
-> [https://dlang.org](https://dlang.org)
+> https://dlang.org
 
-Parsing command-line arguments is very easy using the "[getopt](https://dlang.org/phobos/std_getopt.html)" module
+Parsing command-line arguments is very easy using the "https://dlang.org/phobos/std_getopt.html[getopt]" module
 available in the standard library. In this blog, I am sharing my
 experience about how I added subcommand support to my command-line
 applications.

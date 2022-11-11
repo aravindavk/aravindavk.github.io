@@ -34,7 +34,7 @@ $ umount /mnt/gvol_rep3
 Use libgfapi mount and run `os.statvfs` to get the Volume utilization.
 
 The following Python example uses
-[libgfapi-python](https://github.com/gluster/libgfapi-python) project.
+https://github.com/gluster/libgfapi-python[libgfapi-python] project.
 
 [source,python]
 ----
@@ -56,7 +56,7 @@ volume get <volname> storage.reserve` and subtract the same from
 `size_free` or add to `size_used`.
 
 Refer Posix storage reserve feature
-[here](https://github.com/gluster/glusterfs/issues/236)
+https://github.com/gluster/glusterfs/issues/236[here]
 
 Once we get the sub volume grouping, get the sub volume utilization
 from the bricks utilization as follows.

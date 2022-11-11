@@ -17,8 +17,8 @@ image::/images/impana-book-photo.jpg[[ಬುಕ್ ಕವರ್,link=/files/allo
 ಹಾರುತ್ತಿರುವ ಹಕ್ಕಿ ಬರೆಯಲು ಇಂಪನಳಿಗೆ ಸುಲಭವಾಗಲಿ ಎಂದು 333 ಬರೆದು ಹಕ್ಕಿ ಹಾರುವಂತೆ
 ಬರೆಯುವುದಕ್ಕೆ ಚಿನ್ಮಯಿ ಹೇಳಿಕೊಟ್ಟಳು.
 
-ಇಂಪನ ಪೇಪರ್ ನಲ್ಲಿ ಬರೆದು ಬಣ್ಣ ಹಚ್ಚಿದ ಚಿತ್ರಗಳನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ, [Scribus](https://www.scribus.net/) ತಂತ್ರಾಂಶ
-ಬಳಸಿ ಪುಸ್ತಕ ಮಾಡಿದೆ. ಅಕ್ಷರಗಳಿಗೆ [ಗುಬ್ಬಿ Font](https://aravindavk.in/blog/gubbi-mattu-navilu/) ಬಳಸಿದ್ದೇನೆ.
+ಇಂಪನ ಪೇಪರ್ ನಲ್ಲಿ ಬರೆದು ಬಣ್ಣ ಹಚ್ಚಿದ ಚಿತ್ರಗಳನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ, https://www.scribus.net/[Scribus] ತಂತ್ರಾಂಶ
+ಬಳಸಿ ಪುಸ್ತಕ ಮಾಡಿದೆ. ಅಕ್ಷರಗಳಿಗೆ https://aravindavk.in/blog/gubbi-mattu-navilu/[ಗುಬ್ಬಿ Font] ಬಳಸಿದ್ದೇನೆ.
 
 image::/images/impana-book-making.jpg[ಇಂಪನ,link=/files/allonduralli-puttahakki.pdf]
 
