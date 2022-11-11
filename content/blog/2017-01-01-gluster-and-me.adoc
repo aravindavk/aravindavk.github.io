@@ -44,8 +44,7 @@ image::/images/gluster-contribution-by-component.png[Number of Patches per Compo
     ggplot(dd, aes(x=component)) + geom_bar(stat="identity", aes(y=num), fill="#483d8b") + geom_text(aes(label=num, y=num), vjust=2, color="white") + labs(x="Component", y="Number of Patches")
     dev.off()
     
-Blogs about Gluster
--------------------
+== Blogs about Gluster
 **2013**
 
 - http://aravindavk.in/blog/glusterfs-tools[GlusterFS Tools]
@@ -74,16 +73,14 @@ Blogs about Gluster
 
 image::/images/gluster-blogs-till-2016.png[Gluster Blogs]
   
-..
-    R code to generate Blogs graph
-    library(ggplot2)
-    dd <- data.frame(year=c(2013, 2014, 2015, 2016), num=c(3, 2, 3, 6))
-    png("gluster-blogs-till-2016.png", width=400, height=300)
-    ggplot(dd, aes(x=year)) + geom_bar(stat="identity", aes(y=num), fill="#483d8b") + geom_text(aes(label=num, y=num), vjust=2, color="white") + labs(x="Years", y="Number of Blogs")
-    dev.off()
+// R code to generate Blogs graph
+// library(ggplot2)
+// dd <- data.frame(year=c(2013, 2014, 2015, 2016), num=c(3, 2, 3, 6))
+// png("gluster-blogs-till-2016.png", width=400, height=300)
+// ggplot(dd, aes(x=year)) + geom_bar(stat="identity", aes(y=num), fill="#483d8b") + geom_text(aes(label=num, y=num), vjust=2, color="white") + labs(x="Years", y="Number of Blogs")
+// dev.off()
 
-Gluster github projects
------------------------
+== Gluster github projects
 Many projects are still in young stage. Comments and Suggestions are welcome.
 
 **Projects started in 2013**

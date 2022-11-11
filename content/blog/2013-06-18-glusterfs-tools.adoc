@@ -77,8 +77,7 @@ if ok:
 
 **Note:** root permission is required to run gluster command, so run gfvolumes as root(`sudo gfvolumes`)
 
-Future plans:
-=============
+== Future plans:
 
 1. Adding more filters
 2. Adding more admin tools

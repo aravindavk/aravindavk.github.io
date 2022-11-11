@@ -12,8 +12,7 @@ In this article we will discuss
 4. How To Use?
 
   
-Markdown
-========
+== Markdown
 
 Markdown is a wiki like syntax standard, to have highly readable content. 
 
@@ -64,8 +63,7 @@ will be converted to
     
 Click http://daringfireball.net/projects/markdown/[here] for more details about markdown. 
     
-Markdown PHP
-============
+== Markdown PHP
     
 PHP implementation of markdown is available http://michelf.com/projects/php-markdown/[here]. We can store the content in database in the markdown format itself, While displaying to user we can convert to HTML using the Markdown PHP library. 
 
@@ -86,8 +84,7 @@ Custom style sheets can be applied to required elements like h1, h2, p, blockquo
 
 User can use any editors which highlights the markdown syntax(I use Emacs) or any plain text editor.  
 
-SHJS - Syntax highlighter using JS
-==================================
+== SHJS - Syntax highlighter using JS
 
 It will be good if we able to highlight the code inside pre element, I found a Javascript utility SHJS(Syntax Highlighter with JavaScript), which has very good features and multiple themes support. Read the documentation about SHJS http://shjs.sourceforge.net/[here]. 
 
@@ -134,8 +131,7 @@ function addRespectiveJsFiles($text){
 }
 ----
 
-How To Use? 
-===========
+== How To Use? 
 
 [source,php]
 ----

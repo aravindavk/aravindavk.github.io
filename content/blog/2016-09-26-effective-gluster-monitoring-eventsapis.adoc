@@ -42,8 +42,7 @@ Volume Stop,
 image::/images/volume_stop.gif[Volume Stop]
 
 
-References:
------------
+== References:
 - Documentation for the Events APIs feature is available
   http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/[here].
 - Gif images created using `byzanz` tool.(Example: `sleep 2;

@@ -18,15 +18,15 @@ image::/images/outgoing_sms_trend.png[Outgoing sms trend]
 
 Continue reading if you are wondering how I extracted the SMS data from the phone.
 
-prerequisites:
-==============
+== prerequisites:
+
 0. Android phone
 1. Your Android phone should be rooted one.
 2. Android SDK should be installed.
 3. Debugging should be enabled in your android phone.
 
-Idea:
-=====
+== Idea:
+
 In Android, SMS data is stored in sqlite database, and it is located in the following directory(in phone).
 
 [source,bash]

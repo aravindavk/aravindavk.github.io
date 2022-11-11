@@ -23,8 +23,7 @@ As of today GlusterFs provides following hooks, which we can use to update our s
     set
 ----
 
-How to use hooks
-================
+== How to use hooks
 
 GlusterFs hooks present in `/var/lib/glusterd/hooks/1` directory. Following example shows sending message to all users using `wall` command when any new GlusterFs volume is created.
 
@@ -54,8 +53,7 @@ wall "Gluster Volume Created: $VOL";
 ----
 
 
-Experimental project - GlusterWeb
-=================================
+== Experimental project - GlusterWeb
 
 This experimental project maintains a sqlite database `/var/lib/glusterd/nodestate/glusternodestate.db` which gets updated after any GlusterFs event. For example if a GlusterFs volume is created then it updates volumes table and also bricks table.
 
@@ -96,8 +94,8 @@ sudo glusterweb -p 9000
 .Initial version of web interface.
 image::/images/glusterweb-v0.1.png[GlusterWeb]
 
-Future plans
-============
+
+== Future plans
 
 **Authentication**: Option to provide username and password or access key while running glusterweb, For example
 
@@ -119,8 +117,7 @@ sudo glusterweb --key secretonlyiknow
 **Many more:** Not yet planned :)
 
 
-Problems
-========
+== Problems
 
 **State file consistency:** If glusterd goes down in the node then the database will have wrong details about node's state. One workaround is to reset the database if glusterd is down using a cron job, when glusterd comes up, database will not gets updated and the database will have previous updated details. To prevent this we need a glusterfs hook for `glusterd-start`.
 

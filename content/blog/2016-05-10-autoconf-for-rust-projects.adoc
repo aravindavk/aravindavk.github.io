@@ -15,8 +15,7 @@ In this blog we will discuss about using Autoconf for Rust projects
 along with Cargo.
 
 
-Example: Simple Web server and a systemd service file
------------------------------------------------------
+== Example: Simple Web server and a systemd service file
 
 Create a new project called `myservice` using,
 
@@ -196,8 +195,7 @@ sudo systemctl enable myserviced
 sudo systemctl start myserviced
 ----
 
-Bonus: Generate RPM for your package
--------------------------------------
+== Bonus: Generate RPM for your package
 Sample RPM spec file is available in the https://github.com/aravinda/rust_autoconf/myservice.spec.in[repo]
 
 [source,bash]
@@ -220,8 +218,7 @@ rpm -qlp $HOME/rpmbuild/RPMS/x86_64/myservice-0.1.0-1.fc23.x86_64.rpm
 /usr/sbin/myserviced
 ----
 
-Rust, Cargo and Autoconf Version
----------------------------------
+== Rust, Cargo and Autoconf Version
 
 [source,text]
 ----

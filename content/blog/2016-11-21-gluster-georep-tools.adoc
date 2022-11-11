@@ -14,14 +14,12 @@ Geo-replication.
 `gluster-georep-setup` was previously called as `georepsetup` (Blog
 about georepsetup is http://aravindavk.in/blog/introducing-georepsetup/[here]).
 
-Installation
-------------
+== Installation
 Install the tools collection using, `pip install
 gluster-georep-tools`. Binary packages are not yet available,
 hopefully I will work on the packaging in near future.
 
-gluster-georep-status
----------------------
+== gluster-georep-status
 Wrapper around Geo-rep status command and Volume info command to
 provide more features compared to Gluster CLI. This tool combines
 Geo-rep status and Volume info to get following advantageous.
@@ -55,8 +53,7 @@ SESSION: gv1 ==> geoaccount@fvm1::gv3
 Active: 0 | Passive: 0 | Faulty: 0 | Created: 0 | Offline: 0 | Stopped: 2 | Initializing: 0 | Total: 2
 ----
 
-gluster-georep-setup
----------------------
+== gluster-georep-setup
 In previous blog, we discussed about this tool. This tool simplifies
 the steps involved in Geo-replication setup. Now setting up
 Geo-replication is as easy as running one command. Yay!

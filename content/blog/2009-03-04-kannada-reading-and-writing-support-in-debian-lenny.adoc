@@ -61,8 +61,7 @@ The above xinput script is shared by http://linmaya.net[Ravi]
 
 Save the file and logoff. When you login to your system you will see small keyboard icon in the panel, that means all installations and configurations are successful. 
 
-How to use SCIM
-===============
+== How to use SCIM
 
 Open gedit or any other text editor, click on the small keyboard icon in panel and select the required keyboard layout. Now we can use Cntrl + Space to toggle Kannada(Previously selected layout) and English. We can even create the folders/files with kannada name  :)
 

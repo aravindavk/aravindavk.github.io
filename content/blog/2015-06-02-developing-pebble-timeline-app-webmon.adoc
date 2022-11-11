@@ -58,12 +58,12 @@ Technologies used:
 3. Postgresql database
 4. Cron
 
-Problems faced:
----------------
+
+== Problems faced:
+
 Without having actual device, testing app is very very difficult to test the Timeline apps. I developed app using installed SDK, but for testing Timeline I copied all code to https://cloudpebble.net/[cloudpebble.net]
 
-Show me the Code:
------------------
+== Show me the Code:
 I love Open Source and sharing code makes me happy. Code is available in https://github.com/aravindavk/webmon[github.com/aravindavk/webmon] with MIT license.
 
 \***

@@ -4,8 +4,7 @@ tags: python
 summary: Notes for Python beginners
 ---
 
-Using Python documentation similar to unix man pages
-====================================================
+== Using Python documentation similar to unix man pages
 
 [source,bash]
 ----
@@ -19,8 +18,7 @@ or
 python -m pydoc sys
 ----
 
-For html documentation
-======================
+== For html documentation
 
 [source,bash]
 ----
@@ -29,8 +27,7 @@ pydoc -p 9000
 
 Now server will start running in port 9000. we can access the documentation in http://localhost:9000
 
-To get help while working inside interpreter, type help()
-=========================================================
+== To get help while working inside interpreter, type help()
 
 [source,bash]
 ----
@@ -44,8 +41,7 @@ Help prompt will come, now we can type module name to get details about that mod
 sys
 ----
 
-To list functions/attributes inside a module
-============================================
+== To list functions/attributes inside a module
 
 [source,python]
 ----
@@ -62,8 +58,7 @@ for i in dir(sys):
     print i
 ----
 
-To list builtin functions,
-==========================
+== To list builtin functions,
 
 [source,python]
 ----
@@ -72,8 +67,7 @@ for i in dir(__builtin__):
     print i
 ----
 
-To see which are all the modules loaded in our program
-======================================================
+== To see which are all the modules loaded in our program
 
 [source,python]
 ----
@@ -82,8 +76,7 @@ for i in sys.modules:
     print i, ": ", sys.modules[i]
 ----
 
-Books/documentation
-===================
+== Books/documentation
 
 1. http://diveintopython.org[Dive into Python] and http://diveintopython3.org/[Dive into Python3]
 2. http://www.swaroopch.com/notes/Python[Byte of Python]

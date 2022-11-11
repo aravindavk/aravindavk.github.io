@@ -28,8 +28,7 @@ This command also produces a good summary as shown below. Now it is very easy to
 
 image::/images/georepsetup.png[Summary]
 
-Install
--------
+== Install
 Install this tool on any one master node where you wish to initiate the Geo-replication setup,
 
 [source,bash]

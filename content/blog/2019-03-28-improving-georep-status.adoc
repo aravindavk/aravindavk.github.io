@@ -4,9 +4,11 @@ tags: gluster, glusterfsblog
 summary: Until the above issues are fixed in official Gluster CLI, we can use gluster-georep-status tool
 ---
 
-<div class="notice-update">
+++++
+<div class="notification is-warning">
 This blog was first published on <a href="https://gluster.github.io/devblog/improving-geo-replication-status">Gluster Devblog</a>
 </div>
+++++
 
 https://docs.gluster.org/en/latest/Administrator%20Guide/Geo%20Replication/[Geo-replication]
 is a feature in Glusterfs to sync data from one Gluster Volume to

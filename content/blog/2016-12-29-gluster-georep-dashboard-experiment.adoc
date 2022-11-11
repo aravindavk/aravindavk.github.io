@@ -16,8 +16,7 @@ Real-time notifications/UI change only works with Gluster 3.9 or
 above, but dashboard can work with older versions of gluster(But
 as static display, manual page reload is required to check current status).
 
-Install
--------
+== Install
 Install the app in any one node of Cluster.
 
 [source,bash]
@@ -59,8 +58,7 @@ cd gluster-georepdash/static
 bower install
 ----
 
-Usage
------
+== Usage
 Run `main.py`, to start the app server. Dashboard can be
 accessed using `http://nodename:5000`
 
@@ -82,8 +80,7 @@ gluster-eventsapi webhook-add http://nodename:5000/listen
 Thats all! If everything is okay, dashboard will show realtime
 Geo-replication status.
 
-Screenshots
------------
+== Screenshots
 
 .UI Changes when a Geo-rep session is stopped from anywhere in Cluster
 image::/images/georep_stop.gif[When Geo-replication is stopped]
@@ -91,8 +88,7 @@ image::/images/georep_stop.gif[When Geo-replication is stopped]
 .UI Changes when a Geo-rep session goes to Faulty
 image::/images/georep_faulty.gif[When Geo-replication is stopped]
    
-UI/Dashboard Notes
-------------------
+== UI/Dashboard Notes
 - UI is very raw since it is created for demo purpose
 - Frontend developed using http://elm-lang.org/[Elm]
 - No event available for change in "Last Synced" column, So that

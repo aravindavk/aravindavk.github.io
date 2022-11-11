@@ -87,5 +87,3 @@ for(i=0;i<2;i++) {
         document.write("<b>" + inputwords[i] + "</b> is Not a Kannada Word<br/>");
 }
 ----
-
-

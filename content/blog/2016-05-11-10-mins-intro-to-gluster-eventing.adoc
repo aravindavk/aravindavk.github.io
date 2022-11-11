@@ -160,8 +160,7 @@ in my github)
 <iframe width="640" height="360" src="https://www.youtube.com/embed/urzong5sKqc" frameborder="0" allowfullscreen></iframe>
 ++++
 
-FAQ:
-----
+== FAQ:
 - **Will this feature available in 3.8 release?**
 +
 Sadly No. I couldn't get this merged before 3.8 feature freeze :(

@@ -6,15 +6,12 @@ summary: I have created a JavaScript widget for days countdown. You can use this
 
 I have created a JavaScript widget for days countdown. You can use this in your websites. 
 
-Preview (Below image is preview only)
--------------------------------------
-
+== Preview (Below image is preview only)
 
 image::/images/habba-countdown-preview.png[Habba preview]
 
 
-How to use?
------------
+== How to use?
 
 Create a DIV container in your webpage, Include the below script inside that container. You can apply positioning styles to that container. 
 
@@ -28,7 +25,6 @@ Create a DIV container in your webpage, Include the below script inside that con
 ----
 
 Example
--------
 
 [source,html]
 ----
@@ -38,8 +34,7 @@ Example
 </div>
 ----
 
-How it works
-------------
+== How it works
 
 Javascript will fetch the current date in IST based on your system time and calculates the number of days left for the event. Seperate images created with the name of number of days remaining(Like 12.png, 11.png, 0.png)
 

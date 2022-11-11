@@ -8,8 +8,7 @@ Gluster introduced sharding feature to store large files(which can
 grow beyond a single brick) or to support running Virtual machines in
 Gluster Volumes. Read more about sharding http://blog.gluster.org/2015/12/introducing-shard-translator/[here] and http://blog.gluster.org/2015/12/sharding-what-next-2/[here].
 
-How to backup VM images?
-------------------------
+== How to backup VM images?
 Backing up VM images is not easy, rsync will consume more CPU to
 calculate the checksum to sync only incremental changes.
 
@@ -20,14 +19,12 @@ to backup VM images to DR site consistently.
 
 Read http://hrkscribbles.blogspot.in/2016/02/gluster-geo-replication-with-sharding.html[here] to know more about Geo-replication support for sharding.
 
-Setup:
-------
+== Setup:
 VMs hosted in Gluster Volume(Master Volume) and Geo-replicated to
 another Gluster Volume(Slave/Backup Volume). Sharding enabled in both
 the Gluster Volumes.
 
-Using Internal Qcow2 snapshot:
-------------------------------
+== Using Internal Qcow2 snapshot:
 Before starting Geo-replication every day, take qcow2 snapshot of all
 the disks in Master Volume. Geo-rep will sync the data including the
 created snapshots.
@@ -104,8 +101,7 @@ Format specific information:
     corrupt: false
 ----
 
-Using External Qcow2 snapshot
------------------------------
+== Using External Qcow2 snapshot
 Once we take external snapshot, qcow2 image will become read only base
 image and snapshot file will become overlay(Read more about backing
 chain and overlay https://kashyapc.fedorapeople.org/virt/lc-2012/snapshots-handout.html[here]).
@@ -146,8 +142,7 @@ With this method, Slave will always have consitent base image.
 
 Ref: http://wiki.libvirt.org/page/Live-disk-backup-with-active-blockcommit
 
-Conclusion
-----------
+== Conclusion
 We should use qcow2 external snapshot if Live backup is
 required. External snapshot file will be deleted once blockcommit is
 done in Master side.
