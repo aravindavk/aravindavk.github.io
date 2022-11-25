@@ -1,23 +1,55 @@
-.content h2 {
-    margin-top: 10px;
+.listingblock, .quoteblock, .paragraph, .ulist, .olist
+{
+    margin-bottom: 1em;
 }
 
-.home-page-title h4 {
-    margin-top: 2em;
-    color: #666666;
-}
-
-.content .paragraph, .content .listingblock, .content .quoteblock {
-    margin-bottom:1em;
-}
 .content .imageblock {
+    margin-left: 2em;
+    margin-right: 2em;
     text-align: center;
 }
+
+.content .imageblock:not(:first-child) {
+    margin-top: 2em;
+}
+
+.content .imageblock:not(:last-child) {
+    margin-bottom: 2em;
+}
+
+.content .imageblock img {
+  display: inline-block;
+}
+
 .listingblock .title, .imageblock .title {
     font-size: 1em;
+    font-style: italic;
     color: #666666;
     font-weight: normal;
     text-align: center;
+}
+
+.content .sect1:not(:first-child) {
+  margin-top: 1em;
+}
+
+.content .sect2:not(:first-child) {
+  margin-top: 1.1428em;
+}
+
+.content sect:not(:first-child) {
+  margin-top: 1.3333em;
+}
+
+.listingblock pre {
+    background-color: #eef6fc;
+}
+.content blockquote {
+    background-color: transparent;
+    margin-left: 1em;
+    color: #777777;
+    font-size: 1.5em;
+    border-left: 10px solid #eef6fc;
 }
 
 .listingblock .title {
@@ -27,4 +59,6 @@
     margin-top: -1.5rem;
     margin-bottom: 1.5rem;
 }
-.strike{text-decoration:line-through}
+.strike {
+    text-decoration:line-through
+}
