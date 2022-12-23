@@ -24,6 +24,7 @@ If we split the UUID into color codes represented in hex, we get five colors and
 </div>
 <script>
  function textContrastColor(hexcol) {
+     // https://www.w3.org/TR/AERT/#color-contrast
      h = hexcol.replace("#", "")
      r = parseInt(h[0] + h[1], 16)
      g = parseInt(h[2] + h[3], 16)
