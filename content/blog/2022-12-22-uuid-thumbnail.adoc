@@ -1,5 +1,5 @@
 ---
-title: Generate Thumbnail from UUID
+title: Generate Thumbnail image from UUID
 tags: uuid,visualize,thumbnail
 image: /images/uuid_to_svg.png
 summary: While implementing Kadalu Storage Console, I was thinking about how to add an icon or something to the Volumes list so that it should be easy to identify. Suddenly I realized that Volume IDs used in Kadalu Storage are UUIDs and it is collection of hex numbers.
