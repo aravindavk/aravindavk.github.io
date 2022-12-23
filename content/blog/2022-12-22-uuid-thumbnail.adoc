@@ -7,6 +7,8 @@ summary: While implementing Kadalu Storage Console, I was thinking about how to 
 
 While implementing https://kadalu.tech/blog/introducing-storage-console/[Kadalu Storage Console], I was thinking about how to add an icon or something to the Volumes list so that it should be easy to identify. Suddenly I realized that Volume IDs used in Kadalu Storage are UUIDs and it is collection of hex numbers.
 
+image::/images/volumes_list_thumbnail.png[Volumes]
+
 If we split the UUID into color codes represented in hex, we get five colors and two extra characters. So I combined same UUID three times to get total 16 colors and I can now make a grid with those colors.
 
 ++++
@@ -16,17 +18,34 @@ If we split the UUID into color codes represented in hex, we get five colors and
     <div class="control">
         <input class="input" type="text" x-model="value" placeholder="UUID"/>
     </div>
+    <div x-html="textWithColor" class="pb-6" style="overflow-wrap: break-word;"></div>
 </div>
 <div x-html="uuidToSvg" class="has-text-centered"></div>
 </div>
 <script>
+ function textContrastColor(hexcol) {
+     h = hexcol.replace("#", "")
+     r = parseInt(h[0] + h[1], 16)
+     g = parseInt(h[2] + h[3], 16)
+     b = parseInt(h[4] + h[5], 16)
+     var sum = Math.round((r * 299 + g * 587 + b * 114) / 1000);
+     return (sum > 128) ? '#000000' : '#ffffff';
+ }
  document.addEventListener('alpine:init', () => {
      Alpine.data('data', () => ({
          value: "4419b29f-9ff0-4ec2-a0db-d370f4134f68",
-         uuidToSvg() {
+         textWithColor() {
+             var outStr = '<div>'
+             var cols = this.colorBlocks();
+             for (var cIdx=0; cIdx<cols.length; cIdx++) {
+                 outStr += `<span style="background-color:#${cols[cIdx].col};color: ${textContrastColor(cols[cIdx].col)}">${cols[cIdx].col}</span>`
+             }
+             return outStr + '</div>';
+         },
+         colorBlocks() {
              var uuidStr = this.value.replace(/-/g, "");
              uuidStr = `${uuidStr}${uuidStr}${uuidStr}`;
-             var outStr = '<svg width="200" height="200" class="" viewBox="0 0 400 400" style="max-width: 80%">'
+             var outColors = []
              for (var rowIdx=0; rowIdx<4; rowIdx++) {
                  for (var colIdx = 0; colIdx < 4; colIdx++) {
                      var x = colIdx * 100;
@@ -34,8 +53,16 @@ If we split the UUID into color codes represented in hex, we get five colors and
                      // rowIdx x numLetters x numCols + colIdx x numLetters
                      var start = rowIdx * 6 * 4 + colIdx * 6;
                      var col = uuidStr.slice(start, start + 6);
-                     outStr += `<rect x="${x}" y="${y}" width="100" height="100" style="stroke-width:0;fill:#${col}"/>`
+                     outColors.push({x: x, y: y, col: col})
                  }
+             }
+             return outColors;
+         },
+         uuidToSvg() {
+             var outStr = '<svg width="200" height="200" class="" viewBox="0 0 400 400" style="max-width: 80%">'
+             var cols = this.colorBlocks();
+             for (var cIdx=0; cIdx<cols.length; cIdx++) {
+                 outStr += `<rect x="${cols[cIdx].x}" y="${cols[cIdx].y}" width="100" height="100" style="stroke-width:0;fill:#${cols[cIdx].col}"/>`
              }
              return outStr + '</svg>';
          }
