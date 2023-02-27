@@ -1,0 +1,225 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Using HTTP::LogHandler with Kemal - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Using HTTP::LogHandler with Kemal"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="HTTP module in the Crystal standard library provides a Log handler, that includes additional details like remote IP, HTTP version etc. But we can’t use HTTP::LogHandler directly since Kemal expects the class should be derived from BaseLogHandler."/>
+    <meta property="og:description" content="HTTP module in the Crystal standard library provides a Log handler, that includes additional details like remote IP, HTTP version etc. But we can’t use HTTP::LogHandler directly since Kemal expects the class should be derived from BaseLogHandler."/>
+    <link rel="canonical" href="/blog/using-http-log-handler-kemal/"/>
+    <meta property="og:url" content="/blog/using-http-log-handler-kemal/"/>
+    <meta property="og:site_name" content="Aravinda Vishwanathapura"/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2023-02-27"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta property="og:image" content="https://aravindavk.in/images/me.jpg"/>
+    <meta name="twitter:image" content="https://aravindavk.in/images/me.jpg"/>
+    
+    <meta name="twitter:site" content="https://aravindavk.in"/>
+    <meta name="twitter:title" content="Using HTTP::LogHandler with Kemal"/>
+    <meta name="twitter:description" content="HTTP module in the Crystal standard library provides a Log handler, that includes additional details like remote IP, HTTP version etc. But we can’t use HTTP::LogHandler directly since Kemal expects the class should be derived from BaseLogHandler."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks-articles">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Using HTTP::LogHandler with Kemal</h1>
+                <div class="">Feb 27, 2023</div>
+                <div class="">
+                    <span class="icon-text">
+                        <svg class="mr-1 icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                        <span><strong>2 minutes</strong> read.</span>
+                    </span>
+                </div>
+                <div>
+                    
+                    <span class="tag is-info is-light">kemal</span>
+                    
+                    <span class="tag is-info is-light">crystal</span>
+                    
+                    <span class="tag is-info is-light">logger</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Kemal: Lightning fast, super simple web framework written in Crystal.
+<a href="https://kemalcr.com/" class="bare">https://kemalcr.com/</a></p>
+</div>
+</blockquote>
+</div>
+<div class="listingblock">
+<div class="title">Sample application</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="nb">require</span> <span class="s2">"kemal"</span>
+
+<span class="n">get</span> <span class="s2">"/"</span> <span class="k">do</span> <span class="o">|</span><span class="n">env</span><span class="o">|</span>
+  <span class="s2">"Hello World!"</span>
+<span class="k">end</span>
+
+<span class="no">Kemal</span><span class="p">.</span><span class="nf">run</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Kemal provides a basic logger with minimal details about the request and response. It will not integrate with the standard log module that Crystal provides.</p>
+</div>
+<div class="paragraph">
+<p>HTTP module in the Crystal standard library provides a <a href="https://crystal-lang.org/api/1.7.2/HTTP/LogHandler.html">Log handler</a>, that includes additional details like remote IP, HTTP version etc. But we can’t use <code>HTTP::LogHandler</code> directly since Kemal expects the class should be derived from <code>BaseLogHandler</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="no">Kemal</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">logger</span> <span class="o">=</span> <span class="no">HTTP</span><span class="o">::</span><span class="no">LogHandler</span><span class="p">.</span><span class="nf">new</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> 38 | Kemal.config.logger = HTTP::LogHandler.new
+                                             ^--
+Error: expected argument #1 to 'Kemal::Config#logger=' to be Kemal::BaseLogHandler, not HTTP::LogHandler
+
+Overloads are:
+ - Kemal::Config#logger=(logger : Kemal::BaseLogHandler)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Kemal provides a way to create the custom handlers(<a href="https://github.com/kemalcr/kemal/blob/master/src/kemal/helpers/helpers.cr#L55-L65">Ref</a>). Why re-implement the handler if the <code>HTTP::LogHandler</code> already provides the required features. Following hack will help you to use the <code>HTTP::LogHandler</code> with Kemal.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="k">class</span> <span class="nc">AppLogHandler</span> <span class="o">&lt;</span> <span class="no">Kemal</span><span class="o">::</span><span class="no">BaseLogHandler</span>
+  <span class="k">def</span> <span class="nf">initialize</span>
+    <span class="vi">@handler</span> <span class="o">=</span> <span class="no">HTTP</span><span class="o">::</span><span class="no">LogHandler</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">context</span> <span class="p">:</span> <span class="no">HTTP</span><span class="o">::</span><span class="no">Server</span><span class="o">::</span><span class="no">Context</span><span class="p">)</span>
+    <span class="vi">@handler</span><span class="p">.</span><span class="nf">next</span> <span class="o">=</span> <span class="vi">@next</span>
+    <span class="vi">@handler</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="n">message</span> <span class="p">:</span> <span class="no">String</span><span class="p">)</span>
+    <span class="no">Log</span><span class="p">.</span><span class="nf">info</span> <span class="p">{</span> <span class="n">message</span><span class="p">.</span><span class="nf">strip</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now add <code>AppLogHandler</code> as below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="no">Kemal</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">logger</span> <span class="o">=</span> <span class="no">AppLogHandler</span><span class="p">.</span><span class="nf">new</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Using the Kemal&#8217;s default logger</div>
+<div class="content">
+<pre>2023-01-30 05:07:31 UTC 200 GET /api/monitors 21.88ms</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Using <code>HTTP::LogHandler</code></div>
+<div class="content">
+<pre>2023-01-30T05:06:09.543312Z   INFO - http.server: 127.0.0.1 - GET /api/monitors HTTP/1.1 - 200 (4.38ms)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Bonus</strong>: Since <code>HTTP::LogHandler</code> uses the <code>Log</code> module, it takes care of logging to a file if the application is configured to use the file backend. For example,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="nb">require</span> <span class="s2">"log"</span>
+
+<span class="nb">require</span> <span class="s2">"kemal"</span>
+
+<span class="no">Log</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span>
+  <span class="ss">level: </span><span class="no">Log</span><span class="o">::</span><span class="no">Severity</span><span class="o">::</span><span class="no">Info</span><span class="p">,</span>
+  <span class="ss">backend: </span><span class="no">Log</span><span class="o">::</span><span class="no">IOBackend</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"app.log"</span><span class="p">,</span> <span class="s2">"a+"</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="n">get</span> <span class="s2">"/"</span> <span class="k">do</span> <span class="o">|</span><span class="n">env</span><span class="o">|</span>
+  <span class="s2">"Hello World!"</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">AppLogHandler</span> <span class="o">&lt;</span> <span class="no">Kemal</span><span class="o">::</span><span class="no">BaseLogHandler</span>
+  <span class="k">def</span> <span class="nf">initialize</span>
+    <span class="vi">@handler</span> <span class="o">=</span> <span class="no">HTTP</span><span class="o">::</span><span class="no">LogHandler</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">context</span> <span class="p">:</span> <span class="no">HTTP</span><span class="o">::</span><span class="no">Server</span><span class="o">::</span><span class="no">Context</span><span class="p">)</span>
+    <span class="vi">@handler</span><span class="p">.</span><span class="nf">next</span> <span class="o">=</span> <span class="vi">@next</span>
+    <span class="vi">@handler</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="n">message</span> <span class="p">:</span> <span class="no">String</span><span class="p">)</span>
+    <span class="no">Log</span><span class="p">.</span><span class="nf">info</span> <span class="p">{</span> <span class="n">message</span><span class="p">.</span><span class="nf">strip</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">Kemal</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">logger</span> <span class="o">=</span> <span class="no">AppLogHandler</span><span class="p">.</span><span class="nf">new</span>
+<span class="no">Kemal</span><span class="p">.</span><span class="nf">run</span></code></pre>
+</div>
+</div>
+            </div>
+            <div class="has-text-centered mb-6 notification  is-light">
+    
+    <p class="has-text-grey is-uppercase is-size-5 pb-2">About Aravinda Vishwanathapura</p>
+    
+    Co-Founder & CTO at <a href="https://kadalu.tech">Kadalu Technologies</a>,
+    Creator of <a href="https://aravindavk.in/sanka">Sanka</a>,
+    Creator of <a href="https://aravindavk.in/chitra">Chitra</a>,
+    <a href="https://gluster.org">GlusterFS</a> core team member,
+    Maintainer of <a href="https://github.com/kadalu">Kadalu Storage</a>
+    <div class="mt-6">
+        Contact:
+        <a href="http://in.linkedin.com/in/aravindavk">Linkedin</a> |
+        <a href="https://twitter.com/aravindavk">Twitter</a> |
+        <a href="http://facebook.com/aravindavk">Facebook</a> |
+        <a href="https://github.com/aravindavk">Github</a> |
+        mail&#64;&#97;&#114;&#97;&#118;&#105;&#110;&#100;&#97;&#118;&#107;&#46;&#105;&#110;
+    </div>
+</div>
+
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>

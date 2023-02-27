@@ -146,6 +146,20 @@
 
 
     <div class="column is-6">
+        <div class="card is-clickable" @click="location.href='/blog/using-http-log-handler-kemal'">
+            <div class="card-content">
+                <div class="content has-text-centered">
+                    <p class="has-text-weight-semibold is-size-4 my-1">Using HTTP::LogHandler with Kemal</p>
+                    <p class="is-size-7 has-text-grey">Feb 27, 2023 <span class="tag">2 minutes read</span></p>
+                    <p class="has-text-left py-4">HTTP module in the Crystal standard library provides a Log handler, that includes additional details like remote IP, HTTP version etc. But we can’t use HTTP::LogHandler directly since Kemal expects the class should be derived from BaseLogHandler....</p>
+                    <a class="button is-small" href="/blog/using-http-log-handler-kemal">Read more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="column is-6">
         <div class="card is-clickable" @click="location.href='/blog/kuniyodu-beda'">
             <div class="card-content">
                 <div class="content has-text-centered">
