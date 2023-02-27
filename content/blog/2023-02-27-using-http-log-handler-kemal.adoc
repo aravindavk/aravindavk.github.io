@@ -1,0 +1,111 @@
+---
+title: "Using HTTP::LogHandler with Kemal"
+tags: kemal,crystal,logger
+summary: "HTTP module in the Crystal standard library provides a Log handler, that includes additional details like remote IP, HTTP version etc. But we can’t use HTTP::LogHandler directly since Kemal expects the class should be derived from BaseLogHandler."
+---
+
+> Kemal: Lightning fast, super simple web framework written in Crystal.
+> https://kemalcr.com/
+
+.Sample application
+[source,crystal]
+----
+require "kemal"
+
+get "/" do |env|
+  "Hello World!"
+end
+
+Kemal.run
+----
+
+Kemal provides a basic logger with minimal details about the request and response. It will not integrate with the standard log module that Crystal provides.
+
+HTTP module in the Crystal standard library provides a https://crystal-lang.org/api/1.7.2/HTTP/LogHandler.html[Log handler], that includes additional details like remote IP, HTTP version etc. But we can’t use `HTTP::LogHandler` directly since Kemal expects the class should be derived from `BaseLogHandler`.
+
+[source,crystal]
+----
+Kemal.config.logger = HTTP::LogHandler.new
+----
+
+----
+ 38 | Kemal.config.logger = HTTP::LogHandler.new
+                                             ^--
+Error: expected argument #1 to 'Kemal::Config#logger=' to be Kemal::BaseLogHandler, not HTTP::LogHandler
+
+Overloads are:
+ - Kemal::Config#logger=(logger : Kemal::BaseLogHandler)
+----
+
+Kemal provides a way to create the custom handlers(https://github.com/kemalcr/kemal/blob/master/src/kemal/helpers/helpers.cr#L55-L65[Ref]). Why re-implement the handler if the `HTTP::LogHandler` already provides the required features. Following hack will help you to use the `HTTP::LogHandler` with Kemal.
+
+[source,crystal]
+----
+class AppLogHandler < Kemal::BaseLogHandler
+  def initialize
+    @handler = HTTP::LogHandler.new
+  end
+
+  def call(context : HTTP::Server::Context)
+    @handler.next = @next
+    @handler.call(context)
+  end
+
+  def write(message : String)
+    Log.info { message.strip }
+  end
+end
+----
+
+Now add `AppLogHandler` as below.
+
+[source,crystal]
+----
+Kemal.config.logger = AppLogHandler.new
+----
+
+.Using the Kemal's default logger
+----
+2023-01-30 05:07:31 UTC 200 GET /api/monitors 21.88ms
+----
+
+.Using `HTTP::LogHandler`
+----
+2023-01-30T05:06:09.543312Z   INFO - http.server: 127.0.0.1 - GET /api/monitors HTTP/1.1 - 200 (4.38ms)
+----
+
+**Bonus**: Since `HTTP::LogHandler` uses the `Log` module, it takes care of logging to a file if the application is configured to use the file backend. For example,
+
+[source,crystal]
+----
+require "log"
+
+require "kemal"
+
+Log.setup(
+  level: Log::Severity::Info,
+  backend: Log::IOBackend.new(File.new("app.log", "a+"))
+)
+
+get "/" do |env|
+  "Hello World!"
+end
+
+class AppLogHandler < Kemal::BaseLogHandler
+  def initialize
+    @handler = HTTP::LogHandler.new
+  end
+
+  def call(context : HTTP::Server::Context)
+    @handler.next = @next
+    @handler.call(context)
+  end
+
+  def write(message : String)
+    Log.info { message.strip }
+  end
+end
+
+Kemal.config.logger = AppLogHandler.new
+Kemal.run
+----
