@@ -1,0 +1,49 @@
+---
+title: "Reproducible UUIDs - Crystal language"
+tags: uuid,crystal,uuid3,uuid5
+summary: "Sometimes applications need reproducible UUIDs (Universally Unique identifier) within a namespace, but it should be predictable for a given string."
+---
+
+Sometimes applications need reproducible UUIDs (Universally Unique identifier) within a namespace, but it should be predictable for a given string.
+
+UUID v3 (MD5 based) and v5 (SHA1 based) support this use case (https://en.wikipedia.org/wiki/Universally_unique_identifier#Versions_3_and_5_(namespace_name-based)[Ref]).
+
+.UUID v3
+[source,console]
+----
+$ uuidgen -n 3d71a27f-eb95-499d-9cac-9736b5bf9cb9 -N "Hello World!" --md5
+aaf79067-8fec-3592-ab16-d4be35bf96a3
+----
+
+.UUID v5
+[source,console]
+----
+$ uuidgen -n 3d71a27f-eb95-499d-9cac-9736b5bf9cb9 -N "Hello World!" --sha1
+56608ec1-ba39-5b0c-84dd-95baee998a7f
+----
+
+The https://crystal-lang.org/api/1.7.3/UUID.html[UUID library] in the https://crystal-lang.org/[Crystal] standard library doesn't support generating V3 and V5 UUIDs. I created a shard for the same.
+
+Add `uuid_utils` to `shard.yml` file
+
+[source,yaml]
+----
+dependencies:
+  uuid_utils:
+    github: aravindavk/uuid_utils
+----
+
+[source,crystal]
+----
+require "uuid_utils"
+
+namespace = UUID.new("3d71a27f-eb95-499d-9cac-9736b5bf9cb9")
+msg = "Hello World!"
+puts UUID.uuid3(namespace, msg) # => aaf79067-8fec-3592-ab16-d4be35bf96a3
+puts UUID.uuid5(namespace, msg) # => 56608ec1-ba39-5b0c-84dd-95baee998a7f
+----
+
+Also added `UUID.uuid4` to this library that just calls `UUID.random` function.
+
+- Documentation: https://aravindavk.in/uuid_utils
+- Repo: https://github.com/aravindavk/uuid_utils
