@@ -1,0 +1,164 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Reproducible UUIDs - Crystal language - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.10">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Reproducible UUIDs - Crystal language"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="Sometimes applications need reproducible UUIDs (Universally Unique identifier) within a namespace, but it should be predictable for a given string."/>
+    <meta property="og:description" content="Sometimes applications need reproducible UUIDs (Universally Unique identifier) within a namespace, but it should be predictable for a given string."/>
+    <link rel="canonical" href="/blog/reproducible-uuids/"/>
+    <meta property="og:url" content="/blog/reproducible-uuids/"/>
+    <meta property="og:site_name" content="Aravinda Vishwanathapura"/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2023-03-13"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta property="og:image" content="https://aravindavk.in/images/me.jpg"/>
+    <meta name="twitter:image" content="https://aravindavk.in/images/me.jpg"/>
+    
+    <meta name="twitter:site" content="https://aravindavk.in"/>
+    <meta name="twitter:title" content="Reproducible UUIDs - Crystal language"/>
+    <meta name="twitter:description" content="Sometimes applications need reproducible UUIDs (Universally Unique identifier) within a namespace, but it should be predictable for a given string."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks-articles">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Reproducible UUIDs - Crystal language</h1>
+                <div class="">Mar 13, 2023</div>
+                <div class="">
+                    <span class="icon-text">
+                        <svg class="mr-1 icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                        <span><strong>1 minute</strong> read.</span>
+                    </span>
+                </div>
+                <div>
+                    
+                    <span class="tag is-info is-light">uuid</span>
+                    
+                    <span class="tag is-info is-light">crystal</span>
+                    
+                    <span class="tag is-info is-light">uuid3</span>
+                    
+                    <span class="tag is-info is-light">uuid5</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>Sometimes applications need reproducible UUIDs (Universally Unique identifier) within a namespace, but it should be predictable for a given string.</p>
+</div>
+<div class="paragraph">
+<p>UUID v3 (MD5 based) and v5 (SHA1 based) support this use case (<a href="https://en.wikipedia.org/wiki/Universally_unique_identifier#Versions_3_and_5_(namespace_name-based)">Ref</a>).</p>
+</div>
+<div class="listingblock">
+<div class="title">UUID v3</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="console"><span class="gp">$</span><span class="w"> </span>uuidgen <span class="nt">-n</span> 3d71a27f-eb95-499d-9cac-9736b5bf9cb9 <span class="nt">-N</span> <span class="s2">"Hello World!"</span> <span class="nt">--md5</span>
+<span class="go">aaf79067-8fec-3592-ab16-d4be35bf96a3</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">UUID v5</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="console"><span class="gp">$</span><span class="w"> </span>uuidgen <span class="nt">-n</span> 3d71a27f-eb95-499d-9cac-9736b5bf9cb9 <span class="nt">-N</span> <span class="s2">"Hello World!"</span> <span class="nt">--sha1</span>
+<span class="go">56608ec1-ba39-5b0c-84dd-95baee998a7f</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <a href="https://crystal-lang.org/api/1.7.3/UUID.html">UUID library</a> in the <a href="https://crystal-lang.org/">Crystal</a> standard library doesn&#8217;t support generating V3 and V5 UUIDs. I created a shard for the same.</p>
+</div>
+<div class="paragraph">
+<p>Add <code>uuid_utils</code> to <code>shard.yml</code> file</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">dependencies</span><span class="pi">:</span>
+  <span class="na">uuid_utils</span><span class="pi">:</span>
+    <span class="na">github</span><span class="pi">:</span> <span class="s">aravindavk/uuid_utils</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="crystal"><span class="nb">require</span> <span class="s2">"uuid_utils"</span>
+
+<span class="n">namespace</span> <span class="o">=</span> <span class="no">UUID</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"3d71a27f-eb95-499d-9cac-9736b5bf9cb9"</span><span class="p">)</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="s2">"Hello World!"</span>
+<span class="nb">puts</span> <span class="no">UUID</span><span class="p">.</span><span class="nf">uuid3</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span> <span class="c1"># =&gt; aaf79067-8fec-3592-ab16-d4be35bf96a3</span>
+<span class="nb">puts</span> <span class="no">UUID</span><span class="p">.</span><span class="nf">uuid5</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span> <span class="c1"># =&gt; 56608ec1-ba39-5b0c-84dd-95baee998a7f</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Also added <code>UUID.uuid4</code> to this library that just calls <code>UUID.random</code> function.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Documentation: <a href="https://aravindavk.in/uuid_utils" class="bare">https://aravindavk.in/uuid_utils</a></p>
+</li>
+<li>
+<p>Repo: <a href="https://github.com/aravindavk/uuid_utils" class="bare">https://github.com/aravindavk/uuid_utils</a></p>
+</li>
+</ul>
+</div>
+            </div>
+            <div class="has-text-centered mb-6 notification  is-light">
+    
+    <p class="has-text-grey is-uppercase is-size-5 pb-2">About Aravinda Vishwanathapura</p>
+    
+    Co-Founder & CTO at <a href="https://kadalu.tech">Kadalu Technologies</a>,
+    Creator of <a href="https://aravindavk.in/sanka">Sanka</a>,
+    Creator of <a href="https://aravindavk.in/chitra">Chitra</a>,
+    <a href="https://gluster.org">GlusterFS</a> core team member,
+    Maintainer of <a href="https://github.com/kadalu">Kadalu Storage</a>
+    <div class="mt-6">
+        Contact:
+        <a href="http://in.linkedin.com/in/aravindavk">Linkedin</a> |
+        <a href="https://twitter.com/aravindavk">Twitter</a> |
+        <a href="http://facebook.com/aravindavk">Facebook</a> |
+        <a href="https://github.com/aravindavk">Github</a> |
+        mail&#64;&#97;&#114;&#97;&#118;&#105;&#110;&#100;&#97;&#118;&#107;&#46;&#105;&#110;
+    </div>
+</div>
+
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>
