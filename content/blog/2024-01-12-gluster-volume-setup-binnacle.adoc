@@ -1,0 +1,99 @@
+---
+title: Set Up a 3 Node Replicated Gluster Storage Volume using Kadalu Binnacle
+tags: gluster,binnacle
+summary: Kadalu Binnacle is a simple imperative tool for tests and infra automation. In this blog post we will see how to set up a three node Gluster volume using Binnacle.
+---
+
+Kadalu Binnacle is a simple imperative tool for tests and infra automation. In this blog post we will see how to set up a three node Gluster volume using Binnacle.
+
+Install Kadalu Binnacle in your laptop or vm by running the following command.
+
+[source,console]
+----
+gem install kadalu-binnacle
+----
+
+Install Gluster and start glusterd in all the three nodes. Create a file gluster_setup.t and add the following code. Update the server hostnames matching your setup. SSH pem key based login should be enabled for all the servers and passwordless sudo should work. 
+
+[source,ruby]
+----
+servers = ["server1", "server2", "server3"]
+
+command_mode "ssh"
+command_ssh_user "ubuntu"
+command_sudo true
+command_ssh_pem_file "~/.ssh/id_rsa"
+
+servers.each do |server|
+  command_node server
+
+  command_run "add-apt-repository ppa:gluster/glusterfs-9"
+  command_run "apt update -y"
+  command_run "apt install -y glusterfs-server"
+  command_run "systemctl enable glusterd"
+  command_run "systemctl start glusterd"
+end
+----
+
+Login to any one node and add the other two nodes to the cluster.
+
+[source,ruby]
+----
+command_node servers[0]
+
+command_run "gluster --mode=script peer probe #{servers[1]}"
+command_run "gluster --mode=script peer probe #{servers[2]}"
+
+command_run "gluster --mode=script pool list"
+----
+
+Now let's prepare the brick backends. Skip this step if the backend is already prepared in the servers. Make sure to update the device names that matches your setup.
+
+[source,ruby]
+----
+devices = ["/dev/sdb", "/dev/sdb", "/dev/sdb"]
+
+servers.each_with_index do |server, idx|
+  command_node server
+
+  command_run "mkfs.xfs -f -i size=512 -n size=8192 -d su=128k,sw=10 #{devices[idx]}"
+  command_run "mkdir -p /data/gfs/vol1"
+  fstab_entry_count = command_run "grep \"/dev/sdb\" /etc/fstab | wc -l"
+  if fstab_entry_count == 0
+    command_run "echo \"/dev/sdb    /data/gfs/vol1  xfs rw,inode64,noatime,nouuid      1 2\" >> /etc/fstab"
+  end
+
+  command_run "mount -a"
+end
+----
+
+Now create and start the volume
+
+[source,ruby]
+----
+command_node servers[0]
+command_run <<-CMD
+gluster --mode=script volume create vol1
+  replica 3
+  #{servers[0]}:/data/gfs/vol1/brick
+  #{servers[1]}:/data/gfs/vol1/brick
+  #{servers[2]}:/data/gfs/vol1/brick
+CMD
+command_run "gluster --mode=script volume start vol1"
+----
+
+Check the volume status to confirm the Gluster volume is running
+
+[source,ruby]
+----
+command_run "gluster --mode=script volume status vol1"
+----
+
+All together! Lets run the Binnacle script
+
+[source,console]
+----
+binnacle -vv gluster_setup.t
+----
+
+That's it! The Gluster volume is now ready.
