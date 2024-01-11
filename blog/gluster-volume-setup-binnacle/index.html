@@ -1,0 +1,207 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Set Up a 3 Node Replicated Gluster Storage Volume using Kadalu Binnacle - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.19">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Set Up a 3 Node Replicated Gluster Storage Volume using Kadalu Binnacle"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="Kadalu Binnacle is a simple imperative tool for tests and infra automation. In this blog post we will see how to set up a three node Gluster volume using Binnacle."/>
+    <meta property="og:description" content="Kadalu Binnacle is a simple imperative tool for tests and infra automation. In this blog post we will see how to set up a three node Gluster volume using Binnacle."/>
+    <link rel="canonical" href="/blog/gluster-volume-setup-binnacle/"/>
+    <meta property="og:url" content="/blog/gluster-volume-setup-binnacle/"/>
+    <meta property="og:site_name" content="Aravinda Vishwanathapura"/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2024-01-12"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta property="og:image" content="https://aravindavk.in/images/me.jpg"/>
+    <meta name="twitter:image" content="https://aravindavk.in/images/me.jpg"/>
+    
+    <meta name="twitter:site" content="https://aravindavk.in"/>
+    <meta name="twitter:title" content="Set Up a 3 Node Replicated Gluster Storage Volume using Kadalu Binnacle"/>
+    <meta name="twitter:description" content="Kadalu Binnacle is a simple imperative tool for tests and infra automation. In this blog post we will see how to set up a three node Gluster volume using Binnacle."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks-articles">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Set Up a 3 Node Replicated Gluster Storage Volume using Kadalu Binnacle</h1>
+                <div class="">Jan 12, 2024</div>
+                <div class="">
+                    <span class="icon-text">
+                        <svg class="mr-1 icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                        <span><strong>2 minutes</strong> read.</span>
+                    </span>
+                </div>
+                <div>
+                    
+                    <span class="tag is-info is-light">gluster</span>
+                    
+                    <span class="tag is-info is-light">binnacle</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>Kadalu Binnacle is a simple imperative tool for tests and infra automation. In this blog post we will see how to set up a three node Gluster volume using Binnacle.</p>
+</div>
+<div class="paragraph">
+<p>Install Kadalu Binnacle in your laptop or vm by running the following command.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="console"><span class="go">gem install kadalu-binnacle</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Install Gluster and start glusterd in all the three nodes. Create a file gluster_setup.t and add the following code. Update the server hostnames matching your setup. SSH pem key based login should be enabled for all the servers and passwordless sudo should work.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="ruby"><span class="n">servers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"server1"</span><span class="p">,</span> <span class="s2">"server2"</span><span class="p">,</span> <span class="s2">"server3"</span><span class="p">]</span>
+
+<span class="n">command_mode</span> <span class="s2">"ssh"</span>
+<span class="n">command_ssh_user</span> <span class="s2">"ubuntu"</span>
+<span class="n">command_sudo</span> <span class="kp">true</span>
+<span class="n">command_ssh_pem_file</span> <span class="s2">"~/.ssh/id_rsa"</span>
+
+<span class="n">servers</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="o">|</span>
+  <span class="n">command_node</span> <span class="n">server</span>
+
+  <span class="n">command_run</span> <span class="s2">"add-apt-repository ppa:gluster/glusterfs-9"</span>
+  <span class="n">command_run</span> <span class="s2">"apt update -y"</span>
+  <span class="n">command_run</span> <span class="s2">"apt install -y glusterfs-server"</span>
+  <span class="n">command_run</span> <span class="s2">"systemctl enable glusterd"</span>
+  <span class="n">command_run</span> <span class="s2">"systemctl start glusterd"</span>
+<span class="k">end</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Login to any one node and add the other two nodes to the cluster.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="ruby"><span class="n">command_node</span> <span class="n">servers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">command_run</span> <span class="s2">"gluster --mode=script peer probe </span><span class="si">#{</span><span class="n">servers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+<span class="n">command_run</span> <span class="s2">"gluster --mode=script peer probe </span><span class="si">#{</span><span class="n">servers</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="n">command_run</span> <span class="s2">"gluster --mode=script pool list"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s prepare the brick backends. Skip this step if the backend is already prepared in the servers. Make sure to update the device names that matches your setup.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="ruby"><span class="n">devices</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"/dev/sdb"</span><span class="p">,</span> <span class="s2">"/dev/sdb"</span><span class="p">,</span> <span class="s2">"/dev/sdb"</span><span class="p">]</span>
+
+<span class="n">servers</span><span class="p">.</span><span class="nf">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="p">,</span> <span class="n">idx</span><span class="o">|</span>
+  <span class="n">command_node</span> <span class="n">server</span>
+
+  <span class="n">command_run</span> <span class="s2">"mkfs.xfs -f -i size=512 -n size=8192 -d su=128k,sw=10 </span><span class="si">#{</span><span class="n">devices</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+  <span class="n">command_run</span> <span class="s2">"mkdir -p /data/gfs/vol1"</span>
+  <span class="n">fstab_entry_count</span> <span class="o">=</span> <span class="n">command_run</span> <span class="s2">"grep </span><span class="se">\"</span><span class="s2">/dev/sdb</span><span class="se">\"</span><span class="s2"> /etc/fstab | wc -l"</span>
+  <span class="k">if</span> <span class="n">fstab_entry_count</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">command_run</span> <span class="s2">"echo </span><span class="se">\"</span><span class="s2">/dev/sdb    /data/gfs/vol1  xfs rw,inode64,noatime,nouuid      1 2</span><span class="se">\"</span><span class="s2"> &gt;&gt; /etc/fstab"</span>
+  <span class="k">end</span>
+
+  <span class="n">command_run</span> <span class="s2">"mount -a"</span>
+<span class="k">end</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now create and start the volume</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="ruby"><span class="n">command_node</span> <span class="n">servers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">command_run</span> <span class="o">&lt;&lt;-</span><span class="no">CMD</span><span class="sh">
+gluster --mode=script volume create vol1
+  replica 3
+  </span><span class="si">#{</span><span class="n">servers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="sh">:/data/gfs/vol1/brick
+  </span><span class="si">#{</span><span class="n">servers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="sh">:/data/gfs/vol1/brick
+  </span><span class="si">#{</span><span class="n">servers</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="sh">:/data/gfs/vol1/brick
+</span><span class="no">CMD</span>
+<span class="n">command_run</span> <span class="s2">"gluster --mode=script volume start vol1"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check the volume status to confirm the Gluster volume is running</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="ruby"><span class="n">command_run</span> <span class="s2">"gluster --mode=script volume status vol1"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All together! Lets run the Binnacle script</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="console"><span class="go">binnacle -vv gluster_setup.t</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That&#8217;s it! The Gluster volume is now ready.</p>
+</div>
+            </div>
+            <div class="has-text-centered mb-6 notification  is-light">
+    
+    <p class="has-text-grey is-uppercase is-size-5 pb-2">About Aravinda Vishwanathapura</p>
+    
+    Co-Founder & CTO at <a href="https://kadalu.tech">Kadalu Technologies</a>,
+    Creator of <a href="https://aravindavk.in/sanka">Sanka</a>,
+    Creator of <a href="https://aravindavk.in/chitra">Chitra</a>,
+    <a href="https://gluster.org">GlusterFS</a> core team member,
+    Maintainer of <a href="https://github.com/kadalu">Kadalu Storage</a>
+    <div class="mt-6">
+        Contact:
+        <a href="http://in.linkedin.com/in/aravindavk">Linkedin</a> |
+        <a href="https://twitter.com/aravindavk">Twitter</a> |
+        <a href="http://facebook.com/aravindavk">Facebook</a> |
+        <a href="https://github.com/aravindavk">Github</a> |
+        mail&#64;&#97;&#114;&#97;&#118;&#105;&#110;&#100;&#97;&#118;&#107;&#46;&#105;&#110;
+    </div>
+</div>
+
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>
