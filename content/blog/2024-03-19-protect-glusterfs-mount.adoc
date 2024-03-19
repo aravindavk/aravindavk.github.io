@@ -1,0 +1,53 @@
+---
+title: Protect the Gluster FS mount directory
+tags: glusterfs
+summary: When the applications use the mount path to store the files, it may happen that the mount process may have crashed and the application continues to create the files in the root partition itself.
+---
+
+When the applications use the mount path to store the files, it may happen that the mount process may have crashed and the application continues to create the files in the root partition itself. Check the example below to understand the issue
+
+[source,bash]
+----
+# Create the mount directory
+mkdir /mnt/vol1
+
+# Mount the Glusterfs Volume
+mount -t glusterfs server1.gluster:/vol1 /mnt/vol1
+
+# Application creating the file
+echo "Hello World!" > /mnt/vol1/file1
+
+# Now simulate the mount crash by killing
+# the `glusterfs` process or by
+# unmounting the volume.
+umount /mnt/vol1
+
+# Application creating or updating the file
+echo "Hello Again!" > /mnt/vol1/file2
+----
+
+In the above example, the file (file2) was not created on the Gluster FS volume. This is a serious problem. To protect the mount directory, make it immutable before mounting it.
+
+[source,bash]
+----
+# Create the mount directory
+mkdir /mnt/vol1
+
+# Make the directory immutable
+chattr +i /mnt/vol1
+
+# Mount the Glusterfs Volume
+mount -t glusterfs server1.gluster:/vol1 /mnt/vol1
+
+# Application creating the file
+echo "Hello World!" > /mnt/vol1/file1
+
+# Now simulate the mount crash by killing
+# the `glusterfs` process or by
+# unmounting the volume.
+umount /mnt/vol1
+
+# Application creating or updating the file
+# This command will fail now.
+echo "Hello Again!" > /mnt/vol1/file2
+----
