@@ -1,0 +1,19 @@
+---
+title: Emacs and Vim
+tags: emacs,vim
+summary: I made the decision to use Vim for a week and I had a great time with it.
+---
+
+I love Emacs and using it for coding and note taking (Org mode). But I was always amazed by Vim text editing key bindings. I made the decision to use Vim for a week and I had a great time with it.
+
+I was unable to get Vim GUIs to render Unicode text properly, even after trying NeoVim.
+
+.Kannada Text Rendering issue in Gvim
+image::images/kannada-text-vim.png[Kannada Text Rendering issue in Gvim]
+
+Then I checked by installing VS Code and the Vim plugin. VS Code rendered the Unicode text properly. This made me think: Is it possible to use the Vim key bindings from Emacs?
+
+Emacs didn't disappoint me! https://github.com/emacs-evil/evil[The extensible vi layer (Evil)] for Emacs does exactly that. Now I can switch between Emacs text editing mode and Vi mode. I am very happy to continue to use Emacs and all its features along with Vim features.
+
+.Kannada Text Rendering in Emacs
+image::images/kannada-text-emacs.png[Kannada Text Rendering in Emacs]
