@@ -1,0 +1,88 @@
+---
+title: Ruby-style blocks in Dlang
+tags: ruby,crystal,dlang
+summary: Blocks are one of the powerful and liked feature in Ruby and Crystal. The syntax is very intuitive and easy to understand. Below example shows a Ruby/Crystal block that remembers the options and sets the original options before exiting the block.
+---
+
+Blocks are one of the powerful and liked feature in Ruby and Crystal. The syntax is very intuitive and easy to understand. Below example shows a Ruby/Crystal block that remembers the options and sets the original options before exiting the block.
+
+[source,ruby]
+----
+ctx = Context.new
+ctx.options.color = "blue"
+
+ctx.saved_state do
+  ctx.options.color = "red"
+  show_alert(ctx.options)
+end
+
+# Below code prints "blue"
+puts ctx.options.color
+----
+
+The code in-between `do` and `end` is block. Blocks are basically closure functions and this feature is available in many programming languages. In D, it is very easy to do using `delegates`. Equivalent to above code block looks like in D as below.
+
+[source,d]
+----
+auto ctx = new Context();
+ctx.options.color = "blue";
+
+savedState({
+  ctx.options.color = "red";
+  showAlert(ctx.options);
+});
+
+// Below code prints "blue"
+writeln(ctx.options.color);
+----
+
+Interesting? Lets see the definitions of the saved state in both the languages.
+
+.Ruby
+[source,ruby]
+----
+class Options
+  attr_accessor :color, :font_size
+end
+
+class Context
+  attr_accessor :options
+
+  def initialize
+    @options = Options.new
+  end
+
+  def saved_state(&block)
+    tmp = @options.dup
+    block.call
+    @options = tmp.dup
+  end
+end
+----
+
+.Dlang
+[source,d]
+----
+struct Options
+{
+  string color;
+  int fontSize;
+}
+
+class Context
+{
+    Options options;
+
+    void savedState(void delegate() func)
+    {
+        auto tmp = this.options;
+        func();
+        this.options = tmp;
+    }
+}
+----
+
+== Resources
+- https://tour.dlang.org/tour/en/basics/delegates[Delegates - Dlang Tour]
+- http://ddili.org/ders/d.en/lambda.html[Function Pointers, Delegates, and Lambdas]
+- https://dlang.org/spec/function.html[Dlang Functions spec]
