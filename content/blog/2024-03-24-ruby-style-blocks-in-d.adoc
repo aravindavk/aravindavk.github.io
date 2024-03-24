@@ -1,10 +1,10 @@
 ---
 title: Ruby-style blocks in Dlang
 tags: ruby,crystal,dlang
-summary: Blocks are one of the powerful and liked feature in Ruby and Crystal. The syntax is very intuitive and easy to understand. Below example shows a Ruby/Crystal block that remembers the options and sets the original options before exiting the block.
+summary: Blocks are one of the powerful and most liked feature in Ruby and Crystal. The syntax is very intuitive and easy to understand. Below example shows a Ruby/Crystal block that remembers the options and sets the original options before exiting the block.
 ---
 
-Blocks are one of the powerful and liked feature in Ruby and Crystal. The syntax is very intuitive and easy to understand. Below example shows a Ruby/Crystal block that remembers the options and sets the original options before exiting the block.
+Blocks are one of the powerful and most liked feature in Ruby and Crystal. The syntax is very intuitive and easy to understand. Below example shows a Ruby/Crystal block that remembers the options and sets the original options before exiting the block.
 
 [source,ruby]
 ----
