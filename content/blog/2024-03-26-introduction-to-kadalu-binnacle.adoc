@@ -1,0 +1,83 @@
+---
+title: Introduction to Kadalu Binnacle
+tags: ruby,testing,infra,automation
+summary: Kadalu Binnacle is a simple imperative tool for infrastructure and test automation. Its modern, intuitive syntax helps the admins or test case writers to get started in minutes.
+image: /images/binnacle-poster.png
+---
+
+Kadalu Binnacle is a simple imperative tool for infrastructure and test automation. Its modern, intuitive syntax helps the admins or test case writers to get started in minutes.
+
+Install the Kadalu Binnacle by running the following command.
+
+[source,console]
+----
+$ gem install kadalu-binnacle
+----
+
+== Hello World!
+
+Following example shows running a script and validating if the script generated a report file or not.
+
+[source,ruby]
+----
+command_run "~/myscript -o ~/reports/user1.csv"
+command_run "stat ~/reports/user1.csv"
+----
+
+Run the tests
+
+[source,console]
+----
+$ binnacle -vv test_myscripts.rb
+----
+
+This way, we can run any command. If the command is successful, it will show `OK` in the output else `NOT OK` in the output. We can even capture the output and check if it matches the expectation.
+
+
+[source,ruby]
+----
+data = command_run "cat ~/reports/user1.csv"
+compare_equal data, <<-DATA
+Name,Joining Year,Documents
+Demo User,2024,42
+DATA
+----
+
+Another example below shows testing a ReST APIs.
+
+[source,ruby]
+----
+http_base_url "http://localhost:3000"
+http_add_header "Authorization", "Bearer 1234.."
+http_get "/api/users", status: 200
+http_remove_header "Authorization"
+http_get "/api/users", status: 401
+----
+
+Very easy to use isn't it? We are using Binnacle to automate the Gluster FS deployments (Ex: https://aravindavk.in/blog/gluster-volume-setup-binnacle/[Set Up a 3 Node Replicated Gluster Storage Volume using Kadalu Binnacle]), container based testing, building packages and to create other automation robots.
+
+Kadalu Binnacle is an Open Source tool licensed under Apache-2.0. The Binnacle `command` module is multi-container and multi-node aware, so we can run a command on a specific node or container. For example,
+
+.Docker mode
+[source,ruby]
+----
+command_mode "docker"
+
+command_container "server1"
+
+# Check if the nginx index file is deployed
+command_run "stat /var/www/html/index.html"
+----
+
+.SSH mode
+[source,ruby]
+----
+command_mode "ssh"
+
+command_node "server1.vm"
+
+# Check if ssh Key generated or not
+command_run "stat ~/.ssh/id_rsa.pub"
+----
+
+Refer the https://github.com/kadalu/binnacle[Project page] for more details.
