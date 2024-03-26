@@ -1,0 +1,196 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Introduction to Kadalu Binnacle - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.19">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Introduction to Kadalu Binnacle"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="Kadalu Binnacle is a simple imperative tool for infrastructure and test automation. Its modern, intuitive syntax helps the admins or test case writers to get started in minutes."/>
+    <meta property="og:description" content="Kadalu Binnacle is a simple imperative tool for infrastructure and test automation. Its modern, intuitive syntax helps the admins or test case writers to get started in minutes."/>
+    <link rel="canonical" href="/blog/introduction-to-kadalu-binnacle/"/>
+    <meta property="og:url" content="/blog/introduction-to-kadalu-binnacle/"/>
+    <meta property="og:site_name" content="Aravinda Vishwanathapura"/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2024-03-26"/>
+    
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="https://aravindavk.in/images/binnacle-poster.png"/>
+    <meta property="og:image" content="https://aravindavk.in/images/binnacle-poster.png"/>
+    
+    <meta name="twitter:site" content="https://aravindavk.in"/>
+    <meta name="twitter:title" content="Introduction to Kadalu Binnacle"/>
+    <meta name="twitter:description" content="Kadalu Binnacle is a simple imperative tool for infrastructure and test automation. Its modern, intuitive syntax helps the admins or test case writers to get started in minutes."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks-articles">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Introduction to Kadalu Binnacle</h1>
+                <div class="">Mar 26, 2024</div>
+                <div class="">
+                    <span class="icon-text">
+                        <svg class="mr-1 icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                        <span><strong>1 minute</strong> read.</span>
+                    </span>
+                </div>
+                <div>
+                    
+                    <span class="tag is-info is-light">ruby</span>
+                    
+                    <span class="tag is-info is-light">testing</span>
+                    
+                    <span class="tag is-info is-light">infra</span>
+                    
+                    <span class="tag is-info is-light">automation</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>Kadalu Binnacle is a simple imperative tool for infrastructure and test automation. Its modern, intuitive syntax helps the admins or test case writers to get started in minutes.</p>
+</div>
+<div class="paragraph">
+<p>Install the Kadalu Binnacle by running the following command.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="console"><span class="gp">$</span><span class="w"> </span>gem <span class="nb">install </span>kadalu-binnacle</code></pre>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hello_world">Hello World!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Following example shows running a script and validating if the script generated a report file or not.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="ruby"><span class="n">command_run</span> <span class="s2">"~/myscript -o ~/reports/user1.csv"</span>
+<span class="n">command_run</span> <span class="s2">"stat ~/reports/user1.csv"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Run the tests</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="console"><span class="gp">$</span><span class="w"> </span>binnacle <span class="nt">-vv</span> test_myscripts.rb</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This way, we can run any command. If the command is successful, it will show <code>OK</code> in the output else <code>NOT OK</code> in the output. We can even capture the output and check if it matches the expectation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="ruby"><span class="n">data</span> <span class="o">=</span> <span class="n">command_run</span> <span class="s2">"cat ~/reports/user1.csv"</span>
+<span class="n">compare_equal</span> <span class="n">data</span><span class="p">,</span> <span class="o">&lt;&lt;-</span><span class="no">DATA</span><span class="sh">
+Name,Joining Year,Documents
+Demo User,2024,42
+</span><span class="no">DATA</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Another example below shows testing a ReST APIs.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="ruby"><span class="n">http_base_url</span> <span class="s2">"http://localhost:3000"</span>
+<span class="n">http_add_header</span> <span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Bearer 1234.."</span>
+<span class="n">http_get</span> <span class="s2">"/api/users"</span><span class="p">,</span> <span class="ss">status: </span><span class="mi">200</span>
+<span class="n">http_remove_header</span> <span class="s2">"Authorization"</span>
+<span class="n">http_get</span> <span class="s2">"/api/users"</span><span class="p">,</span> <span class="ss">status: </span><span class="mi">401</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Very easy to use isn&#8217;t it? We are using Binnacle to automate the Gluster FS deployments (Ex: <a href="https://aravindavk.in/blog/gluster-volume-setup-binnacle/">Set Up a 3 Node Replicated Gluster Storage Volume using Kadalu Binnacle</a>), container based testing, building packages and to create other automation robots.</p>
+</div>
+<div class="paragraph">
+<p>Kadalu Binnacle is an Open Source tool licensed under Apache-2.0. The Binnacle <code>command</code> module is multi-container and multi-node aware, so we can run a command on a specific node or container. For example,</p>
+</div>
+<div class="listingblock">
+<div class="title">Docker mode</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="ruby"><span class="n">command_mode</span> <span class="s2">"docker"</span>
+
+<span class="n">command_container</span> <span class="s2">"server1"</span>
+
+<span class="c1"># Check if the nginx index file is deployed</span>
+<span class="n">command_run</span> <span class="s2">"stat /var/www/html/index.html"</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">SSH mode</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="ruby"><span class="n">command_mode</span> <span class="s2">"ssh"</span>
+
+<span class="n">command_node</span> <span class="s2">"server1.vm"</span>
+
+<span class="c1"># Check if ssh Key generated or not</span>
+<span class="n">command_run</span> <span class="s2">"stat ~/.ssh/id_rsa.pub"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Refer the <a href="https://github.com/kadalu/binnacle">Project page</a> for more details.</p>
+</div>
+</div>
+</div>
+            </div>
+            <div class="has-text-centered mb-6 notification  is-light">
+    
+    <p class="has-text-grey is-uppercase is-size-5 pb-2">About Aravinda Vishwanathapura</p>
+    
+    Co-Founder & CTO at <a href="https://kadalu.tech">Kadalu Technologies</a>,
+    Creator of <a href="https://aravindavk.in/sanka">Sanka</a>,
+    Creator of <a href="https://aravindavk.in/chitra">Chitra</a>,
+    <a href="https://gluster.org">GlusterFS</a> core team member,
+    Maintainer of <a href="https://github.com/kadalu">Kadalu Storage</a>
+    <div class="mt-6">
+        Contact:
+        <a href="http://in.linkedin.com/in/aravindavk">Linkedin</a> |
+        <a href="https://twitter.com/aravindavk">Twitter</a> |
+        <a href="http://facebook.com/aravindavk">Facebook</a> |
+        <a href="https://github.com/aravindavk">Github</a> |
+        mail&#64;&#97;&#114;&#97;&#118;&#105;&#110;&#100;&#97;&#118;&#107;&#46;&#105;&#110;
+    </div>
+</div>
+
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>
