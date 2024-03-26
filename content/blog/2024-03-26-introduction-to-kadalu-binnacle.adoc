@@ -2,7 +2,7 @@
 title: Introduction to Kadalu Binnacle
 tags: ruby,testing,infra,automation
 summary: Kadalu Binnacle is a simple imperative tool for infrastructure and test automation. Its modern, intuitive syntax helps the admins or test case writers to get started in minutes.
-image: /images/binnacle-poster.png
+image: /images/binnacle_poster.png
 ---
 
 Kadalu Binnacle is a simple imperative tool for infrastructure and test automation. Its modern, intuitive syntax helps the admins or test case writers to get started in minutes.
