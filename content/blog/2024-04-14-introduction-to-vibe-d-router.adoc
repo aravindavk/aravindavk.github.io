@@ -134,4 +134,10 @@ void loginHandler(HTTPServerRequest req, HTTPServerResponse res)
 }
 ----
 
+++++
+<div class="has-text-centered">
+* * * * * * *
+</div>
+++++
+
 Please find all the examples from this blog post in my https://github.com/aravindavk/vibe.d-examples/tree/main/urlrouter[Github repository (github/aravindavk/vibe.d-examples)].
