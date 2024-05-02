@@ -1,0 +1,267 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Introduction to Vibe.d Router - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.20">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Introduction to Vibe.d Router"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="In this blog post I will explain how to use URLRouter to define the routes and handle the params/post data."/>
+    <meta property="og:description" content="In this blog post I will explain how to use URLRouter to define the routes and handle the params/post data."/>
+    <link rel="canonical" href="/blog/introduction-to-vibe-d-router/"/>
+    <meta property="og:url" content="/blog/introduction-to-vibe-d-router/"/>
+    <meta property="og:site_name" content="Aravinda Vishwanathapura"/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2024-04-14"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta property="og:image" content="https://aravindavk.in/images/me.jpg"/>
+    <meta name="twitter:image" content="https://aravindavk.in/images/me.jpg"/>
+    
+    <meta name="twitter:site" content="https://aravindavk.in"/>
+    <meta name="twitter:title" content="Introduction to Vibe.d Router"/>
+    <meta name="twitter:description" content="In this blog post I will explain how to use URLRouter to define the routes and handle the params/post data."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks-articles">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Introduction to Vibe.d Router</h1>
+                <div class="">Apr 14, 2024</div>
+                <div class="">
+                    <span class="icon-text">
+                        <svg class="mr-1 icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                        <span><strong>3 minutes</strong> read.</span>
+                    </span>
+                </div>
+                <div>
+                    
+                    <span class="tag is-info is-light">d</span>
+                    
+                    <span class="tag is-info is-light">vibe.d</span>
+                    
+                    <span class="tag is-info is-light">web</span>
+                    
+                    <span class="tag is-info is-light">router</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><a href="https://vibed.org">Vibe.d</a> is an Asynchronous I/O web framework written in <a href="https://dlang.org">D programming language</a>.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>In this blog post, I will explain how to use the <code>URLRouter</code> to define the routes and handle the params/post data.</p>
+</div>
+<div class="paragraph">
+<p>Create an instance of <code>URLRouter</code> Class and define all the required routes. The below example shows the API routes of a Ticketing app.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="d"><span class="k">import</span> <span class="n">vibe</span><span class="p">.</span><span class="n">vibe</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">settings</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HTTPServerSettings</span><span class="p">;</span>
+    <span class="n">settings</span><span class="p">.</span><span class="n">port</span> <span class="p">=</span> <span class="mi">8080</span><span class="p">;</span>
+    <span class="n">settings</span><span class="p">.</span><span class="n">bindAddresses</span> <span class="p">=</span> <span class="p">[</span><span class="s">"::1"</span><span class="p">,</span> <span class="s">"127.0.0.1"</span><span class="p">];</span>
+
+    <span class="k">auto</span> <span class="n">router</span> <span class="p">=</span> <span class="k">new</span> <span class="n">URLRouter</span><span class="p">;</span>
+
+    <span class="n">router</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/api/v1/tickets"</span><span class="p">,</span> <span class="p">&amp;</span><span class="n">listTicketsHandler</span><span class="p">);</span>
+    <span class="n">router</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/api/v1/tickets/:ticket_id"</span><span class="p">,</span> <span class="p">&amp;</span><span class="n">getTicketHandler</span><span class="p">);</span>
+    <span class="n">router</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">"/api/v1/tickets"</span><span class="p">,</span> <span class="p">&amp;</span><span class="n">createTicketHandler</span><span class="p">);</span>
+    <span class="n">router</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="s">"/api/v1/tickets/:ticket_id"</span><span class="p">,</span> <span class="p">&amp;</span><span class="n">updateTicketHandler</span><span class="p">);</span>
+    <span class="n">router</span><span class="p">.</span><span class="n">delete_</span><span class="p">(</span><span class="s">"/api/v1/tickets/:ticket_id"</span><span class="p">,</span> <span class="p">&amp;</span><span class="n">deleteTicketHandler</span><span class="p">);</span>
+
+    <span class="k">auto</span> <span class="n">listener</span> <span class="p">=</span> <span class="n">listenHTTP</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">router</span><span class="p">);</span>
+
+    <span class="k">scope</span> <span class="p">(</span><span class="n">exit</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">listener</span><span class="p">.</span><span class="n">stopListening</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">logInfo</span><span class="p">(</span><span class="s">"Please open http://127.0.0.1:8080 in your browser."</span><span class="p">);</span>
+    <span class="n">runApplication</span><span class="p">();</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create each handler function that accepts HTTP request and response arguments. For example,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="d"><span class="kt">void</span> <span class="n">createTicketHandler</span><span class="p">(</span><span class="n">HTTPServerRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">HTTPServerResponse</span> <span class="n">res</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// .. add the implementation here</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use <code>router.any</code> to match the URLs and add a handler to all the matching routes. For example, to set the <code>application/json</code> header to all the API routes or to handle the authentication.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="d"><span class="kt">void</span> <span class="n">setJsonHeader</span><span class="p">(</span><span class="n">HTTPServerRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">HTTPServerResponse</span> <span class="n">res</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">res</span><span class="p">.</span><span class="n">contentType</span> <span class="p">=</span> <span class="s">"application/json; charset=utf-8"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">router</span><span class="p">.</span><span class="n">any</span><span class="p">(</span><span class="s">"/api/*"</span><span class="p">,</span> <span class="p">&amp;</span><span class="n">setJsonHeader</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_handling_url_params">Handling URL Params</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>URL params are part of the URL, for example <code>/api/v1/tickets/:ticket_id</code>, <code>:ticket_id</code> is the URL param.</p>
+</div>
+<div class="paragraph">
+<p>URL params are collected as <code>DictionaryList</code> similar to an associative array of string. For example, to get the <code>ticket_id</code> in the handler,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="d"><span class="kt">void</span> <span class="n">updateTicketHandler</span><span class="p">(</span><span class="n">HTTPServerRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">HTTPServerResponse</span> <span class="n">res</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">ticketId</span> <span class="p">=</span> <span class="n">req</span><span class="p">.</span><span class="n">params</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"ticket_id"</span><span class="p">);</span>
+
+    <span class="c1">// .. fetch the ticket using the ID above and update accordingly</span>
+<span class="p">}</span>
+
+<span class="n">router</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="s">"/api/v1/tickets/:ticket_id"</span><span class="p">,</span> <span class="p">&amp;</span><span class="n">updateTicketHandler</span><span class="p">);</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_handling_query_params">Handling Query params</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Query params are part of URL, each param is separated by <code>&amp;</code>. For example, <code>/api/v1/tickets?filter=crash&amp;state=open</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="d"><span class="kt">void</span> <span class="n">listTicketsHandler</span><span class="p">(</span><span class="n">HTTPServerRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">HTTPServerResponse</span> <span class="n">res</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">keyword</span> <span class="p">=</span> <span class="n">req</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"filter"</span><span class="p">,</span> <span class="s">""</span><span class="p">);</span>
+    <span class="k">auto</span> <span class="n">state</span> <span class="p">=</span> <span class="n">req</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"state"</span><span class="p">,</span> <span class="s">""</span><span class="p">);</span>
+
+    <span class="c1">// .. List the tickets that matches the given</span>
+    <span class="c1">//    filter and state</span>
+<span class="p">}</span>
+
+<span class="n">router</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/api/v1/tickets"</span><span class="p">,</span> <span class="p">&amp;</span><span class="n">listTicketsHandler</span><span class="p">);</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_handling_multipartform_data">Handling Multipart/Form-data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To parse the data sent using <code>Content-Type: "application/x-www-form-urlencoded"</code> or <code>Content-Type: "multipart/form-data"</code> headers, use <code>req.form.get</code> and <code>req.files</code> for form params and binary data respectively.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="d"><span class="kt">void</span> <span class="n">updateUserHandler</span><span class="p">(</span><span class="n">HTTPServerRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">HTTPServerResponse</span> <span class="n">res</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">name</span> <span class="p">=</span> <span class="n">req</span><span class="p">.</span><span class="n">form</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"name"</span><span class="p">,</span> <span class="s">""</span><span class="p">);</span>
+    <span class="k">auto</span> <span class="n">email</span> <span class="p">=</span> <span class="n">req</span><span class="p">.</span><span class="n">form</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"email"</span><span class="p">,</span> <span class="s">""</span><span class="p">);</span>
+
+    <span class="k">auto</span> <span class="n">profilePhoto</span> <span class="p">=</span> <span class="n">req</span><span class="p">.</span><span class="n">files</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"profile"</span><span class="p">);</span>
+
+    <span class="c1">// Validate username, email and profile photo extensions</span>
+
+    <span class="n">moveFile</span><span class="p">(</span><span class="n">profilePhoto</span><span class="p">.</span><span class="n">tempPath</span><span class="p">.</span><span class="n">to</span><span class="p">!</span><span class="nb">string</span><span class="p">,</span> <span class="s">"/data/profiles/"</span> <span class="p">~</span> <span class="n">username</span> <span class="p">~</span> <span class="s">".png"</span><span class="p">);</span>
+
+    <span class="c1">// ... create user</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parsing_request_json">Parsing request JSON</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If the <code>Content-type</code> of the request is "application/json" or "application/vnd.api+json", then we can use <code>req.json</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="d"><span class="kt">void</span> <span class="n">loginHandler</span><span class="p">(</span><span class="n">HTTPServerRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">HTTPServerResponse</span> <span class="n">res</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">username</span> <span class="p">=</span> <span class="n">req</span><span class="p">.</span><span class="n">json</span><span class="p">[</span><span class="s">"username"</span><span class="p">].</span><span class="n">to</span><span class="p">!</span><span class="nb">string</span><span class="p">;</span>
+    <span class="k">auto</span> <span class="n">password</span> <span class="p">=</span> <span class="n">req</span><span class="p">.</span><span class="n">json</span><span class="p">[</span><span class="s">"password"</span><span class="p">].</span><span class="n">to</span><span class="p">!</span><span class="nb">string</span><span class="p">;</span>
+
+    <span class="c1">// .. Validate username and password and provide token</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Please find all the examples from this blog post in my <a href="https://github.com/aravindavk/vibe.d-examples/tree/main/urlrouter">Github repository (github/aravindavk/vibe.d-examples)</a>.</p>
+</div>
+</div>
+</div>
+            </div>
+            <div class="has-text-centered mb-6 notification  is-light">
+    
+    <p class="has-text-grey is-uppercase is-size-5 pb-2">About Aravinda Vishwanathapura</p>
+    
+    Co-Founder & CTO at <a href="https://kadalu.tech">Kadalu Technologies</a>,
+    Creator of <a href="https://aravindavk.in/sanka">Sanka</a>,
+    Creator of <a href="https://aravindavk.in/chitra">Chitra</a>,
+    <a href="https://gluster.org">GlusterFS</a> core team member,
+    Maintainer of <a href="https://github.com/kadalu">Kadalu Storage</a>
+    <div class="mt-6">
+        Contact:
+        <a href="http://in.linkedin.com/in/aravindavk">Linkedin</a> |
+        <a href="https://twitter.com/aravindavk">Twitter</a> |
+        <a href="http://facebook.com/aravindavk">Facebook</a> |
+        <a href="https://github.com/aravindavk">Github</a> |
+        mail&#64;&#97;&#114;&#97;&#118;&#105;&#110;&#100;&#97;&#118;&#107;&#46;&#105;&#110;
+    </div>
+</div>
+
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>
