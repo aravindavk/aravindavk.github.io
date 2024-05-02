@@ -1,0 +1,137 @@
+---
+title: Introduction to Vibe.d Router
+summary: In this blog post I will explain how to use URLRouter to define the routes and handle the params/post data.
+tags: d,vibe.d,web,router
+---
+
+> https://vibed.org[Vibe.d] is an Asynchronous I/O web framework written in https://dlang.org[D programming language].
+
+In this blog post, I will explain how to use the `URLRouter` to define the routes and handle the params/post data.
+
+Create an instance of `URLRouter` Class and define all the required routes. The below example shows the API routes of a Ticketing app.
+
+[source,d]
+----
+import vibe.vibe;
+
+void main()
+{
+    auto settings = new HTTPServerSettings;
+    settings.port = 8080;
+    settings.bindAddresses = ["::1", "127.0.0.1"];
+
+    auto router = new URLRouter;
+
+    router.get("/api/v1/tickets", &listTicketsHandler);
+    router.get("/api/v1/tickets/:ticket_id", &getTicketHandler);
+    router.post("/api/v1/tickets", &createTicketHandler);
+    router.put("/api/v1/tickets/:ticket_id", &updateTicketHandler);
+    router.delete_("/api/v1/tickets/:ticket_id", &deleteTicketHandler);
+
+    auto listener = listenHTTP(settings, router);
+
+    scope (exit)
+    {
+        listener.stopListening();
+    }
+
+    logInfo("Please open http://127.0.0.1:8080 in your browser.");
+    runApplication();
+}
+----
+
+Create each handler function that accepts HTTP request and response arguments. For example,
+
+[source,d]
+----
+void createTicketHandler(HTTPServerRequest req, HTTPServerResponse res)
+{
+    // .. add the implementation here
+}
+----
+
+Use `router.any` to match the URLs and add a handler to all the matching routes. For example, to set the `application/json` header to all the API routes or to handle the authentication.
+
+[source,d]
+----
+void setJsonHeader(HTTPServerRequest req, HTTPServerResponse res)
+{
+    res.contentType = "application/json; charset=utf-8";
+}
+
+router.any("/api/*", &setJsonHeader);
+----
+
+== Handling URL Params
+
+URL params are part of the URL, for example `/api/v1/tickets/:ticket_id`, `:ticket_id` is the URL param.
+
+URL params are collected as `DictionaryList` similar to an associative array of string. For example, to get the `ticket_id` in the handler,
+
+[source,d]
+----
+void updateTicketHandler(HTTPServerRequest req, HTTPServerResponse res)
+{
+    auto ticketId = req.params.get("ticket_id");
+
+    // .. fetch the ticket using the ID above and update accordingly
+}
+
+router.put("/api/v1/tickets/:ticket_id", &updateTicketHandler);
+----
+
+== Handling Query params
+
+Query params are part of URL, each param is separated by `&`. For example, `/api/v1/tickets?filter=crash&state=open`
+
+[source,d]
+----
+void listTicketsHandler(HTTPServerRequest req, HTTPServerResponse res)
+{
+    auto keyword = req.query.get("filter", "");
+    auto state = req.query.get("state", "");
+
+    // .. List the tickets that matches the given
+    //    filter and state
+}
+
+router.get("/api/v1/tickets", &listTicketsHandler);
+----
+
+== Handling Multipart/Form-data
+
+To parse the data sent using `Content-Type: "application/x-www-form-urlencoded"` or `Content-Type: "multipart/form-data"` headers, use `req.form.get` and `req.files` for form params and binary data respectively.
+
+[source,d]
+----
+void updateUserHandler(HTTPServerRequest req, HTTPServerResponse res)
+{
+    auto name = req.form.get("name", "");
+    auto email = req.form.get("email", "");
+
+    auto profilePhoto = req.files.get("profile");
+
+    // Validate username, email and profile photo extensions
+
+    moveFile(profilePhoto.tempPath.to!string, "/data/profiles/" ~ username ~ ".png");
+
+    // ... create user
+}
+----
+
+== Parsing request JSON
+
+If the `Content-type` of the request is "application/json" or "application/vnd.api+json", then we can use `req.json`.
+
+[source,d]
+----
+void loginHandler(HTTPServerRequest req, HTTPServerResponse res)
+{
+    auto username = req.json["username"].to!string;
+    auto password = req.json["password"].to!string;
+
+    // .. Validate username and password and provide token
+}
+----
+
+Please find all the examples from this blog post in my https://github.com/aravindavk/vibe.d-examples/tree/main/urlrouter[Github repository (github/aravindavk/vibe.d-examples)].
