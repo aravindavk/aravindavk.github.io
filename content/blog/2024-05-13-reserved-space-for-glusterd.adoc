@@ -1,0 +1,85 @@
+---
+title: Reserved space for Glusterd - Gluster FS
+summary: In this blog post, I will explain how we can reserve space for Gluster operations and not worry about the undefined behaviour of Glusterd when some other app in the system misbehaves.
+tags: gluster,glusterfs
+---
+
+Many Gluster FS users in the past reported that Glusterd (the Gluster FS  management service) misbehaves and corrupts the cluster state when the root partition fills up due to some other malfunctioned application or when log floods.
+
+In this blog post, I will explain how we can reserve space for Gluster operations and not worry about the undefined behaviour of Glusterd when some other app in the system misbehaves.
+
+1. Stop the Glusterd service if running.
++
+[source,console]
+----
+# systemctl stop glusterd
+----
++
+2. Backup the `/var/lib/glusterd` directory.
++
+[source, console]
+----
+# cp -r /var/lib/glusterd /var/lib/glusterd.orig
+# rm -rf /var/lib/glusterd
+----
++
+3. Create a pre-allocated file with required size. `1GiB` should be good enough for most of the Cluster sizes.
++
+[source,console]
+----
+# fallocate -l 1G /data/glusterd.img
+----
++
+4. Create the file system (xfs or ext4) and prepare the mount directory. Make the mount directory immutable to prevent Glusterd writing to this directory when `glusterd.img` is unmounted.
++
+[source, console]
+----
+# mkfs.xfs /data/glusterd.img
+# mkdir -p /var/lib/glusterd
+# chattr +i /var/lib/glusterd
+----
++
+5. Now add the entry to `/etc/fstab` to mount the `glusterd.img` file on every node restart.
++
+[source,config]
+----
+/data/gfs/glusterd.img  /var/lib/glusterd       xfs     loop    0       0
+----
++
+6. Verify the `/etc/fstab` entry by running the `mount -a` command. Or manually mount the directory by running the following command.
++
+[source,console]
+----
+# mount -t xfs /data/glusterd.img /var/lib/glusterd
+----
++
+7. Copy the Glusterd data from the backup
++
+[source,console]
+----
+# cp -r /var/lib/glusterd.orig/* /var/lib/glusterd/
+----
++
+8. Start the Glusterd service again
++
+[source,console]
+----
+# systemctl start glusterd
+----
+
+++++
+<div class="py-4"></div>
+++++
+
+Thats it! Now verify the mounted directory and Glusterd by running the following commands.
+
+[source,console]
+----
+# df -h /var/lib/glusterd
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/loop33     990M   30M  960M   3% /var/lib/glusterd
+#
+# gluster pool list
+UUID                                    Hostname        State
+1b58cfc0-15ed-40b8-be28-f7c341250777    localhost       Connected
+----
