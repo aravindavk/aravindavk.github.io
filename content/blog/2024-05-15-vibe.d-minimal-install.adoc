@@ -1,0 +1,81 @@
+---
+title: Vibe.d minimal installation
+summary: The usual way to start using Vibe.d web framework is by initializing the project with `dub init -t vibe.d`.  Installing full Vibe.d library with all the sub-packages may not be useful for every project.
+tags: d,dlang,vibe.d,web
+---
+
+> https://vibed.org[Vibe.d] is an Asynchronous I/O web framework written in https://dlang.org[D programming language].
+
+The usual way to start using Vibe.d web framework is by initializing the project with `dub init -t vibe.d`.  Installing full Vibe.d library with all the sub-packages may not be useful for every project (For example, MongoDB and Redis sub-packages). In the blog post, we will understand how to use only the required sub-packages.
+
+Initialize the new project and add `vibe-http` as the dependency.
+
+[source]
+----
+$ cd helloweb
+$ dub init
+Success created empty project in /home/aravinda/sandbox/dlang_try/helloweb
+Package successfully created in .
+$ dub add vibe-http
+Adding dependency vibe-http ~>1.1.0
+----
+
+Now import only the required modules and use it.
+
+Example Hello world Vibe.d application:
+
+[source,d]
+----
+import vibe.core.core;
+import vibe.core.log;
+import vibe.http.server;
+
+void main()
+{
+    auto settings = new HTTPServerSettings;
+    settings.port = 8080;
+    settings.bindAddresses = ["::1", "127.0.0.1"];
+    auto listener = listenHTTP(settings, &hello);
+    scope (exit)
+    {
+        listener.stopListening();
+    }
+
+    logInfo("Please open http://127.0.0.1:8080/ in your browser.");
+    runApplication();
+}
+
+void hello(HTTPServerRequest req, HTTPServerResponse res)
+{
+    res.writeBody("Hello, World!");
+}
+----
+
+Start the web server by running the following commands (or by running `dub build` and then run `./helloweb`).
+
+[source,console]
+----
+$ dub run
+    Pre-gen Running commands for openssl
+    Starting Performing "debug" build using /usr/bin/dmd for x86_64.
+  Up-to-date diet-ng 1.8.1: target for configuration [library] is up to date.
+  Up-to-date taggedalgebraic 0.11.23: target for configuration [library] is up to date.
+  Up-to-date eventcore 0.9.30: target for configuration [epoll] is up to date.
+  Up-to-date stdx-allocator 2.77.5: target for configuration [library] is up to date.
+  Up-to-date vibe-container 1.3.1: target for configuration [library] is up to date.
+  Up-to-date vibe-core 2.8.4: target for configuration [epoll] is up to date.
+  Up-to-date vibe-inet:textfilter 1.0.0: target for configuration [library] is up to date.
+  Up-to-date vibe-serialization 1.0.3: target for configuration [library] is up to date.
+  Up-to-date vibe-stream 1.1.0: target for configuration [library] is up to date.
+  Up-to-date vibe-inet 1.0.0: target for configuration [library] is up to date.
+  Up-to-date mir-linux-kernel 1.0.1: target for configuration [library] is up to date.
+  Up-to-date vibe-inet:crypto 1.0.0: target for configuration [library] is up to date.
+  Up-to-date vibe-stream:tls 1.1.0: target for configuration [openssl] is up to date.
+  Up-to-date vibe-http 1.1.0: target for configuration [library] is up to date.
+  Up-to-date helloweb ~master: target for configuration [application] is up to date.
+    Finished To force a rebuild of up-to-date targets, run again with --force
+     Running helloweb
+[main(----) INF] Listening for requests on http://[::1]:8080/
+[main(----) INF] Listening for requests on http://127.0.0.1:8080/
+[main(----) INF] Please open http://127.0.0.1:8080/ in your browser.
+----
