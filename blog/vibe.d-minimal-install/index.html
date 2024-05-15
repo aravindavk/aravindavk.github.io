@@ -1,0 +1,194 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Vibe.d minimal installation - Aravinda Vishwanathapura</title>
+    
+    <meta name="generator" content="Nanoc 4.12.20">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Vibe.d minimal installation"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="The usual way to start using Vibe.d web framework is by initializing the project with `dub init -t vibe.d`.  Installing full Vibe.d library with all the sub-packages may not be useful for every project."/>
+    <meta property="og:description" content="The usual way to start using Vibe.d web framework is by initializing the project with `dub init -t vibe.d`.  Installing full Vibe.d library with all the sub-packages may not be useful for every project."/>
+    <link rel="canonical" href="/blog/vibe.d-minimal-install/"/>
+    <meta property="og:url" content="/blog/vibe.d-minimal-install/"/>
+    <meta property="og:site_name" content="Aravinda Vishwanathapura"/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2024-05-15"/>
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta property="og:image" content="https://aravindavk.in/images/me.jpg"/>
+    <meta name="twitter:image" content="https://aravindavk.in/images/me.jpg"/>
+    
+    <meta name="twitter:site" content="https://aravindavk.in"/>
+    <meta name="twitter:title" content="Vibe.d minimal installation"/>
+    <meta name="twitter:description" content="The usual way to start using Vibe.d web framework is by initializing the project with `dub init -t vibe.d`.  Installing full Vibe.d library with all the sub-packages may not be useful for every project."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks-articles">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VISHWANATHAPURA</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Vibe.d minimal installation</h1>
+                <div class="">May 15, 2024</div>
+                <div class="">
+                    <span class="icon-text">
+                        <svg class="mr-1 icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                        <span><strong>3 minutes</strong> read.</span>
+                    </span>
+                </div>
+                <div>
+                    
+                    <span class="tag is-info is-light">d</span>
+                    
+                    <span class="tag is-info is-light">dlang</span>
+                    
+                    <span class="tag is-info is-light">vibe.d</span>
+                    
+                    <span class="tag is-info is-light">web</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><a href="https://vibed.org">Vibe.d</a> is an Asynchronous I/O web framework written in <a href="https://dlang.org">D programming language</a>.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>The usual way to start using Vibe.d web framework is by initializing the project with <code>dub init -t vibe.d</code>.  Installing full Vibe.d library with all the sub-packages may not be useful for every project (For example, MongoDB and Redis sub-packages). In the blog post, we will understand how to use only the required sub-packages.</p>
+</div>
+<div class="paragraph">
+<p>Initialize the new project and add <code>vibe-http</code> as the dependency.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>$ cd helloweb
+$ dub init
+Success created empty project in /home/aravinda/sandbox/dlang_try/helloweb
+Package successfully created in .
+$ dub add vibe-http
+Adding dependency vibe-http ~&gt;1.1.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now import only the required modules and use it.</p>
+</div>
+<div class="paragraph">
+<p>Example Hello world Vibe.d application:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="d"><span class="k">import</span> <span class="n">vibe</span><span class="p">.</span><span class="n">core</span><span class="p">.</span><span class="n">core</span><span class="p">;</span>
+<span class="k">import</span> <span class="n">vibe</span><span class="p">.</span><span class="n">core</span><span class="p">.</span><span class="n">log</span><span class="p">;</span>
+<span class="k">import</span> <span class="n">vibe</span><span class="p">.</span><span class="n">http</span><span class="p">.</span><span class="n">server</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">settings</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HTTPServerSettings</span><span class="p">;</span>
+    <span class="n">settings</span><span class="p">.</span><span class="n">port</span> <span class="p">=</span> <span class="mi">8080</span><span class="p">;</span>
+    <span class="n">settings</span><span class="p">.</span><span class="n">bindAddresses</span> <span class="p">=</span> <span class="p">[</span><span class="s">"::1"</span><span class="p">,</span> <span class="s">"127.0.0.1"</span><span class="p">];</span>
+    <span class="k">auto</span> <span class="n">listener</span> <span class="p">=</span> <span class="n">listenHTTP</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="p">&amp;</span><span class="n">hello</span><span class="p">);</span>
+    <span class="k">scope</span> <span class="p">(</span><span class="n">exit</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">listener</span><span class="p">.</span><span class="n">stopListening</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">logInfo</span><span class="p">(</span><span class="s">"Please open http://127.0.0.1:8080/ in your browser."</span><span class="p">);</span>
+    <span class="n">runApplication</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">hello</span><span class="p">(</span><span class="n">HTTPServerRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">HTTPServerResponse</span> <span class="n">res</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">res</span><span class="p">.</span><span class="n">writeBody</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start the web server by running the following commands (or by running <code>dub build</code> and then run <code>./helloweb</code>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="console"><span class="gp">$</span><span class="w"> </span>dub run
+<span class="go">    Pre-gen Running commands for openssl
+    Starting Performing "debug" build using /usr/bin/dmd for x86_64.
+  Up-to-date diet-ng 1.8.1: target for configuration [library] is up to date.
+  Up-to-date taggedalgebraic 0.11.23: target for configuration [library] is up to date.
+  Up-to-date eventcore 0.9.30: target for configuration [epoll] is up to date.
+  Up-to-date stdx-allocator 2.77.5: target for configuration [library] is up to date.
+  Up-to-date vibe-container 1.3.1: target for configuration [library] is up to date.
+  Up-to-date vibe-core 2.8.4: target for configuration [epoll] is up to date.
+  Up-to-date vibe-inet:textfilter 1.0.0: target for configuration [library] is up to date.
+  Up-to-date vibe-serialization 1.0.3: target for configuration [library] is up to date.
+  Up-to-date vibe-stream 1.1.0: target for configuration [library] is up to date.
+  Up-to-date vibe-inet 1.0.0: target for configuration [library] is up to date.
+  Up-to-date mir-linux-kernel 1.0.1: target for configuration [library] is up to date.
+  Up-to-date vibe-inet:crypto 1.0.0: target for configuration [library] is up to date.
+  Up-to-date vibe-stream:tls 1.1.0: target for configuration [openssl] is up to date.
+  Up-to-date vibe-http 1.1.0: target for configuration [library] is up to date.
+  Up-to-date helloweb ~master: target for configuration [application] is up to date.
+    Finished To force a rebuild of up-to-date targets, run again with --force
+     Running helloweb
+[main(----) INF] Listening for requests on http://[::1]:8080/
+[main(----) INF] Listening for requests on http://127.0.0.1:8080/
+[main(----) INF] Please open http://127.0.0.1:8080/ in your browser.</span></code></pre>
+</div>
+</div>
+            </div>
+            <div class="has-text-centered mb-6 notification  is-light">
+    
+    <p class="has-text-grey is-uppercase is-size-5 pb-2">About Aravinda Vishwanathapura</p>
+    
+    Co-Founder & CTO at <a href="https://kadalu.tech">Kadalu Technologies</a>,
+    Creator of <a href="https://aravindavk.in/sanka">Sanka</a>,
+    Creator of <a href="https://aravindavk.in/chitra">Chitra</a>,
+    <a href="https://gluster.org">GlusterFS</a> core team member,
+    Maintainer of <a href="https://github.com/kadalu">Kadalu Storage</a>
+    <div class="mt-6">
+        Contact:
+        <a href="http://in.linkedin.com/in/aravindavk">Linkedin</a> |
+        <a href="https://twitter.com/aravindavk">Twitter</a> |
+        <a href="http://facebook.com/aravindavk">Facebook</a> |
+        <a href="https://github.com/aravindavk">Github</a> |
+        mail&#64;&#97;&#114;&#97;&#118;&#105;&#110;&#100;&#97;&#118;&#107;&#46;&#105;&#110;
+    </div>
+</div>
+
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda Vishwanathapura</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>
