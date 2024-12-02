@@ -16,10 +16,12 @@
             "name": "Chitra - 2D graphics library",
             "description": "2D graphics library and API based on Cairo Graphics and Pango. Chitra provides easy-to-use template syntax to generate data-driven PDFs and images. Easily integrate Chitra with other applications using the API or SDK. Chitra is a Kannada(Karnataka, India) word, that means Drawing.",
             "webpageUrl": {
-                "url": "https://github.com/aravindavk/chitra-d"
+                "url": "https://github.com/aravindavk/chitra-d",
+                "wellKnown": "https://github.com/aravindavk/chitra-d/blob/main/.well-known/funding-manifest-urls"
             },
             "repositoryUrl": {
-                "url": "https://github.com/aravindavk/chitra-d"
+                "url": "https://github.com/aravindavk/chitra-d",
+                "wellKnown": "https://github.com/aravindavk/chitra-d/blob/main/.well-known/funding-manifest-urls"
             },
             "licenses": ["spdx:MIT"],
             "tags": ["graphics", "dlang", "api", "pdf", "images"]
@@ -29,10 +31,12 @@
             "name": "Binnacle - Imperative Tests and Infra automation tool",
             "description": "Binnacle is a simple imperative tool for infrastructure and test automation. Its modern, intuitive syntax helps the admins or test case writers to get started in minutes. Use this for testing ReST APIs, command line applications or others. Binnacle also helps to write easy scripts to deploy applications or other server automation.",
             "webpageUrl": {
-                "url": "https://github.com/aravindavk/binnacle-python"
+                "url": "https://github.com/aravindavk/binnacle-python",
+                "wellKnown": "https://github.com/aravindavk/binnacle-python/blob/main/.well-known/funding-manifest-urls"
             },
             "repositoryUrl": {
-                "url": "https://github.com/aravindavk/binnacle-python"
+                "url": "https://github.com/aravindavk/binnacle-python",
+                "wellKnown": "https://github.com/aravindavk/binnacle-python/blob/main/.well-known/funding-manifest-urls"
             },
             "licenses": ["spdx:MIT"],
             "tags": ["testing", "infra", "automation", "python"]
@@ -42,10 +46,12 @@
             "name": "Kannada language tools",
             "description": "Collection of tools to analyze the Kannada language text and encoding conversions. ASCII to Unicode Conversion tool is used by many organizations, and government offices and it is also used in the Alar dictionary from Zerodha (ASCII to Unicode project link mentioned in https://zerodha.tech/blog/alar-the-making-of-an-open-source-dictionary). This project also focuses on developing/maintaining fonts for the Kannada language.",
             "webpageUrl": {
-                "url": "https://github.com/aravindavk/kannada"
+                "url": "https://github.com/aravindavk/kannada",
+                "wellKnown": "https://github.com/aravindavk/kannada/blob/main/.well-known/funding-manifest-urls"
             },
             "repositoryUrl": {
-                "url": "https://github.com/aravindavk/kannada"
+                "url": "https://github.com/aravindavk/kannada",
+                "wellKnown": "https://github.com/aravindavk/kannada/blob/main/.well-known/funding-manifest-urls"
             },
             "licenses": ["spdx:MIT"],
             "tags": ["kannada", "tools", "ascii", "unicode", "fonts", "javascript", "python"]
@@ -55,10 +61,12 @@
             "name": "DataFrame for D programming language",
             "description": "This project aims to provide DataFrame to D programming similar to Python Pandas. DataFrame library helps organizations to use D programming language for analysing financial market data or other data sources.",
             "webpageUrl": {
-                "url": "https://github.com/aravindavk/dataframes-d"
+                "url": "https://github.com/aravindavk/dataframes-d",
+                "wellKnown": "https://github.com/aravindavk/dataframes-d/blob/main/.well-known/funding-manifest-urls"
             },
             "repositoryUrl": {
-                "url": "https://github.com/aravindavk/dataframes-d"
+                "url": "https://github.com/aravindavk/dataframes-d",
+                "wellKnown": "https://github.com/aravindavk/dataframes-d/blob/main/.well-known/funding-manifest-urls"
             },
             "licenses": ["spdx:MIT"],
             "tags": ["data", "data-science", "dataframe", "dlang"]
@@ -103,4 +111,3 @@
         ]
     }
 }
-
