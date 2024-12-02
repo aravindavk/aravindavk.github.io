@@ -5,7 +5,7 @@
         "role": "owner",
         "name": "Aravinda VK",
         "email": "vkaravinda7@gmail.com",
-        "description": "I am a Software Developer, who loves Open Source and has contributed to many Open Source projects from 2007. I am developing a 2D graphics library to generate PDFs and images based on the given Template and data. This helps many organizations to integrate with their application to create invoices, posters, reports etc. I am also developing the libraries and tools that help to analyse data (DataFrame library), infra/testing automation (Binnacle), and ASCII to Unicode conversions for Kannada.",
+        "description": "I am a Software Developer with a passion for open source software and I have contributed to many Open Source projects since 2007. Currently I am developing a 2D graphics library designed to generate PDFs and images based on the given template and data. This library is targeted to help organizations by integrating it with their application to create invoices, posters, reports etc. I am also developing various libraries and tools that help to analyse data (DataFrame library), infra/testing automation framework (Binnacle), and converting ASCII to Unicode for the Kannada language.",
         "webpageUrl": {
             "url": "https://aravindavk.in",
         }
@@ -61,7 +61,7 @@
                 "url": "https://github.com/aravindavk/dataframes-d"
             },
             "licenses": ["spdx:MIT"],
-            "tags": ["data", "dataframe", "dlang"]
+            "tags": ["data", "data-science", "dataframe", "dlang"]
         }
     ],
     "funding": {
@@ -103,3 +103,4 @@
         ]
     }
 }
+
