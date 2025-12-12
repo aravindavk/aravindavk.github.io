@@ -41,10 +41,10 @@ end
 
 HOME_PAGE_DETAILS = [
   {
-    :title => "Co-Founder & CTO at Kadalu Technologies",
-    :url => "https://kadalu.tech",
-    :image => "https://kadalu-tech.github.io/images/logo.svg",
-    :summary => %{100% Open Source, distributed storage solution based on GlusterFS. Kadalu Storage provides a modern storage manager with ReST APIs. Kadalu Technologies provides Enterprise support for Kadalu Storage, Consultancy and Gluster feature development services. Visit <a href="https://kadalu.tech">kadalu.tech</a> for more details.}
+    :title => "Partner at Kadalu Investments",
+    :url => "https://github.com/kadalu-investments",
+    :image => "",
+    :summary => %{Trading and Investments}
   },
   {
     :title => "Maintainer of Kadalu Storage",
@@ -67,7 +67,7 @@ HOME_PAGE_DETAILS = [
   {
     :title => "Creator of Chitra",
     :url => "https://aravindavk.in/chitra",
-    :image => "https://aravindavk.in/chitra/static/logo.png",
+    :image => "https://aravindavk.in/images/chitra-logo.png",
     :summary => "Chitra is a 2D graphics library for Crystal programming language."
   }
 ]
