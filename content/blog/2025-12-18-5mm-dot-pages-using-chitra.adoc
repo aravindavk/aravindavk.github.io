@@ -1,0 +1,105 @@
+---
+title: Generating 5mm dot pages using Chitra
+summary: In this blog post, we will learn to generate dot page with 5mm gap and save it as PDF.
+tags: d,dlang,chitra
+image: /images/chitra_dot_page.png
+---
+
+https://github.com/aravindavk/chitra-d[Chitra] is a 2D graphics library that lets you write simple https://dlang.org/[D] code to generate 2D graphics. In this blog post, we will learn to generate dot page with 5mm gap and save it as PDF.
+
+.5mm Dot page
+image::/images/chitra_dot_page.png[5mm Dot page]
+
+Create a D file and add the following lines.
+
+[source,d]
+----
+/+ dub.sdl:
+ dependency "chitra" version="~>0.3.0"
++/
+----
+
+(Alternatively, create a directory and initiate the D project by running `dub init` and add `chitra` as dependency.)
+
+Import the library and set the page size as required.
+
+[source, d]
+----
+import chitra;
+
+void main()
+{
+    auto ctx = new Chitra("a4");
+}
+----
+
+Standard page sizes are supported (`a0-a10`, `b0-b10`, `c0-c10` etc). It is easy to add custom sizes if the required paper size is not available. For example,
+
+[source,d]
+----
+// Square context with 1024px width and height
+auto ctx = new Chitra(1024);
+
+// Width and height in mm
+//                    WIDTH   HEIGHT
+auto ctx = new Chitra(200.mm, 100.mm);
+----
+
+Select a color and draw the points with 5mm gap. Finally save the generated drawing as pdf.
+
+[source,d]
+----
+#!/usr/bin/env dub
+/+ dub.sdl:
+ dependency "chitra" version="~>0.3.0"
++/
+
+import chitra;
+
+void main()
+{
+    auto ctx = new Chitra("a4");
+
+    with (ctx)
+    {
+        noStroke;
+
+        // Initial gap
+        auto x = 5.mm;
+        auto y = 5.mm;
+
+        // Dots color
+        fill("#666666");
+
+        while (y < height)
+        {
+            // Draw a point
+            point(x, y);
+
+            x += 5.mm;
+            if (x >= width)
+            {
+                x = 5.mm;
+                y += 5.mm;
+            }
+        }
+
+        saveAs("dot_page_a4.pdf");
+    }
+}
+----
+
+Now run the following command to generate the `dot_page_a4.pdf`.
+
+[source,console]
+----
+$ dub dot_page.d
+----
+
+To create the executable, run `dub build --single dot_page.d`.
+
+[source,console]
+----
+$ dub build --single dot_page.d
+$ ./dot_page
+----
