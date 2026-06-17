@@ -1,0 +1,154 @@
+---
+title: Open Source projects
+summary: My Open Source projects updates.
+---
+
+I am incredibly thrilled to announce that https://github.com/aravindavk/chitra-d[Chitra], https://github.com/aravindavk/kannada[Sanka], https://github.com/aravindavk/binnacle-python[Binnacle] and other my https://github.com/aravindavk[Open Source projects] have been awarded the Fellowship Grant by https://fossunited.org[FOSS United!] (See details here https://fossunited.org/grants/fellowships[Fellowships/2026/Aravinda VK]).
+
+This fellowship provides invaluable support that will allow me to dedicate focused time and resources to the upcoming releases. Specifically, the grant will directly fund fixing critical bugs, improving documentation, and building new features. A huge thank you to the FOSS United team for believing in these projects and for their commitment to supporting the open-source ecosystem.
+
+I will use this page to publish the progress of the projects (See link:#_updates[Updates]). I will publish the project roadmaps and update the link here.
+
+If you use any of these projects or are interested in helping these projects, a contribution would mean A *LOT* to me. With your help, continuing my work can be sustainable. Thank you for your continued support!
+
+++++
+<div class="has-text-centered py-6">
+<a class="button is-large is-warning has-text-dark" href="https://github.com/sponsors/aravindavk">Sponsor</a>
+</div>
+++++
+== SPONSORS
+
+++++
+<style>
+.logo {width: 200px;}
+</style>
+++++
+
+[.logo]
+.Kadalu Technologies
+image::https://github.com/aravindavk/chitra-d/raw/main/static/kadalu-technologies-logo.svg[Kadalu Technologies, link="https://kadalu.tech"]
+[.logo]
+.FOSS United
+image::https://github.com/aravindavk/chitra-d/raw/main/static/FOSS%20United%20Logo%20Black.png[FOSS United, link="https://fossunited.org"]
+
+
+== UPDATES
+
+* *_JUN 16, 2026 . Tuesday_*
+** [.tag.is-warning]#Chitra# Added new feature to control the co-ordinates and dimentions while drawing the oval/circle shapes (https://github.com/aravindavk/chitra-d/commit/0556b80bece97c1cc4210f9dde3ea38d89984739[link]).
++
+[source,d]
+----
+ovalMode(CENTER);
+//   X    Y    W    H
+oval(100, 100, 100, 100);
+
+ovalMode(RADIUS);
+//   X    Y    R1  R2
+oval(100, 100, 50, 50);
+
+ovalMode(CORNER);
+//   X   Y   W    H
+oval(50, 50, 100, 100);
+
+ovalMode(CORNERS);
+//   X   Y   X2   Y2
+oval(50, 50, 150, 150);
+----
++
+image::/images/projects/oval_mode.png[Oval Mode]
+
+* *_JUN 15, 2026 . Monday_*
+** [.tag.is-warning]#Chitra# Added Jekyll based documentation website under `docs` directory. Theme and documentation work is in progress (https://github.com/aravindavk/chitra-d/commit/68470ad295a11516b5df4b0010245b1fca9ca415[link1], https://github.com/aravindavk/chitra-d/commit/b9fec0367ce47ba6242f1377915b28340ddaed5c[link2] and https://github.com/aravindavk/chitra-d/commit/bca25656dbccf173a461f79655f7635e471cdead[link3]).
+** [.tag.is-warning]#Chitra# Added image tint feature (https://github.com/aravindavk/chitra-d/commit/5678ec263ab09984ce142fd07a9982247bae809e[link]).
++
+[source,d]
+----
+tint("red");
+image("tiger.png", 0, 0);
+----
++
+image::/images/projects/tinted.png[Tinted Tiger]
+** [.tag.is-warning]#Chitra# Fix image scale when output resolution changes. Image scale was not changed when the canvas resolution changes. For example the following example draws only in 25% of the canvas size because paper size almost increased to 4 times when the default resolution changed to 300 from 72 (https://github.com/aravindavk/chitra-d/commit/c001835c92f7f1a5af6efa4640fbd95aaad19353[link]).
++
+[source,d]
+----
+auto ctx = new Chitra(600);
+ctx.image("img_600.png", 0, 0);
+ctx.saveAs("output.png", resolution: 300);
+----
+With this fix the above will render 600px image to full paper width. Works with any resolution setting.
+
+* *_JUN 12, 2026 . Friday_*
+** [.tag.is-warning]#Dataframes(D)# Added `shift` feature to shift the column values as needed by giving the required number of jump value. Negative jump value will shift the column values in reverse order (https://github.com/aravindavk/dataframes-d/commit/7aeec5734056e836831470e53cadc40ceca3090f[link]).
++
+[source,d]
+----
+auto c1 = Column!int([10, 20, 30, 40, 50]);
+writeln(c1.shift(1)); // Shifts index by 1 => [0, 10, 20, 30, 40]
+writeln(c1.shift(-1)); // Reverse Shifts index by 1 => [20, 30, 40, 50, 0]
+----
++
+Sets the default value of respective type (Ex: `nan` for double, `""` for string etc) when shifted.
++
+To find the average of the last two values:
++
+[source,d]
+----
+auto c1 = Column!int([10, 20, 30, 40, 50]);
+auto avgCol = (c1 + c1.shift(1)) / 2;
+writeln(avgCol);
+----
+
+** [.tag.is-warning]#Chitra# Fixed the translate API example. To reset the translate value used earlier it was using the negative number, but since the data type was wrongly used as `ulong` negative values were casted to something unexpected (https://github.com/aravindavk/chitra-d/commit/301ccdfb4e9c46e934a51f48e87df6283b3b38c5[link]).
++
+[source,d]
+----
+//        X    Y
+translate(100, 100); // Move to (100, 100)
+rect(0, 0, 200, 50);
+translate(-100, -100); // Move back to original position
+----
+
+** [.tag.is-warning]#Chitra# Set the default text color to Black. Earlier it was taking the previously used color while drawing any other shape (https://github.com/aravindavk/chitra-d/commit/f5a00bb3b4511c86d1936b06ad0306e345cca1df[link]).
+** [.tag.is-warning]#Chitra# Fix the traffic light example by generating multiple drawings (output images) using the `newDrawing` API (https://github.com/aravindavk/chitra-d/commit/894b47b7e7cfef259abf7624962bd29741525cf1[link]).
+** [.tag.is-warning]#Chitra# Added example of using the `scale` API (Increase or decrease the scale) (https://github.com/aravindavk/chitra-d/commit/c001835c92f7f1a5af6efa4640fbd95aaad19353[link]).
+
+* *_JUN 11, 2026 . Thursday_*
+** [.tag.is-warning]#Chitra# Chitra context management using Lua `lightuserdata`. This helps to use Chitra with multiple threads using Lua plugin.
+** [.tag.is-warning]#Chitra# Expose `setSize` function to use with Lua plugin. When Lua plugin is used, no need to initialize the Chitra context, by specifying `size(w, h)` the canvas size can be customized. Documentation is not yet available to use the Lua plugin (https://github.com/aravindavk/chitra-d/commit/3fdddef04292cbb1a557033d368c8d55d487e07a[link]).
+
+* *_JUN 06, 2026 . Saturday_*
+** [.tag.is-warning]#Kannada# Initial version of Phonetic to Unicode and Unicode to Phonetic conversion framework (https://github.com/aravindavk/kannada/commit/5ce1655902b8f9bf20d4fc7c38addabb999a0723[link]).
+** [.tag.is-warning]#Kannada# Create JS library for both browser and nodeJS using esbuild.
+** [.tag.is-warning]#Kannada# Added mappings for Phonetic and Unicode (https://github.com/aravindavk/kannada/commit/3a460e435a1e7ca959b4423e5e668aa22ce007fa[link]).
+
+* *_JUN 04, 2026 . Thursday_*
+** [.tag.is-warning]#Chitra# Added two examples, Traffic signal and Text (https://github.com/aravindavk/chitra-d/commit/894b47b7e7cfef259abf7624962bd29741525cf1).
++
+image::/images/projects/traffic_signal.png[Traffic Signal]
+
+* *_JUN 03, 2026 . Wednesday_*
+** [.tag.is-warning]#Chitra# Added FOSS United logo as Sponsor to Github project page of Chitra (https://github.com/aravindavk/chitra-d/commit/6ae081a413ae3bf27ed2276f694de4784244ed02[link]).
+** [.tag.is-warning]#Chitra# Added the new feature to customize the color inputs. Some prefer `0-255` color codes and some prefer floating values from `0-1.0`. Chitra now supports chosing the color scale as needed. Default color scale is `0-255` for RGB values and `0-1.0` for Alpha (Opacity control) (https://github.com/aravindavk/chitra-d/commit/330ae0912032c9dc901df014b6648bb3ed350fa6[link]).
++
+[source,d]
+----
+//         RGB  A
+colorScale(255, 1);    // Default scale
+//   R  G  B    A
+fill(0, 0, 255, 0.5);  // Blue with Opacity 50%
+colorScale(255, 255);
+fill(0, 0, 255, 127);  // Blue with Opacity 50%
+----
+
+* *_JUN 02, 2026 . Tuesday_*
+** [.tag.is-warning]#Chitra# Added `border` and `borderColor` APIs. Border supports thikness, margin, radius and color (https://github.com/aravindavk/chitra-d/commit/41d5c25efd0ebca7fee86dc7cc665cea03298edf[link]).
++
+[source,d]
+----
+borderColor("blue");
+border(5, margin: 10, radius: 7);
+----
++
+image::/images/projects/border.png[Border]
