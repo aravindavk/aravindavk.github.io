@@ -21,6 +21,7 @@ If you use any of these projects or are interested in helping these projects, a 
 ++++
 <style>
 .logo {width: 200px;}
+.gallery-thumb {width: 400px;}
 </style>
 ++++
 
@@ -33,6 +34,40 @@ image::https://github.com/aravindavk/chitra-d/raw/main/static/FOSS%20United%20Lo
 
 
 == UPDATES
+* *_JUN 18, 2026 . Thursday_*
+** [.tag.is-warning]#Chitra# Utility function (`findDistance(x1, y1, x2, y2)`) added to find the distance between two points (https://github.com/aravindavk/chitra-d/commit/5853fec243f8174d11d02240d7fb730a9d2335e8[link]).
+** [.tag.is-warning]#Chitra# Fix zero width or height oval bug. Due to this context scale was set to zero and no further shapes were drawn (https://github.com/aravindavk/chitra-d/commit/e2c5de390da3b09246d90908c532855e9ea48c43[link]).
+** [.tag.is-warning]#Chitra# Gallery home page and gallery detail page added. Also added the sort order to rank the Gallery entry (https://github.com/aravindavk/chitra-d/commit/da7cadfe04e4fa9e3fe3ebb90fbc88e4c8e73b48[link]).
+** [.tag.is-warning]#Chitra# Added Makefile and bash script to generate the Gallery images and its thumbnails (https://github.com/aravindavk/chitra-d/commit/a022b36bedfac0188a45a2cdd36b228419b52c98[link]).
+** [.tag.is-warning]#Chitra# Source code of the Gallery is saved as separate file so that managing or updating code becomes easy (https://github.com/aravindavk/chitra-d/commit/d350edc385a6e7b56feed0ec20860288617b3e6b[link]).
++
+[.gallery-thumb]
+image::https://chitra.aravindavk.in/static/images/thumbs/tunnel-effect.png[Tunnel Effect, link=https://chitra.aravindavk.in/gallery/tunnel-effect]
+
+** [.tag.is-warning]#Chitra# Added Gallery example: Background (https://github.com/aravindavk/chitra-d/commit/7a7ffd6c9d7813625ac1835564398058030b84cb[link]).
++
+[.gallery-thumb]
+image::https://chitra.aravindavk.in/static/images/thumbs/background1.png[Background 1, link=https://chitra.aravindavk.in/gallery/background-1]
+
+** [.tag.is-warning]#Chitra# Added example: Clouds (https://github.com/aravindavk/chitra-d/commit/ab4083f99f583690975232d1b5e37b850e647484[link]).
++
+[.gallery-thumb]
+image::https://chitra.aravindavk.in/static/images/thumbs/clouds.png[Clouds, link=https://chitra.aravindavk.in/gallery/clouds]
+
+** [.tag.is-warning]#Chitra# Added example: Distance (https://github.com/aravindavk/chitra-d/commit/d9f02735a2d2746875da4ecf0f8ad9f93678ae3e[link]).
++
+[.gallery-thumb]
+image::https://chitra.aravindavk.in/static/images/thumbs/distance.png[Distance, link=https://chitra.aravindavk.in/gallery/distance]
+
+** [.tag.is-warning]#Chitra# Added example: Random blues (https://github.com/aravindavk/chitra-d/commit/f4abf014ba43560b0890da3af3dd198f3e134574[link]).
++
+[.gallery-thumb]
+image::https://chitra.aravindavk.in/static/images/thumbs/random_blues.png[Random Blues, link=https://chitra.aravindavk.in/gallery/random-blues]
+
+** [.tag.is-warning]#Chitra# Added example: UUID Thumbnail (https://github.com/aravindavk/chitra-d/commit/de66c7a8a9b52caf092f84c40cee905fbdde700b[link]).
++
+[.gallery-thumb]
+image::https://chitra.aravindavk.in/static/images/thumbs/uuid_thumbnail.png[UUID Thumbnail, link=https://chitra.aravindavk.in/gallery/uuid-thumbnail]
 
 * *_JUN 16, 2026 . Tuesday_*
 ** [.tag.is-warning]#Chitra# Added new feature to control the co-ordinates and dimentions while drawing the oval/circle shapes (https://github.com/aravindavk/chitra-d/commit/0556b80bece97c1cc4210f9dde3ea38d89984739[link]).
