@@ -34,6 +34,12 @@ image::https://github.com/aravindavk/chitra-d/raw/main/static/FOSS%20United%20Lo
 
 
 == UPDATES
+* *_JUN 25, 2026 . Thursday_*
+** [.tag.is-warning]#DataFrames(D)# Added support to create DataFrame from the JSON input (https://github.com/aravindavk/dataframes-d/commit/709acab2ad2459b36d4de428e228e41c9f7bdaef[link]).
+
+* *_JUN 23, 2026 . Tuesday_*
+** [.tag.is-warning]#Kannada# Added support to build the JavaScript compatible to NodeJS and Browser using rollup (https://github.com/aravindavk/kannada/commit/190c923a0810a91589be77ca8aba0dfb91c7a846[link]).
+
 * *_JUN 18, 2026 . Thursday_*
 ** [.tag.is-warning]#Chitra# Utility function (`findDistance(x1, y1, x2, y2)`) added to find the distance between two points (https://github.com/aravindavk/chitra-d/commit/5853fec243f8174d11d02240d7fb730a9d2335e8[link]).
 ** [.tag.is-warning]#Chitra# Fix zero width or height oval bug. Due to this context scale was set to zero and no further shapes were drawn (https://github.com/aravindavk/chitra-d/commit/e2c5de390da3b09246d90908c532855e9ea48c43[link]).
