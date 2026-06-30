@@ -101,6 +101,32 @@
 <div class="ulist">
 <ul>
 <li>
+<p><strong><em>JUN 30, 2026 . Tuesday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">SimpleQueue(D)</span> Added support to run the workers as separate processes instead of threads (<a href="https://github.com/aravindavk/simple-queue/commit/046ded2fc4aaa6388bac53eab37c817b7470e9ff">link</a>).</p>
+</li>
+<li>
+<p><span class="tag is-warning">SimpleQueue(D)</span> Modified <code>performLater</code> to return the Job ID to the caller (<a href="https://github.com/aravindavk/simple-queue/commit/7995704b38f40ace667103df31df8017a3af19a9">link</a>).</p>
+</li>
+<li>
+<p><span class="tag is-warning">SimpleQueue(D)</span> Added a new setting to remove job entry after completion (<a href="https://github.com/aravindavk/simple-queue/commit/82390a9d33fcf1ebb286cf542712a3dd08b9824c">link</a>).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><em>JUN 29, 2026 . Monday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">SimpleQueue(D)</span> Modified the library to use only Postgres database. Database schema is inspired by <a href="https://github.com/rails/solid_queue">Rails/SolidQueue project</a>. Used <code>SELECT &#8230;&#8203; FOR UPDATE SKIP LOCKED</code> feature of Postgres to pick the task without duplicating between other workers (<a href="https://github.com/aravindavk/simple-queue/commit/8d17fa43d5f1c2ab6525c726d1e3e711876f0791">link</a>).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p><strong><em>JUN 25, 2026 . Thursday</em></strong></p>
 <div class="ulist">
 <ul>
