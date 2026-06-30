@@ -34,6 +34,15 @@ image::https://github.com/aravindavk/chitra-d/raw/main/static/FOSS%20United%20Lo
 
 
 == UPDATES
+
+* *_JUN 30, 2026 . Tuesday_*
+** [.tag.is-warning]#SimpleQueue(D)# Added support to run the workers as separate processes instead of threads (https://github.com/aravindavk/simple-queue/commit/046ded2fc4aaa6388bac53eab37c817b7470e9ff[link]).
+** [.tag.is-warning]#SimpleQueue(D)# Modified `performLater` to return the Job ID to the caller (https://github.com/aravindavk/simple-queue/commit/7995704b38f40ace667103df31df8017a3af19a9[link]).
+** [.tag.is-warning]#SimpleQueue(D)# Added a new setting to remove job entry after completion (https://github.com/aravindavk/simple-queue/commit/82390a9d33fcf1ebb286cf542712a3dd08b9824c[link]).
+
+* *_JUN 29, 2026 . Monday_*
+** [.tag.is-warning]#SimpleQueue(D)# Modified the library to use only Postgres database. Database schema is inspired by https://github.com/rails/solid_queue[Rails/SolidQueue project]. Used `SELECT ... FOR UPDATE SKIP LOCKED` feature of Postgres to pick the task without duplicating between other workers (https://github.com/aravindavk/simple-queue/commit/8d17fa43d5f1c2ab6525c726d1e3e711876f0791[link]).
+
 * *_JUN 25, 2026 . Thursday_*
 ** [.tag.is-warning]#DataFrames(D)# Added support to create DataFrame from the JSON input (https://github.com/aravindavk/dataframes-d/commit/709acab2ad2459b36d4de428e228e41c9f7bdaef[link]).
 
