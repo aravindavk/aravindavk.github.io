@@ -1,0 +1,122 @@
+---
+title: Distance between two points
+summary: Very simple way of finding the distance between two points is by assuming it as a side of a right angle triangle. Length of two sides can be easily found as `x2 - x1` and `y2 - y1`.
+tags: d,dlang,chitra,lua
+image: /images/distance-highlight.png
+---
+
+A very simple way of finding the distance between two points is by assuming it as a side of a right-angle triangle. The length of two sides can be easily found as `x2 - x1` and `y2 - y1`.
+
+image::/images/distance-triangles.jpg[Triangles]
+
+[quote]
+In mathematics, the Pythagorean theorem or Pythagoras's theorem is a fundamental relation in Euclidean geometry between the three sides of a right triangle - https://en.wikipedia.org/wiki/Pythagorean_theorem[Pythagorean theorem]
+
+image::/images/distance-formula.png[Pythagorean Formula]
+
+
+https://github.com/aravindavk/chitra-d[Chitra] now provides a utility function `findDistance(x1, y1, x2, y2)` (`dist(x1, y1, x2, y2)` in Chitra Lua bindings).
+
+Following example shows highlighting the boxes that are closer to center (or any other point of interest) and gets darker if it is away from the center.
+
+image::/images/distance-highlight.png[Distance]
+
+++++
+<div x-data="{showCode: 'D'}">
+<div class="tabs is-left">
+  <ul>
+    <li :class="showCode == 'D' ? 'is-active' : ''"><a @click="showCode = 'D'">Chitra (D)</a></li>
+    <li :class="showCode == 'Lua' ? 'is-active' : ''"><a @click="showCode = 'Lua'">Chitra Lua plugin</a></li>
+  </ul>
+</div>
+++++
+
+++++
+<div x-show="showCode == 'D'">
+++++
+
+Source code
+
+[source,d]
+----
+import chitra;
+
+void main()
+{
+    auto ctx = new Chitra(1024);
+
+    with (ctx)
+    {
+        // Grid of 32x32
+        grid(32, 32);
+
+        // Line color
+        stroke(0, 0, 255, 0.1);
+
+        auto mainX = 512;
+        auto mainY = 512;
+        auto within = 1024;
+
+        foreach(i; 0 .. 1024)
+        {
+            // Get Grid cell one by one
+            auto box = gridCell(i+1);
+            auto x2 = box.x > mainX ? box.x + box.width : box.x;
+            auto y2 = box.y > mainY ? box.y + box.height : box.y;
+
+            // Find distance
+            auto d = findDistance(mainX, mainY, x2, y2);
+            fill(0, 0, 255, (d / within) + 0.1);
+
+            rect(box.x, box.y, box.width, box.height);
+        }
+
+        saveAs("distance-highlight.png", resolution: 72);
+    }
+}
+----
+
+++++
+</div>
+++++
+
+++++
+<div x-show="showCode == 'Lua'">
+++++
+
+Source code (Using Chitra Lua plugin)
+
+[source,lua]
+----
+size(1024)
+
+-- Grid of 32x32
+grid(32, 32)
+
+-- Line color
+stroke(0, 0, 255, 0.1)
+
+main_x = 512
+main_y = 512
+within = 1024
+
+for i = 0, 1024 do
+   -- Get Grid cell one by one
+   local box = grid_cell(i+1)
+   local x2 = box.x > main_x and box.x + box.width or box.x
+   local y2 = box.y > main_y and box.y + box.height or box.y
+
+   -- Find distance
+   local d = dist(main_x, main_y, x2, y2)
+   fill(0, 0, 255, (d / within) + 0.1)
+
+   rect(box.x, box.y, box.width, box.height)
+end
+
+save("distance-highlight.png", {resolution=72})
+----
+
+++++
+</div>
+</div>
+++++
