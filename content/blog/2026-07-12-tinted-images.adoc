@@ -1,0 +1,114 @@
+---
+title: Tinted Images - Chitra
+summary: Tinting is the process of blending a color into every pixel of an image. The result shifts the image toward that colour while preserving its original light and shadow structure.
+tags: d,dlang,chitra,lua
+image: /images/tinted7.png
+---
+
+Tinting is the process of blending a color into every pixel of an image. The result shifts the image toward that colour while preserving its original light and shadow structure (https://en.wikipedia.org/wiki/Tint,_shade_and_tone[Wiki]).
+
+https://github.com/aravindavk/chitra-d[Chitra] provides an easy way to add tint to images. Following example shows adding Emerald (+++<span class="tag" style="background-color: #50C878;">#50C878</span>+++) colored tint.
+
+[source,d]
+----
+//    PATH         X  Y  W    H
+image("tiger.png", 0, 0, 350, 350);
+tint("#50C878");
+//    PATH         X    Y  W    H
+image("tiger.png", 350, 0, 350, 350);
+saveAs("emerald-tinted-tiger.png");
+----
+
+image::/images/emerald-tinted.png[Emerald Tinted]
+
+
+A few most used tint colors (no tint for the first one): +++<span class="tag" style="background-color: #D4AF37">#D4AF37</span>
+<span class="tag" style="background-color: #E6C280">#E6C280</span>
+<span class="tag" style="background-color: #FF7F50">#FF7F50</span>
+<span class="tag" style="background-color: #4A90E2">#4A90E2</span>
+<span class="tag" style="background-color: #50C878">#50C878</span>
+<span class="tag" style="background-color: #4a90a4; color: #fff">#4a90a4</span>
+<span class="tag" style="background-color: #c13584;color: #fff">#c13584</span>
++++
+
+image::/images/tinted7.png[Tinted]
+
+++++
+<div x-data="{showCode: 'D'}">
+<div class="tabs is-left">
+  <ul>
+    <li :class="showCode == 'D' ? 'is-active' : ''"><a @click="showCode = 'D'">Chitra (D)</a></li>
+    <li :class="showCode == 'Lua' ? 'is-active' : ''"><a @click="showCode = 'Lua'">Chitra Lua plugin</a></li>
+  </ul>
+</div>
+++++
+
+++++
+<div x-show="showCode == 'D'">
+++++
+
+Source code
+
+[source,d]
+----
+import chitra;
+
+void main()
+{
+    auto ctx = new Chitra(800, 400);
+
+    auto colors = ["", "#D4AF37", "#E6C280", "#FF7F50", "#4A90E2", "#50C878", "#4a90a4", "#c13584"];
+
+    with (ctx)
+    {
+        grid(4, 2, gap: 4);
+        auto imgPath = "tiger.png";
+
+        foreach(i; 0 .. 8)
+        {
+            auto box = gridCell(i+1);
+            if (colors[i] != "")
+                tint(colors[i]);
+         
+            image(imgPath, box.x, box.y, box.width, box.height, fit: COVER);
+        }
+
+        saveAs("tinted.png", resolution: 72);
+    }
+}
+----
+
+++++
+</div>
+++++
+
+++++
+<div x-show="showCode == 'Lua'">
+++++
+
+Source code (Using Chitra Lua plugin)
+
+[source,lua]
+----
+size(800, 400)
+
+grid(4, 2, {gap=4})
+
+local img_path = "tiger.png"
+
+local colors = {"", "#D4AF37", "#E6C280", "#FF7F50", "#4A90E2", "#50C878", "#4a90a4", "#c13584"}
+for i = 1, 8 do
+   local box = grid_cell(i)
+   if colors[i] ~= "" then 
+      tint(colors[i])
+   end
+   image(img_path, box.x, box.y, box.width, box.height, {fit= COVER})
+end
+
+save("tinted.png", {resolution=72})
+----
+
+++++
+</div>
+</div>
+++++
