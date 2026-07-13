@@ -35,6 +35,80 @@ image::https://github.com/aravindavk/chitra-d/raw/main/static/FOSS%20United%20Lo
 
 == UPDATES
 
+* *_JUL 12, 2026 . Sunday_*
+** [.tag.is-warning]#Chitra# New blog post about Tinted images https://aravindavk.in/blog/tinted-images
+** [.tag.is-warning]#Chitra# Available Chitra APIs (Lua plugin): `dist`, `image`, `width`, `height`.
+
+* *_JUL 11, 2026 . Saturday_*
+** [.tag.is-warning]#Chitra# New blog post about Distance between two points https://aravindavk.in/blog/distance-between-two-points
+
+* *_JUL 10, 2026 . Friday_*
+** [.tag.is-warning]#Chitra# Started working on the Lua plugin. Created a new repository for the same. First version, initializes the context and supports many Chitra APIs.
+** [.tag.is-warning]#Chitra# Chitra CLI is made available that accepts file or code as argument.
++
+[source]
+----
+./chitra -f examples/color_grid.lua
+./chitra -c 'size(100);fill("green");no_stroke();rect(0, 0, 100);save("success.png", {resolution=72})'
+----
+** Available Chitra APIs (Lua plugin): `size`, `save`, `grid`, `grid_cell`, `grid_area`, `rect`, `oval`, `oval_mode`, `color_scale`, `fill`, `stroke`, `no_fill`, `no_stroke`, `stroke_width`, `background`, `tint`, `no_tint`, `text_font`, `text_size`, `overflow_text`, `text`, `new_drawing`, `new_page`, `square`, `circle`.
+
+* *_JUL 09, 2026 . Thursday_*
+** [.tag.is-warning]#Chitra# Added support for drawing the text within a bunding box and a new method to get the overflow text.
++
+[source,d]
+----
+text(txt, 100, 100, 400, 200);
+auto extra = overflowText;
+text(extra, 600, 100, 400, 200);
+----
+
+** [.tag.is-warning]#Chitra#  Chitra v0.4.1 release https://github.com/aravindavk/chitra-d/releases/tag/v0.4.1
+
+* *_JUL 05, 2026 . Sunday_*
+** [.tag.is-warning]#Chitra# Added support for `textSize` to get the width and height of the text before rendering (Chitra draws text in the default hidden canvas and gets the size of the text).
++
+.Align the text to center
+[source,d]
+----
+auto box = textSize("Hello World!");
+auto x = (width - box.width) / 2.0;
+auto y = (height - box.height) / 2.0;
+text("Hello World!", x, y);
+----
+
+* *_JUL 04, 2026 . Saturday_*
+** [.tag.is-warning]#Chitra#  Added support to fit the image to the given bounding box. Supported image fittings are: `FILL`, `CROP`, `CONTAIN`, `COVER`.
+
+* *_JUL 02, 2026 . Thursday_*
+** [.tag.is-warning]#Chitra#  Most awaited feature to arrange/draw elements as grid. Chitra now supports creating unlimited named grids and an easy way to access grid cell or area.
++
+[source,d]
+----
+grid(4, 2);  // Creates a virtual grid with 4 columns and 2 rows
+// Set the size of the grid
+gridSize(20, 20, width - 40, height - 40);
+// Draw a rectangle in grid cell 2
+auto box = gridCell(2);
+rect(box.x, box.y, box.width, box.height); // Same as `rect(box);`
+// Draw a rectangle using two grid cells 2 and 3
+box = gridArea(2, 3);
+rect(box.x, box.y, box.width, box.height); // Same as `rect(box);`
+----
++
+To create a sub grid or named grid
++
+[source,d]
+----
+grid(2, 2); // Main grid with 2 columns and 2 rows.
+// Create a subgrid (divide first grid cell of main grid into 4 columns and 2 rows)
+auto cell1 = gridCell(1);
+grid("sub1", 4, 2);
+auto box1 = gridCell("sub1", 1); // First cell of sub-grid
+----
+
+** [.tag.is-warning]#Chitra#  Added a few examples (Gallery): https://chitra.aravindavk.in/gallery/rainbow-background[Rainbow background] and https://chitra.aravindavk.in/gallery/uuid-thumbnail[UUID thumbnail using grid]
+** [.tag.is-warning]#Chitra#  Chitra v0.4.0 release https://github.com/aravindavk/chitra-d/releases/tag/v0.4.0
 * *_JUN 30, 2026 . Tuesday_*
 ** [.tag.is-warning]#SimpleQueue(D)# Added support to run the workers as separate processes instead of threads (https://github.com/aravindavk/simple-queue/commit/046ded2fc4aaa6388bac53eab37c817b7470e9ff[link]).
 ** [.tag.is-warning]#SimpleQueue(D)# Modified `performLater` to return the Job ID to the caller (https://github.com/aravindavk/simple-queue/commit/7995704b38f40ace667103df31df8017a3af19a9[link]).
