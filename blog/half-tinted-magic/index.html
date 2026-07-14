@@ -1,0 +1,183 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Half-Tinted Magic: How to Add a Color Tint to Just Part of an Image - Aravinda VK</title>
+    
+    <meta name="generator" content="Nanoc 4.12.20">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Half-Tinted Magic: How to Add a Color Tint to Just Part of an Image"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="In the last blog post, we explored the Tint feature available in Chitra. In this blog post, we will explore how to add a tint to only half of an image (or any other portion)."/>
+    <meta property="og:description" content="In the last blog post, we explored the Tint feature available in Chitra. In this blog post, we will explore how to add a tint to only half of an image (or any other portion)."/>
+    <link rel="canonical" href="/blog/half-tinted-magic/"/>
+    <meta property="og:url" content="/blog/half-tinted-magic/"/>
+    <meta property="og:site_name" content="Aravinda Vishwanathapura"/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2026-07-14"/>
+    
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="https://aravindavk.in/images/half-tinted.png"/>
+    <meta property="og:image" content="https://aravindavk.in/images/half-tinted.png"/>
+    
+    <meta name="twitter:site" content="https://aravindavk.in"/>
+    <meta name="twitter:title" content="Half-Tinted Magic: How to Add a Color Tint to Just Part of an Image"/>
+    <meta name="twitter:description" content="In the last blog post, we explored the Tint feature available in Chitra. In this blog post, we will explore how to add a tint to only half of an image (or any other portion)."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks-articles">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VK</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Half-Tinted Magic: How to Add a Color Tint to Just Part of an Image</h1>
+                <div class="">Jul 14, 2026</div>
+                <div class="">
+                    <span class="icon-text">
+                        <svg class="mr-1 icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                        <span><strong>1 minute</strong> read.</span>
+                    </span>
+                </div>
+                <div>
+                    
+                    <span class="tag is-info is-light">d</span>
+                    
+                    <span class="tag is-info is-light">dlang</span>
+                    
+                    <span class="tag is-info is-light">chitra</span>
+                    
+                    <span class="tag is-info is-light">lua</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>In the last <a href="https://aravindavk.in/blog/tinted-images">blog post</a>, we explored the Tint feature available in Chitra. In this blog post, we will explore how to add a tint to only half of an image (or any other portion).</p>
+</div>
+<div class="paragraph">
+<p>We will use a trick here. First, draw the full image, then draw only the second half using <code>CROP</code> fitting and an Offset (Negative Offset shifts the image origin). Apply tint only to the second image.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="d"><span class="n">image</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">tint</span><span class="p">(</span><span class="s">"#D4AF37"</span><span class="p">);</span>
+<span class="n">image</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="n">width</span><span class="p">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">IMAGE_WIDTH</span><span class="p">,</span> <span class="n">fit</span><span class="p">:</span> <span class="n">CROP</span><span class="p">,</span> <span class="n">offsetX</span><span class="p">:</span> <span class="p">-</span><span class="n">IMAGE_WIDTH</span><span class="p">/</span><span class="mi">2</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/half-tinted.png" alt="Half Tinted">
+</div>
+</div>
+<div class="paragraph">
+<p>Full Code (Sets the paper size to the same as the image size):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="d"><span class="err">#</span><span class="p">!/</span><span class="n">usr</span><span class="p">/</span><span class="n">bin</span><span class="p">/</span><span class="n">env</span> <span class="n">dub</span>
+<span class="cm">/+ dub.sdl:
+ dependency "chitra" version="~&gt;0.4.0"
+ +/</span>
+<span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">stdio</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="n">chitra</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Inputs:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">length</span> <span class="p">!=</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">writefln</span><span class="p">(</span><span class="s">"USAGE: %s &lt;INFILE&gt; &lt;OUTFILE&gt; &lt;TINT-COLOR&gt;"</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">auto</span> <span class="n">imagePath</span> <span class="p">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="k">auto</span> <span class="n">outFile</span> <span class="p">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="k">auto</span> <span class="n">tintColor</span> <span class="p">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+
+    <span class="c1">// Default Chitra Context</span>
+    <span class="k">auto</span> <span class="n">ctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Chitra</span><span class="p">;</span>
+
+    <span class="c1">// Get image size and set the paper size to the same as the image</span>
+    <span class="k">auto</span> <span class="n">imgBox</span> <span class="p">=</span> <span class="n">ctx</span><span class="p">.</span><span class="n">imageSize</span><span class="p">(</span><span class="n">imagePath</span><span class="p">);</span>
+    <span class="n">ctx</span><span class="p">.</span><span class="n">setSize</span><span class="p">(</span><span class="n">imgBox</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">imgBox</span><span class="p">.</span><span class="n">height</span><span class="p">);</span>
+
+    <span class="c1">// Draw full image</span>
+    <span class="c1">//        PATH       X  Y</span>
+    <span class="n">ctx</span><span class="p">.</span><span class="n">image</span><span class="p">(</span><span class="n">imagePath</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+    <span class="c1">// Add Tint and draw the second half of the image</span>
+    <span class="n">ctx</span><span class="p">.</span><span class="n">tint</span><span class="p">(</span><span class="n">tintColor</span><span class="p">);</span>
+
+    <span class="c1">// Draw the second half</span>
+    <span class="c1">//        PATH       X              Y  W             H</span>
+    <span class="n">ctx</span><span class="p">.</span><span class="n">image</span><span class="p">(</span><span class="n">imagePath</span><span class="p">,</span> <span class="n">ctx</span><span class="p">.</span><span class="n">width</span> <span class="p">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">imgBox</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">imgBox</span><span class="p">.</span><span class="n">height</span><span class="p">,</span>
+              <span class="n">fit</span><span class="p">:</span> <span class="n">CROP</span><span class="p">,</span> <span class="n">offsetX</span><span class="p">:</span> <span class="p">-</span><span class="n">imgBox</span><span class="p">.</span><span class="n">width</span> <span class="p">/</span> <span class="mi">2</span><span class="p">);</span>
+
+    <span class="n">ctx</span><span class="p">.</span><span class="n">saveAs</span><span class="p">(</span><span class="n">outFile</span><span class="p">,</span> <span class="n">resolution</span><span class="p">:</span> <span class="mi">72</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="c">#               INFILE    OUTFILE          TINT_COLOR</span>
+dub tint_half.d tiger.png tiger_tinted.png <span class="s2">"#D4AF37"</span></code></pre>
+</div>
+</div>
+            </div>
+            <div class="has-text-centered mb-6 notification  is-light">
+    
+    <p class="has-text-grey is-uppercase is-size-5 pb-2">About Aravinda VK</p>
+    
+    Partner at <a href="https://github.com/kadalu-investments">Kadalu Investments</a>,
+    Creator of <a href="https://aravindavk.in/sanka">Sanka</a>,
+    Creator of <a href="https://aravindavk.in/chitra">Chitra</a>,
+    <a href="https://gluster.org">GlusterFS</a> core team member,
+    Maintainer of <a href="https://github.com/kadalu">Kadalu Storage</a>
+    <div class="mt-6">
+        Contact:
+        <a href="http://in.linkedin.com/in/aravindavk">Linkedin</a> |
+        <a href="https://twitter.com/aravindavk">Twitter</a> |
+        <a href="http://facebook.com/aravindavk">Facebook</a> |
+        <a href="https://github.com/aravindavk">Github</a> |
+        mail&#64;&#97;&#114;&#97;&#118;&#105;&#110;&#100;&#97;&#118;&#107;&#46;&#105;&#110;
+    </div>
+</div>
+
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda VK</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>
