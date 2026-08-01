@@ -1,0 +1,67 @@
+---
+title: "Paper Elephant - Chitra"
+summary: "First, I saw this in Impana’s drawing book and immediately realised I could create it using Chitra."
+tags: d,dlang,chitra,lua
+image: /images/paper-elephant-compare.png
+---
+
+First, I saw this in Impana’s drawing book and immediately realised I could create it using Chitra. 
+
+image::/images/paper-elephant-drawing.png[Paper Elephant Drawing]
+
+After drawing in my grid notebook, I roughly noted the coordinates needed to draw the Polygon. Noted the nearest color codes using the Color picker tool.
+
+image::/images/paper-elephant-coordinates.jpeg[Paper Elephant Coordinates]
+
+Final result:
+
+image::/images/paper-elephant.png[Paper Elephant]
+
+Source:
+
+[source,d]
+----
+/+ dub.sdl:
+ dependency "chitra" version="~>0.4.2"
+ +/
+
+import std.stdio;
+import chitra;
+
+void main()
+{
+    auto ctx = new Chitra(200);
+
+    with (ctx)
+    {
+        background("#bebebc");
+        noStroke;
+
+        fill("#1c5fb2");
+        polygon([10, 90, 10, 100, 30, 90, 25, 75], close: true); // 1
+        polygon([20, 70, 35, 160, 50, 160, 110, 60, 100, 50, 120, 30, 50, 30], close: true); // 2
+
+        fill("#487ecd");
+        polygon([99, 51, 135, 80, 145, 55, 170, 50, 160, 20, 130, 20], close: true);  // 3
+
+        fill("#7096c9");
+        polygon([70, 120, 90, 135, 130, 75, 110, 60], close: true);  // 4
+
+        fill("#3571c1");
+        polygon([100, 115, 100, 160, 120, 160, 150, 80, 135, 80, 130, 75], close: true); // 5
+
+        fill("#487bc1");
+        polygon([145, 55, 155, 95, 190, 80, 180, 45], close: true); // 6
+
+        fill("#2353a9");
+        polygon([160, 93, 155, 120, 180, 120, 190, 80], close: true); // 7
+        polygon([160, 120, 150, 150, 160, 150, 180, 120], close: true); // 8
+
+        fill("#162976");
+        polygon([135, 80, 152, 80, 145, 55], close: true); // 9
+        polygon([90, 135, 100, 135, 100, 115], close: true); // 10
+
+        saveAs("output/paper-elephant.png");
+    }
+}
+----
