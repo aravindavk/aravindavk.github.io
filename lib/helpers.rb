@@ -66,8 +66,8 @@ HOME_PAGE_DETAILS = [
   },
   {
     :title => "Creator of Chitra",
-    :url => "https://aravindavk.in/chitra",
+    :url => "https://github.com/aravindavk/chitra-d",
     :image => "https://aravindavk.in/images/chitra-logo.png",
-    :summary => "Chitra is a 2D graphics library for Crystal programming language."
+    :summary => "Chitra is a 2D graphics library for D programming language."
   }
 ]
