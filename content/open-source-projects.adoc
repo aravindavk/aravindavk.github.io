@@ -34,6 +34,72 @@ image::https://github.com/aravindavk/chitra-d/raw/main/static/FOSS%20United%20Lo
 
 
 == UPDATES
+* *_AUG 06, 2026 . Thursday_*
+** [.tag.is-warning]#Chitra# Added support for drawing grid outlines (`gridOutlines()`)
+** [.tag.is-warning]#Chitra# Grid and Text documentation updated with illustrations.
+** [.tag.is-warning]#Chitra# Gallery page updated with image and source linked to the new illustrations repo.
+
+* *_AUG 05, 2026 . Wednesday_*
+** [.tag.is-warning]#Chitra# Fix drawing the transparent text (`noFill`). Pango Markup alpha attribute was required when no color was used.
+** [.tag.is-warning]#Chitra# Created a new repo for the illustrations needed for Documentation and Gallery https://github.com/aravindavk/chitra-docs-illustrations
+
+* *_AUG 04, 2026 . Tuesday_*
+** [.tag.is-warning]#Chitra# Syntax highlighting support added to the `text` command using Python Pygments.
+
+* *_AUG 01, 2026 . Saturday_*
+** [.tag.is-warning]#Chitra# New blog post added: "Paper Elephant - Chitra" https://aravindavk.in/blog/paper-elephant-chitra
+
+* *_JUL 31, 2026 . Friday_*
+** [.tag.is-warning]#Chitra# Added support for Text styles to create reusable styles.
+** [.tag.is-warning]#Chitra# Color parsing improvements: Removed the duplicate code for parsing color (Used by `fill`, `stroke`, `background`, `borderColor` etc)
+** [.tag.is-warning]#Chitra# Use `fill` color as `textColor` and removed the `textColor` command.
+
+* *_JUL 29, 2026 . Wednesday_*
+** [.tag.is-warning]#Chitra# Documentation moved to Github Wiki https://github.com/aravindavk/chitra-d/wiki
+
+* *_JUL 28, 2026 . Tuesday_*
+** [.tag.is-warning]#Chitra# Fixed the point implementation by drawing zero length line instead of drawing a very small circle. Now the Point color is controlled by Stroke. Fill has no effect. Adjust the size of the line using `strokeWeight` command.
+** [.tag.is-warning]#Chitra# (Lua-plugin) Added support for Bezier and path commands.
+
+* *_JUL 26, 2026 . Sunday_*
+** [.tag.is-warning]#Chitra# Enhanced the drawing commands (`oval`, `rect`, `line` etc) to accept XY coordinate as Point object.
+** [.tag.is-warning]#Chitra# Added support for drawing Bezier curves.
+** [.tag.is-warning]#Chitra# Added Vase example using Bezier curves. Added support to highlight points and the control points.
+** [.tag.is-warning]#Chitra# Added Car example using Bezier and line paths.
+** [.tag.is-warning]#Chitra# Added Path example.
+** [.tag.is-warning]#Chitra# Updated the Drawing context document.
+** [.tag.is-warning]#Chitra# Updated the Exporting document.
+
+* *_JUL 25, 2026 . Saturday_*
+** [.tag.is-warning]#Chitra# Fix the issue with background color scaling when gray scale was used.
+
+* *_JUL 24, 2026 . Friday_*
+** [.tag.is-warning]#Chitra# Added illustrations to Coordinate system document.
+
+* *_JUL 23, 2026 . Thursday_*
+** [.tag.is-warning]#Chitra# Added support for drawing arc.
+** [.tag.is-warning]#Chitra# Added support for `angleMode(DEGREES|RADIANS)` to switch between degrees and radians. Default is Radians.
+** [.tag.is-warning]#Chitra# Added helper functions for degrees and radians (Ex: `45.degrees`, TWO_PI.radians).
+
+* *_JUL 22, 2026 . Wednesday_*
+** [.tag.is-warning]#Chitra# `blendMode` support added to mix the two drawings in different blend modes (Intersection, Union, Multiply etc).
+** [.tag.is-warning]#Chitra# `saveState` and `restoreState` commands added. These commands help to isolate the changes only to a set of commands. For example, transformation APIs.
+** [.tag.is-warning]#Chitra# `strokeDash` or `lineDash` support added.
+** [.tag.is-warning]#Chitra# `strokeJoin` or `lineJoin` support added.
+** [.tag.is-warning]#Chitra# `strokeCap` or `lineCap` support added.
+** [.tag.is-warning]#Chitra# Added a new named color: "sapphireblue"
+** [.tag.is-warning]#Chitra# Added support for drawing Triangle.
+
+* *_JUL 16, 2026 . Thursday_*
+** [.tag.is-warning]#Chitra# New blog post: "Perfect Fit Every Time: Automatically Resize Text" https://aravindavk.in/blog/auto-resize-text-chitra
+
+* *_JUL 15, 2026 . Wednesday_*
+** [.tag.is-warning]#Chitra# Box transformation utilities added (`combine`, `shift`, `intersect`, `inset`)
+** [.tag.is-warning]#Chitra# Text properties commands added: `fontSize`, `font`, `textAlign` etc
+
+* *_JUL 14, 2026 . Tuesday_*
+** [.tag.is-warning]#Chitra# Added `fit`, `offset_x` and `offset_y` args to the background and image APIs.
+** [.tag.is-warning]#Chitra# New blog post: "Half-Tinted Magic: How to Add a Color Tint to Just Part of an Image" https://aravindavk.in/blog/half-tinted-magic
 
 * *_JUL 12, 2026 . Sunday_*
 ** [.tag.is-warning]#Chitra# New blog post about Tinted images https://aravindavk.in/blog/tinted-images
