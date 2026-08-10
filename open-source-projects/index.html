@@ -101,6 +101,222 @@
 <div class="ulist">
 <ul>
 <li>
+<p><strong><em>AUG 06, 2026 . Thursday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">Chitra</span> Added support for drawing grid outlines (<code>gridOutlines()</code>)</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> Grid and Text documentation updated with illustrations.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> Gallery page updated with image and source linked to the new illustrations repo.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><em>AUG 05, 2026 . Wednesday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">Chitra</span> Fix drawing the transparent text (<code>noFill</code>). Pango Markup alpha attribute was required when no color was used.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> Created a new repo for the illustrations needed for Documentation and Gallery <a href="https://github.com/aravindavk/chitra-docs-illustrations" class="bare">https://github.com/aravindavk/chitra-docs-illustrations</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><em>AUG 04, 2026 . Tuesday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">Chitra</span> Syntax highlighting support added to the <code>text</code> command using Python Pygments.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><em>AUG 01, 2026 . Saturday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">Chitra</span> New blog post added: "Paper Elephant - Chitra" <a href="https://aravindavk.in/blog/paper-elephant-chitra" class="bare">https://aravindavk.in/blog/paper-elephant-chitra</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><em>JUL 31, 2026 . Friday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">Chitra</span> Added support for Text styles to create reusable styles.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> Color parsing improvements: Removed the duplicate code for parsing color (Used by <code>fill</code>, <code>stroke</code>, <code>background</code>, <code>borderColor</code> etc)</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> Use <code>fill</code> color as <code>textColor</code> and removed the <code>textColor</code> command.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><em>JUL 29, 2026 . Wednesday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">Chitra</span> Documentation moved to Github Wiki <a href="https://github.com/aravindavk/chitra-d/wiki" class="bare">https://github.com/aravindavk/chitra-d/wiki</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><em>JUL 28, 2026 . Tuesday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">Chitra</span> Fixed the point implementation by drawing zero length line instead of drawing a very small circle. Now the Point color is controlled by Stroke. Fill has no effect. Adjust the size of the line using <code>strokeWeight</code> command.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> (Lua-plugin) Added support for Bezier and path commands.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><em>JUL 26, 2026 . Sunday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">Chitra</span> Enhanced the drawing commands (<code>oval</code>, <code>rect</code>, <code>line</code> etc) to accept XY coordinate as Point object.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> Added support for drawing Bezier curves.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> Added Vase example using Bezier curves. Added support to highlight points and the control points.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> Added Car example using Bezier and line paths.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> Added Path example.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> Updated the Drawing context document.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> Updated the Exporting document.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><em>JUL 25, 2026 . Saturday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">Chitra</span> Fix the issue with background color scaling when gray scale was used.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><em>JUL 24, 2026 . Friday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">Chitra</span> Added illustrations to Coordinate system document.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><em>JUL 23, 2026 . Thursday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">Chitra</span> Added support for drawing arc.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> Added support for <code>angleMode(DEGREES|RADIANS)</code> to switch between degrees and radians. Default is Radians.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> Added helper functions for degrees and radians (Ex: <code>45.degrees</code>, TWO_PI.radians).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><em>JUL 22, 2026 . Wednesday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">Chitra</span> <code>blendMode</code> support added to mix the two drawings in different blend modes (Intersection, Union, Multiply etc).</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> <code>saveState</code> and <code>restoreState</code> commands added. These commands help to isolate the changes only to a set of commands. For example, transformation APIs.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> <code>strokeDash</code> or <code>lineDash</code> support added.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> <code>strokeJoin</code> or <code>lineJoin</code> support added.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> <code>strokeCap</code> or <code>lineCap</code> support added.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> Added a new named color: "sapphireblue"</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> Added support for drawing Triangle.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><em>JUL 16, 2026 . Thursday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">Chitra</span> New blog post: "Perfect Fit Every Time: Automatically Resize Text" <a href="https://aravindavk.in/blog/auto-resize-text-chitra" class="bare">https://aravindavk.in/blog/auto-resize-text-chitra</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><em>JUL 15, 2026 . Wednesday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">Chitra</span> Box transformation utilities added (<code>combine</code>, <code>shift</code>, <code>intersect</code>, <code>inset</code>)</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> Text properties commands added: <code>fontSize</code>, <code>font</code>, <code>textAlign</code> etc</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><em>JUL 14, 2026 . Tuesday</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="tag is-warning">Chitra</span> Added <code>fit</code>, <code>offset_x</code> and <code>offset_y</code> args to the background and image APIs.</p>
+</li>
+<li>
+<p><span class="tag is-warning">Chitra</span> New blog post: "Half-Tinted Magic: How to Add a Color Tint to Just Part of an Image" <a href="https://aravindavk.in/blog/half-tinted-magic" class="bare">https://aravindavk.in/blog/half-tinted-magic</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p><strong><em>JUL 12, 2026 . Sunday</em></strong></p>
 <div class="ulist">
 <ul>
