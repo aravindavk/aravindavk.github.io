@@ -1,0 +1,233 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    
+    <title>Highlight your Code with Chitra's New Syntax Highlighting Feature! - Aravinda VK</title>
+    
+    <meta name="generator" content="Nanoc 4.12.20">
+    <link rel="apple-touch-icon" sizes="300x300" href="/images/me_fav.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/images/me_fav.png">
+    <link rel="stylesheet" href="/bulma-0.9.4.min.css">
+    <link rel="stylesheet" href="/pygment-emacs-highlight.css">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <script defer src="/alpinejs-3.10.5.min.js"></script>
+    
+    <meta property="og:title" content="Highlight your Code with Chitra's New Syntax Highlighting Feature!"/>
+    <meta name="author" content=""/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="In this article, we explore the exciting addition of syntax highlighting in the latest release of Chitra, a 2D graphics library in the D programming language. By integrating the powerful Python Pygments library, Chitra allows developers to render code snippets in a visually appealing format using Pango Markup."/>
+    <meta property="og:description" content="In this article, we explore the exciting addition of syntax highlighting in the latest release of Chitra, a 2D graphics library in the D programming language. By integrating the powerful Python Pygments library, Chitra allows developers to render code snippets in a visually appealing format using Pango Markup."/>
+    <link rel="canonical" href="/blog/syntax-highlighting-chitra/"/>
+    <meta property="og:url" content="/blog/syntax-highlighting-chitra/"/>
+    <meta property="og:site_name" content="Aravinda Vishwanathapura"/>
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2026-08-11"/>
+    
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="https://aravindavk.in/images/chitra-terminal.png"/>
+    <meta property="og:image" content="https://aravindavk.in/images/chitra-terminal.png"/>
+    
+    <meta name="twitter:site" content="https://aravindavk.in"/>
+    <meta name="twitter:title" content="Highlight your Code with Chitra's New Syntax Highlighting Feature!"/>
+    <meta name="twitter:description" content="In this article, we explore the exciting addition of syntax highlighting in the latest release of Chitra, a 2D graphics library in the D programming language. By integrating the powerful Python Pygments library, Chitra allows developers to render code snippets in a visually appealing format using Pango Markup."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+</head>
+
+    <body>
+        <div id="main" class="container is-max-desktop px-4">
+            <nav class="has-text-centered mb-6">
+    <a class="link is-info is-inline-block px-2" href="/blog">Blog Posts</a>
+    <a class="link is-info is-inline-block px-2" href="/talks-articles">Talks & Articles</a>
+    <a class="link is-info is-inline-block px-2" href="/projects">Projects</a>
+</nav>
+<div class="has-text-centered py-6">
+    <a href="/">
+        <figure class="image is-64x64" style="margin: auto">
+            <img class="is-rounded" src="/images/me.jpg">
+        </figure>
+        <p class="has-text-grey pb-6 is-size-6">ARAVINDA VK</p>
+    </a>
+</div>
+
+            <div class="has-text-centered">
+                <h1 class="title">Highlight your Code with Chitra's New Syntax Highlighting Feature!</h1>
+                <div class="">Aug 11, 2026</div>
+                <div class="">
+                    <span class="icon-text">
+                        <svg class="mr-1 icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                        <span><strong>2 minutes</strong> read.</span>
+                    </span>
+                </div>
+                <div>
+                    
+                    <span class="tag is-info is-light">d</span>
+                    
+                    <span class="tag is-info is-light">dlang</span>
+                    
+                    <span class="tag is-info is-light">chitra</span>
+                    
+                    <span class="tag is-info is-light">lua</span>
+                    
+                </div>
+            </div>
+            <div class="content py-6">
+                <div class="paragraph">
+<p>The latest release of Chitra (<code>v0.5</code>) added a syntax-highlighting feature using the Python Pygments (<a href="https://pygments.org/" class="bare">https://pygments.org/</a>) library. In this blog post, we will understand why I selected the Python Pygments library and how to use it with Chitra.</p>
+</div>
+<div class="paragraph">
+<p>Chitra is a 2D graphics library in the D programming language. It uses the Pango library and Cairo Graphics for rendering text. Pango Markup is a very interesting feature that can be used to draw text with mixed formatting.</p>
+</div>
+<div class="paragraph">
+<p>Python Pygments highlights:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Python Pygments supports generating Pango Markup directly from the code input (<a href="https://pygments.org/docs/formatters/#PangoMarkupFormatter" class="bare">https://pygments.org/docs/formatters/#PangoMarkupFormatter</a>)</p>
+</li>
+<li>
+<p>Pygments supports 600+ languages and other text formats (See the full list of supported languages <a href="https://pygments.org/languages" class="bare">https://pygments.org/languages</a>)</p>
+</li>
+<li>
+<p>It can be used as a command-line program.</p>
+</li>
+<li>
+<p>Many themes are supported (See the full list of available themes <a href="https://pygments.org/styles" class="bare">https://pygments.org/styles</a>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Enable syntax highlighting by running the following command. Optionally specify the theme name as the second argument.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="d"><span class="n">syntaxHighlight</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="n">theme</span><span class="p">:</span> <span class="n">EMACS</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now add the code block between triple backticks (Similar to GitHub-flavoured Markdown).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>```js
+function hello() {
+    console.log("Hello World!");
+}
+```</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Chitra parses the text, runs the Pygmentize CLI program, and collects the output as Pango markup and renders it.</p>
+</div>
+<div class="paragraph">
+<p>Full Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="d"><span class="cm">/+ dub.sdl:
+dependency "chitra" version="~&gt;0.5.0"
+ +/</span>
+
+<span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">stdio</span><span class="p">;</span>
+<span class="k">import</span> <span class="n">chitra</span><span class="p">;</span>
+
+<span class="nb">string</span> <span class="n">sampleTxt</span> <span class="p">=</span> <span class="s">q"[Javascript function example
+
+```js
+function hello() {
+    console.log("Hello World!");
+}
+```
+
+Some text after the code.
+]"</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">ctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Chitra</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
+
+    <span class="k">with</span> <span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">background</span><span class="p">(</span><span class="s">"#3F3F3F"</span><span class="p">);</span>
+        <span class="n">noStroke</span><span class="p">;</span>
+
+        <span class="n">syntaxHighlight</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="n">theme</span><span class="p">:</span> <span class="n">ZENBURN</span><span class="p">);</span>
+
+        <span class="n">fill</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
+        <span class="n">font</span><span class="p">(</span><span class="s">"American Typewriter"</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
+        <span class="n">text</span><span class="p">(</span><span class="n">sampleTxt</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+
+        <span class="n">saveAs</span><span class="p">(</span><span class="s">"code.png"</span><span class="p">,</span> <span class="n">resolution</span><span class="p">:</span> <span class="mi">72</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Run below command to generate <code>code.png</code> file.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>dub code.d</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/chitra-syntax-highlight.png" alt="Syntax Highlight">
+</div>
+</div>
+<div class="paragraph">
+<p>Check out this example of showing syntax-highlighted code inside a terminal window.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/chitra-terminal.png" alt="Terminal Code highlight">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Link to Gallery: <a href="https://github.com/aravindavk/chitra-d/wiki/Gallery" class="bare">https://github.com/aravindavk/chitra-d/wiki/Gallery</a></p>
+</li>
+<li>
+<p>Documentation: <a href="https://github.com/aravindavk/chitra-d/wiki" class="bare">https://github.com/aravindavk/chitra-d/wiki</a></p>
+</li>
+<li>
+<p>Repo: <a href="https://github.com/aravindavk/chitra-d" class="bare">https://github.com/aravindavk/chitra-d</a></p>
+</li>
+</ul>
+</div>
+            </div>
+            <div class="has-text-centered mb-6 notification  is-light">
+    
+    <p class="has-text-grey is-uppercase is-size-5 pb-2">About Aravinda VK</p>
+    
+    Partner at <a href="https://github.com/kadalu-investments">Kadalu Investments</a>,
+    Creator of <a href="https://aravindavk.in/sanka">Sanka</a>,
+    Creator of <a href="https://aravindavk.in/chitra">Chitra</a>,
+    <a href="https://gluster.org">GlusterFS</a> core team member,
+    Maintainer of <a href="https://github.com/kadalu">Kadalu Storage</a>
+    <div class="mt-6">
+        Contact:
+        <a href="http://in.linkedin.com/in/aravindavk">Linkedin</a> |
+        <a href="https://twitter.com/aravindavk">Twitter</a> |
+        <a href="http://facebook.com/aravindavk">Facebook</a> |
+        <a href="https://github.com/aravindavk">Github</a> |
+        mail&#64;&#97;&#114;&#97;&#118;&#105;&#110;&#100;&#97;&#118;&#107;&#46;&#105;&#110;
+    </div>
+</div>
+
+        </div>
+        <footer class="footer has-background-white-bis mt-6">
+    <div class="content has-text-centered">
+        <p>
+            Copyright &copy; 2022 <strong>Aravinda VK</strong>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+</html>
