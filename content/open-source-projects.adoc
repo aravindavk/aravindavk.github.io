@@ -34,6 +34,35 @@ image::https://github.com/aravindavk/chitra-d/raw/main/static/FOSS%20United%20Lo
 
 
 == UPDATES
+* *_AUG 27, 2026 . Thurssday_*
+** [.tag.is-warning]#Chitra# Added documentation for QR code images (https://github.com/aravindavk/chitra-d/wiki/QR-Code-Image)
+** [.tag.is-warning]#Chitra# Added more examples to Chitra illustrations repo.
+
+* *_AUG 26, 2026 . Wednesday_*
+** [.tag.is-warning]#Chitra# Added documentation for Animation (https://github.com/aravindavk/chitra-d/wiki/Animation)
+
+* *_AUG 25, 2026 . Tuesday_*
+** [.tag.is-warning]#Chitra# **New feature** Added support for creating animations.
+** [.tag.is-warning]#Chitra# Added commands to customize Animation options frame rate, loop and others.
+
+* *_AUG 19, 2026 . Wednesday_*
+** [.tag.is-warning]#Tinyview# Rewrite Tinyview without using Regex.
+** [.tag.is-warning]#Chitra# Integrate Tinyview library for page and document variables.
+
+* *_AUG 17, 2026 . Monday_*
+** [.tag.is-warning]#Chitra# Page and document variables support added for text element. `{{ currentPage }}` and `{{ totalPages }}` variables available by default for PDFs.
+
+* *_AUG 16, 2026 . Sunday_*
+** [.tag.is-warning]#Chitra# Make the height of the `Box` as `auto`. Creates a square box if the height is not specified.
+** [.tag.is-warning]#Chitra# QR code poster added to illustrations repo.
+
+* *_AUG 13, 2026 . Thursday_*
+** [.tag.is-warning]#Chitra# Fix the text color issue if not specified in the default TextStyle.
+
+* *_AUG 12, 2026 . Wednesday_*
+** [.tag.is-warning]#Chitra# **New feature** Added support for QR code images.
+** [.tag.is-warning]#Chitra# Added new command `namedColors()` to list the colors.
+
 * *_AUG 06, 2026 . Thursday_*
 ** [.tag.is-warning]#Chitra# Added support for drawing grid outlines (`gridOutlines()`)
 ** [.tag.is-warning]#Chitra# Grid and Text documentation updated with illustrations.
