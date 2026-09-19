@@ -34,6 +34,37 @@ image::https://github.com/aravindavk/chitra-d/raw/main/static/FOSS%20United%20Lo
 
 
 == UPDATES
+
+* *_SEP 19, 2026 . Saturday_*
+** [.tag.is-warning]#serverino-params# New project created for handling request params for Serverino web framework (https://github.com/aravindavk/serverino-params)
+
+* *_SEP 18, 2026 . Friday_*
+** [.tag.is-warning]#sanka# Created a new Github Organization for Sanka (Kannada projects) https://github.com/sanka-kn
+** [.tag.is-warning]#sanka# Sanka.js project started - JavaScript library for Kannada language. https://github.com/sanka-kn/sanka.js
+** [.tag.is-warning]#sanka# Rollup based build script added.
+** [.tag.is-warning]#sanka# Added support for Splitting text into Kannada letters.
+** [.tag.is-warning]#sanka# Added support for checking and listing Palindrome words.
+** [.tag.is-warning]#sanka# Added support for finding N letter words.
+** [.tag.is-warning]#sanka# Added support for converting english to Kannada numbers and vice versa.
+** [.tag.is-warning]#sanka# Added support for shuffle.
+
+* *_SEP 17, 2026 . Thursday_*
+** [.tag.is-warning]#tinyview# Matched the APIs similar to Jinja. Added support for passing template variables via arguments (Repo: https://github.com/aravindavk/tinyview)
+
+* *_SEP 16, 2026 . Wednesday_*
+** [.tag.is-warning]#jinja-d# Simplified the APIs (Repo: https://github.com/aravindavk/jinja-d)
+
+* *_SEP 10, 2026 . Thursday_*
+** [.tag.is-warning]#Chitra# Added a template project so that `dub init -t chitra` will initialize the Chitra project.
+** [.tag.is-warning]#Chitra# Close path after drawing oval/circle.
+
+* *_SEP 09, 2026 . Wednesday_*
+** [.tag.is-warning]#Chitra# New Github organization created for Chitra project. Website work started https://chitra-2d.github.io (Repo: https://github.com/chitra-2d/chitra-2d.github.io)
+
+* *_SEP 06, 2026 . Sunday_*
+** [.tag.is-warning]#Chitra# Exposed `ctx.color` command to generate Color object
+** [.tag.is-warning]#Chitra# New feature: Added support for drawing tables
+
 * *_AUG 27, 2026 . Thurssday_*
 ** [.tag.is-warning]#Chitra# Added documentation for QR code images (https://github.com/aravindavk/chitra-d/wiki/QR-Code-Image)
 ** [.tag.is-warning]#Chitra# Added more examples to Chitra illustrations repo.
