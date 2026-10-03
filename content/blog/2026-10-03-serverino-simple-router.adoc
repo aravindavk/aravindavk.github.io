@@ -1,0 +1,89 @@
+---
+title: Simple routing for the Serverino Web framework
+summary: Serverino provides a simple way to route requests to the appropriate handlers. You need custom checks to validate requests and parse path parameters. In this blog post, we will learn to use the Radix Tree-based Simple Router library.
+tags: d,dlang,serverino,web,router
+image: /images/simple-router.png
+---
+
+> https://serverino.dev[Serverino] is an HTTP and WebSocket server for the D programming language. No dependencies, no framework to learn, nothing to install next to it: every request is handled by a plain function, in its own worker process.
+
+Serverino provides a simple way to route requests to the appropriate handlers. You need custom checks to validate requests and parse path parameters. In this blog post, we will learn to use the https://en.wikipedia.org/wiki/Radix_tree[Radix Tree] based https://code.dlang.org/packages/simple-router[Simple Router] library.
+
+Add `simple-router` to your project by running the following command.
+
+[source]
+----
+dub add simple-router
+----
+
+image::/images/simple-router.png[Simple Router]
+
+For this example application, we will write the following handlers.
+
+[source,d]
+----
+void listNotesHandler(Request request, Output output, JSONValue params)
+{
+    output ~= "Notes List";
+}
+
+void createNoteHandler(Request request, Output output, JSONValue params)
+{
+    output ~= "Note created (" ~ params["id"].str ~ ")";
+}
+
+void getNoteHandler(Request request, Output output, JSONValue params)
+{
+    output ~= "Note Get (" ~ params["id"].str ~ ")";
+}
+
+void updateNoteHandler(Request request, Output output, JSONValue params)
+{
+    output ~= "Note updated (" ~ params["id"].str ~ ")";
+}
+
+void deleteNoteHandler(Request request, Output output, JSONValue params)
+{
+    output ~= "Note deleted (" ~ params["id"].str ~ ")";
+}
+
+void error404(Request request, Output output)
+{
+    output.status = 404;
+    output ~= "Not Found";
+}
+----
+
+Now register these handlers.
+
+[source,d]
+----
+alias Handler = void function(Request, Response, JSONValue);
+SimpleRouter!Handler router;
+
+static this()
+{
+    router.register("get", "/api/notes", &listNotesHandler);
+    router.register("post", "/api/notes", &createNoteHandler);
+    router.register("get", "/api/notes/:id", &getNoteHandler);
+    router.register("put", "/api/notes/:id", &updateNoteHandler);
+    router.register("delete", "/api/notes/:id", &deleteNoteHandler);
+}
+----
+
+From the main handler, look up the respective handlers.
+
+[source,d]
+----
+@endpoint
+void mainHandler(Request request, Output output)
+{
+    auto route = router.lookup(request.method, request.path);
+    if (route.isNull) return error404(request, output);
+
+    auto func = route.get.handler;
+    func(request, output, route.get.params);
+}
+----
+
+See https://github.com/aravindavk/simple-router/blob/main/examples/with_serverino.d[here] for the full example code.
